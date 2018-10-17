@@ -1,26 +1,13 @@
 package org.fundacionjala.convertor.utils;
 
-import java.io.IOException;
-import java.util.StringJoiner;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AbstractLogger {
   private static AbstractLogger instance;
-  private Logger log;
-  private FileHandler file;
-  protected String path;
-  protected Formatter formatter;
-  protected String className;
+  private Logger logger;
 
   private AbstractLogger() {}
-
-  @Override
-  public void finalize() {
-    log.exiting(className, "Do it.");
-  }
 
   public static AbstractLogger getInstance() {
     if (instance == null) {
@@ -30,41 +17,14 @@ public class AbstractLogger {
     return instance;
   }
 
-  public void setClass(final String className) {
-    this.className = className;
+  public void setLogger(final String className) {
+    logger = LogManager.getLogger(className);
   }
 
-  public void setLogger() {
-    log = Logger.getLogger("");
-    log.setUseParentHandlers(false);
-    log.entering(className, "Do it.");
-  }
-
-  public void setLevel(final Level level) {
-    log.setLevel(level);
-  }
-
-  public void setPath(final String path) {
-    this.path = path;
-  }
-
-  public void setFormatter(final Formatter formatter) {
-    this.formatter = formatter;
-  }
-
-  public void setFilename(final String filename) {
-    if (file == null) {
-      try {
-        file = new FileHandler(new StringJoiner("/").add(path).add(filename).toString(), true);
-        file.setFormatter(formatter);
-      } catch (IOException e) {
-        log.warning(new StringBuilder().append("File cannot be created.").append(e.getMessage()).toString());
-      }
-    }
-  }
-
-  //abstract method
-  public void logMessage(final String message) {
-    log.info(message);
+  public void test() {
+    logger.trace("Entering application.");
+    logger.debug("Debug Message Logged !!!");
+    logger.info("Info Message Logged !!!");
+    logger.error("Error Message Logged !!!", new NullPointerException("NullError"));
   }
 }
