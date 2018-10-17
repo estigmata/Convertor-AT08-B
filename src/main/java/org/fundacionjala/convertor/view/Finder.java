@@ -2,6 +2,9 @@ package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 /**
  * Class for Finder
@@ -11,17 +14,19 @@ public class Finder {
     private JButton button;
     private JTextField textField;
     private JLabel label;
+    private String path;
 
     /**
-     * Contructor
+     * Constructor.
      *
      * @param tabPane input.
      */
     public Finder(TabPane tabPane) {
         this.tabPane = tabPane;
-        button = new JButton("Find");
         textField = new JTextField("");
         label = new JLabel("What find?:");
+        button = new JButton("Find");
+
     }
 
     /**
@@ -29,6 +34,12 @@ public class Finder {
      */
     public void initComponents() {
         button.setPreferredSize(new Dimension(50, 50));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                path = textField.getText();
+            }
+        });
     }
 
     /**
@@ -40,22 +51,8 @@ public class Finder {
         tabPane.getAudioPanel().add(textField);
         tabPane.getAudioPanel().add(button);
     }
-//This part will be the connection with the controller (William Renato)
-    /**
-     * Getter.
-     *
-     * @return OBJ.
-     */
-    public JButton getButton() {
-        return button;
-    }
 
-    /**
-     * Getter.
-     *
-     * @return OBJ.
-     */
-    public JTextField getTextField() {
-        return textField;
+    public String getPath() {
+        return path;
     }
 }
