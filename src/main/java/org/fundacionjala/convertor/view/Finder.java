@@ -2,19 +2,15 @@ package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 /**
  * Class for Finder
  */
 public class Finder {
     private TabPane tabPane;
-    private JButton button;
-    private JTextField textField;
+    private JButton searchButton;
+    private JTextField path;
     private JLabel label;
-    private String path;
 
     /**
      * Constructor.
@@ -23,23 +19,17 @@ public class Finder {
      */
     public Finder(TabPane tabPane) {
         this.tabPane = tabPane;
-        textField = new JTextField("");
+        path = new JTextField("");
         label = new JLabel("What find?:");
-        button = new JButton("Find");
+        searchButton = new JButton("Find");
 
     }
 
     /**
      * Initialization of Components.
      */
-    public void initComponents() {
-        button.setPreferredSize(new Dimension(50, 50));
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                path = textField.getText();
-            }
-        });
+    void initComponents() {
+        searchButton.setPreferredSize(new Dimension(50, 50));
     }
 
     /**
@@ -48,11 +38,15 @@ public class Finder {
     public void Structure() {
         tabPane.setLayout(new GridLayout(3, 5));
         tabPane.getAudioPanel().add(label);
-        tabPane.getAudioPanel().add(textField);
-        tabPane.getAudioPanel().add(button);
+        tabPane.getAudioPanel().add(path);
+        tabPane.getAudioPanel().add(searchButton);
     }
 
-    public String getPath() {
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
+    public JTextField getPath() {
         return path;
     }
 }
