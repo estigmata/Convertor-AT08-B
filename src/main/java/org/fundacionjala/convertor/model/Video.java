@@ -1,9 +1,11 @@
 package org.fundacionjala.convertor.model;
 
+import java.io.File;
+
 /**
  * class video
  */
-public class Video extends File {
+public class Video extends Archivo {
 
     /**
      * this method search
@@ -11,7 +13,10 @@ public class Video extends File {
      * @param parameter input value
      */
     @Override
-    public void search(final String parameter) {
-        System.out.println("serch name " + parameter + " in video");
+    public String search(final String parameter) {
+        File file = new File(parameter);
+        System.out.println(file);
+        return file.getName();
+
     }
 }

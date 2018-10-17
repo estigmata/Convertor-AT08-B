@@ -1,13 +1,13 @@
 package org.fundacionjala.convertor.model;
 
 /**
- * Abstract class
+ * abstract class archivo
  */
-abstract class File {
+abstract class Archivo {
     /**
      * this method search
      *
      * @param parameter input value
      */
-    public abstract void search(final String parameter);
+    public abstract String search(final String parameter);
 }

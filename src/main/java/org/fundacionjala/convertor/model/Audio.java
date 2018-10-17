@@ -1,9 +1,11 @@
 package org.fundacionjala.convertor.model;
 
+import java.io.File;
+
 /**
  * Class audio
  */
-public class Audio extends File {
+public class Audio extends Archivo {
 
     /**
      * this method search
@@ -11,7 +13,9 @@ public class Audio extends File {
      * @param parameter input value
      */
     @Override
-    public void search(final String parameter) {
-        System.out.println("search  name "+ parameter +" in audio");
+    public String search(final String parameter) {
+        File file = new File(parameter);
+        System.out.println(file);
+        return file.getName();
     }
 }
