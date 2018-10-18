@@ -27,8 +27,17 @@ import org.fundacionjala.convertor.utils.AbstractLogger;
  * @version 1.0
  *
  */
-public class Main {
-  public static void main( String[] args ) {
+public final class Main {
+
+  /**
+   * Constructor not called.
+   */
+  private Main() { }
+  /**
+   * Main method.
+   * @param args type array of String.
+   */
+  public static void main(final String[] args) {
     AbstractLogger log = AbstractLogger.getInstance();
     log.setLogger(Main.class.getName());
     log.test();
