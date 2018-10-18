@@ -1,14 +1,25 @@
+/*
+ * Viewer.java Copyright (c) 2018 Jalasoft.
+ * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of
+ * Jalasoft, ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 /**
  * Class of Viewer.
+ * @autor Rodrigo Menacho
  */
 public class Viewer extends JFrame {
-    private Finder finder;
+
+    private TabPane tabPane;
 
     /**
      * Constructor.
@@ -33,8 +44,7 @@ public class Viewer extends JFrame {
      * Initialization of Components.
      */
     private void initComponents() {
-
-        TabPane tabPane = new TabPane();
+        tabPane = new TabPane();
         tabPane.initComponents();
         this.getContentPane().add(tabPane);
         this.pack();
@@ -47,7 +57,7 @@ public class Viewer extends JFrame {
      * @return the JObject
      */
     public JButton getSearchButton() {
-        return finder.getSearchButton();
+        return tabPane.getAudioTabPanel().getFinderPanel().getSearchButton();
     }
 
     /**
@@ -56,9 +66,12 @@ public class Viewer extends JFrame {
      * @return the JObject.
      */
     public String getPath() {
-        return finder.getPath().getText();
+        return tabPane.getAudioTabPanel().getFinderPanel().getPathText();
     }
 
+    public JTable getResultTable() {
+        return tabPane.getAudioTabPanel().getResultTable();
+    }
 
     //Ignore This, just its for tests
     public static void main(String[] args) {

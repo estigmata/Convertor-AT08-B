@@ -1,7 +1,17 @@
+/*
+ * TabPane.java Copyright (c) 2018 Jalasoft.
+ * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of
+ * Jalasoft, ("Confidential Information").  You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -9,15 +19,16 @@ import java.awt.event.KeyEvent;
  */
 public class TabPane extends JPanel {
     private JTabbedPane tabbedPane;
-    private JComponent audioPanel;
     private JComponent videoPanel;
     private JComponent converterPanel;
+    private AudioTabPanel audioTabPanel;
+
     /**
      * Constructor.
      */
     TabPane() {
         tabbedPane = new JTabbedPane();
-        audioPanel = new JPanel();
+        audioTabPanel = new AudioTabPanel();
     }
 
     /**
@@ -34,10 +45,10 @@ public class TabPane extends JPanel {
     }
 
     /**
-     * Audio Tab
+     * Audio Tab.
      */
     private void addAudioTab() {
-        tabbedPane.addTab("Audio", new AudioPanel());
+        tabbedPane.addTab("Audio", audioTabPanel);
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
     }
 
@@ -50,7 +61,7 @@ public class TabPane extends JPanel {
     }
 
     /**
-     * Converter Tab
+     * Converter Tab.
      */
     private void addConverterTab() {
         tabbedPane.addTab("Converter", converterPanel);
@@ -60,17 +71,28 @@ public class TabPane extends JPanel {
     /**
      * Getter audio panel.
      *
-     * @return Component.
+     * @return JAudioPanel.
      */
-    public JComponent getAudioPanel() {
-        return audioPanel;
+    public AudioTabPanel getAudioTabPanel() {
+        return audioTabPanel;
     }
 
+    /**
+     * Getter Video panel.
+     *
+     * @return JVideoPanel.
+     */
     public JComponent getVideoPanel() {
         return videoPanel;
     }
 
+    /**
+     * Getter Converter Panel.
+     *
+     * @return JConverterPanel.
+     */
     public JComponent getConverterPanel() {
         return converterPanel;
     }
+
 }
