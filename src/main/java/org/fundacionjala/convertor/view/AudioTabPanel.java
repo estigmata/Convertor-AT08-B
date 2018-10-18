@@ -11,9 +11,15 @@
  */
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 
 /**
  * Class JPanel-Audio Panel.

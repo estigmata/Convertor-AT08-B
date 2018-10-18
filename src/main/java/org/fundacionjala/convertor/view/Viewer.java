@@ -11,10 +11,14 @@
  */
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JTable;
+
 
 /**
  * Class of Viewer.
+ *
  * @autor Rodrigo Menacho
  */
 public class Viewer extends JFrame {

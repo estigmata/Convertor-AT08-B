@@ -11,7 +11,9 @@
  */
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JComponent;
 import java.awt.event.KeyEvent;
 
 /**
