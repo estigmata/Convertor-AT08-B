@@ -33,6 +33,7 @@ public final class Main {
    * Constructor not called.
    */
   private Main() { }
+  
   /**
    * Main method.
    * @param args type array of String.
@@ -42,4 +43,5 @@ public final class Main {
     log.setLogger(Main.class.getName());
     log.test();
   }
+
 }
