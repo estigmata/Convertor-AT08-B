@@ -7,10 +7,9 @@ import java.util.ArrayList;
 /**
  * this instance instance MediaFile instances
  */
-public class MediaFileModel  {
+public class MediaFileModel {
 
     /**
-     *
      * @param path input string showing the route
      * @return value return
      */
@@ -23,7 +22,7 @@ public class MediaFileModel  {
                 fileArrayList.addAll(searchFiles(index.getPath()));
             }
             fileArrayList.add(index);
-            System.out.println("Path :"+index.getPath()+ " --> Name " + index.getName());
+            System.out.println("Path :" + index.getPath() + " --> Name " + index.getName());
 
         }
         return fileArrayList;
