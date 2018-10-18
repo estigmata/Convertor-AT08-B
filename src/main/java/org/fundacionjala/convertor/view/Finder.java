@@ -7,21 +7,21 @@ import java.awt.*;
  * Class for Finder
  */
 public class Finder {
-    private TabPane tabPane;
     private JButton searchButton;
     private JTextField path;
     private JLabel label;
+    private JPanel panelFinder;
 
     /**
      * Constructor.
-     *
-     * @param tabPane input.
      */
-    public Finder(TabPane tabPane) {
-        this.tabPane = tabPane;
+    public Finder() {
         path = new JTextField("");
         label = new JLabel("What find?:");
         searchButton = new JButton("Find");
+        panelFinder= new JPanel();
+        panelFinder.setLayout(new GridLayout(0, 3));
+        panelFinder.setVisible(true);
 
     }
 
@@ -29,17 +29,13 @@ public class Finder {
      * Initialization of Components.
      */
     void initComponents() {
-        searchButton.setPreferredSize(new Dimension(50, 50));
+        panelFinder.add(label);
+        panelFinder.add(path);
+        panelFinder.add(searchButton);
     }
 
-    /**
-     * Making the structure.
-     */
-    public void Structure() {
-        tabPane.setLayout(new GridLayout(3, 5));
-        tabPane.getAudioPanel().add(label);
-        tabPane.getAudioPanel().add(path);
-        tabPane.getAudioPanel().add(searchButton);
+    public JPanel getPanelFinder() {
+        return panelFinder;
     }
 
     public JButton getSearchButton() {

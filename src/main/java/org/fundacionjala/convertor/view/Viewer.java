@@ -1,6 +1,7 @@
 package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
@@ -23,7 +24,6 @@ public class Viewer extends JFrame {
      */
     private void configWindow() {
         this.setTitle("CONVERTER AT-08");
-        this.setSize(500, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.pack();
@@ -33,19 +33,12 @@ public class Viewer extends JFrame {
      * Initialization of Components.
      */
     private void initComponents() {
+
         TabPane tabPane = new TabPane();
         tabPane.initComponents();
-        finder = new Finder(tabPane);
-        finder.initComponents();
-        finder.Structure();
-        this.add(tabPane, BorderLayout.CENTER);
+        this.getContentPane().add(tabPane);
         this.pack();
         this.setVisible(true);
-        String[] columnNames = {"Path", "File Name"};
-        String data[][] = {};
-        JTable resultTable = new JTable(data, columnNames);
-        resultTable.setVisible(true);
-        tabPane.getAudioPanel().add(resultTable);
     }
 
     /**
