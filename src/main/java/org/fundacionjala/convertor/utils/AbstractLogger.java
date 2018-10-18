@@ -1,6 +1,6 @@
 /**
  *
- * @(#)Main.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @(#)AbstractLogger.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT

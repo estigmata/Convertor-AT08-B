@@ -30,4 +30,5 @@ gradlew*
 /build/*
 /gradle/*
 out
+/target/*
 
