@@ -1,22 +1,31 @@
 package org.fundacionjala.convertor.model;
 
 import java.io.File;
-import java.util.List;
+import java.util.ArrayList;
+
 
 /**
- * this instance instance MediaFile instances, its attributes are name and path
+ * this instance instance MediaFile instances
  */
-public class MediaFileModel {
-
-    private String name;
-    private String path;
+public class MediaFileModel  {
 
     /**
-     * @param parameter path of input
-     * @return return value
+     *
+     * @param path input string showing the route
+     * @return value return
      */
-    public List<MediaFileModel> searchFile(final String parameter) {
-        List<MediaFileModel> list = null;
-        return list;
+    public ArrayList<File> searchFiles(final String path) {
+        ArrayList<File> fileArrayList = new ArrayList<>();
+        File file = new File(path);
+        File[] listFiles = file.listFiles();
+        for (File index : listFiles) {
+            if (index.isDirectory()) {
+                fileArrayList.addAll(searchFiles(index.getPath()));
+            }
+            fileArrayList.add(index);
+            System.out.println("Path :"+index.getPath()+ " --> Name " + index.getName());
+
+        }
+        return fileArrayList;
     }
 }
