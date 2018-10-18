@@ -17,6 +17,8 @@
 
 package org.fundacionjala.convertor;
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
+
 /**
  *
  * Class Main.
@@ -25,14 +27,21 @@ package org.fundacionjala.convertor;
  * @version 1.0
  *
  */
+public final class Main {
 
-public class Main {
   /**
-   * Void method main.
-   *
-   * @param args type array of String
+   * Constructor not called.
    */
-  public static void main(String[] args) {
-    System.out.print("Hello camaradas!");
+  private Main() { }
+
+  /**
+   * Main method.
+   * @param args type array of String.
+   */
+  public static void main(final String[] args) {
+    AbstractLogger log = AbstractLogger.getInstance();
+    log.setLogger(Main.class.getName());
+    log.test();
   }
+
 }
