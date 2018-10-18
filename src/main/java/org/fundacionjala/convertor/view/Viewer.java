@@ -55,8 +55,8 @@ public class Viewer extends JFrame {
      *
      * @return the JObject.
      */
-    public JTextField getPath() {
-        return finder.getPath();
+    public String getPath() {
+        return finder.getPath().getText();
     }
 
 
