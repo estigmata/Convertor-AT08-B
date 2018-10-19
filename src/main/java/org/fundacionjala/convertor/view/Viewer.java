@@ -1,13 +1,16 @@
 /*
- * Viewer.java Copyright (c) 2018 Jalasoft.
- * 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
- * All rights reserved.
+ * @Viewer.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * This software is the confidential and proprietary information of
- * Jalasoft, ("Confidential Information").  You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jalasoft.
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * Please contact Fundacion Jala, 2643 Av Melchor Perez de Olguin, Colquiri
+ * Sud, Cochabamba, Bolivia. www.fundacion-jala.org if you need additional
+ * information or have any questions.
  */
 package org.fundacionjala.convertor.view;
 
@@ -17,9 +20,10 @@ import javax.swing.table.DefaultTableModel;
 
 
 /**
- * Class of Viewer.
- * <p>
- * Created by Rodrigo Menacho.
+ * Class Viewer.
+ *
+ * @author Rodrigo Menacho
+ * @version 1.0
  */
 public final class Viewer extends JFrame {
 
