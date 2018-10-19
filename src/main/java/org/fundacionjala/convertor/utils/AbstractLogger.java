@@ -27,43 +27,44 @@ import org.apache.logging.log4j.Logger;
  * @version 1.0
  */
 public final class AbstractLogger {
-  private static AbstractLogger instance;
-  private Logger logger;
+    private static AbstractLogger instance;
+    private Logger logger;
 
-  /**
-   * Private constructor in order to implement Singleton Pattern.
-   */
-  private AbstractLogger() { }
-
-  /**
-   * Method to get an Instance.
-   *
-   * @return an instance of Abstract Logger class.
-   */
-  public static AbstractLogger getInstance() {
-    if (instance == null) {
-      instance = new AbstractLogger();
+    /**
+     * Private constructor in order to implement Singleton Pattern.
+     */
+    private AbstractLogger() {
     }
 
-    return instance;
-  }
+    /**
+     * Method to get an Instance.
+     *
+     * @return an instance of Abstract Logger class.
+     */
+    public static AbstractLogger getInstance() {
+        if (instance == null) {
+            instance = new AbstractLogger();
+        }
 
-  /**
-   * Set logger to trace a specific class.
-   *
-   * @param className type String.
-   */
-  public void setLogger(final String className) {
-    logger = LogManager.getLogger(className);
-  }
+        return instance;
+    }
 
-  /**
-   * Test method. Removed it next time.
-   */
-  public void test() {
-    logger.trace("Entering application.");
-    logger.debug("Debug Message Logged !!!");
-    logger.info("Info Message Logged !!!");
-    logger.error("Error Message Logged !!!", new Exception());
-  }
+    /**
+     * Set logger to trace a specific class.
+     *
+     * @param className type String.
+     */
+    public void setLogger(final String className) {
+        logger = LogManager.getLogger(className);
+    }
+
+    /**
+     * Test method. Removed it next time.
+     */
+    public void test() {
+        logger.trace("Entering application.");
+        logger.debug("Debug Message Logged !!!");
+        logger.info("Info Message Logged !!!");
+        logger.error("Error Message Logged !!!", new Exception());
+    }
 }
