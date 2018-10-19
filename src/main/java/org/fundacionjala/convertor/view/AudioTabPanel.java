@@ -28,6 +28,7 @@ public class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
     private JScrollPane tableContainer;
     private JTable resultTable;
+    private DefaultTableModel defaultTableModel;
 
     /**
      * Constructor.
@@ -42,33 +43,35 @@ public class AudioTabPanel extends JPanel {
      * Initialization of Components.
      */
     private void initComponents() {
+        final int tableContainerWidth = 400;
+        final int tableContainerHeight = 50;
         finderPanel.initComponents();
         JLabel resultTitle = new JLabel("Results");
         createTable();
         this.add(finderPanel, BorderLayout.NORTH);
         this.add(resultTitle);
         this.add(tableContainer, BorderLayout.SOUTH);
-        tableContainer.setPreferredSize(new Dimension(400, 50));
+        tableContainer.setPreferredSize(new Dimension(tableContainerWidth, tableContainerHeight));
     }
 
     /**
      * Creation of the table.
      */
     private void createTable() {
-        DefaultTableModel columnNames = new DefaultTableModel();
-        columnNames.addColumn("Path");
-        columnNames.addColumn("File Name");
-        resultTable = new JTable(columnNames);
+        defaultTableModel = new DefaultTableModel();
+        defaultTableModel.addColumn("Path");
+        defaultTableModel.addColumn("File Name");
+        resultTable = new JTable(defaultTableModel);
         tableContainer = new JScrollPane(resultTable);
     }
 
     /**
-     * Getter ResultTable.
+     * Getter of default table model.
      *
-     * @return JTable.
+     * @return the default table.
      */
-    public JTable getResultTable() {
-        return resultTable;
+    public DefaultTableModel getDefaultTableModel() {
+        return defaultTableModel;
     }
 
     /**
@@ -78,5 +81,14 @@ public class AudioTabPanel extends JPanel {
      */
     public FinderPanel getFinderPanel() {
         return finderPanel;
+    }
+
+    /**
+     * Setter the default table mode.
+     *
+     * @param defaultTableModel input object.
+     */
+    public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
+        this.defaultTableModel = defaultTableModel;
     }
 }

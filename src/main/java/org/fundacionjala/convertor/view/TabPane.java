@@ -13,7 +13,6 @@ package org.fundacionjala.convertor.view;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JComponent;
 import java.awt.event.KeyEvent;
 
 /**
@@ -21,8 +20,8 @@ import java.awt.event.KeyEvent;
  */
 public class TabPane extends JPanel {
     private JTabbedPane tabbedPane;
-    private JComponent videoPanel;
-    private JComponent converterPanel;
+    private JPanel videoPanel;
+    private JPanel converterPanel;
     private AudioTabPanel audioTabPanel;
 
     /**
@@ -31,6 +30,8 @@ public class TabPane extends JPanel {
     TabPane() {
         tabbedPane = new JTabbedPane();
         audioTabPanel = new AudioTabPanel();
+        videoPanel = new JPanel();
+        converterPanel = new JPanel();
     }
 
     /**
@@ -84,7 +85,7 @@ public class TabPane extends JPanel {
      *
      * @return JVideoPanel.
      */
-    public JComponent getVideoPanel() {
+    public JPanel getVideoPanel() {
         return videoPanel;
     }
 
@@ -93,7 +94,7 @@ public class TabPane extends JPanel {
      *
      * @return JConverterPanel.
      */
-    public JComponent getConverterPanel() {
+    public JPanel getConverterPanel() {
         return converterPanel;
     }
 

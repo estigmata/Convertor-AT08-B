@@ -13,15 +13,15 @@ package org.fundacionjala.convertor.view;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
  * Class of Viewer.
- *
- * @autor Rodrigo Menacho
+ * <p>
+ * Created by Rodrigo Menacho.
  */
-public class Viewer extends JFrame {
+public final class Viewer extends JFrame {
 
     private TabPane tabPane;
 
@@ -73,13 +73,26 @@ public class Viewer extends JFrame {
         return tabPane.getAudioTabPanel().getFinderPanel().getPathText();
     }
 
-    public JTable getResultTable() {
-        return tabPane.getAudioTabPanel().getResultTable();
+    /**
+     * Getter the result table.
+     *
+     * @return the object DefaultTableModel.
+     */
+    public DefaultTableModel getResultTable() {
+        return tabPane.getAudioTabPanel().getDefaultTableModel();
     }
 
-    //Ignore This, just its for tests
-    public static void main(String[] args) {
-        Viewer viewer = new Viewer();
+    /**
+     * Setter for the result table.
+     *
+     * @param defaultTableModel Input object of defaulttablemodel.
+     */
+    public void setResultTable(final DefaultTableModel defaultTableModel) {
+        tabPane.getAudioTabPanel().setDefaultTableModel(defaultTableModel);
     }
+    //Ignore This, just its for tests
+    /*public static void main(String[] args) {
+        Viewer viewer = new Viewer();
+    }*/
 
 }

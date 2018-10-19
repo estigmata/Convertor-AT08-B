@@ -11,13 +11,17 @@
  */
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+
 
 /**
  * Class FinderPanel.
  */
-public class FinderPanel extends JPanel{
+public class FinderPanel extends JPanel {
     private JButton searchButton;
     private JTextField path;
     private JLabel label;
@@ -27,10 +31,13 @@ public class FinderPanel extends JPanel{
      * Constructor.
      */
     public FinderPanel() {
+        final int fPanRows = 0;
+        final int fPanCols = 3;
+
         path = new JTextField("");
         label = new JLabel("What find?:");
         searchButton = new JButton("Find");
-        this.setLayout(new GridLayout(0, 3));
+        this.setLayout(new GridLayout(fPanRows, fPanCols));
         this.setVisible(true);
 
     }
