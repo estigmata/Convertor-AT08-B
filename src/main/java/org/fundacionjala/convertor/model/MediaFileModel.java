@@ -22,16 +22,13 @@ public class MediaFileModel {
      */
     public ArrayList<File> searchFiles(final String path) {
         ArrayList<File> fileArrayList = new ArrayList<>();
-        if (!path.isEmpty()) {
-            File file = new File(path);
-            File[] listFiles = file.listFiles();
-            for (File index : listFiles) {
-                if (index.isDirectory()) {
-                    fileArrayList.addAll(searchFiles(index.getPath()));
-                }
-                fileArrayList.add(index);
+        File file = new File(path);
+        File[] listFiles = file.listFiles();
+        for (File index : listFiles != null ? listFiles : new File[0]) {
+            if (index.isDirectory()) {
+                fileArrayList.addAll(searchFiles(index.getPath()));
             }
-            return fileArrayList;
+            fileArrayList.add(index);
         }
         return fileArrayList;
     }
