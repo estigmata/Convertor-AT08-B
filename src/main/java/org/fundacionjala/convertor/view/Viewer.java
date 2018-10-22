@@ -32,7 +32,7 @@ public final class Viewer extends JFrame {
     /**
      * Constructor.
      */
-    private Viewer() {
+    public Viewer() {
         super();
         configWindow();
         initComponents();

@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * This class is part of the model in which files are searched from a path
+ * This class is part of the model in which files are searched from a path.
  *
  * @author Abel Gustavo Mallcu Chiri
  * @version 1.0
