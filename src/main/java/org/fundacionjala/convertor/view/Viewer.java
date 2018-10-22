@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  * Class Viewer.
  *
@@ -44,7 +43,7 @@ public final class Viewer extends JFrame {
     private void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pack();
     }
 
@@ -55,7 +54,6 @@ public final class Viewer extends JFrame {
         tabPane = new TabPane();
         tabPane.initComponents();
         this.getContentPane().add(tabPane);
-        this.pack();
         this.setVisible(true);
     }
 
@@ -74,7 +72,7 @@ public final class Viewer extends JFrame {
      * @return the JObject.
      */
     public String getPath() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getPathText();
+        return tabPane.getAudioTabPanel().getFinderPanel().getPath().getText();
     }
 
     /**
@@ -94,9 +92,10 @@ public final class Viewer extends JFrame {
     public void setResultTable(final DefaultTableModel defaultTableModel) {
         tabPane.getAudioTabPanel().setDefaultTableModel(defaultTableModel);
     }
-    //Ignore This, just its for tests
-    /*public static void main(String[] args) {
-        Viewer viewer = new Viewer();
-    }*/
+
+//    //Ignore This, just its for tests
+//    public static void main(String[] args) {
+//        Viewer viewer = new Viewer();
+//    }
 
 }

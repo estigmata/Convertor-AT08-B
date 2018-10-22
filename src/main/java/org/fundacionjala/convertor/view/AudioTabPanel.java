@@ -14,14 +14,18 @@
  */
 package org.fundacionjala.convertor.view;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JPanel;
+import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
+import org.fundacionjala.convertor.view.finder.FinderPanel;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 
 /**
@@ -30,18 +34,24 @@ import java.awt.Dimension;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public class AudioTabPanel extends JPanel {
+class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
-    private JScrollPane tableContainer;
-    private JTable resultTable;
-    private DefaultTableModel defaultTableModel;
+    private ResultTable resultTableAudio;
+    private JScrollPane resultScrollTable;
 
     /**
      * Constructor.
      */
-    public AudioTabPanel() {
-        finderPanel = new FinderPanel();
-        this.setLayout(new GridLayout(0, 1));
+    AudioTabPanel() {
+        this.setLayout(new GridBagLayout());
+
+        finderPanel = new AudioFinderPanel();
+        finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        resultTableAudio = new ResultTable();
+        resultScrollTable = new JScrollPane(resultTableAudio);
+        final int tWidth = 200;
+        final int tHeight = 50;
+        resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
         initComponents();
     }
 
@@ -49,26 +59,49 @@ public class AudioTabPanel extends JPanel {
      * Initialization of Components.
      */
     private void initComponents() {
-        final int tableContainerWidth = 400;
-        final int tableContainerHeight = 50;
-        finderPanel.initComponents();
-        JLabel resultTitle = new JLabel("Results");
-        createTable();
-        this.add(finderPanel, BorderLayout.NORTH);
-        this.add(resultTitle);
-        this.add(tableContainer, BorderLayout.SOUTH);
-        tableContainer.setPreferredSize(new Dimension(tableContainerWidth, tableContainerHeight));
-    }
+        final int ten = 10;
+        final int three = 3;
+        final int thirteen = 30;
+        final int threeHundred = 300;
+        finderPanel.initBasicComponents();
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipady = ten;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        this.add(new JLabel("Search Panel"), constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        this.add(new JLabel("Reproductor Panel"), constraints);
+        constraints.ipady = 0;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        this.add(finderPanel, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.ipadx = threeHundred;
+        JPanel tempReproductor = new JPanel();
+        tempReproductor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.add(tempReproductor, constraints); //Reproductor Panel
+        constraints.ipadx = 0;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        this.add(new JLabel("Showed Results:"), constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        this.add(new JLabel("Information"), constraints);
+        constraints.ipady = threeHundred;
+        constraints.weighty = thirteen;
+        constraints.gridx = 0;
+        constraints.gridy = three;
+        this.add(resultScrollTable, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = three;
+        JPanel tempInformation = new JPanel();
+        tempInformation.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.add(tempInformation, constraints); // Information Panel
 
-    /**
-     * Creation of the table.
-     */
-    private void createTable() {
-        defaultTableModel = new DefaultTableModel();
-        defaultTableModel.addColumn("Path");
-        defaultTableModel.addColumn("File Name");
-        resultTable = new JTable(defaultTableModel);
-        tableContainer = new JScrollPane(resultTable);
+
     }
 
     /**
@@ -77,7 +110,7 @@ public class AudioTabPanel extends JPanel {
      * @return the default table.
      */
     public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
+        return resultTableAudio.getDefaultTableModel();
     }
 
     /**
@@ -95,6 +128,6 @@ public class AudioTabPanel extends JPanel {
      * @param defaultTableModel input object.
      */
     public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
-        this.defaultTableModel = defaultTableModel;
+        resultTableAudio.setDefaultTableModel(defaultTableModel);
     }
 }
