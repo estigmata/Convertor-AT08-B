@@ -15,6 +15,7 @@
 
 package org.fundacionjala.convertor.controller;
 import org.fundacionjala.convertor.model.MediaFileModel;
+import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Viewer;
 
 
@@ -30,37 +31,60 @@ public class ConvertorController {
     /**
      * The model of this Convertor.
      */
-   private MediaFileModel mediaFileModel;
-
+    private MediaFileModel mediaFileModel;
     /**
-     * Constructor.
+     * The view of this Convertor.
      */
     private Viewer viewer;
     /**
-     * The view of this Convertor.
+     * Validator.
+     */
+    private Validator validator;
+    /**
+     * Constructor.
      */
     public ConvertorController() {
         this.mediaFileModel = new MediaFileModel();
         this.viewer = new Viewer();
+        this.validator = new Validator();
     }
     /**
      * Method Action converter.
      */
     public void actionConverter() {
         viewer.getSearchButton().addActionListener(e -> {
-            findFile();
+            if (validator.isPath(viewer.getPath())) {
+                findFile();
+            } else {
+                System.out.println("It is not path!!!");
+            }
         });
     }
     /**
      * Method find file.
      */
     public void findFile() {
+        final int ref = 1024;
         String pathFile = viewer.getPath();
-        System.out.println(pathFile);
         DefaultTableModel table = viewer.getResultTable();
         ArrayList<File> files = mediaFileModel.searchFiles(pathFile);
+        String fileSize = "";
         for (File file : files) {
-            table.addRow(new String[]{file.getPath(), file.getName()});
+            fileSize = (double) file.length() / (ref * ref) + "";
+            table.addRow(new String[]{file.getPath(), file.getName(), getExtension(file.getName()), fileSize});
         }
+    }
+    /**
+     * Method to obtain the extension of a file.
+     * @param fileName is a file name.
+     * @return Value of return of String Type.
+     */
+    public String getExtension(final String fileName) {
+        String extension = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0 &&  i < fileName.length() - 1) {
+            extension = fileName.substring(i + 1).toLowerCase();
+        }
+        return extension;
     }
 }

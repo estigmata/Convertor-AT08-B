@@ -48,7 +48,7 @@ public class MediaFileModel {
      * @param name Input parameter .
      * @return Value of return of ArrayList<File> Type.
      */
-    public ArrayList<File> searchByName(ArrayList<File> list, String name) {
+    public ArrayList<File> searchByName(final ArrayList<File> list, final String name) {
         ArrayList<File> container = new ArrayList<>();
         for (File file : list) {
             if (file.getName().equals(name)) {
@@ -66,7 +66,7 @@ public class MediaFileModel {
      */
 
 
-    public ArrayList<File> searchBySize(ArrayList<File> list, long size) {
+    public ArrayList<File> searchBySize(final ArrayList<File> list, final long size) {
         ArrayList<File> container = new ArrayList<>();
         for (File file : list) {
             if (file.length() <= size) {
