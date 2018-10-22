@@ -49,7 +49,6 @@ public class ConvertorController {
     public void actionConverter() {
         viewer.getSearchButton().addActionListener(e -> {
             findFile();
-            System.out.println("push");
         });
     }
     /**
@@ -59,14 +58,9 @@ public class ConvertorController {
         String pathFile = viewer.getPath();
         System.out.println(pathFile);
         DefaultTableModel table = viewer.getResultTable();
-        //Paths.get(pathFile);
         ArrayList<File> files = mediaFileModel.searchFiles(pathFile);
         for (File file : files) {
             table.addRow(new String[]{file.getPath(), file.getName()});
-            System.out.println(file.getName() + " " + file.getPath());
         }
-        //C:/Users/Admin/Desktop/AUDIOS_INGLES
-        //C:/Users/Admin/Desktop/SUTW1
-        //viewer.showFile();
     }
 }
