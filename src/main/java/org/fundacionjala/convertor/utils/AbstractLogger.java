@@ -67,4 +67,19 @@ public final class AbstractLogger {
         logger.info("Info Message Logged !!!");
         logger.error("Error Message Logged !!!", new Exception());
     }
+
+    /**
+     * Method to append info.
+     */
+    public void info() {
+        logger.info("Info message.");
+    }
+
+    /**
+     * Method to append error.
+     * @param exception type Exception.
+     */
+    public void error(final Exception exception) {
+        logger.error(exception.getMessage(), exception);
+    }
 }

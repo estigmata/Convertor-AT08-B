@@ -29,6 +29,7 @@ import org.fundacionjala.convertor.utils.AbstractLogger;
  *
  */
 public final class Main {
+  private static AbstractLogger log;
 
   /**
    * Constructor not called.
@@ -40,11 +41,11 @@ public final class Main {
    * @param args type array of String.
    */
   public static void main(final String[] args) {
+    log = AbstractLogger.getInstance();
     ConvertorController controller = new ConvertorController();
     controller.actionConverter();
-    AbstractLogger log = AbstractLogger.getInstance();
-    log.setLogger(Main.class.getName());
-    log.test();
+    log.setLogger(ConvertorController.class.getName());
+    log.info();
   }
 
 }

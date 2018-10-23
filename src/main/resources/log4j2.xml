@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="INFO">
     <Appenders>
         <File name="file" fileName="converter.log">
             <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m %ex%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [Thread: %t] %level [%c][%M] - %msg%n</Pattern>
             </PatternLayout>
         </File>
-        <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="%m%n"/>
-        </Console>
     </Appenders>
     <Loggers>
-        <Root level="trace">
+        <Root level="trace" includeLocation="true">
             <AppenderRef ref="file" level="DEBUG"/>
-            <AppenderRef ref="STDOUT" level="INFO"/>
         </Root>
     </Loggers>
 </Configuration>

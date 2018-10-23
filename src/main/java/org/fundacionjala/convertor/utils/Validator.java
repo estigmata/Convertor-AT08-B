@@ -35,10 +35,13 @@ public class Validator {
      * @return Value of return of String Type.     *
      */
     public boolean isInt(final String str) {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(Validator.class.getName());
         try {
             Integer.parseInt(str);
             return true;
         } catch (NumberFormatException nfe) {
+            log.error(nfe);
             return false;
         }
     }
