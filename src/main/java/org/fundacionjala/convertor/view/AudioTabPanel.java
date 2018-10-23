@@ -14,6 +14,7 @@
  */
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
@@ -43,6 +44,8 @@ class AudioTabPanel extends JPanel {
      * Constructor.
      */
     AudioTabPanel() {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(AudioTabPanel.class.getName());
         this.setLayout(new GridBagLayout());
 
         finderPanel = new AudioFinderPanel();
@@ -53,6 +56,7 @@ class AudioTabPanel extends JPanel {
         final int tHeight = 50;
         resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
         initComponents();
+        log.info();
     }
 
     /**

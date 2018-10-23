@@ -15,6 +15,8 @@
 
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,10 +30,13 @@ public class ResultTable extends JTable {
      * Constructor for the table.
      */
     public ResultTable() {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(ResultTable.class.getName());
         defaultTableModel = new DefaultTableModel();
         Object[] columns = {"Path", "File Name", "Extension", "Size"};
         defaultTableModel.setColumnIdentifiers(columns);
         this.setModel(defaultTableModel);
+        log.info();
     }
 
     /**

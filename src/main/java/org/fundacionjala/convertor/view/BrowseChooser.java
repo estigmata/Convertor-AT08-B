@@ -16,6 +16,8 @@
 package org.fundacionjala.convertor.view;
 
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -36,10 +38,13 @@ public class BrowseChooser extends JPanel implements ActionListener {
      * Constructor for the Browser, the panel have the button with their Action Listener.
      */
     public BrowseChooser() {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(BrowseChooser.class.getName());
         JButton browse = new JButton("Browse...");
         browse.addActionListener(this);
         path = new JTextField();
         add(browse);
+        log.info();
     }
 
     /**

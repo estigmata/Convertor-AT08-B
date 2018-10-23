@@ -14,6 +14,8 @@
  */
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import java.awt.event.KeyEvent;
@@ -34,11 +36,13 @@ public class TabPane extends JPanel {
      * Constructor.
      */
     TabPane() {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(TabPane.class.getName());
         tabbedPane = new JTabbedPane();
         audioTabPanel = new AudioTabPanel();
         videoPanel = new JPanel();
         converterPanel = new JPanel();
-
+        log.info();
     }
 
     /**

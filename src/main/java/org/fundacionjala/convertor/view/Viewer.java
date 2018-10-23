@@ -14,6 +14,8 @@
  */
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.AbstractLogger;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -33,8 +35,11 @@ public final class Viewer extends JFrame {
      */
     public Viewer() {
         super();
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(Viewer.class.getName());
         configWindow();
         initComponents();
+        log.info();
     }
 
     /**

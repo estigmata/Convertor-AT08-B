@@ -15,6 +15,7 @@
 
 package org.fundacionjala.convertor.controller;
 import org.fundacionjala.convertor.model.MediaFileModel;
+import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Viewer;
 
@@ -44,9 +45,12 @@ public class ConvertorController {
      * Constructor.
      */
     public ConvertorController() {
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(ConvertorController.class.getName());
         this.mediaFileModel = new MediaFileModel();
         this.viewer = new Viewer();
         this.validator = new Validator();
+        log.info();
     }
     /**
      * Method Action converter.
