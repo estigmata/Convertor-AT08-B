@@ -33,7 +33,7 @@ public class ResultTable extends JTable {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(ResultTable.class.getName());
         defaultTableModel = new DefaultTableModel();
-        Object[] columns = {"Path", "File Name", "Extension", "Size"};
+        Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
         defaultTableModel.setColumnIdentifiers(columns);
         this.setModel(defaultTableModel);
         log.info();
