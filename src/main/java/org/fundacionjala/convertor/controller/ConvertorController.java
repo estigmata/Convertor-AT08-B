@@ -14,11 +14,12 @@
  */
 
 package org.fundacionjala.convertor.controller;
+
 import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
-
 
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 
 /**
  * Convertor.
+ *
  * @author Roger alvarez.
  */
 public class ConvertorController {
@@ -41,6 +43,7 @@ public class ConvertorController {
      * Validator.
      */
     private Validator validator;
+
     /**
      * Constructor.
      */
@@ -52,6 +55,7 @@ public class ConvertorController {
         this.validator = new Validator();
         log.info();
     }
+
     /**
      * Method Action converter.
      */
@@ -60,33 +64,51 @@ public class ConvertorController {
             if (validator.isPath(viewer.getPath())) {
                 findFile();
             } else {
-                System.out.println("It is not path!!!");
+                new ErrorMessage("It is no path valid !!!");
             }
         });
     }
+
     /**
      * Method find file.
      */
     public void findFile() {
-        final int ref = 1024;
+
         String pathFile = viewer.getPath();
-        DefaultTableModel table = viewer.getResultTable();
-        ArrayList<File> files = mediaFileModel.searchFiles(pathFile);
+        String nameFile = viewer.getFileName();
+        ArrayList<File> filesAll = mediaFileModel.searchFiles(pathFile);
+        System.out.println(nameFile);
+        ArrayList<File> files = nameFile.equals("")
+                ? filesAll : mediaFileModel.searchByName(filesAll, nameFile);
+        showFilesInTable(files);
+    }
+
+    /**
+     * Method for show files in table.
+     *
+     * @param files input.
+     */
+    public void showFilesInTable(final ArrayList<File> files) {
+        final int ref = 1024;
         String fileSize = "";
+        DefaultTableModel table = viewer.getResultTable();
+        table.setRowCount(0);
         for (File file : files) {
-            fileSize = (double) file.length() / (ref * ref) + "";
+            fileSize = file.length() / (ref * ref) + "";
             table.addRow(new String[]{file.getPath(), file.getName(), getExtension(file.getName()), fileSize});
         }
     }
+
     /**
      * Method to obtain the extension of a file.
+     *
      * @param fileName is a file name.
      * @return Value of return of String Type.
      */
     public String getExtension(final String fileName) {
         String extension = "";
         int i = fileName.lastIndexOf('.');
-        if (i > 0 &&  i < fileName.length() - 1) {
+        if (i > 0 && i < fileName.length() - 1) {
             extension = fileName.substring(i + 1).toLowerCase();
         }
         return extension;
