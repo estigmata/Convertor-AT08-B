@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * This class is part of the model in which files are searched from a path.
@@ -74,5 +75,24 @@ public class MediaFileModel {
             }
         }
         return container;
+    }
+
+    /**
+     * @param result   list of files
+     * @param size     input size
+     * @param parmeter condition
+     * @return value return
+     */
+
+    public ArrayList<File> searchBySizeParameter(final ArrayList<File> result, final long size, final String parmeter) {
+
+        if ("Greater than".equals(parmeter)) {
+            return (ArrayList<File>) result.stream().filter(x -> x.length() > size).collect(Collectors.toList());
+        } else if ("Smaller than".equals(parmeter)) {
+            return (ArrayList<File>) result.stream().filter(x -> x.length() < size).collect(Collectors.toList());
+        } else if ("Equal to".equals(parmeter)) {
+            return (ArrayList<File>) result.stream().filter(x -> x.length() == size).collect(Collectors.toList());
+        }
+        return result;
     }
 }
