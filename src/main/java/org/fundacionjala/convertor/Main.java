@@ -17,6 +17,7 @@
 
 package org.fundacionjala.convertor;
 
+import org.fundacionjala.convertor.controller.ConvertorController;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
 /**
@@ -39,6 +40,8 @@ public final class Main {
    * @param args type array of String.
    */
   public static void main(final String[] args) {
+    ConvertorController controller = new ConvertorController();
+    controller.actionConverter();
     AbstractLogger log = AbstractLogger.getInstance();
     log.setLogger(Main.class.getName());
     log.test();
