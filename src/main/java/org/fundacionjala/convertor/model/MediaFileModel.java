@@ -78,10 +78,10 @@ public class MediaFileModel {
     }
 
     /**
-     * @param result   list of files
-     * @param size     input size
-     * @param parmeter condition
-     * @return value return
+     * @param result   list of files.
+     * @param size     input size.
+     * @param parmeter condition.
+     * @return value return.
      */
 
     public ArrayList<File> searchBySizeParameter(final ArrayList<File> result, final long size, final String parmeter) {
