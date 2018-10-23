@@ -36,10 +36,10 @@ public abstract class FinderPanel extends JPanel {
     private JButton searchButton;
     private JTextField path;
     private JTextField fileName;
-    protected JComboBox extensionBox;
     private JTextField size;
     private BrowseChooser browseChooser;
-
+    protected JComboBox<String> extensionBox;
+    private JComboBox<String> sizeBox;
 
     /**
      * Constructor.
@@ -52,6 +52,7 @@ public abstract class FinderPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
+        sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
 
     }
 
@@ -90,10 +91,13 @@ public abstract class FinderPanel extends JPanel {
         this.add(extensionBox, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = three;
-        this.add(new JLabel("Size:"), bagConstraints);
+        this.add(new JLabel("Size [MB]:"), bagConstraints);
         bagConstraints.gridx = 1;
         bagConstraints.gridy = three;
         this.add(size, bagConstraints);
+        bagConstraints.gridx = 2;
+        bagConstraints.gridy = three;
+        this.add(sizeBox, bagConstraints);
         bagConstraints.gridx = 2;
         bagConstraints.gridy = four;
         this.add(searchButton, bagConstraints);
@@ -115,5 +119,41 @@ public abstract class FinderPanel extends JPanel {
      */
     public JTextField getPath() {
         return path;
+    }
+
+    /**
+     * Getter for the Combo extension.
+     *
+     * @return the JComboBox
+     */
+    public JComboBox<String> getExtensionBox() {
+        return extensionBox;
+    }
+
+    /**
+     * Getter for the Combo size.
+     *
+     * @return the JComboBox
+     */
+    public JComboBox<String> getSizeBox() {
+        return sizeBox;
+    }
+
+    /**
+     * Getter of the File Name.
+     *
+     * @return JTextField
+     */
+    public JTextField getFileName() {
+        return fileName;
+    }
+
+    /**
+     * Getter of the size field.
+     *
+     * @return JTextField
+     */
+    public JTextField getSizeField() {
+        return size;
     }
 }

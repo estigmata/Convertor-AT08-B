@@ -47,7 +47,6 @@ class AudioTabPanel extends JPanel {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(AudioTabPanel.class.getName());
         this.setLayout(new GridBagLayout());
-
         finderPanel = new AudioFinderPanel();
         finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         resultTableAudio = new ResultTable();
@@ -134,4 +133,5 @@ class AudioTabPanel extends JPanel {
     public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
         resultTableAudio.setDefaultTableModel(defaultTableModel);
     }
+
 }

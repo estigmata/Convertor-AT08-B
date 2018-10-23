@@ -16,6 +16,7 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -81,6 +82,24 @@ public final class Viewer extends JFrame {
     }
 
     /**
+     * Getter of the File Name String.
+     *
+     * @return String
+     */
+    public String getFileName() {
+        return tabPane.getAudioTabPanel().getFinderPanel().getFileName().getText();
+    }
+
+    /**
+     * Getter of the Size String.
+     *
+     * @return String
+     */
+    public String getSizeField() {
+        return tabPane.getAudioTabPanel().getFinderPanel().getSizeField().getText();
+    }
+
+    /**
      * Getter the result table.
      *
      * @return the object DefaultTableModel.
@@ -98,9 +117,21 @@ public final class Viewer extends JFrame {
         tabPane.getAudioTabPanel().setDefaultTableModel(defaultTableModel);
     }
 
-//    //Ignore This, just its for tests
-//    public static void main(String[] args) {
-//        Viewer viewer = new Viewer();
-//    }
+    /**
+     * Getter of the Extension Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboExtension() {
+        return tabPane.getAudioTabPanel().getFinderPanel().getExtensionBox();
+    }
 
+    /**
+     * Getter of the Size Combo box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboSize() {
+        return tabPane.getAudioTabPanel().getFinderPanel().getSizeBox();
+    }
 }
