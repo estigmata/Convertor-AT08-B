@@ -17,7 +17,7 @@ package org.fundacionjala.convertor.controller;
 
 import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.utils.Criteria;
+import org.fundacionjala.convertor.model.Criteria;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
@@ -71,12 +71,15 @@ public class ConvertorController {
     }
 
     /**
+     *  This method receives the values of the view in a criteria-type
+     *  object and sends them to the model to find the corresponding files
      * Method find file.
      */
     public void findFile() {
         Criteria basicCriteria = new Criteria();
         basicCriteria.setFilePath(viewer.getPath());
         basicCriteria.setFileName(viewer.getFileName());
+        basicCriteria.setFileExtention(String.valueOf(viewer.getComboExtension()));
         ArrayList<File> filesAll = mediaFileModel.searchFiles(viewer.getPath());
         showFilesInTable(filesAll);
     }
