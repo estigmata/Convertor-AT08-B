@@ -28,16 +28,20 @@ import java.util.stream.Collectors;
 public class MediaFileModel {
 
     /**
-     * @param path input string showing the route.
-     * @return value return.
+     * This Method search all the files of a directory.
+     *
+     * @param criteria Its the input parameter who contains all the information for the search.
+     * @return return the list of the files.
      */
-    public ArrayList<File> searchFiles(final String path) {
+    public ArrayList<File> searchFiles(final Criteria criteria) {
         ArrayList<File> fileArrayList = new ArrayList<>();
-        File file = new File(path);
+        File file = new File(criteria.getFilePath());
         File[] listFiles = file.listFiles();
         for (File index : listFiles != null ? listFiles : new File[0]) {
             if (index.isDirectory()) {
-                fileArrayList.addAll(searchFiles(index.getPath()));
+                Criteria aux = new Criteria();
+                aux.setFilePath(index.getPath());
+                fileArrayList.addAll(searchFiles(aux));
             }
             fileArrayList.add(index);
         }

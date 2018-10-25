@@ -80,7 +80,7 @@ public class ConvertorController {
         basicCriteria.setFilePath(viewer.getPath());
         basicCriteria.setFileName(viewer.getFileName());
         basicCriteria.setFileExtention(String.valueOf(viewer.getComboExtension()));
-        ArrayList<File> filesAll = mediaFileModel.searchFiles(viewer.getPath());
+        ArrayList<File> filesAll = mediaFileModel.searchFiles(basicCriteria);
         showFilesInTable(filesAll);
     }
 
