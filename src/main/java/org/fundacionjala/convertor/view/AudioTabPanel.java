@@ -20,15 +20,11 @@ import org.fundacionjala.convertor.view.finder.FinderPanel;
 import uk.co.caprica.vlcj.component.EmbeddedMediaListPlayerComponent;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 
@@ -43,6 +39,7 @@ class AudioTabPanel extends JPanel {
   private ResultTable resultTableAudio;
   private JScrollPane resultScrollTable;
   private EmbeddedMediaListPlayerComponent playerComponent;
+  private JButton playButton;
 
   /**
    * Constructor.
@@ -59,8 +56,13 @@ class AudioTabPanel extends JPanel {
     final int tWidth = 200;
     final int tHeight = 50;
     resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
+    playButton = new JButton("[Play]");
     initComponents();
     log.info();
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    playerComponent.getMediaPlayer().playMedia((Paths.get("C:\\Videos\\ProgressMeeting.mp4").toUri().toString()));
   }
 
   /**
@@ -90,11 +92,17 @@ class AudioTabPanel extends JPanel {
     constraints.ipadx = threeHundred;
     JPanel playerPanel = new JPanel();
     playerComponent = new EmbeddedMediaListPlayerComponent();
+    playerComponent.setPreferredSize(new Dimension(480, 270));
     playerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    //playerPanel.add(new JLabel("Here my code"), constraints);
     playerPanel.add(playerComponent);
     playerPanel.setVisible(true);
-    playerComponent.getMediaPlayer().playMedia((Paths.get("C:\\Videos\\Test.mp4").toUri().toString()));
+    playerPanel.add(new JButton("[Play]") {{
+      addActionListener(e -> playerComponent.getMediaPlayer()
+              .playMedia((Paths.get("C:\\Videos\\ProgressMeeting.mp4").toUri().toString())));
+    }});
+    playerPanel.add(new JButton("[Pause]") {{
+      addActionListener(e -> playerComponent.getMediaListPlayer().pause());
+    }});
     this.add(playerPanel, constraints);
     constraints.ipadx = 0;
     constraints.gridx = 0;
@@ -113,8 +121,6 @@ class AudioTabPanel extends JPanel {
     JPanel tempInformation = new JPanel();
     tempInformation.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     this.add(tempInformation, constraints); // Information Panel
-
-
   }
 
   /**
