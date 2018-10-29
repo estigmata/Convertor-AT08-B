@@ -29,6 +29,7 @@ import java.awt.*;
 public final class Viewer extends JFrame {
 
     private TabPane tabPane;
+    private ResultTablePanel downPanel;
 
     /**
      * Constructor.
@@ -66,11 +67,9 @@ public final class Viewer extends JFrame {
         UpperPanel upperPanel= new UpperPanel();
         principalPane.add(upperPanel);
 
-        JPanel downPanel = new JPanel();
+        DownPanel downPanel = new DownPanel();
         downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        downPanel.setBackground(Color.PINK);
         principalPane.add(downPanel);
-
     }
 
     /**
@@ -115,7 +114,7 @@ public final class Viewer extends JFrame {
      * @return the object DefaultTableModel.
      */
     public DefaultTableModel getResultTable() {
-        return tabPane.getAudioTabPanel().getDefaultTableModel();
+        return downPanel.getResultTable().getDefaultTableModel();
     }
 
     /**
@@ -124,7 +123,7 @@ public final class Viewer extends JFrame {
      * @param defaultTableModel Input object of defaulttablemodel.
      */
     public void setResultTable(final DefaultTableModel defaultTableModel) {
-        tabPane.getAudioTabPanel().setDefaultTableModel(defaultTableModel);
+        downPanel.getResultTable().setDefaultTableModel(defaultTableModel);
     }
 
     /**

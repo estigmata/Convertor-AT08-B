@@ -18,15 +18,8 @@ import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -37,8 +30,8 @@ import java.awt.GridBagLayout;
  */
 class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
-    private ResultTable resultTableAudio;
-    private JScrollPane resultScrollTable;
+    //private ResultTable resultTableAudio;
+    //private JScrollPane resultScrollTable;
 
     /**
      * Constructor.
@@ -49,11 +42,11 @@ class AudioTabPanel extends JPanel {
         this.setLayout(new GridBagLayout());
         finderPanel = new AudioFinderPanel();
         finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        resultTableAudio = new ResultTable();
-        resultScrollTable = new JScrollPane(resultTableAudio);
-        final int tWidth = 200;
-        final int tHeight = 50;
-        resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
+        //resultTableAudio = new ResultTable();
+        //resultScrollTable = new JScrollPane(resultTableAudio);
+        //final int tWidth = 200;
+        //final int tHeight = 50;
+        //resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
         initComponents();
         log.info();
     }
@@ -100,11 +93,11 @@ class AudioTabPanel extends JPanel {
         constraints.gridy = 2;
         this.add(new JLabel("Information"), constraints);
 
-        constraints.ipady = threeHundred;
-        constraints.weighty = thirteen;
-        constraints.gridx = 0;
-        constraints.gridy = three;
-        this.add(resultScrollTable, constraints);
+        //constraints.ipady = threeHundred;
+        //constraints.weighty = thirteen;
+        //constraints.gridx = 0;
+        //constraints.gridy = three;
+        //this.add(resultScrollTable, constraints);
 
         constraints.gridx = 1;
         constraints.gridy = three;
@@ -120,9 +113,9 @@ class AudioTabPanel extends JPanel {
      *
      * @return the default table.
      */
-    public DefaultTableModel getDefaultTableModel() {
+    /*public DefaultTableModel getDefaultTableModel() {
         return resultTableAudio.getDefaultTableModel();
-    }
+    }*/
 
     /**
      * Getter FinderClass.
@@ -138,8 +131,8 @@ class AudioTabPanel extends JPanel {
      *
      * @param defaultTableModel input object.
      */
-    public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
+    /*public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
         resultTableAudio.setDefaultTableModel(defaultTableModel);
-    }
+    }*/
 
 }

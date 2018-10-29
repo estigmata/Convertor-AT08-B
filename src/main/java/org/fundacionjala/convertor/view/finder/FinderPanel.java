@@ -69,26 +69,33 @@ public abstract class FinderPanel extends JPanel {
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         this.add(new Label("What Find?:"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 0;
         bagConstraints.ipadx = twoHundred;
         this.add(path, bagConstraints);
+
         bagConstraints.ipadx = 0;
         bagConstraints.gridx = 2;
         bagConstraints.gridy = 0;
         this.add(browseChooser, bagConstraints);
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 1;
         this.add(new JLabel("By File Name:"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 1;
         this.add(fileName, bagConstraints);
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 2;
         this.add(new JLabel("Extension:"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 2;
         this.add(extensionBox, bagConstraints);
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = three;
         this.add(new JLabel("Size [MB]:"), bagConstraints);

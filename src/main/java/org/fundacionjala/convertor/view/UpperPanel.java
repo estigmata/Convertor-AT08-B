@@ -16,10 +16,12 @@ public class UpperPanel extends JPanel {
         explorer.setBackground(Color.RED);
         this.add(explorer);
 //        Panel for the Search Panel
-        JPanel searchPanel = new JPanel();
+
+        TabPane searchPanel = new TabPane();
         searchPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(searchPanel);
-//        Pnale for the Reproductor Panel
+
+//        Panel for the Reproductor Panel
         JPanel reproductorPanel = new JPanel();
         reproductorPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(reproductorPanel);
