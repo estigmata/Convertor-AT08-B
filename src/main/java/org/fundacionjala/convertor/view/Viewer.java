@@ -16,10 +16,9 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
  * Class Viewer.
@@ -38,9 +37,9 @@ public final class Viewer extends JFrame {
         super();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
-        configWindow();
-        initComponents();
         log.info();
+        initComponents();
+        configWindow();
     }
 
     /**
@@ -49,19 +48,29 @@ public final class Viewer extends JFrame {
     private void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setPreferredSize(new Dimension(500,500));
         this.pack();
+        this.setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
      * Initialization of Components.
      */
     private void initComponents() {
-        //DECLARACION PANELES
         tabPane = new TabPane();
-        tabPane.initComponents();
-        this.getContentPane().add(tabPane);
-        this.setVisible(true);
+        //DECLARACION PANELES
+        Container principalPane = this.getContentPane();
+        principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
+
+        UpperPanel upperPanel= new UpperPanel();
+        principalPane.add(upperPanel);
+
+        JPanel downPanel = new JPanel();
+        downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        downPanel.setBackground(Color.PINK);
+        principalPane.add(downPanel);
+
     }
 
     /**
