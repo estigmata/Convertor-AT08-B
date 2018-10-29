@@ -69,35 +69,43 @@ class AudioTabPanel extends JPanel {
         finderPanel.initBasicComponents();
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
+
         constraints.ipady = ten;
         constraints.gridx = 0;
         constraints.gridy = 0;
         this.add(new JLabel("Search Panel"), constraints);
+
         constraints.gridx = 1;
         constraints.gridy = 0;
         this.add(new JLabel("Reproductor Panel"), constraints);
+
         constraints.ipady = 0;
         constraints.gridx = 0;
         constraints.gridy = 1;
         this.add(finderPanel, constraints);
+
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.ipadx = threeHundred;
         JPanel tempReproductor = new JPanel();
         tempReproductor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(tempReproductor, constraints); //Reproductor Panel
+
         constraints.ipadx = 0;
         constraints.gridx = 0;
         constraints.gridy = 2;
         this.add(new JLabel("Showed Results:"), constraints);
+
         constraints.gridx = 1;
         constraints.gridy = 2;
         this.add(new JLabel("Information"), constraints);
+
         constraints.ipady = threeHundred;
         constraints.weighty = thirteen;
         constraints.gridx = 0;
         constraints.gridy = three;
         this.add(resultScrollTable, constraints);
+
         constraints.gridx = 1;
         constraints.gridy = three;
         JPanel tempInformation = new JPanel();

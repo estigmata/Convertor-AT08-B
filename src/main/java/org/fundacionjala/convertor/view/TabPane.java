@@ -50,8 +50,8 @@ public class TabPane extends JPanel {
      */
     void initComponents() {
         addAudioTab();
-        addVideoTab();
-        addConverterTab();
+        //addVideoTab();
+        //addConverterTab();
         //Add the tabbed pane to this panel.
         add(tabbedPane);
         //The following line enables to use scrolling tabs.

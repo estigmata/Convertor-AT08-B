@@ -57,6 +57,7 @@ public final class Viewer extends JFrame {
      * Initialization of Components.
      */
     private void initComponents() {
+        //DECLARACION PANELES
         tabPane = new TabPane();
         tabPane.initComponents();
         this.getContentPane().add(tabPane);
