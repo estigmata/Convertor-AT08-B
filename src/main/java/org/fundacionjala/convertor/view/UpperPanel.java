@@ -1,5 +1,7 @@
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.view.finder.FinderPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,13 +19,13 @@ public class UpperPanel extends JPanel {
         this.add(explorer);
 //        Panel for the Search Panel
 
-        TabPane searchPanel = new TabPane();
+        FinderPanel searchPanel = new FinderPanel();
         searchPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(searchPanel);
 
 //        Panel for the Reproductor Panel
-        JPanel reproductorPanel = new JPanel();
-        reproductorPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        ReproductorPanel reproductorPanel = new ReproductorPanel();
+        reproductorPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
         this.add(reproductorPanel);
     }
 }

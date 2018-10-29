@@ -1,5 +1,5 @@
 /*
- * @DownPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @ReproductorPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -16,16 +16,8 @@
 package org.fundacionjala.convertor.view;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class DownPanel extends JPanel {
-    public DownPanel() {
-        initComponents();
-
-    }
-
-    private void initComponents(){
-       this.setLayout(new FlowLayout(FlowLayout.LEFT));
-       this.add(new ResultTablePanel());
+public class ReproductorPanel extends JPanel {
+    public ReproductorPanel() {
     }
 }

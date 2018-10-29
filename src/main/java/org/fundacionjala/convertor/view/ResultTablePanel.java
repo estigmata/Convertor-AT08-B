@@ -26,8 +26,9 @@ public class ResultTablePanel extends JPanel {
     /**
      * Constructor.
      */
-    ResultTablePanel(Object[] tag) {
-        resultTable= new ResultTable(tag);
+    ResultTablePanel() {
+        Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
+        resultTable= new ResultTable(columns);
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
@@ -39,9 +40,10 @@ public class ResultTablePanel extends JPanel {
      * Initialization of components.
      */
     void initComponents() {
-        resultScrollTable= new JScrollPane(resultTable);
-        this.add(resultScrollTable);
-        //this.add(resultTable);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //Panel for the Search table.
+        this.add(new JLabel("Files:"));
+        this.add(new JScrollPane(resultTable));
     }
 
     public ResultTable getResultTable() {

@@ -22,9 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
+import java.awt.*;
 
 /**
  * Class FinderPanel.
@@ -32,7 +30,7 @@ import java.awt.Label;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public abstract class FinderPanel extends JPanel {
+public class FinderPanel extends JPanel {
     private JButton searchButton;
     private JTextField path;
     private JTextField fileName;
@@ -53,18 +51,25 @@ public abstract class FinderPanel extends JPanel {
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
+        extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
+
+        initComponents();
 
     }
 
     /**
      * Initialization of Components.
      */
-    public void initBasicComponents() {
+    public void initComponents() {
         final int twoHundred = 200;
+        final int ten = 10;
         final int three = 3;
         final int four = 4;
+
+
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets( 2,2,2,2 );
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
@@ -109,6 +114,7 @@ public abstract class FinderPanel extends JPanel {
         bagConstraints.gridy = four;
         this.add(searchButton, bagConstraints);
     }
+
 
     /**
      * Getter of the search button.
