@@ -15,8 +15,14 @@
 
 package org.fundacionjala.convertor.model;
 
+import net.bramp.ffmpeg.FFprobe;
+import net.bramp.ffmpeg.probe.FFmpegFormat;
+import net.bramp.ffmpeg.probe.FFmpegProbeResult;
+import net.bramp.ffmpeg.probe.FFmpegStream;
+
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -38,6 +44,10 @@ public class MediaFileModel {
     private ArrayList<Object> fileName = new ArrayList<>();
     private ArrayList<Object> size = new ArrayList<>();
     private Object[] resultArray;
+    private FFprobe ffprobe = new FFprobe("C:\\gitJala\\ffmpeg-latest-win64-static\\bin\\ffprobe.exe");
+
+    public MediaFileModel() throws IOException {
+    }
 
     /**
      * This Method search all the files of a directory.
@@ -45,10 +55,73 @@ public class MediaFileModel {
      * @param criteria Its the input parameter who contains all the information for the search.
      */
     public void searchFiles(final Criteria criteria) throws IOException {
+
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-                //.filter( x -> x.getFileName().equals(criteria.getName()))
-                //.filter( etc, etc)
+                .filter(x -> !criteria.getFileName().isEmpty() && x.getFileName().equals(criteria.getFileName()))
+                .filter(x -> {
+                    if (criteria.getFileSize() == 0) {
+                        return false;
+                    }
+                    try {
+                        if (Files.size(x) == criteria.getFileSize()) {
+                            return true;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                })
+//                VIDEO ADVANCED SEARCH
+//                Frame Rate
+//                .filter(x -> {
+//                    FFmpegStream stream = getStreamFFprobe(x);
+//                    if (stream.has_b_frames == criteria.getFrameRate) {
+//                        return true;
+//                    }
+//                    return false;
+//                })
+//                Aspect Ratio
+//                .filter(x -> {
+//                    FFmpegStream stream = getStreamFFprobe(x);
+//                    if (stream.display_aspect_ratio.equals(criteria.getAspectRatio)){
+//                        return true;
+//                    }
+//                    return false;
+//                })
+//                WxH
+//                .filter(x -> {
+//                    FFmpegStream stream = getStreamFFprobe(x);
+//                    if (stream.width == criteria.getWidth && stream.height == criteria.getHeight) {
+//                        return true;
+//                    }
+//                    return false;
+//                })
+//                Video Codec
+//                .filter(x -> {
+//                    FFmpegStream stream = getStreamFFprobe(x);
+//                    if (stream.codec_name.equals(criteria.getVideoCodec)) {
+//                        return true;
+//                    }
+//                    return false;
+//                })
+//                AUDIO ADVANCED SEARCH
+//                DURATION
+//                .filter(x -> {
+//                    FFmpegFormat format = getFormatFFprobe(x);
+//                    if (format.duration==criteria.getDuration)) {
+//                        return true;
+//                    }
+//                    return false;
+//                })
+//        CHANNEL
+//                .filter(x -> {
+//                    FFmpegStream stream = getStreamFFprobe(x);
+//                    if (stream.channels==criteria.getChannels)){
+//                        return true;
+//                    }
+//                    return false;
+//                })
                 .forEach(item ->
                 {
                     path.add(item.getParent());
@@ -79,5 +152,25 @@ public class MediaFileModel {
      */
     public Object[] getResultArray() {
         return resultArray;
+    }
+
+    private FFmpegStream getStreamFFprobe(Path x) {
+        FFmpegProbeResult probeResult = null;
+        try {
+            probeResult = ffprobe.probe(x.getRoot().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return probeResult != null ? probeResult.getStreams().get(0) : null;
+    }
+
+    private FFmpegFormat getFormatFFprobe(Path x) {
+        FFmpegProbeResult probeResult = null;
+        try {
+            probeResult = ffprobe.probe(x.getRoot().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return probeResult != null ? probeResult.getFormat() : null;
     }
 }
