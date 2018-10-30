@@ -15,6 +15,7 @@
 package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
+import org.fundacionjala.convertor.utils.VLCMediaPlayer;
 import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
@@ -39,6 +40,7 @@ class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
     private ResultTable resultTableAudio;
     private JScrollPane resultScrollTable;
+    private VLCMediaPlayer vlcMediaPlayer;
 
     /**
      * Constructor.
@@ -67,6 +69,7 @@ class AudioTabPanel extends JPanel {
         final int thirteen = 30;
         final int threeHundred = 300;
         finderPanel.initBasicComponents();
+        vlcMediaPlayer = new VLCMediaPlayer();
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.ipady = ten;
@@ -83,9 +86,10 @@ class AudioTabPanel extends JPanel {
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.ipadx = threeHundred;
-        JPanel tempReproductor = new JPanel();
-        tempReproductor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(tempReproductor, constraints); //Reproductor Panel
+        /*JPanel tempReproductor = new JPanel();
+        tempReproductor.add(vlcMediaPlayer);
+        tempReproductor.setBorder(BorderFactory.createLineBorder(Color.BLACK));*/
+        this.add(vlcMediaPlayer, constraints); //Reproductor Panel
         constraints.ipadx = 0;
         constraints.gridx = 0;
         constraints.gridy = 2;
