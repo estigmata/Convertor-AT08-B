@@ -46,6 +46,11 @@ public class MediaFileModel {
     private Object[] resultArray;
     private FFprobe ffprobe = new FFprobe("C:\\gitJala\\ffmpeg-latest-win64-static\\bin\\ffprobe.exe");
 
+    /**
+     * Contructor empty.
+     *
+     * @throws IOException for the Path.
+     */
     public MediaFileModel() throws IOException {
     }
 
@@ -145,7 +150,7 @@ public class MediaFileModel {
         return resultArray;
     }
 
-    private FFmpegStream getStreamFFprobe(Path x) {
+    private FFmpegStream getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
             probeResult = ffprobe.probe(x.getRoot().toString());
@@ -155,7 +160,13 @@ public class MediaFileModel {
         return probeResult != null ? probeResult.getStreams().get(0) : null;
     }
 
-    private FFmpegFormat getFormatFFprobe(Path x) {
+    /**
+     * This class is for get FFmpeg.
+     *
+     * @param x input Path
+     * @return the FFmpegformat
+     */
+    private FFmpegFormat getFormatFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
             probeResult = ffprobe.probe(x.getRoot().toString());
@@ -165,7 +176,14 @@ public class MediaFileModel {
         return probeResult != null ? probeResult.getFormat() : null;
     }
 
-    private boolean isEqualSize(Path x, long size) {
+    /**
+     * This class compare the Equal Size.
+     *
+     * @param x    The path.
+     * @param size Input long for compare.
+     * @return the Boolean.
+     */
+    private boolean isEqualSize(final Path x, final long size) {
         try {
             if (Files.size(x) == size) {
                 return true;
