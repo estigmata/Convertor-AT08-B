@@ -31,7 +31,6 @@ public class UpperPanel extends JPanel {
         explorer.setBackground(Color.RED);
         this.add(explorer);
 //        Panel for the Search Panel
-
         FinderPanel searchPanel = new FinderPanel();
         searchPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.add(searchPanel);
