@@ -15,21 +15,25 @@
 package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 
 /**
  * Class JPanel-Audio Panel.
  *
- * @author Rodrigo Menacho
- * @version 1.0
+ * @author Rodrigo Menacho.
+ * @version 1.0.
  */
 class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
+
     /**
      * Constructor.
      */
@@ -64,8 +68,6 @@ class AudioTabPanel extends JPanel {
         constraints.gridx = 0;
         constraints.gridy = 1;
         this.add(finderPanel, constraints);
-
-
 
 
     }

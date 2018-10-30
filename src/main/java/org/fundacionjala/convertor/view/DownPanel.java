@@ -15,17 +15,27 @@
 
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
-import java.awt.*;
 
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+
+/**
+ *
+ */
 public class DownPanel extends JPanel {
+    /**
+     *
+     */
     public DownPanel() {
         initComponents();
 
     }
 
-    private void initComponents(){
-       this.setLayout(new FlowLayout(FlowLayout.LEFT));
-       this.add(new ResultTablePanel());
+    /**
+     *
+     */
+    private void initComponents() {
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.add(new ResultTablePanel());
     }
 }
