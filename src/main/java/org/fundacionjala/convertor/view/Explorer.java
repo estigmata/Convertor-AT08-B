@@ -14,18 +14,24 @@
  */
 
 package org.fundacionjala.convertor.view;
-/**
- *
- */
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.util.Vector;
 
-/**
- * Class in process.
- */
 public class Explorer
-        extends JFrame {
-    /*public static final ImageIcon ICON_COMPUTER =
+        extends JFrame
+{
+    public static final ImageIcon ICON_COMPUTER =
             new ImageIcon("computer.gif");
     public static final ImageIcon ICON_DISK =
             new ImageIcon("disk.gif");
@@ -405,5 +411,5 @@ class FileNode
                     "Warning", JOptionPane.WARNING_MESSAGE);
             return null;
         }
-    }*/
+    }
 }
