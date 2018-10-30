@@ -16,10 +16,14 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Container;
 
 /**
  * Class Viewer.
@@ -30,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 public final class Viewer extends JFrame {
 
     private TabPane tabPane;
+    private ResultTablePanel downPanel;
 
     /**
      * Constructor.
@@ -38,9 +43,9 @@ public final class Viewer extends JFrame {
         super();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
-        configWindow();
-        initComponents();
         log.info();
+        initComponents();
+        configWindow();
     }
 
     /**
@@ -49,8 +54,9 @@ public final class Viewer extends JFrame {
     private void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pack();
+        this.setVisible(true);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -58,9 +64,16 @@ public final class Viewer extends JFrame {
      */
     private void initComponents() {
         tabPane = new TabPane();
-        tabPane.initComponents();
-        this.getContentPane().add(tabPane);
-        this.setVisible(true);
+        //DECLARACION PANELES
+        Container principalPane = this.getContentPane();
+        principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
+
+        UpperPanel upperPanel = new UpperPanel();
+        principalPane.add(upperPanel);
+
+        DownPanel downPanel = new DownPanel();
+        downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        principalPane.add(downPanel);
     }
 
     /**
@@ -105,7 +118,7 @@ public final class Viewer extends JFrame {
      * @return the object DefaultTableModel.
      */
     public DefaultTableModel getResultTable() {
-        return tabPane.getAudioTabPanel().getDefaultTableModel();
+        return downPanel.getResultTable().getDefaultTableModel();
     }
 
     /**
@@ -114,7 +127,7 @@ public final class Viewer extends JFrame {
      * @param defaultTableModel Input object of defaulttablemodel.
      */
     public void setResultTable(final DefaultTableModel defaultTableModel) {
-        tabPane.getAudioTabPanel().setDefaultTableModel(defaultTableModel);
+        downPanel.getResultTable().setDefaultTableModel(defaultTableModel);
     }
 
     /**

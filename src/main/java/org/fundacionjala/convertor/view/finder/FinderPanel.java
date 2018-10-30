@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Label;
 
 /**
@@ -32,7 +33,7 @@ import java.awt.Label;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public abstract class FinderPanel extends JPanel {
+public class FinderPanel extends JPanel {
     private JButton searchButton;
     private JTextField path;
     private JTextField fileName;
@@ -40,6 +41,7 @@ public abstract class FinderPanel extends JPanel {
     private BrowseChooser browseChooser;
     protected JComboBox<String> extensionBox;
     private JComboBox<String> sizeBox;
+    private JComboBox<String> sizeBoxMultimedia;
 
     /**
      * Constructor.
@@ -52,52 +54,57 @@ public abstract class FinderPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
-        sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
+        sizeBoxMultimedia = new JComboBox<>(new String[]{"All", "Video", "Multimedia"});
 
+        sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
+        extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
+
+        initComponents();
     }
 
     /**
      * Initialization of Components.
      */
-    public void initBasicComponents() {
+    public void initComponents() {
         final int twoHundred = 200;
+        final int ten = 10;
         final int three = 3;
         final int four = 4;
+
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets(2, 2, 2, 2);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         this.add(new Label("What Find?:"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 0;
         bagConstraints.ipadx = twoHundred;
         this.add(path, bagConstraints);
+
         bagConstraints.ipadx = 0;
         bagConstraints.gridx = 2;
         bagConstraints.gridy = 0;
         this.add(browseChooser, bagConstraints);
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 1;
         this.add(new JLabel("By File Name:"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 1;
         this.add(fileName, bagConstraints);
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 2;
-        this.add(new JLabel("Extension:"), bagConstraints);
+        this.add(new JLabel("Multimedia"), bagConstraints);
+
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 2;
-        this.add(extensionBox, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = three;
-        this.add(new JLabel("Size [MB]:"), bagConstraints);
-        bagConstraints.gridx = 1;
-        bagConstraints.gridy = three;
-        this.add(size, bagConstraints);
-        bagConstraints.gridx = 2;
-        bagConstraints.gridy = three;
-        this.add(sizeBox, bagConstraints);
+        this.add(sizeBoxMultimedia, bagConstraints);
+
         bagConstraints.gridx = 2;
         bagConstraints.gridy = four;
         this.add(searchButton, bagConstraints);
@@ -155,5 +162,14 @@ public abstract class FinderPanel extends JPanel {
      */
     public JTextField getSizeField() {
         return size;
+    }
+
+    /**
+     * Getter of the size box multimedia.
+     *
+     * @return the String.
+     */
+    public String getSizeBoxMultimedia() {
+        return (String) sizeBoxMultimedia.getSelectedItem();
     }
 }
