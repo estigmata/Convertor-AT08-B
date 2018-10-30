@@ -27,13 +27,15 @@ public class ResultTable extends JTable {
     private DefaultTableModel defaultTableModel;
 
     /**
-     * Constructor for the table.
+     * Contructor for the table.
+     *
+     * @param tags For the columns.
      */
-    public ResultTable() {
+    public ResultTable(final Object[] tags) {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(ResultTable.class.getName());
         defaultTableModel = new DefaultTableModel();
-        Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
+        Object[] columns = tags;
         defaultTableModel.setColumnIdentifiers(columns);
         this.setModel(defaultTableModel);
         log.info();

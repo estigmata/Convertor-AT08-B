@@ -67,6 +67,7 @@ public class BrowseChooser extends JPanel implements ActionListener {
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             path.setText(String.valueOf(chooser.getSelectedFile()));
         }
+
     }
 
 }

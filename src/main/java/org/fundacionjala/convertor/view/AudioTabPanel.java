@@ -15,17 +15,12 @@
 package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.utils.VLCMediaPlayer;
-import org.fundacionjala.convertor.view.finder.AudioFinderPanel;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -33,14 +28,11 @@ import java.awt.GridBagLayout;
 /**
  * Class JPanel-Audio Panel.
  *
- * @author Rodrigo Menacho
- * @version 1.0
+ * @author Rodrigo Menacho.
+ * @version 1.0.
  */
 class AudioTabPanel extends JPanel {
     private FinderPanel finderPanel;
-    private ResultTable resultTableAudio;
-    private JScrollPane resultScrollTable;
-    private VLCMediaPlayer vlcMediaPlayer;
 
     /**
      * Constructor.
@@ -49,13 +41,8 @@ class AudioTabPanel extends JPanel {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(AudioTabPanel.class.getName());
         this.setLayout(new GridBagLayout());
-        finderPanel = new AudioFinderPanel();
+        finderPanel = new FinderPanel();
         finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        resultTableAudio = new ResultTable();
-        resultScrollTable = new JScrollPane(resultTableAudio);
-        final int tWidth = 200;
-        final int tHeight = 50;
-        resultScrollTable.setPreferredSize(new Dimension(tWidth, tHeight));
         initComponents();
         log.info();
     }
@@ -68,45 +55,19 @@ class AudioTabPanel extends JPanel {
         final int three = 3;
         final int thirteen = 30;
         final int threeHundred = 300;
-        finderPanel.initBasicComponents();
-        vlcMediaPlayer = new VLCMediaPlayer();
+        finderPanel.initComponents();
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
+
         constraints.ipady = ten;
         constraints.gridx = 0;
         constraints.gridy = 0;
         this.add(new JLabel("Search Panel"), constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        this.add(new JLabel("Reproductor Panel"), constraints);
+
         constraints.ipady = 0;
         constraints.gridx = 0;
         constraints.gridy = 1;
         this.add(finderPanel, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        constraints.ipadx = threeHundred;
-        /*JPanel tempReproductor = new JPanel();
-        tempReproductor.add(vlcMediaPlayer);
-        tempReproductor.setBorder(BorderFactory.createLineBorder(Color.BLACK));*/
-        this.add(vlcMediaPlayer, constraints); //Reproductor Panel
-        constraints.ipadx = 0;
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        this.add(new JLabel("Showed Results:"), constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        this.add(new JLabel("Information"), constraints);
-        constraints.ipady = threeHundred;
-        constraints.weighty = thirteen;
-        constraints.gridx = 0;
-        constraints.gridy = three;
-        this.add(resultScrollTable, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = three;
-        JPanel tempInformation = new JPanel();
-        tempInformation.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(tempInformation, constraints); // Information Panel
 
 
     }
@@ -116,9 +77,9 @@ class AudioTabPanel extends JPanel {
      *
      * @return the default table.
      */
-    public DefaultTableModel getDefaultTableModel() {
+    /*public DefaultTableModel getDefaultTableModel() {
         return resultTableAudio.getDefaultTableModel();
-    }
+    }*/
 
     /**
      * Getter FinderClass.
@@ -134,8 +95,8 @@ class AudioTabPanel extends JPanel {
      *
      * @param defaultTableModel input object.
      */
-    public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
+    /*public void setDefaultTableModel(final DefaultTableModel defaultTableModel) {
         resultTableAudio.setDefaultTableModel(defaultTableModel);
-    }
+    }*/
 
 }
