@@ -1,5 +1,6 @@
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.VLCMediaPlayer;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
 import javax.swing.BorderFactory;
@@ -36,7 +37,7 @@ public class UpperPanel extends JPanel {
         this.add(searchPanel);
 
 //        Panel for the Reproductor Panel
-        ReproductorPanel reproductorPanel = new ReproductorPanel();
+        VLCMediaPlayer reproductorPanel = new VLCMediaPlayer();
         reproductorPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
         this.add(reproductorPanel);
     }
