@@ -58,23 +58,14 @@ public class MediaFileModel {
 
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-                .filter(x -> !criteria.getFileName().isEmpty() && x.getFileName().equals(criteria.getFileName()))
-                .filter(x -> {
-                    if (criteria.getFileSize() == 0) {
-                        return false;
-                    }
-                    try {
-                        if (Files.size(x) == criteria.getFileSize()) {
-                            return true;
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return false;
-                })
+                .filter(x -> criteria.getFileName().isEmpty() || x.getFileName().equals(criteria.getFileName()))
+                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
 //                Frame Rate
 //                .filter(x -> {
+//                    if(criteria.getFrameRate().isEmpty()){
+//                        return true;
+//                    }
 //                    FFmpegStream stream = getStreamFFprobe(x);
 //                    if (stream.has_b_frames == criteria.getFrameRate) {
 //                        return true;
@@ -172,5 +163,16 @@ public class MediaFileModel {
             e.printStackTrace();
         }
         return probeResult != null ? probeResult.getFormat() : null;
+    }
+
+    private boolean isEqualSize(Path x, long size) {
+        try {
+            if (Files.size(x) == size) {
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
