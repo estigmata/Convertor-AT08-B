@@ -55,6 +55,7 @@ public class FinderPanel extends JPanel {
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
         sizeBoxMultimedia = new JComboBox<>(new String[]{"All", "Video", "Multimedia"});
+
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
         extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
 
@@ -72,7 +73,7 @@ public class FinderPanel extends JPanel {
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
-        //bagConstraints.insets = new Insets(2, 2, 2, 2);
+        bagConstraints.insets = new Insets(2, 2, 2, 2);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
@@ -80,8 +81,10 @@ public class FinderPanel extends JPanel {
 
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 0;
+        bagConstraints.ipadx = twoHundred;
         this.add(path, bagConstraints);
 
+        bagConstraints.ipadx = 0;
         bagConstraints.gridx = 2;
         bagConstraints.gridy = 0;
         this.add(browseChooser, bagConstraints);
