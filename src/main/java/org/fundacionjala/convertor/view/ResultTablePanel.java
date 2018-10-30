@@ -21,13 +21,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
     private ResultTable resultTable;
-    private JScrollPane resultScrollTable;
 
     /**
      * Constructor.
