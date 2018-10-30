@@ -23,12 +23,14 @@ import java.awt.FlowLayout;
  *
  */
 public class DownPanel extends JPanel {
+    private ResultTablePanel resultTablePanel;
+
     /**
      *
      */
     public DownPanel() {
+        resultTablePanel = new ResultTablePanel();
         initComponents();
-
     }
 
     /**
@@ -36,6 +38,15 @@ public class DownPanel extends JPanel {
      */
     private void initComponents() {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        this.add(new ResultTablePanel());
+        this.add(resultTablePanel);
+    }
+
+    /**
+     * getter
+     *
+     * @return the panel.
+     */
+    public ResultTablePanel getResultTablePanel() {
+        return resultTablePanel;
     }
 }
