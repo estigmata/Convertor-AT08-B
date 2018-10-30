@@ -32,8 +32,7 @@ import java.awt.Container;
  * @version 1.0
  */
 public final class Viewer extends JFrame {
-
-    private TabPane tabPane;
+    //declaration of the variables.
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
