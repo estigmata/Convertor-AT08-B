@@ -32,7 +32,8 @@ import java.awt.Container;
  * @version 1.0
  */
 public final class Viewer extends JFrame {
-    //declaration of the variables.
+
+    private TabPane tabPane;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
@@ -64,6 +65,7 @@ public final class Viewer extends JFrame {
      * Initialization of Components.
      */
     private void initComponents() {
+        tabPane = new TabPane();
         //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
