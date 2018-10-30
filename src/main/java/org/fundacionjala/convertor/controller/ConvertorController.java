@@ -23,8 +23,8 @@ import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
 import javax.swing.table.DefaultTableModel;
-import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
+
 
 /**
  * Convertor.
@@ -51,7 +51,11 @@ public class ConvertorController {
     public ConvertorController() {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(ConvertorController.class.getName());
-        this.mediaFileModel = new MediaFileModel();
+        try {
+            this.mediaFileModel = new MediaFileModel();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.viewer = new Viewer();
         this.validator = new Validator();
         log.info();
@@ -71,8 +75,8 @@ public class ConvertorController {
     }
 
     /**
-     *  This method receives the values of the view in a criteria-type
-     *  object and sends them to the model to find the corresponding files
+     * This method receives the values of the view in a criteria-type
+     * object and sends them to the model to find the corresponding files
      * Method find file.
      */
     public void findFile() {
@@ -80,23 +84,26 @@ public class ConvertorController {
         basicCriteria.setFilePath(viewer.getPath());
         basicCriteria.setFileName(viewer.getFileName());
         basicCriteria.setFileExtention(String.valueOf(viewer.getComboExtension()));
-        ArrayList<File> filesAll = mediaFileModel.searchFiles(basicCriteria);
-        showFilesInTable(filesAll);
+        try {
+            mediaFileModel.searchFiles(basicCriteria);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Object[] resultTable = mediaFileModel.getResultArray();
+        showFilesInTable(resultTable);
+
     }
 
     /**
      * Method for show files in table.
      *
-     * @param files input.
+     * @param resultTable input.
      */
-    public void showFilesInTable(final ArrayList<File> files) {
-        final int ref = 1024;
-        String fileSize = "";
+
+    public void showFilesInTable(final Object[] resultTable) {
         DefaultTableModel table = viewer.getResultTable();
-        table.setRowCount(0);
-        for (File file : files) {
-            fileSize = file.length() / (ref * ref) + "";
-            table.addRow(new String[]{file.getPath(), file.getName(), getExtension(file.getName()), fileSize});
+        for (Object file : resultTable) {
+            table.addRow((Object[]) file);
         }
     }
 

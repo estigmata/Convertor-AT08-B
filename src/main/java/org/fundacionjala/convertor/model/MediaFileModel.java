@@ -46,6 +46,8 @@ public class MediaFileModel {
     private Object[] resultArray;
     private FFprobe ffprobe = new FFprobe("C:\\gitJala\\ffmpeg-latest-win64-static\\bin\\ffprobe.exe");
 
+    private static final int INDEX1 = 1024;
+
     /**
      * Contructor empty.
      *
@@ -58,7 +60,9 @@ public class MediaFileModel {
      * This Method search all the files of a directory.
      *
      * @param criteria Its the input parameter who contains all the information for the search.
+     * @throws IOException Exception
      */
+
     public void searchFiles(final Criteria criteria) throws IOException {
 
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
@@ -118,12 +122,11 @@ public class MediaFileModel {
 //                    }
 //                    return false;
 //                })
-                .forEach(item ->
-                {
+                .forEach(item -> {
                     path.add(item.getParent());
                     fileName.add(item.getFileName());
                     try {
-                        size.add(Files.size(item) / 1024);
+                        size.add(Files.size(item) / INDEX1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -147,9 +150,14 @@ public class MediaFileModel {
      * @return the Array of objects.
      */
     public Object[] getResultArray() {
-        return resultArray;
+        Object[] resultArray1 = resultArray;
+        return resultArray1;
     }
 
+    /**
+     * @param x parameter input.
+     * @return value return.
+     */
     private FFmpegStream getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
