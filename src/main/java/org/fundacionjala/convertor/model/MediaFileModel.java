@@ -67,8 +67,8 @@ public class MediaFileModel {
 
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-                .filter(x -> criteria.getFileName().isEmpty() || x.getFileName().equals(criteria.getFileName()))
-                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
+//                .filter(x -> criteria.getFileName().isEmpty() || x.getFileName().equals(criteria.getFileName()))
+//                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
 //                Frame Rate
 //                .filter(x -> {
