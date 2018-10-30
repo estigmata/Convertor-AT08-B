@@ -32,9 +32,9 @@ import java.awt.Container;
  * @version 1.0
  */
 public final class Viewer extends JFrame {
-
-    private TabPane tabPane;
-    private ResultTablePanel downPanel;
+    //declaration of the variables.
+    private DownPanel downPanel;
+    private UpperPanel upperPanel;
 
     /**
      * Constructor.
@@ -46,6 +46,7 @@ public final class Viewer extends JFrame {
         log.info();
         initComponents();
         configWindow();
+        downPanel = new DownPanel();
     }
 
     /**
@@ -63,15 +64,14 @@ public final class Viewer extends JFrame {
      * Initialization of Components.
      */
     private void initComponents() {
-        tabPane = new TabPane();
         //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
-        UpperPanel upperPanel = new UpperPanel();
+        upperPanel = new UpperPanel();
         principalPane.add(upperPanel);
 
-        DownPanel downPanel = new DownPanel();
+        downPanel = new DownPanel();
         downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         principalPane.add(downPanel);
     }
@@ -82,7 +82,7 @@ public final class Viewer extends JFrame {
      * @return the JObject
      */
     public JButton getSearchButton() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getSearchButton();
+        return upperPanel.getSearchPanel().getSearchButton();
     }
 
     /**
@@ -91,7 +91,7 @@ public final class Viewer extends JFrame {
      * @return the JObject.
      */
     public String getPath() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getPath().getText();
+        return upperPanel.getSearchPanel().getPath().getText();
     }
 
     /**
@@ -100,7 +100,7 @@ public final class Viewer extends JFrame {
      * @return String
      */
     public String getFileName() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getFileName().getText();
+        return upperPanel.getSearchPanel().getFileName().getName();
     }
 
     /**
@@ -109,7 +109,7 @@ public final class Viewer extends JFrame {
      * @return String
      */
     public String getSizeField() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getSizeField().getText();
+        return upperPanel.getSearchPanel().getSizeField().getText();
     }
 
     /**
@@ -118,16 +118,7 @@ public final class Viewer extends JFrame {
      * @return the object DefaultTableModel.
      */
     public DefaultTableModel getResultTable() {
-        return downPanel.getResultTable().getDefaultTableModel();
-    }
-
-    /**
-     * Setter for the result table.
-     *
-     * @param defaultTableModel Input object of defaulttablemodel.
-     */
-    public void setResultTable(final DefaultTableModel defaultTableModel) {
-        downPanel.getResultTable().setDefaultTableModel(defaultTableModel);
+        return downPanel.getResultTablePanel().getResultTable().getDefaultTableModel();
     }
 
     /**
@@ -136,7 +127,7 @@ public final class Viewer extends JFrame {
      * @return JComboBox
      */
     public JComboBox getComboExtension() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getExtensionBox();
+        return upperPanel.getSearchPanel().getExtensionBox();
     }
 
     /**
@@ -145,6 +136,6 @@ public final class Viewer extends JFrame {
      * @return JComboBox
      */
     public JComboBox getComboSize() {
-        return tabPane.getAudioTabPanel().getFinderPanel().getSizeBox();
+        return upperPanel.getSearchPanel().getSizeBox();
     }
 }

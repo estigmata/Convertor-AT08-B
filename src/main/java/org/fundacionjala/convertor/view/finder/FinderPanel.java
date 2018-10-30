@@ -165,7 +165,7 @@ public class FinderPanel extends JPanel {
     }
 
     /**
-     * Getter of the size box multimedia.
+     * Getter of the size box multimedia :c.
      *
      * @return the String.
      */
