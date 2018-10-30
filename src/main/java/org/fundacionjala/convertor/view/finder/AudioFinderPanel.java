@@ -15,7 +15,14 @@
 
 package org.fundacionjala.convertor.view.finder;
 
-import javax.swing.JComboBox;
+import org.fundacionjala.convertor.view.BrowseChooser;
+
+        import javax.swing.JButton;
+        import javax.swing.JComboBox;
+        import javax.swing.JLabel;
+        import javax.swing.JPanel;
+        import javax.swing.JTextField;
+        import java.awt.*;
 
 /**
  * Class finder for audio tab, this will include the advanced search.
@@ -23,12 +30,74 @@ import javax.swing.JComboBox;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public class AudioFinderPanel extends FinderPanel {
-    /**
-     * Constructor for Finder panel.
-     */
+public class AudioFinderPanel extends JPanel {
+    /* private JTextField path;
+    private JTextField fileName;
+    private JTextField size;
+    private BrowseChooser browseChooser;
+    protected JComboBox<String> extensionBox;
+    private JComboBox<String> sizeBox;
+
+    *//**
+     * Constructor for Audio finder Panel.
+     *//*
     public AudioFinderPanel() {
-        super();
+        path = new JTextField("");
+        searchButton = new JButton("Find");
+        fileName = new JTextField();
+        size = new JTextField();
+        this.setVisible(true);
+        browseChooser = new BrowseChooser();
+        browseChooser.setPath(path);
+        sizeBoxMultimedia = new JComboBox<>(new String []{"All", "Video", "Multimedia"});
+
+        sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
         extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
+
+        initComponents();
     }
+
+    *//**
+     * Initialization of Components.
+     *//*
+    public void initComponents() {
+        final int twoHundred = 200;
+        final int ten = 10;
+        final int three = 3;
+        final int four = 4;
+
+
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets( 2,2,2,2 );
+        bagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = 0;
+        this.add(new Label("What Find?:"), bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = 0;
+        bagConstraints.ipadx = twoHundred;
+        this.add(path, bagConstraints);
+
+        bagConstraints.ipadx = 0;
+        bagConstraints.gridx = 2;
+        bagConstraints.gridy = 0;
+        this.add(browseChooser, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = 1;
+        this.add(new JLabel("By File Name:"), bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = 1;
+        this.add(fileName, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = 2;
+        this.add(new JLabel("Multimedia"), bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = 2;
+        this.add(sizeBoxMultimedia, bagConstraints);*/
 }

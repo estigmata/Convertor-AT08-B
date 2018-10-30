@@ -37,7 +37,7 @@ class AudioTabPanel extends JPanel {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(AudioTabPanel.class.getName());
         this.setLayout(new GridBagLayout());
-        finderPanel = new AudioFinderPanel();
+        finderPanel = new FinderPanel();
         finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         initComponents();
         log.info();

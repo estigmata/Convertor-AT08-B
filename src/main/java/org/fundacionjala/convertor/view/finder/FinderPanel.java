@@ -38,6 +38,7 @@ public class FinderPanel extends JPanel {
     private BrowseChooser browseChooser;
     protected JComboBox<String> extensionBox;
     private JComboBox<String> sizeBox;
+    private JComboBox<String> sizeBoxMultimedia;
 
     /**
      * Constructor.
@@ -50,11 +51,12 @@ public class FinderPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
+        sizeBoxMultimedia = new JComboBox<>(new String []{"All", "Video", "Multimedia"});
+
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
         extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
 
         initComponents();
-
     }
 
     /**
@@ -95,26 +97,16 @@ public class FinderPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 2;
-        this.add(new JLabel("Extension:"), bagConstraints);
+        this.add(new JLabel("Multimedia"), bagConstraints);
 
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 2;
-        this.add(extensionBox, bagConstraints);
+        this.add(sizeBoxMultimedia, bagConstraints);
 
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = three;
-        this.add(new JLabel("Size [MB]:"), bagConstraints);
-        bagConstraints.gridx = 1;
-        bagConstraints.gridy = three;
-        this.add(size, bagConstraints);
-        bagConstraints.gridx = 2;
-        bagConstraints.gridy = three;
-        this.add(sizeBox, bagConstraints);
         bagConstraints.gridx = 2;
         bagConstraints.gridy = four;
         this.add(searchButton, bagConstraints);
     }
-
 
     /**
      * Getter of the search button.
@@ -168,5 +160,9 @@ public class FinderPanel extends JPanel {
      */
     public JTextField getSizeField() {
         return size;
+    }
+
+    public String getSizeBoxMultimedia() {
+        return (String) sizeBoxMultimedia.getSelectedItem();
     }
 }
