@@ -15,9 +15,16 @@
 
 package org.fundacionjala.convertor.view;
 
-import javax.swing.*;
 
+import javax.swing.JPanel;
+
+/**
+ * Class of the reproductor Panel.
+ */
 public class ReproductorPanel extends JPanel {
+    /**
+     * Constructor of the reproductor panel.
+     */
     public ReproductorPanel() {
     }
 }

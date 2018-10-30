@@ -22,7 +22,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Label;
 
 /**
  * Class FinderPanel.
@@ -51,7 +54,7 @@ public class FinderPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
-        sizeBoxMultimedia = new JComboBox<>(new String []{"All", "Video", "Multimedia"});
+        sizeBoxMultimedia = new JComboBox<>(new String[]{"All", "Video", "Multimedia"});
 
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
         extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
@@ -68,10 +71,9 @@ public class FinderPanel extends JPanel {
         final int three = 3;
         final int four = 4;
 
-
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
-        bagConstraints.insets = new Insets( 2,2,2,2 );
+        bagConstraints.insets = new Insets(2, 2, 2, 2);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
@@ -162,6 +164,11 @@ public class FinderPanel extends JPanel {
         return size;
     }
 
+    /**
+     * Getter of the size box multimedia.
+     *
+     * @return the String.
+     */
     public String getSizeBoxMultimedia() {
         return (String) sizeBoxMultimedia.getSelectedItem();
     }

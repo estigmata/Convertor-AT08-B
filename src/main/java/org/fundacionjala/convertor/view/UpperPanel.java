@@ -2,15 +2,28 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import java.awt.Color;
 
+
+/**
+ * Class of the upper panel who contais 3 panels.
+ */
 public class UpperPanel extends JPanel {
+    /**
+     * Constructor for the initialization of the components.
+     */
     public UpperPanel() {
         initComponents();
 
     }
-    private void initComponents(){
+
+    /**
+     * Initialization of the components.
+     */
+    private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 //        Panel for the explorer
         JPanel explorer = new JPanel();

@@ -15,14 +15,8 @@
 
 package org.fundacionjala.convertor.view.finder;
 
-import org.fundacionjala.convertor.view.BrowseChooser;
 
-        import javax.swing.JButton;
-        import javax.swing.JComboBox;
-        import javax.swing.JLabel;
-        import javax.swing.JPanel;
-        import javax.swing.JTextField;
-        import java.awt.*;
+import javax.swing.JPanel;
 
 /**
  * Class finder for audio tab, this will include the advanced search.

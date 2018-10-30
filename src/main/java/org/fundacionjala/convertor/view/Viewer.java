@@ -16,9 +16,14 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Container;
 
 /**
  * Class Viewer.
@@ -49,7 +54,6 @@ public final class Viewer extends JFrame {
     private void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500,500));
         this.pack();
         this.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -64,7 +68,7 @@ public final class Viewer extends JFrame {
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
-        UpperPanel upperPanel= new UpperPanel();
+        UpperPanel upperPanel = new UpperPanel();
         principalPane.add(upperPanel);
 
         DownPanel downPanel = new DownPanel();

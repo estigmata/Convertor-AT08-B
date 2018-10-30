@@ -17,8 +17,14 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
+/**
+ * Class for the result panel.
+ */
 public class ResultTablePanel extends JPanel {
     private ResultTable resultTable;
     private JScrollPane resultScrollTable;
@@ -28,7 +34,7 @@ public class ResultTablePanel extends JPanel {
      */
     ResultTablePanel() {
         Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
-        resultTable= new ResultTable(columns);
+        resultTable = new ResultTable(columns);
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
@@ -46,6 +52,11 @@ public class ResultTablePanel extends JPanel {
         this.add(new JScrollPane(resultTable));
     }
 
+    /**
+     * Getter for the result table.
+     *
+     * @return the Result table.
+     */
     public ResultTable getResultTable() {
         return resultTable;
     }
