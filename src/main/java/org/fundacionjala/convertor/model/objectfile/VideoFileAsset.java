@@ -33,20 +33,6 @@ public class VideoFileAsset extends Asset {
     private String videoCodec;
 
     /**
-     * Constructor for the files to be created, this only have the basic elements.
-     *
-     * @param path input from the Stream of paths of the walk function.
-     */
-    public VideoFileAsset(Path path) throws IOException {
-        super(path);
-        FFmpegStream stream = probeResult.getStreams().get(0);
-        this.frameRate = String.valueOf(stream.has_b_frames);
-        this.aspectRatio = stream.display_aspect_ratio;
-        this.resolution = String.valueOf(stream.width).concat("x").concat(String.valueOf(stream.height));
-        this.videoCodec = stream.codec_name;
-    }
-
-    /**
      * Getter  of the Frame rate of the current file.
      *
      * @return String form.
