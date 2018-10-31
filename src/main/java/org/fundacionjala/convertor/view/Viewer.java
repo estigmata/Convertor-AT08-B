@@ -33,7 +33,6 @@ import java.awt.Container;
  */
 public final class Viewer extends JFrame {
 
-    private TabPane tabPane;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
@@ -42,6 +41,7 @@ public final class Viewer extends JFrame {
      */
     public Viewer() {
         super();
+        downPanel = new DownPanel();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info();
@@ -56,15 +56,14 @@ public final class Viewer extends JFrame {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
-        this.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setVisible(true);
     }
 
     /**
      * Initialization of Components.
      */
     private void initComponents() {
-        tabPane = new TabPane();
         //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));

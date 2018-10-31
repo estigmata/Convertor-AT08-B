@@ -19,6 +19,8 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.model.objectfile.Asset;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,14 +29,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * This class is part of the model in which files are searched from a path.
- * <p>
- * //For use the array of the result and print in the table, you can use this following code:
- * //    Object[] resultTable = mediaFileModel.getResultArray();
- * //        for (Object item :resultTable) {
- * //        table.addRow((Object[]) item);
- * //    }
- * // DON"T FORGET IMPLEMENT THE EXCEPTIONS.
+ * This class is part of the model in which fileList are searched from a path.
  *
  * @author Abel Gustavo Mallcu Chiri
  * @version 1.0
@@ -43,32 +38,32 @@ public class MediaFileModel {
     private ArrayList<Object> path = new ArrayList<>();
     private ArrayList<Object> fileName = new ArrayList<>();
     private ArrayList<Object> size = new ArrayList<>();
-    private Object[] resultArray;
-    private FFprobe ffprobe = new FFprobe("C:\\gitJala\\ffmpeg-latest-win64-static\\bin\\ffprobe.exe");
-
+    private ArrayList<Asset> fileList;
+    private FFprobe ffprobe = new FFprobe("\\src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
     private static final int INDEX1 = 1024;
 
     /**
-     * Contructor empty.
+     * Constructor for extract the files.
      *
-     * @throws IOException for the Path.
+     * @throws IOException because the Path.
      */
     public MediaFileModel() throws IOException {
+        fileList = new ArrayList<>();
     }
 
     /**
-     * This Method search all the files of a directory.
+     * This Method search all the fileList of a directory.
      *
      * @param criteria Its the input parameter who contains all the information for the search.
      * @throws IOException Exception
      */
 
-    public void searchFiles(final Criteria criteria) throws IOException {
-
+    public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-//                .filter(x -> criteria.getFileName().isEmpty() || x.getFileName().equals(criteria.getFileName()))
-//                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
+                .filter(x -> criteria.getFileName().isEmpty() ||
+                        String.valueOf(x.getFileName()).equals(criteria.getFileName()))
+                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
 //                Frame Rate
 //                .filter(x -> {
@@ -123,35 +118,15 @@ public class MediaFileModel {
 //                    return false;
 //                })
                 .forEach(item -> {
-                    path.add(item.getParent());
-                    fileName.add(item.getFileName());
+                    Asset filex = null;
                     try {
-                        size.add(Files.size(item) / INDEX1);
+                        filex = new Asset(item);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    fileList.add(filex);
                 });
-        makeResultArray();
-    }
-
-    /**
-     * This class make the Array of all the result to be used.
-     */
-    private void makeResultArray() {
-        resultArray = new Object[path.toArray().length];
-        for (int i = 0; i < path.toArray().length; i++) {
-            resultArray[i] = new Object[]{path.toArray()[i], fileName.toArray()[i], size.toArray()[i]};
-        }
-    }
-
-    /**
-     * This is the getter of the array of the result.
-     *
-     * @return the Array of objects.
-     */
-    public Object[] getResultArray() {
-        Object[] resultArray1 = resultArray;
-        return resultArray1;
+        return fileList;
     }
 
     /**
