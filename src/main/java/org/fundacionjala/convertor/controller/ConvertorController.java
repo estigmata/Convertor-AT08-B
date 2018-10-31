@@ -16,15 +16,16 @@
 package org.fundacionjala.convertor.controller;
 
 import org.fundacionjala.convertor.model.MediaFileModel;
+import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
-import javax.swing.table.DefaultTableModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -68,7 +69,11 @@ public class ConvertorController {
     public void actionConverter() {
         viewer.getSearchButton().addActionListener(e -> {
             if (validator.isPath(viewer.getPath())) {
-                findFile();
+                try {
+                    findFile();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } else {
                 new ErrorMessage("It is no path valid !!!");
             }
@@ -79,22 +84,15 @@ public class ConvertorController {
      * This method receives the values of the view in a criteria-type
      * object and sends them to the model to find the corresponding files
      * Method find file.
+     *
+     * @throws IOException defined IOException.
      */
-    public void findFile() {
+    public void findFile() throws IOException {
         Criteria basicCriteria = new Criteria();
         basicCriteria.setFilePath(viewer.getPath());
         basicCriteria.setFileName(viewer.getFileName());
-        basicCriteria.setFileExtention(String.valueOf(viewer.getComboExtension()));
-
-        try {
-            mediaFileModel.searchFiles(basicCriteria);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        Object[] resultTable = mediaFileModel.getResultArray();
-//        showFilesInTable(resultTable);
-
+        ArrayList<Asset> lista = mediaFileModel.searchFiles(basicCriteria);
+        showFilesInTable(lista);
     }
 
     /**
@@ -103,10 +101,12 @@ public class ConvertorController {
      * @param resultTable input.
      */
 
-    public void showFilesInTable(final Object[] resultTable) {
-        DefaultTableModel table = viewer.getResultTable();
-        for (Object file : resultTable) {
-            table.addRow((Object[]) file);
+    public void showFilesInTable(final ArrayList<Asset> resultTable) {
+        viewer.getResultTable().setRowCount(0);
+        for (Asset asset : resultTable) {
+            System.out.println(asset.getFileName());
+            viewer.getResultTable().addRow(new String[]{asset.getPath(),
+                    asset.getFileName(), String.valueOf(asset.getFileSize())});
         }
     }
 

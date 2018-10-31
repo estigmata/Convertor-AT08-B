@@ -57,7 +57,7 @@ public class MediaFileModel {
      * This Method search all the fileList of a directory.
      *
      * @param criteria Its the input parameter who contains all the information for the search.
-     * @throws IOException Exception
+     * @throws IOException Exception.
      */
 
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
@@ -65,7 +65,8 @@ public class MediaFileModel {
         AdvancedCriteriaAudio auxAudio = null;
         if (criteria instanceof AdvancedCriteriaVideo) {
             auxVideo = (AdvancedCriteriaVideo) criteria;
-        } else {
+        }
+        if (criteria instanceof AdvancedCriteriaAudio) {
             auxAudio = (AdvancedCriteriaAudio) criteria;
         }
         AdvancedCriteriaVideo advancedCriteriaVideo = auxVideo;
@@ -135,8 +136,12 @@ public class MediaFileModel {
                     FFmpegStream stream = getStreamFFprobe(item);
                     FFmpegFormat format = getFormatFFprobe(item);
                     Asset fileZ = new Asset();
-                    fileZ.setFileName(format.filename);
-                    fileZ.setFileSize(format.size);
+                    fileZ.setFileName(item.getFileName().toString());
+                    try {
+                        fileZ.setFileSize(Files.size(item));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     fileZ.setPath(item.getRoot().toString());
                     fileList.add(fileZ);
                 });
