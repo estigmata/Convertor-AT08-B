@@ -27,20 +27,6 @@ public class AudioFileAsset extends Asset {
     private double duration;
 
     /**
-     * Constructor for the files to be created, this only have the basic elements.
-     *
-     * @param path input from the Stream of paths of the walk function.
-     */
-    public AudioFileAsset(Path path) throws IOException {
-        super(path);
-        FFmpegFormat format = probeResult.format;
-        FFmpegStream stream = probeResult.getStreams().get(0);
-        this.channels = stream.channels;
-        this.audioCodec = stream.codec_name;
-        this.duration = format.duration;
-    }
-
-    /**
      * Getter of the channels of the audio.
      *
      * @return the int of the number of channels.

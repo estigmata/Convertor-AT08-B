@@ -29,25 +29,11 @@ import java.nio.file.Path;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public class Asset {
+public abstract class Asset {
 
     private String fileName;
     private String path;
     private long fileSize;
-    FFprobe ffprobe = new FFprobe("\\src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
-    FFmpegProbeResult probeResult;
-
-    /**
-     * Constructor for the files to be created, this only have the basic elements.
-     *
-     * @param path input from the Stream of paths of the walk function.
-     */
-    public Asset(Path path) throws IOException {
-        probeResult = ffprobe.probe(path.getRoot().toString());
-        fileName = String.valueOf(path.getFileName());
-        this.path = String.valueOf(path.getRoot());
-        fileSize = Files.size(path);
-    }
 
     /**
      * Getter of the File name.
