@@ -67,4 +67,40 @@ public class VideoFileAsset extends Asset {
     public String getVideoCodec() {
         return videoCodec;
     }
+
+    /**
+     * Setter of the frameRate.
+     *
+     * @param frameRate String of the frameRate.
+     */
+    public void setFrameRate(String frameRate) {
+        this.frameRate = frameRate;
+    }
+
+    /**
+     * Setter of the aspectRatio.
+     *
+     * @param aspectRatio Input string of the aspect ratio.
+     */
+    public void setAspectRatio(String aspectRatio) {
+        this.aspectRatio = aspectRatio;
+    }
+
+    /**
+     * Setter of the resolution.
+     *
+     * @param resolution input String of resolution.
+     */
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    /**
+     * Setter of the videoCodec.
+     *
+     * @param videoCodec input String of the video codec.
+     */
+    public void setVideoCodec(String videoCodec) {
+        this.videoCodec = videoCodec;
+    }
 }

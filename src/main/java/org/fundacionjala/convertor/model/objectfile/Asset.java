@@ -61,4 +61,31 @@ public class Asset {
     public long getFileSize() {
         return fileSize;
     }
+
+    /**
+     * Setter of the file name.
+     *
+     * @param fileName Receives the String of the filename.
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * Setter of the path.
+     *
+     * @param path Receive the String path.
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    /**
+     * Setter of the file size.
+     *
+     * @param fileSize Receive the Long number of the size.
+     */
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
 }
