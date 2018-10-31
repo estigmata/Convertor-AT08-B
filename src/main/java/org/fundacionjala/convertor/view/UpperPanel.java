@@ -1,14 +1,10 @@
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.utils.VLCMediaPlayer;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 
 /**
