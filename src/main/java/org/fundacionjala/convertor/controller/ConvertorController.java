@@ -22,13 +22,9 @@ import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
-import org.modelmapper.internal.util.Assert;
 
-import javax.swing.event.TableModelEvent;
-import javax.swing.table.DefaultTableModel;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -88,6 +84,8 @@ public class ConvertorController {
      * This method receives the values of the view in a criteria-type
      * object and sends them to the model to find the corresponding files
      * Method find file.
+     *
+     * @throws IOException defined IOException.
      */
     public void findFile() throws IOException {
         Criteria basicCriteria = new Criteria();
@@ -95,7 +93,7 @@ public class ConvertorController {
         basicCriteria.setFileName(viewer.getFileName());
         ArrayList<Asset> lista = mediaFileModel.searchFiles(basicCriteria);
         showFilesInTable(lista);
- }
+    }
 
     /**
      * Method for show files in table.
@@ -107,7 +105,8 @@ public class ConvertorController {
         viewer.getResultTable().setRowCount(0);
         for (Asset asset : resultTable) {
             System.out.println(asset.getFileName());
-            viewer.getResultTable().addRow(new String[]{asset.getPath(), asset.getFileName(), String.valueOf(asset.getFileSize())});
+            viewer.getResultTable().addRow(new String[]{asset.getPath(),
+                    asset.getFileName(), String.valueOf(asset.getFileSize())});
         }
     }
 

@@ -57,7 +57,7 @@ public class MediaFileModel {
      * This Method search all the fileList of a directory.
      *
      * @param criteria Its the input parameter who contains all the information for the search.
-     * @throws IOException Exception
+     * @throws IOException Exception.
      */
 
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
