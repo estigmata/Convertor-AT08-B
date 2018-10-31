@@ -41,6 +41,8 @@ public class Util {
     }
 
     /**
+     * This method return the With of resolution.
+     *
      * @param resolution parameter f input.
      * @return value of return.
      */
@@ -51,10 +53,12 @@ public class Util {
     }
 
     /**
+     * This method return the height of resolution.
+     *
      * @param resolution parameter f input.
      * @return value of return.
      */
-    public int getHeigt(final String resolution) {
+    public int getHeight(final String resolution) {
         final int length = resolution.length();
         final int i = resolution.indexOf('*');
         return Integer.parseInt(resolution.substring(i + ONE_1, length));
