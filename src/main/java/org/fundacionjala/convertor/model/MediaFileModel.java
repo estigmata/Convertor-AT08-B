@@ -19,6 +19,7 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
@@ -59,6 +60,8 @@ public class MediaFileModel {
      */
 
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
+
+        AdvancedCriteriaVideo advancedCriteriaVideo = (AdvancedCriteriaVideo) criteria;
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty() ||
