@@ -41,7 +41,6 @@ public class ResultTable extends JTable {
         log.info();
     }
 
-
     /**
      * Setter for the table content.
      *

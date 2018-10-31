@@ -37,7 +37,6 @@ public class ResultTablePanel extends JPanel {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
-        //setVisible(true);
         initComponents();
     }
 
