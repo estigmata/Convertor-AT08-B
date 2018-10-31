@@ -92,7 +92,7 @@ public class ConvertorController {
             e.printStackTrace();
         }
 
-        Object[] resultTable = mediaFileModel.getRes    ultArray();
+        Object[] resultTable = mediaFileModel.getResultArray();
         showFilesInTable(resultTable);
 
     }
