@@ -14,7 +14,7 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.model;
+package org.fundacionjala.convertor.model.Criteria;
 
 /**
  * This class defines a search criterion object.

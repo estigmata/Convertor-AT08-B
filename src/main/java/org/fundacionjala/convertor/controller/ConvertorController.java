@@ -17,7 +17,7 @@ package org.fundacionjala.convertor.controller;
 
 import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.model.Criteria;
+import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
@@ -110,18 +110,5 @@ public class ConvertorController {
         }
     }
 
-    /**
-     * Method to obtain the extension of a file.
-     *
-     * @param fileName is a file name.
-     * @return Value of return of String Type.
-     */
-    public String getExtension(final String fileName) {
-        String extension = "";
-        int i = fileName.lastIndexOf('.');
-        if (i > 0 && i < fileName.length() - 1) {
-            extension = fileName.substring(i + 1).toLowerCase();
-        }
-        return extension;
-    }
+
 }

@@ -13,10 +13,13 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.model;
+package org.fundacionjala.convertor.model.Criteria;
 
 /**
+ * This class is a subclass  of criteria class, instance objects of AdvancedCriteriaVideo type.
  *
+ * @author Abel Gustavo Mallcu Chiri.
+ * @version 1.0.
  */
 public class AdvancedCriteriaVideo extends Criteria {
 
