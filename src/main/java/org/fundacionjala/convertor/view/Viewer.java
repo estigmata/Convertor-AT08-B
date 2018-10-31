@@ -118,7 +118,8 @@ public final class Viewer extends JFrame {
      * @return the object DefaultTableModel.
      */
     public DefaultTableModel getResultTable() {
-        return downPanel.getResultTablePanel().getResultTable().getDefaultTableModel();
+        return downPanel.getResultTablePanel().getResultTable();
+
     }
 
     /**
