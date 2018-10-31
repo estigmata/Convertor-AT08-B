@@ -42,7 +42,7 @@ public class MediaFileModel {
     private static final int INDEX1 = 1024;
 
     /**
-     * Constructor empty.
+     * Constructor for extract the files.
      *
      * @throws IOException because the Path.
      */
@@ -57,7 +57,7 @@ public class MediaFileModel {
      * @throws IOException Exception
      */
 
-    public void searchFiles(final Criteria criteria) throws IOException {
+    public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty() ||
@@ -125,7 +125,7 @@ public class MediaFileModel {
                     }
                     fileList.add(filex);
                 });
-
+        return fileList;
     }
 
     /**
