@@ -19,6 +19,7 @@ package org.fundacionjala.convertor;
 
 import org.fundacionjala.convertor.controller.ConvertorController;
 import org.fundacionjala.convertor.utils.AbstractLogger;
+import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 
 /**
  *
@@ -41,6 +42,7 @@ public final class Main {
    * @param args type array of String.
    */
   public static void main(final String[] args) {
+    new NativeDiscovery().discover();
     log = AbstractLogger.getInstance();
     ConvertorController controller = new ConvertorController();
     controller.actionConverter();

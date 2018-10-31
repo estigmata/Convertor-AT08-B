@@ -24,6 +24,8 @@ import org.fundacionjala.convertor.view.Viewer;
 
 import javax.swing.table.DefaultTableModel;
 
+import java.io.IOException;
+
 
 /**
  * Convertor.
@@ -50,7 +52,11 @@ public class ConvertorController {
     public ConvertorController() {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(ConvertorController.class.getName());
-        this.mediaFileModel = new MediaFileModel();
+        try {
+            this.mediaFileModel = new MediaFileModel();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.viewer = new Viewer();
         this.validator = new Validator();
         log.info();
@@ -79,7 +85,13 @@ public class ConvertorController {
         basicCriteria.setFilePath(viewer.getPath());
         basicCriteria.setFileName(viewer.getFileName());
         basicCriteria.setFileExtention(String.valueOf(viewer.getComboExtension()));
-        mediaFileModel.searchFiles(basicCriteria);
+
+        try {
+            mediaFileModel.searchFiles(basicCriteria);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Object[] resultTable = mediaFileModel.getResultArray();
         showFilesInTable(resultTable);
 

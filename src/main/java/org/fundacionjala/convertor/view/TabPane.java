@@ -28,8 +28,8 @@ import java.awt.event.KeyEvent;
  */
 public class TabPane extends JPanel {
     private JTabbedPane tabbedPane;
-    private JPanel videoPanel;
-    private JPanel converterPanel;
+    //private JPanel videoPanel;
+    //private JPanel converterPanel;
     private AudioTabPanel audioTabPanel;
 
     /**
@@ -40,9 +40,10 @@ public class TabPane extends JPanel {
         log.setLogger(TabPane.class.getName());
         tabbedPane = new JTabbedPane();
         audioTabPanel = new AudioTabPanel();
-        videoPanel = new JPanel();
-        converterPanel = new JPanel();
+        //videoPanel = new JPanel();
+        //converterPanel = new JPanel();
         log.info();
+        initComponents();
     }
 
     /**
@@ -50,8 +51,8 @@ public class TabPane extends JPanel {
      */
     void initComponents() {
         addAudioTab();
-        addVideoTab();
-        addConverterTab();
+        //addVideoTab();
+        //addConverterTab();
         //Add the tabbed pane to this panel.
         add(tabbedPane);
         //The following line enables to use scrolling tabs.
@@ -69,18 +70,18 @@ public class TabPane extends JPanel {
     /**
      * Video Tab.
      */
-    private void addVideoTab() {
+    /*private void addVideoTab() {
         tabbedPane.addTab("Video", videoPanel);
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-    }
+    }*/
 
     /**
      * Converter Tab.
      */
-    private void addConverterTab() {
+   /* private void addConverterTab() {
         tabbedPane.addTab("Converter", converterPanel);
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-    }
+    }*/
 
     /**
      * Getter audio panel.
@@ -96,17 +97,17 @@ public class TabPane extends JPanel {
      *
      * @return JVideoPanel.
      */
-    public JPanel getVideoPanel() {
+    /*public JPanel getVideoPanel() {
         return videoPanel;
-    }
+    }*/
 
     /**
      * Getter Converter Panel.
      *
      * @return JConverterPanel.
      */
-    public JPanel getConverterPanel() {
+    /*public JPanel getConverterPanel() {
         return converterPanel;
-    }
+    }*/
 
 }
