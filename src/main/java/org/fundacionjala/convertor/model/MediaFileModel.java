@@ -19,6 +19,7 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
 import java.io.IOException;
