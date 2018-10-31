@@ -42,7 +42,7 @@ public class DownPanel extends JPanel {
     }
 
     /**
-     * getter
+     * getter.
      *
      * @return the panel.
      */

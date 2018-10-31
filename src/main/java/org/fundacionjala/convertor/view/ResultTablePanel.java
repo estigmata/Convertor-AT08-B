@@ -33,12 +33,11 @@ public class ResultTablePanel extends JPanel {
      * Constructor.
      */
     ResultTablePanel() {
-        Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
-        resultTable = new ResultTable(columns);
+        resultTable = new ResultTable();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
-        setVisible(true);
+        //setVisible(true);
         initComponents();
     }
 
@@ -57,8 +56,7 @@ public class ResultTablePanel extends JPanel {
      *
      * @return the Result table.
      */
-    public ResultTable getResultTable() {
-        return resultTable;
+    public DefaultTableModel getResultTable() {
+        return resultTable.getDefaultTableModel();
     }
-
 }

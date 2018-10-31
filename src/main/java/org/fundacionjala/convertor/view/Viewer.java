@@ -47,7 +47,6 @@ public final class Viewer extends JFrame {
         log.info();
         initComponents();
         configWindow();
-        downPanel = new DownPanel();
     }
 
     /**
@@ -120,7 +119,9 @@ public final class Viewer extends JFrame {
      * @return the object DefaultTableModel.
      */
     public DefaultTableModel getResultTable() {
-        return downPanel.getResultTablePanel().getResultTable().getDefaultTableModel();
+        //return downPanel.getResultTablePanel().getResultTable().getDefaultTableModel();
+        return downPanel.getResultTablePanel().getResultTable();
+
     }
 
     /**

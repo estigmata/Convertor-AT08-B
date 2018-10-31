@@ -29,17 +29,18 @@ public class ResultTable extends JTable {
     /**
      * Contructor for the table.
      *
-     * @param tags For the columns.
+     *
      */
-    public ResultTable(final Object[] tags) {
+    public ResultTable() {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(ResultTable.class.getName());
         defaultTableModel = new DefaultTableModel();
-        Object[] columns = tags;
+        Object[] columns = {"Path", "File Name", "Extension", "Size [MB]"};
         defaultTableModel.setColumnIdentifiers(columns);
         this.setModel(defaultTableModel);
         log.info();
     }
+
 
     /**
      * Setter for the table content.
@@ -56,6 +57,8 @@ public class ResultTable extends JTable {
      * @return the object.
      */
     public DefaultTableModel getDefaultTableModel() {
+
         return defaultTableModel;
+
     }
 }

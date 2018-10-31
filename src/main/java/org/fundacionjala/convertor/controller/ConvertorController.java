@@ -67,7 +67,9 @@ public class ConvertorController {
     public void actionConverter() {
         viewer.getSearchButton().addActionListener(e -> {
             if (validator.isPath(viewer.getPath())) {
+                System.out.println("boton");
                 findFile();
+
             } else {
                 new ErrorMessage("It is no path valid !!!");
             }
@@ -105,6 +107,7 @@ public class ConvertorController {
         for (Object file : resultTable) {
             table.addRow((Object[]) file);
         }
+
     }
 
     /**
