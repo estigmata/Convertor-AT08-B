@@ -15,6 +15,8 @@
 
 package org.fundacionjala.convertor.controller;
 
+import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
+import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
@@ -46,6 +48,10 @@ public class ConvertorController {
      * Validator.
      */
     private Validator validator;
+
+    private static final String VIDEO_1 = "Video";
+    private static final String MULTIMEDIA_1 = "Multimedia";
+    private static final String ALL_1 = "All";
 
     /**
      * Constructor.
@@ -89,8 +95,24 @@ public class ConvertorController {
      */
     public void findFile() throws IOException {
         Criteria basicCriteria = new Criteria();
-        basicCriteria.setFilePath(viewer.getPath());
-        basicCriteria.setFileName(viewer.getFileName());
+        if (viewer.getComboMultimedia().getSelectedItem().equals(ALL_1)) {
+            basicCriteria.setFilePath(viewer.getPath());
+            basicCriteria.setFileName(viewer.getFileName());
+        }
+        if (viewer.getComboMultimedia().getSelectedItem().equals(MULTIMEDIA_1)) {
+            AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
+            audioCriteria.setFilePath(viewer.getPath());
+            audioCriteria.setFileName(viewer.getFileName());
+            basicCriteria = audioCriteria;
+        }
+
+        if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO_1)) {
+            AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+            videoCriteria.setFilePath(viewer.getPath());
+            videoCriteria.setFileName(viewer.getFileName());
+            basicCriteria = videoCriteria;
+        }
+
         ArrayList<Asset> lista = mediaFileModel.searchFiles(basicCriteria);
         showFilesInTable(lista);
     }
@@ -109,6 +131,4 @@ public class ConvertorController {
                     asset.getFileName(), String.valueOf(asset.getFileSize())});
         }
     }
-
-
 }
