@@ -92,8 +92,8 @@ public class ConvertorController {
             e.printStackTrace();
         }
 
-        Object[] resultTable = mediaFileModel.getResultArray();
-        showFilesInTable(resultTable);
+//        Object[] resultTable = mediaFileModel.getResultArray();
+//        showFilesInTable(resultTable);
 
     }
 

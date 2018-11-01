@@ -121,12 +121,7 @@ public class MediaFileModel {
 //                    return false;
 //                })
                 .forEach(item -> {
-                    Asset filex = null;
-                    try {
-                        filex = new Asset(item);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Asset filex = new Asset();
                     fileList.add(filex);
                 });
         return fileList;

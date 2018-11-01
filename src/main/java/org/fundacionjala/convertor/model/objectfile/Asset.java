@@ -29,7 +29,7 @@ import java.nio.file.Path;
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public abstract class Asset {
+public class Asset {
 
     private String fileName;
     private String path;
