@@ -19,6 +19,7 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
@@ -60,22 +61,31 @@ public class MediaFileModel {
      */
 
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
-
-        AdvancedCriteriaVideo advancedCriteriaVideo = (AdvancedCriteriaVideo) criteria;
-        Files.walk(Paths.get(advancedCriteriaVideo.getFilePath())).filter(Files::isRegularFile)
+        AdvancedCriteriaVideo auxVideo = null;
+        AdvancedCriteriaAudio auxAudio = null;
+        if (criteria instanceof AdvancedCriteriaVideo) {
+            auxVideo = (AdvancedCriteriaVideo) criteria;
+        } else {
+            auxAudio = (AdvancedCriteriaAudio) criteria;
+        }
+        AdvancedCriteriaVideo advancedCriteriaVideo = auxVideo;
+        AdvancedCriteriaAudio advancedCriteriaAudio = auxAudio;
+        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-                .filter(x -> advancedCriteriaVideo.getFileName().isEmpty() ||
-                        String.valueOf(x.getFileName()).equals(advancedCriteriaVideo.getFileName()))
-                .filter(x -> advancedCriteriaVideo.getFileSize() == 0 ||
-                        isEqualSize(x, advancedCriteriaVideo.getFileSize()))
+                .filter(x -> criteria.getFileName().isEmpty() ||
+                        String.valueOf(x.getFileName()).equals(criteria.getFileName()))
+                .filter(x -> criteria.getFileSize() == 0 ||
+                        isEqualSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
 //                Frame Rate
 //                .filter(x -> {
-//                    if(criteria.getFrameRate().isEmpty()){
+//                    assert advancedCriteriaVideo != null;
+//                    if (advancedCriteriaVideo.getFrameRate().isEmpty()) {
 //                        return true;
 //                    }
 //                    FFmpegStream stream = getStreamFFprobe(x);
-//                    if (stream.has_b_frames == criteria.getFrameRate) {
+//                    assert stream != null;
+//                    if (stream.has_b_frames == Integer.parseInt(advancedCriteriaVideo.getFrameRate())) {
 //                        return true;
 //                    }
 //                    return false;
@@ -122,8 +132,13 @@ public class MediaFileModel {
 //                    return false;
 //                })
                 .forEach(item -> {
-                    Asset filex = new Asset();
-                    fileList.add(filex);
+                    FFmpegStream stream = getStreamFFprobe(item);
+                    FFmpegFormat format = getFormatFFprobe(item);
+                    Asset fileZ = new Asset();
+                    fileZ.setFileName(format.filename);
+                    fileZ.setFileSize(format.size);
+                    fileZ.setPath(item.getRoot().toString());
+                    fileList.add(fileZ);
                 });
         return fileList;
     }

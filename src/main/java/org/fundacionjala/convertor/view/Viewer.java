@@ -127,8 +127,8 @@ public final class Viewer extends JFrame {
      *
      * @return JComboBox
      */
-    public JComboBox getComboExtension() {
-        return upperPanel.getSearchPanel().getExtensionBox();
+    public JComboBox getComboMultimedia() {
+        return upperPanel.getSearchPanel().getMultimediaBox();
     }
 
     /**

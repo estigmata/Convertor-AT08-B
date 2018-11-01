@@ -29,7 +29,7 @@ public class AudioFinderPanel extends JPanel {
     private JTextField fileName;
     private JTextField size;
     private BrowseChooser browseChooser;
-    protected JComboBox<String> extensionBox;
+    protected JComboBox<String> multimediaBox;
     private JComboBox<String> sizeBox;
 
     *//**
@@ -46,7 +46,7 @@ public class AudioFinderPanel extends JPanel {
         sizeBoxMultimedia = new JComboBox<>(new String []{"All", "Video", "Multimedia"});
 
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
-        extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
+        multimediaBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
 
         initComponents();
     }

@@ -38,9 +38,8 @@ public class FinderPanel extends JPanel {
     private JTextField fileName;
     private JTextField size;
     private BrowseChooser browseChooser;
-    protected JComboBox<String> extensionBox;
+    protected JComboBox<String> multimediaBox;
     private JComboBox<String> sizeBox;
-    private JComboBox<String> sizeBoxMultimedia;
 
     /**
      * Constructor.
@@ -53,9 +52,8 @@ public class FinderPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(path);
-        sizeBoxMultimedia = new JComboBox<>(new String[]{"All", "Video", "Multimedia"});
         sizeBox = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
-        extensionBox = new JComboBox<>(new String[]{"mp3", "midi", "m4a"});
+        multimediaBox = new JComboBox<>(new String[]{"All", "Video", "Multimedia"});
 
         initComponents();
     }
@@ -99,7 +97,7 @@ public class FinderPanel extends JPanel {
 
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 2;
-        this.add(sizeBoxMultimedia, bagConstraints);
+        this.add(multimediaBox, bagConstraints);
 
         bagConstraints.gridx = 2;
         bagConstraints.gridy = four;
@@ -129,8 +127,8 @@ public class FinderPanel extends JPanel {
      *
      * @return the JComboBox
      */
-    public JComboBox<String> getExtensionBox() {
-        return extensionBox;
+    public JComboBox<String> getMultimediaBox() {
+        return multimediaBox;
     }
 
     /**
@@ -160,12 +158,4 @@ public class FinderPanel extends JPanel {
         return size;
     }
 
-    /**
-     * Getter of the size box multimedia :c.
-     *
-     * @return the String.
-     */
-    public String getSizeBoxMultimedia() {
-        return (String) sizeBoxMultimedia.getSelectedItem();
-    }
 }

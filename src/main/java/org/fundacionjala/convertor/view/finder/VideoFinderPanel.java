@@ -30,6 +30,6 @@ public class VideoFinderPanel extends FinderPanel {
      */
     public VideoFinderPanel() {
         super();
-        extensionBox = new JComboBox<>(new String[]{"mp4", "avi", "flv"});
+        multimediaBox = new JComboBox<>(new String[]{"mp4", "avi", "flv"});
     }
 }

@@ -52,4 +52,31 @@ public class AudioFileAsset extends Asset {
     public double getDuration() {
         return duration;
     }
+
+    /**
+     * Setter of the channel for info.
+     *
+     * @param channels input Integer of channels.
+     */
+    public void setChannels(int channels) {
+        this.channels = channels;
+    }
+
+    /**
+     * Setter of the audio codec.
+     *
+     * @param audioCodec input String of the audio codec.
+     */
+    public void setAudioCodec(String audioCodec) {
+        this.audioCodec = audioCodec;
+    }
+
+    /**
+     * Setter of the duration of the audio.
+     *
+     * @param duration input the Double of the duration.
+     */
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
 }
