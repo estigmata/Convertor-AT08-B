@@ -27,8 +27,7 @@ import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -55,7 +54,7 @@ public class MediaPlayerPanel extends JPanel {
    *
    */
   public MediaPlayerPanel() {
-    file = new File("C:\\Videos\\ProgressMeeting.mp4");
+    file = new File("C:\\Videos\\Terminator.mp4");
     player = new EmbeddedMediaPlayerComponent();
     iniMediaPlayer();
     createButtons();
@@ -85,6 +84,11 @@ public class MediaPlayerPanel extends JPanel {
     JButton btnStart = new JButton("[Start]");
     JButton btnPlayPause = new JButton("[Pause]");
     JToggleButton btnMute = new JToggleButton("[Mute]");
+    btnMute.setFont(new Font("Tahoma", Font.PLAIN, 11));
+    btnMute.setPreferredSize(new Dimension(75, 35));
+    btnMute.setBorderPainted(false);
+    btnMute.setForeground(new Color(255, 255, 255));
+    btnMute.setBackground(new Color(102, 102, 102));
     JSlider sldVolume = new JSlider();
     sldVolume.setMinimum(MIN_VALUE);
     sldVolume.setMaximum(MAX_VALUE);
