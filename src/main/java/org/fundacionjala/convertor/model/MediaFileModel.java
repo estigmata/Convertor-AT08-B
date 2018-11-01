@@ -62,11 +62,12 @@ public class MediaFileModel {
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
 
         AdvancedCriteriaVideo advancedCriteriaVideo = (AdvancedCriteriaVideo) criteria;
-        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+        Files.walk(Paths.get(advancedCriteriaVideo.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
-                .filter(x -> criteria.getFileName().isEmpty() ||
-                        String.valueOf(x.getFileName()).equals(criteria.getFileName()))
-                .filter(x -> criteria.getFileSize() == 0 || isEqualSize(x, criteria.getFileSize()))
+                .filter(x -> advancedCriteriaVideo.getFileName().isEmpty() ||
+                        String.valueOf(x.getFileName()).equals(advancedCriteriaVideo.getFileName()))
+                .filter(x -> advancedCriteriaVideo.getFileSize() == 0 ||
+                        isEqualSize(x, advancedCriteriaVideo.getFileSize()))
 //                VIDEO ADVANCED SEARCH
 //                Frame Rate
 //                .filter(x -> {

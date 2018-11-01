@@ -100,7 +100,7 @@ public final class Viewer extends JFrame {
      * @return String
      */
     public String getFileName() {
-        return upperPanel.getSearchPanel().getFileName().getName();
+        return upperPanel.getSearchPanel().getFileName().getText();
     }
 
     /**
