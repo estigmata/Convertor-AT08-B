@@ -1,5 +1,6 @@
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.view.explorer.Explorer;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
 
 import javax.swing.BorderFactory;
@@ -30,7 +31,7 @@ public class UpperPanel extends JPanel {
         final int heightVideo = 300;
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 //        Panel for the explorer
-        JPanel explorer = new JPanel();
+        Explorer explorer = new Explorer();
         explorer.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         explorer.setBackground(Color.RED);
         this.add(explorer);
