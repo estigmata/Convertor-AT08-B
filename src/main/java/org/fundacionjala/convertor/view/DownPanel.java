@@ -16,8 +16,11 @@
 package org.fundacionjala.convertor.view;
 
 
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
+import org.fundacionjala.convertor.model.objectfile.Asset;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,6 +42,16 @@ public class DownPanel extends JPanel {
     private void initComponents() {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.add(resultTablePanel);
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.add(new JLabel("SETTINGS"));
+        rightPanel.add(new JLabel("Archive source path:"));
+        rightPanel.add(new JTextField());
+        rightPanel.add(new JLabel("Archive destination path:"));
+        rightPanel.add(new JTextField());
+        rightPanel.add(new JLabel("Convert to:"));
+        rightPanel.add(new JComboBox<>());
+        this.add(rightPanel);
     }
 
     /**
@@ -47,6 +60,10 @@ public class DownPanel extends JPanel {
      * @return the panel.
      */
     public ResultTablePanel getResultTablePanel() {
+        return resultTablePanel;
+    }
+
+    public JPanel getFilesPanel(ArrayList<Asset> files) {
         return resultTablePanel;
     }
 }

@@ -15,6 +15,7 @@
 
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
 import javax.swing.BoxLayout;
@@ -22,18 +23,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
-  private FilePanel resultTable;
+  private FilesPanel resultTable;
 
   /**
    * Constructor.
    */
   ResultTablePanel() {
-    resultTable = new FilePanel();
+    resultTable = new FilesPanel();
     AbstractLogger log = AbstractLogger.getInstance();
     log.setLogger(TabPane.class.getName());
     log.info();
