@@ -23,7 +23,6 @@ import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.ErrorMessage;
-import org.fundacionjala.convertor.view.FilePanel;
 import org.fundacionjala.convertor.view.Viewer;
 
 
@@ -49,7 +48,6 @@ public class SearchController {
      * Validator.
      */
     private Validator validator;
-    private FilePanel filePanel;
 
     private static final String VIDEO_1 = "Video";
     private static final String MULTIMEDIA_1 = "Multimedia";
