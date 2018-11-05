@@ -14,16 +14,14 @@
  */
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.awt.Container;
+import java.util.ArrayList;
 
 /**
  * Class Viewer.
@@ -119,9 +117,12 @@ public final class Viewer extends JFrame {
      *
      * @return the object DefaultTableModel.
      */
-    public DefaultTableModel getResultTable() {
+    /*public DefaultTableModel getResultTable() {
         return downPanel.getResultTablePanel().getResultTable();
 
+    }*/
+    public JPanel showFilesPanel(ArrayList<Asset> files) {
+        return downPanel.getFilesPanel(files);
     }
 
     /**
