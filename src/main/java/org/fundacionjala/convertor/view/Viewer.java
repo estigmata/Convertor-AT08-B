@@ -14,14 +14,16 @@
  */
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
 
 /**
  * Class Viewer.
@@ -80,9 +82,7 @@ public final class Viewer extends JFrame {
      * @return the JObject
      */
     public JButton getSearchButton() {
-
         return upperPanel.getSearchPanel().getBasicSearchPanel().getSearchButton();
-
     }
 
     /**
@@ -113,16 +113,12 @@ public final class Viewer extends JFrame {
     }
 
     /**
-     * Getter the result table.
+     * Getter of the down panel.
      *
-     * @return the object DefaultTableModel.
+     * @return the Down panel object.
      */
-    /*public DefaultTableModel getResultTable() {
-        return downPanel.getResultTablePanel().getResultTable();
-
-    }*/
-    public JPanel showFilesPanel(ArrayList<Asset> files) {
-        return downPanel.getFilesPanel(files);
+    public DownPanel getDownPanel() {
+        return downPanel;
     }
 
     /**
@@ -196,6 +192,4 @@ public final class Viewer extends JFrame {
     public JComboBox getComboAudioCodecVideo() {
         return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
     }
-
-
 }

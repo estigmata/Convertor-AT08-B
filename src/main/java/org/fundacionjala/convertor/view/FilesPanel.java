@@ -1,6 +1,5 @@
-/**
- *
- * @(#)FilesPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+/*
+ * @FilesPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -12,72 +11,80 @@
  * Please contact Fundacion Jala, 2643 Av Melchor Perez de Olguin, Colquiri
  * Sud, Cochabamba, Bolivia. www.fundacion-jala.org if you need additional
  * information or have any questions.
- *
  */
 
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.model.FileModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.view.buttonsresultpanel.ConvertButton;
+import org.fundacionjala.convertor.view.buttonsresultpanel.PlayButton;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 /**
- *
  * Class Files Panel in order to show files detail list.
  *
  * @author Nestor Otondo [nestor.otondo@fundacion-jala.org]
  * @version 1.0
- *
  */
-
 public class FilesPanel extends JPanel {
-  private JPanel filesContainer;
-  private GridBagConstraints gbConstraints;
-  private JPanel buttonsContainer;
-  private FileModel files;
+    private JPanel filesContainer;
 
-  /**
-   * Constructor Files Panel class.
-   */
-  public FilesPanel() {
-    setLayout(new BorderLayout());
-    filesContainer = new JPanel(new GridBagLayout());
-    GridBagConstraints gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-    gridBagConstraints.weightx = 1;
-    gridBagConstraints.weighty = 1;
-    filesContainer.add(new JPanel(), gridBagConstraints);
-    setPreferredSize(new Dimension(620, 350));
-    add(new JScrollPane(filesContainer));
-    files = new FileModel();
-  }
-
-  /**
-   * Display files method to build panels dynamically.
-   */
-  public void displayFiles() {
-    GridBagConstraints gbConstraints = new GridBagConstraints();
-    gbConstraints.gridwidth = GridBagConstraints.REMAINDER;
-    gbConstraints.weightx = 1;
-    gbConstraints.fill = GridBagConstraints.HORIZONTAL;
-    for (String file : files.getFiles()) {
-      JPanel panel = new JPanel();
-      panel.setBorder(BorderFactory
-          .createMatteBorder(1, 5, 1, 1, Color.red));
-      panel.add(new JLabel(file));
-      JPanel btnPanel = new JPanel();
-      btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-      btnPanel.add(new JButton("[Play]"));
-      btnPanel.add(new JButton("[Converter]"));
-      panel.add(btnPanel);
-      panel.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
-      filesContainer.add(panel, gbConstraints, 0);
+    /**
+     * Constructor Files Panel class.
+     */
+    public FilesPanel() {
+        setLayout(new BorderLayout());
+        filesContainer = new JPanel(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.weightx = 1;
+        gridBagConstraints.weighty = 1;
+        final int width = 620;
+        final int height = 350;
+        setPreferredSize(new Dimension(width, height));
+        add(new JScrollPane(filesContainer));
     }
-    validate();
-    repaint();
-  }
+
+    /**
+     * Display files method to build panels dynamically.
+     *
+     * @param files input array
+     */
+    public void displayFiles(final ArrayList<Asset> files) {
+        GridBagConstraints gbConstraints = new GridBagConstraints();
+        gbConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gbConstraints.weightx = 1;
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        for (Asset file : files) {
+            JPanel panel = new JPanel();
+            panel.add(new JLabel(file.getFileName() + file.getExtension()));
+            JPanel btnPanel = new JPanel();
+            btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+            btnPanel.add(new PlayButton(file));
+            btnPanel.add(new ConvertButton(file));
+            panel.add(btnPanel);
+            panel.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
+            filesContainer.add(panel, gbConstraints, 0);
+        }
+        validate();
+        repaint();
+    }
+
+    /**
+     * Cleaner method of the dynamic panel.
+     */
+    public void cleanPanel() {
+        filesContainer.removeAll();
+    }
 }
