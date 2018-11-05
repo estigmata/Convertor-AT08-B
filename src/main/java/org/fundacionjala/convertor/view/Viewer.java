@@ -82,7 +82,9 @@ public final class Viewer extends JFrame {
      * @return the JObject
      */
     public JButton getSearchButton() {
-        return upperPanel.getSearchPanel().getSearchButton();
+
+        return upperPanel.getSearchPanel().getBasicSearchPanel().getSearchButton();
+
     }
 
     /**
@@ -91,7 +93,7 @@ public final class Viewer extends JFrame {
      * @return the JObject.
      */
     public String getPath() {
-        return upperPanel.getSearchPanel().getPath().getText();
+        return upperPanel.getSearchPanel().getBasicSearchPanel().getPath().getText();
     }
 
     /**
@@ -100,7 +102,7 @@ public final class Viewer extends JFrame {
      * @return String
      */
     public String getFileName() {
-        return upperPanel.getSearchPanel().getFileName().getText();
+        return upperPanel.getSearchPanel().getBasicSearchPanel().getFileName().getText();
     }
 
     /**
@@ -109,7 +111,7 @@ public final class Viewer extends JFrame {
      * @return String
      */
     public String getSizeField() {
-        return upperPanel.getSearchPanel().getSizeField().getText();
+        return upperPanel.getSearchPanel().getBasicSearchPanel().getSizeField().getText();
     }
 
     /**
@@ -123,20 +125,76 @@ public final class Viewer extends JFrame {
     }*/
 
     /**
-     * Getter of the Extension Combo Box.
+     * Getter of the ComboMultimedia Combo Box.
      *
      * @return JComboBox
      */
     public JComboBox getComboMultimedia() {
-        return upperPanel.getSearchPanel().getMultimediaBox();
+        return upperPanel.getSearchPanel().getBasicSearchPanel().getMultimediaBox();
     }
 
     /**
-     * Getter of the Size Combo box.
+     * Getter of the ComboChannel Combo Box.
      *
      * @return JComboBox
      */
-    public JComboBox getComboSize() {
-        return upperPanel.getSearchPanel().getSizeBox();
+    public JComboBox getComboChannel() {
+        return upperPanel.getSearchPanel().getAudioSearchPanel().getChannel();
     }
+
+    /**
+     * Getter of the ComboAudioCodec Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboAudioCodec() {
+        return upperPanel.getSearchPanel().getAudioSearchPanel().getAudioCodec();
+    }
+
+    /**
+     * Getter of the ComboFrameRate Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboFrameRate() {
+        return upperPanel.getSearchPanel().getVideoSearchPanel().getFrameRate();
+    }
+
+    /**
+     * Getter of the ComboAspectRatio Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboAspectRatio() {
+        return upperPanel.getSearchPanel().getVideoSearchPanel().getAspectRatio();
+    }
+
+    /**
+     * Getter of the ComboResolution Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboResolution() {
+        return upperPanel.getSearchPanel().getVideoSearchPanel().getResolution();
+    }
+
+    /**
+     * Getter of the ComboVideoCodec Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboVideoCodec() {
+        return upperPanel.getSearchPanel().getVideoSearchPanel().getVideoCodec();
+    }
+
+    /**
+     * Getter of the ComboAudioCodecVideo Combo Box.
+     *
+     * @return JComboBox
+     */
+    public JComboBox getComboAudioCodecVideo() {
+        return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
+    }
+
+
 }
