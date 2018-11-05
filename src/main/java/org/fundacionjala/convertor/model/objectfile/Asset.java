@@ -15,14 +15,6 @@
 
 package org.fundacionjala.convertor.model.objectfile;
 
-
-import net.bramp.ffmpeg.FFprobe;
-import net.bramp.ffmpeg.probe.FFmpegProbeResult;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 /**
  * Class for create a Object who have all the information of the file.
  *
@@ -34,6 +26,7 @@ public class Asset {
     private String fileName;
     private String path;
     private long fileSize;
+    private String extension;
 
     /**
      * Getter of the File name.
@@ -67,7 +60,7 @@ public class Asset {
      *
      * @param fileName Receives the String of the filename.
      */
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         this.fileName = fileName;
     }
 
@@ -76,7 +69,7 @@ public class Asset {
      *
      * @param path Receive the String path.
      */
-    public void setPath(String path) {
+    public void setPath(final String path) {
         this.path = path;
     }
 
@@ -85,7 +78,25 @@ public class Asset {
      *
      * @param fileSize Receive the Long number of the size.
      */
-    public void setFileSize(long fileSize) {
+    public void setFileSize(final long fileSize) {
         this.fileSize = fileSize;
+    }
+
+    /**
+     * Getter of the extension.
+     *
+     * @return the String extension.
+     */
+    public String getExtension() {
+        return extension;
+    }
+
+    /**
+     * Setter of the Extension.
+     *
+     * @param extension Input string.
+     */
+    public void setExtension(final String extension) {
+        this.extension = extension;
     }
 }

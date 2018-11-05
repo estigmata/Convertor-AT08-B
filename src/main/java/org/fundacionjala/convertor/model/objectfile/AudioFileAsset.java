@@ -15,12 +15,12 @@
 
 package org.fundacionjala.convertor.model.objectfile;
 
-import net.bramp.ffmpeg.probe.FFmpegFormat;
-import net.bramp.ffmpeg.probe.FFmpegStream;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
+/**
+ * Class of the file asset.
+ *
+ * @author Rodrigo Menacho
+ * @version 1.0
+ */
 public class AudioFileAsset extends Asset {
     private int channels;
     private String audioCodec;
@@ -58,7 +58,7 @@ public class AudioFileAsset extends Asset {
      *
      * @param channels input Integer of channels.
      */
-    public void setChannels(int channels) {
+    public void setChannels(final int channels) {
         this.channels = channels;
     }
 
@@ -67,7 +67,7 @@ public class AudioFileAsset extends Asset {
      *
      * @param audioCodec input String of the audio codec.
      */
-    public void setAudioCodec(String audioCodec) {
+    public void setAudioCodec(final String audioCodec) {
         this.audioCodec = audioCodec;
     }
 
@@ -76,7 +76,7 @@ public class AudioFileAsset extends Asset {
      *
      * @param duration input the Double of the duration.
      */
-    public void setDuration(double duration) {
+    public void setDuration(final double duration) {
         this.duration = duration;
     }
 }

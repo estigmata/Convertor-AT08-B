@@ -16,6 +16,8 @@
 
 package org.fundacionjala.convertor.utils;
 
+import java.nio.file.Path;
+
 /**
  * this class contain utils for used in Model and controller.
  *
@@ -26,18 +28,23 @@ public class Util {
     private static final int ONE_1 = 1;
 
     /**
+     * This method extract only the name of the File Name without the extension.
+     *
+     * @param path input String of the FileName.
+     * @return the String of the File Name.
+     */
+    public String getStringName(final Path path) {
+        return path.getFileName().toString().split("\\.")[0];
+    }
+
+    /**
      * Method to obtain the extension of a file.
      *
      * @param fileName is a file name.
      * @return Value of return of String Type.
      */
     public String getExtension(final String fileName) {
-        String extension = "";
-        int i = fileName.lastIndexOf('.');
-        if (i > 0 && i < fileName.length() - 1) {
-            extension = fileName.substring(i + 1).toLowerCase();
-        }
-        return extension;
+        return fileName.split("\\.")[1];
     }
 
     /**

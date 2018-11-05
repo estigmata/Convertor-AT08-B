@@ -15,13 +15,8 @@
 
 package org.fundacionjala.convertor.model.objectfile;
 
-import net.bramp.ffmpeg.probe.FFmpegStream;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
 /**
- * Class Video file asset who extends of asset
+ * Class Video file asset who extends of asset.
  *
  * @author Rodrigo Menacho
  * @version 1.0
@@ -73,7 +68,7 @@ public class VideoFileAsset extends Asset {
      *
      * @param frameRate String of the frameRate.
      */
-    public void setFrameRate(String frameRate) {
+    public void setFrameRate(final String frameRate) {
         this.frameRate = frameRate;
     }
 
@@ -82,7 +77,7 @@ public class VideoFileAsset extends Asset {
      *
      * @param aspectRatio Input string of the aspect ratio.
      */
-    public void setAspectRatio(String aspectRatio) {
+    public void setAspectRatio(final String aspectRatio) {
         this.aspectRatio = aspectRatio;
     }
 
@@ -91,7 +86,7 @@ public class VideoFileAsset extends Asset {
      *
      * @param resolution input String of resolution.
      */
-    public void setResolution(String resolution) {
+    public void setResolution(final String resolution) {
         this.resolution = resolution;
     }
 
@@ -100,7 +95,7 @@ public class VideoFileAsset extends Asset {
      *
      * @param videoCodec input String of the video codec.
      */
-    public void setVideoCodec(String videoCodec) {
+    public void setVideoCodec(final String videoCodec) {
         this.videoCodec = videoCodec;
     }
 }
