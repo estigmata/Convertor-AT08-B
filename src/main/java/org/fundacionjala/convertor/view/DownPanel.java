@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.view;
 
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.view.finder.VideoSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,12 +28,14 @@ import java.util.ArrayList;
  */
 public class DownPanel extends JPanel {
     private ResultTablePanel resultTablePanel;
+    private VideoSearchPanel videoSearchPanel;
 
     /**
      *
      */
     public DownPanel() {
         resultTablePanel = new ResultTablePanel();
+        videoSearchPanel = new VideoSearchPanel();
         initComponents();
     }
 
@@ -51,6 +54,7 @@ public class DownPanel extends JPanel {
         rightPanel.add(new JTextField());
         rightPanel.add(new JLabel("Convert to:"));
         rightPanel.add(new JComboBox<>());
+        rightPanel.add(videoSearchPanel);
         this.add(rightPanel);
     }
 
