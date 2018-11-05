@@ -52,12 +52,18 @@ public class Explorer extends JPanel {
     static final ImageIcon ICON_EXPANDEDFOLDER =
             new ImageIcon("expandedfolder.gif");
 
-    private JTree m_tree;
-    private DefaultTreeModel m_model;
-    private JTextField m_display;
+    private JTree mTree;
+    private DefaultTreeModel mModel;
+    private JTextField mDisplay;
 
+    /**
+     * Constructor of the explorer.
+     */
     public Explorer() {
-        setSize(400, 300);
+        final int width = 400;
+        final int height = 300;
+
+        setSize(width, height);
 
         DefaultMutableTreeNode top = new DefaultMutableTreeNode(
                 new IconData(ICON_COMPUTER, null, "Computer"));
@@ -71,90 +77,127 @@ public class Explorer extends JPanel {
             node.add(new DefaultMutableTreeNode(Boolean.TRUE));
         }
 
-        m_model = new DefaultTreeModel(top);
-        m_tree = new JTree(m_model);
+        mModel = new DefaultTreeModel(top);
+        mTree = new JTree(mModel);
 
-        m_tree.putClientProperty("JTree.lineStyle", "Angled");
+        mTree.putClientProperty("JTree.lineStyle", "Angled");
 
         TreeCellRenderer renderer = new
                 IconCellRenderer();
-        m_tree.setCellRenderer(renderer);
+        mTree.setCellRenderer(renderer);
 
-        m_tree.addTreeExpansionListener(new
+        mTree.addTreeExpansionListener(new
                 DirExpansionListener());
 
-        m_tree.addTreeSelectionListener(new
+        mTree.addTreeSelectionListener(new
                 DirSelectionListener());
 
-        m_tree.getSelectionModel().setSelectionMode(
+        mTree.getSelectionModel().setSelectionMode(
                 TreeSelectionModel.SINGLE_TREE_SELECTION);
-        m_tree.setShowsRootHandles(true);
-        m_tree.setEditable(false);
+        mTree.setShowsRootHandles(true);
+        mTree.setEditable(false);
 
         JScrollPane s = new JScrollPane();
-        s.getViewport().add(m_tree);
+        s.getViewport().add(mTree);
         add(s, BorderLayout.CENTER);
 
-        m_display = new JTextField();
-        m_display.setEditable(false);
-        add(m_display, BorderLayout.NORTH);
+        mDisplay = new JTextField();
+        mDisplay.setEditable(false);
+        add(mDisplay, BorderLayout.NORTH);
 
         setVisible(true);
 
     }
 
-    public DefaultMutableTreeNode getTreeNode(TreePath path) {
+    /**
+     * This method its the getter of the default mutable tree node.
+     *
+     * @param path input Path
+     * @return the Default Mutable Tree Node
+     */
+    public DefaultMutableTreeNode getTreeNode(final TreePath path) {
         return (DefaultMutableTreeNode) (path.getLastPathComponent());
     }
 
-    public FileNode getFileNode(DefaultMutableTreeNode node) {
+    /**
+     * This is the method for get the file node.
+     *
+     * @param node Input node.
+     * @return the File node.
+     */
+    public FileNode getFileNode(final DefaultMutableTreeNode node) {
         if (node == null)
             return null;
         Object obj = node.getUserObject();
-        if (obj instanceof IconData)
+        if (obj instanceof IconData) {
             obj = ((IconData) obj).getObject();
-        if (obj instanceof FileNode)
+        }
+        if (obj instanceof FileNode) {
             return (FileNode) obj;
-        else
+        } else {
             return null;
+        }
     }
 
     // Make sure expansion is threaded and updating the tree model
     // only occurs within the event dispatching thread.
+
+    /**
+     * Inner class of the Direction expansion listener.
+     */
     class DirExpansionListener implements TreeExpansionListener {
-        public void treeExpanded(TreeExpansionEvent event) {
+        /**
+         * Method for expand de tree.
+         *
+         * @param event input.
+         */
+        public void treeExpanded(final TreeExpansionEvent event) {
             final DefaultMutableTreeNode node = getTreeNode(
                     event.getPath());
             final FileNode fnode = getFileNode(node);
 
             Thread runner = new Thread(() -> {
                 if (fnode != null && fnode.expand(node)) {
-                    Runnable runnable = () -> m_model.reload(node);
+                    Runnable runnable = () -> mModel.reload(node);
                     SwingUtilities.invokeLater(runnable);
                 }
             });
             runner.start();
         }
 
-        public void treeCollapsed(TreeExpansionEvent event) {
+        /**
+         * Method for collapse the tree.
+         *
+         * @param event input
+         */
+        public void treeCollapsed(final TreeExpansionEvent event) {
         }
     }
 
-
+    /**
+     * Class for select the direction using Listener.
+     */
     class DirSelectionListener implements TreeSelectionListener {
-        public void valueChanged(TreeSelectionEvent event) {
+        /**
+         * This method change the value of the JLabel showing the path.
+         *
+         * @param event input
+         */
+        public void valueChanged(final TreeSelectionEvent event) {
             DefaultMutableTreeNode node = getTreeNode(event.getPath());
             FileNode fnode = getFileNode(node);
-            if (fnode != null){
-                m_display.setText(fnode.getFile().getAbsolutePath());
-            }else
-            m_display.setText("");
+            if (fnode != null) {
+                mDisplay.setText(fnode.getFile().getAbsolutePath());
+            } else {
+                mDisplay.setText("");
+            }
         }
     }
 
-    class IconCellRenderer
-            extends JLabel
-            implements TreeCellRenderer {
+    /**
+     * Class for the icon renderer.
+     */
+    class IconCellRenderer extends JLabel implements TreeCellRenderer {
         Color m_textSelectionColor;
         Color m_textNonSelectionColor;
         Color m_bkSelectionColor;
@@ -163,6 +206,9 @@ public class Explorer extends JPanel {
 
         boolean m_selected;
 
+        /**
+         * Constructor of the Icon cell renderer.
+         */
         IconCellRenderer() {
             super();
             m_textSelectionColor = UIManager.getColor(
@@ -176,35 +222,6 @@ public class Explorer extends JPanel {
             m_borderSelectionColor = UIManager.getColor(
                     "Tree.selectionBorderColor");
             setOpaque(false);
-        }
-
-        public Component getTreeCellRendererComponent(JTree tree,
-                                                      Object value, boolean sel, boolean expanded, boolean leaf,
-                                                      int row, boolean hasFocus) {
-            DefaultMutableTreeNode node =
-                    (DefaultMutableTreeNode) value;
-            Object obj = node.getUserObject();
-            setText(obj.toString());
-
-            if (obj instanceof Boolean)
-                setText("Retrieving data...");
-
-            if (obj instanceof IconData) {
-                IconData idata = (IconData) obj;
-                if (expanded)
-                    setIcon(idata.getExpandedIcon());
-                else
-                    setIcon(idata.getIcon());
-            } else
-                setIcon(null);
-
-            setFont(tree.getFont());
-            setForeground(sel ? m_textSelectionColor :
-                    m_textNonSelectionColor);
-            setBackground(sel ? m_bkSelectionColor :
-                    m_bkNonSelectionColor);
-            m_selected = sel;
-            return this;
         }
 
         public void paintComponent(Graphics g) {
@@ -223,6 +240,47 @@ public class Explorer extends JPanel {
                 g.drawRect(offset, 0, getWidth() - 1 - offset, getHeight() - 1);
             }
             super.paintComponent(g);
+        }
+
+        /**
+         * Method for get the tree cell.
+         *
+         * @param tree     input tree
+         * @param value    input value
+         * @param sel      input sel
+         * @param expanded input for expand
+         * @param leaf     input for leaf
+         * @param row      input of the rows
+         * @param hasFocus input for focus
+         * @return the Component.
+         */
+        public Component getTreeCellRendererComponent(final JTree tree, final Object value,
+                                                      final boolean sel, final boolean expanded,
+                                                      final boolean leaf, final int row, final boolean hasFocus) {
+            DefaultMutableTreeNode node =
+                    (DefaultMutableTreeNode) value;
+            Object obj = node.getUserObject();
+            setText(obj.toString());
+
+            if (obj instanceof Boolean) {
+                setText("Retrieving data...");
+            }
+
+            if (obj instanceof IconData) {
+                IconData idata = (IconData) obj;
+                if (expanded) {
+                    setIcon(idata.getExpandedIcon());
+                } else {
+                    setIcon(idata.getIcon());
+                }
+            } else {
+                setIcon(null);
+            }
+            setFont(tree.getFont());
+            setForeground(sel ? m_textSelectionColor : m_textNonSelectionColor);
+            setBackground(sel ? m_bkSelectionColor : m_bkNonSelectionColor);
+            m_selected = sel;
+            return this;
         }
     }
 }
