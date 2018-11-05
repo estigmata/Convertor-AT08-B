@@ -17,7 +17,7 @@
 
 package org.fundacionjala.convertor;
 
-import org.fundacionjala.convertor.controller.ConvertorController;
+import org.fundacionjala.convertor.controller.SearchController;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 
@@ -44,9 +44,9 @@ public final class Main {
   public static void main(final String[] args) {
     new NativeDiscovery().discover();
     log = AbstractLogger.getInstance();
-    ConvertorController controller = new ConvertorController();
-    controller.actionConverter();
-    log.setLogger(ConvertorController.class.getName());
+    SearchController controller = new SearchController();
+    controller.actionSearch();
+    log.setLogger(SearchController.class.getName());
     log.info();
   }
 

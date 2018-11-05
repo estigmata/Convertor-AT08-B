@@ -23,6 +23,7 @@ import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.utils.Util;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,12 +38,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class MediaFileModel {
-    private ArrayList<Object> path = new ArrayList<>();
-    private ArrayList<Object> fileName = new ArrayList<>();
-    private ArrayList<Object> size = new ArrayList<>();
     private ArrayList<Asset> fileList;
-    private FFprobe ffprobe = new FFprobe("\\src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
-    private static final int INDEX1 = 1024;
+    private FFprobe ffprobe = new FFprobe("C:\\ffmpeg\\bin\\ffprobe.exe");
 
     /**
      * Constructor for extract the files.
@@ -50,102 +47,168 @@ public class MediaFileModel {
      * @throws IOException because the Path.
      */
     public MediaFileModel() throws IOException {
-        fileList = new ArrayList<>();
+
     }
 
     /**
      * This Method search all the fileList of a directory.
      *
      * @param criteria Its the input parameter who contains all the information for the search.
+     * @return The Array list.
      * @throws IOException Exception.
      */
-
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
-        AdvancedCriteriaVideo auxVideo = null;
-        AdvancedCriteriaAudio auxAudio = null;
+        fileList = new ArrayList<>();
         if (criteria instanceof AdvancedCriteriaVideo) {
-            auxVideo = (AdvancedCriteriaVideo) criteria;
+            AdvancedCriteriaVideo auxVideo = (AdvancedCriteriaVideo) criteria;
+            searchVideo(auxVideo, fileList);
+            return fileList;
         }
         if (criteria instanceof AdvancedCriteriaAudio) {
-            auxAudio = (AdvancedCriteriaAudio) criteria;
+            AdvancedCriteriaAudio auxAudio = (AdvancedCriteriaAudio) criteria;
+            searchAudio(auxAudio, fileList);
+            return fileList;
         }
-        AdvancedCriteriaVideo advancedCriteriaVideo = auxVideo;
-        AdvancedCriteriaAudio advancedCriteriaAudio = auxAudio;
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
-                //In this part will be appear all the filters for the advanced search.
-                .filter(x -> criteria.getFileName().isEmpty() ||
-                        String.valueOf(x.getFileName()).equals(criteria.getFileName()))
-                .filter(x -> criteria.getFileSize() == 0 ||
-                        isEqualSize(x, criteria.getFileSize()))
-//                VIDEO ADVANCED SEARCH
-//                Frame Rate
-//                .filter(x -> {
-//                    assert advancedCriteriaVideo != null;
-//                    if (advancedCriteriaVideo.getFrameRate().isEmpty()) {
-//                        return true;
-//                    }
-//                    FFmpegStream stream = getStreamFFprobe(x);
-//                    assert stream != null;
-//                    if (stream.has_b_frames == Integer.parseInt(advancedCriteriaVideo.getFrameRate())) {
-//                        return true;
-//                    }
-//                    return false;
-//                })
-//                Aspect Ratio
-//                .filter(x -> {
-//                    FFmpegStream stream = getStreamFFprobe(x);
-//                    if (stream.display_aspect_ratio.equals(criteria.getAspectRatio)){
-//                        return true;
-//                    }
-//                    return false;
-//                })
-//                WxH
-//                .filter(x -> {
-//                    FFmpegStream stream = getStreamFFprobe(x);
-//                    if (stream.width == criteria.getWidth && stream.height == criteria.getHeight) {
-//                        return true;
-//                    }
-//                    return false;
-//                })
-//                Video Codec
-//                .filter(x -> {
-//                    FFmpegStream stream = getStreamFFprobe(x);
-//                    if (stream.codec_name.equals(criteria.getVideoCodec)) {
-//                        return true;
-//                    }
-//                    return false;
-//                })
-//                AUDIO ADVANCED SEARCH
-//                DURATION
-//                .filter(x -> {
-//                    FFmpegFormat format = getFormatFFprobe(x);
-//                    if (format.duration==criteria.getDuration)) {
-//                        return true;
-//                    }
-//                    return false;
-//                })
-//        CHANNEL
-//                .filter(x -> {
-//                    FFmpegStream stream = getStreamFFprobe(x);
-//                    if (stream.channels==criteria.getChannels)){
-//                        return true;
-//                    }
-//                    return false;
-//                })
+                .filter(x -> criteria.getFileName().isEmpty()
+                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                .filter(x -> criteria.getFileSize() == 0
+                        || isEqualSize(x, criteria.getFileSize()))
                 .forEach(item -> {
-                    FFmpegStream stream = getStreamFFprobe(item);
-                    FFmpegFormat format = getFormatFFprobe(item);
                     Asset fileZ = new Asset();
-                    fileZ.setFileName(item.getFileName().toString());
+                    fileZ.setFileName(new Util().getStringName(item));
+
                     try {
                         fileZ.setFileSize(Files.size(item));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    fileZ.setPath(item.getRoot().toString());
+                    fileZ.setPath(item.getParent().toString());
+                    fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
+
                     fileList.add(fileZ);
                 });
         return fileList;
+    }
+
+    /**
+     * Class for search Video.
+     *
+     * @param criteria Advanced criteria of video.
+     * @param list     of the Results.
+     * @throws IOException the exception of the walk function.
+     */
+    private void searchVideo(final AdvancedCriteriaVideo criteria, final ArrayList<Asset> list) throws IOException {
+        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+                //In this part will be appear all the filters for the advanced search.
+                .filter(x -> criteria.getFileName().isEmpty()
+                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                .filter(x -> criteria.getFileSize() == 0
+                        || isEqualSize(x, criteria.getFileSize()))
+//                VIDEO ADVANCED SEARCH
+                .filter(x -> {
+                            FFmpegStream stream = getStreamFFprobe(x);
+                            assert stream != null;
+                            return stream.nb_frames != 0;
+                        }
+                )
+//                Frame Rate
+                .filter(x -> {
+                    if (criteria.getFrameRate().isEmpty()) {
+                        return true;
+                    }
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    assert stream != null;
+                    return stream.avg_frame_rate.toString().split("/")[0].equals(criteria.getFrameRate());
+                })
+//                Aspect Ratio
+                .filter(x -> {
+                    if (criteria.getAspectRatio().isEmpty()) {
+                        return true;
+                    }
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    assert stream != null;
+                    return stream.display_aspect_ratio.equals(criteria.getAspectRatio());
+                })
+////                WxH
+                .filter(x -> {
+                    if (criteria.getResolutionHeight() == 0 || criteria.getResolutionWith() == 0) {
+                        return true;
+                    }
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    return stream.width == criteria.getResolutionWith()
+                            && stream.height == criteria.getResolutionWith();
+                })
+//                Video Codec
+                .filter(x -> {
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    if (criteria.getVideoCodec().isEmpty()) {
+                        return true;
+                    }
+                    return stream.codec_name.equals(criteria.getVideoCodec());
+                })
+                .forEach(item -> {
+                    Asset fileZ = new Asset();
+                    fileZ.setFileName(new Util().getStringName(item));
+
+                    try {
+                        fileZ.setFileSize(Files.size(item));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    fileZ.setPath(item.getParent().toString());
+                    fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
+
+                    fileList.add(fileZ);
+                });
+    }
+
+    /**
+     * Class of the search audio.
+     *
+     * @param criteria Advanced criteria audio.
+     * @param list     of the audio results.
+     * @throws IOException of the walk function.
+     */
+    private void searchAudio(final AdvancedCriteriaAudio criteria, final ArrayList<Asset> list) throws IOException {
+        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+                //In this part will be appear all the filters for the advanced search.
+                .filter(x -> criteria.getFileName().isEmpty()
+                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                .filter(x -> criteria.getFileSize() == 0
+                        || isEqualSize(x, criteria.getFileSize()))
+                //                AUDIO ADVANCED SEARCH
+                .filter(x -> {
+                            FFmpegStream stream = getStreamFFprobe(x);
+                            assert stream != null;
+                            return stream.nb_frames < 1;
+                        }
+                )
+//        CHANNEL
+                .filter(x -> {
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    if (criteria.getChannels() == 0) {
+                        return true;
+                    }
+                    assert stream != null;
+                    return stream.channels == criteria.getChannels();
+                })
+                .forEach(item -> {
+                    FFmpegStream stream = getStreamFFprobe(item);
+                    FFmpegFormat format = getFormatFFprobe(item);
+                    Asset fileZ = new Asset();
+                    fileZ.setFileName(new Util().getStringName(item));
+
+                    try {
+                        fileZ.setFileSize(Files.size(item));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    fileZ.setPath(item.getParent().toString());
+                    fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
+
+                    fileList.add(fileZ);
+                });
     }
 
     /**
@@ -155,7 +218,7 @@ public class MediaFileModel {
     private FFmpegStream getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
-            probeResult = ffprobe.probe(x.getRoot().toString());
+            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -171,7 +234,7 @@ public class MediaFileModel {
     private FFmpegFormat getFormatFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
-            probeResult = ffprobe.probe(x.getRoot().toString());
+            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }

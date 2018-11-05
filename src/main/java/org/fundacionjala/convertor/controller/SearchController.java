@@ -1,5 +1,5 @@
 /*
- * @ConvertorController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @SearchController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -35,7 +35,7 @@ import java.util.ArrayList;
  *
  * @author Roger alvarez.
  */
-public class ConvertorController {
+public class SearchController {
     /**
      * The model of this Convertor.
      */
@@ -56,15 +56,15 @@ public class ConvertorController {
     /**
      * Constructor.
      */
-    public ConvertorController() {
+    public SearchController() {
         AbstractLogger log = AbstractLogger.getInstance();
-        log.setLogger(ConvertorController.class.getName());
+        log.setLogger(SearchController.class.getName());
         try {
             this.mediaFileModel = new MediaFileModel();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.viewer = new Viewer();
+        viewer = new Viewer();
         this.validator = new Validator();
         log.info();
     }
@@ -72,7 +72,7 @@ public class ConvertorController {
     /**
      * Method Action converter.
      */
-    public void actionConverter() {
+    public void actionSearch() {
         viewer.getSearchButton().addActionListener(e -> {
             if (validator.isPath(viewer.getPath())) {
                 try {
@@ -81,7 +81,7 @@ public class ConvertorController {
                     e1.printStackTrace();
                 }
             } else {
-                new ErrorMessage("It is no path valid !!!");
+                new ErrorMessage("Isn't a valid path!!!");
             }
         });
     }
@@ -95,6 +95,7 @@ public class ConvertorController {
      */
     public void findFile() throws IOException {
         Criteria basicCriteria = new Criteria();
+
         if (viewer.getComboMultimedia().getSelectedItem().equals(ALL_1)) {
             basicCriteria.setFilePath(viewer.getPath());
             basicCriteria.setFileName(viewer.getFileName());
@@ -103,6 +104,11 @@ public class ConvertorController {
             AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
             audioCriteria.setFilePath(viewer.getPath());
             audioCriteria.setFileName(viewer.getFileName());
+            audioCriteria.setAudioCodec("");
+            audioCriteria.setChannels(0);
+            audioCriteria.setConditionSize("");
+            audioCriteria.setFileExtention("");
+            audioCriteria.setFileSize(0);
             basicCriteria = audioCriteria;
         }
 
@@ -110,11 +116,17 @@ public class ConvertorController {
             AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
             videoCriteria.setFilePath(viewer.getPath());
             videoCriteria.setFileName(viewer.getFileName());
+            videoCriteria.setAspectRatio("");
+            videoCriteria.setAudioCodec("");
+            videoCriteria.setFrameRate("");
+            videoCriteria.setResolutionHeight(0);
+            videoCriteria.setResolutionWith(0);
+            videoCriteria.setVideoCodec("");
+            videoCriteria.setFileSize(0);
             basicCriteria = videoCriteria;
         }
 
-        ArrayList<Asset> lista = mediaFileModel.searchFiles(basicCriteria);
-        showFilesInTable(lista);
+        showFilesInTable(mediaFileModel.searchFiles(basicCriteria));
     }
 
     /**
@@ -122,13 +134,11 @@ public class ConvertorController {
      *
      * @param resultTable input.
      */
-
     public void showFilesInTable(final ArrayList<Asset> resultTable) {
         viewer.getResultTable().setRowCount(0);
         for (Asset asset : resultTable) {
-            System.out.println(asset.getFileName());
-            viewer.getResultTable().addRow(new String[]{asset.getPath(),
-                    asset.getFileName(), String.valueOf(asset.getFileSize())});
+            viewer.getResultTable().addRow(new String[]{asset.getPath(), asset.getFileName(), asset.getExtension(),
+                    String.valueOf(asset.getFileSize())});
         }
     }
 }
