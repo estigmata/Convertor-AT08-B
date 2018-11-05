@@ -49,9 +49,9 @@ public class SearchController {
      */
     private Validator validator;
 
-    private static final String VIDEO_1 = "Video";
-    private static final String MULTIMEDIA_1 = "Multimedia";
-    private static final String ALL_1 = "All";
+    private static final String VIDEO = "Video";
+    private static final String AUDIO = "Audio";
+    private static final String ALL = "All";
 
     /**
      * Constructor.
@@ -96,11 +96,11 @@ public class SearchController {
     public void findFile() throws IOException {
         Criteria basicCriteria = new Criteria();
 
-        if (viewer.getComboMultimedia().getSelectedItem().equals(ALL_1)) {
+        if (viewer.getComboMultimedia().getSelectedItem().equals(ALL)) {
             basicCriteria.setFilePath(viewer.getPath());
             basicCriteria.setFileName(viewer.getFileName());
         }
-        if (viewer.getComboMultimedia().getSelectedItem().equals(MULTIMEDIA_1)) {
+        if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
             AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
             audioCriteria.setFilePath(viewer.getPath());
             audioCriteria.setFileName(viewer.getFileName());
@@ -112,7 +112,7 @@ public class SearchController {
             basicCriteria = audioCriteria;
         }
 
-        if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO_1)) {
+        if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
             AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
             videoCriteria.setFilePath(viewer.getPath());
             videoCriteria.setFileName(viewer.getFileName());
