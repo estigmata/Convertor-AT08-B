@@ -70,7 +70,7 @@ public class Explorer
         mModel = new DefaultTreeModel(top);
         mTree = new JTree(mModel);
         mTree.putClientProperty("JTree.lineStyle", "Angled");
-                mTree.addTreeExpansionListener(new DirExpansionListener());
+        mTree.addTreeExpansionListener(new DirExpansionListener());
         mTree.addTreeSelectionListener(new DirSelectionListener());
         mTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         mTree.setShowsRootHandles(true);
