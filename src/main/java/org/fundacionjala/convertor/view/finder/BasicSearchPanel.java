@@ -33,7 +33,7 @@ import java.awt.Label;
 /**
  * Class FinderPanel.
  *
- * @author Rodrigo Menacho
+ * @author Abel Mallcu Chiri.
  * @version 1.0
  */
 public class BasicSearchPanel extends JPanel {
