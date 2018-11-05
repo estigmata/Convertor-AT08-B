@@ -27,35 +27,36 @@ import javax.swing.table.DefaultTableModel;
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
-    private ResultTable resultTable;
+  private FilePanel resultTable;
 
-    /**
-     * Constructor.
-     */
-    ResultTablePanel() {
-        resultTable = new ResultTable();
-        AbstractLogger log = AbstractLogger.getInstance();
-        log.setLogger(TabPane.class.getName());
-        log.info();
-        initComponents();
-    }
+  /**
+   * Constructor.
+   */
+  ResultTablePanel() {
+    resultTable = new FilePanel();
+    AbstractLogger log = AbstractLogger.getInstance();
+    log.setLogger(TabPane.class.getName());
+    log.info();
+    initComponents();
+  }
 
-    /**
-     * Initialization of components.
-     */
-    void initComponents() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //Panel for the Search table.
-        this.add(new JLabel("Files:"));
-        this.add(new JScrollPane(resultTable));
-    }
+  /**
+   * Initialization of components.
+   */
+  void initComponents() {
+    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    //Panel for the Search table.
+    this.add(new JLabel("Files:"));
+    this.add(new JScrollPane(resultTable));
+    resultTable.displayFiles();
+  }
 
-    /**
-     * Getter for the result table.
-     *
-     * @return the Result table.
-     */
-    public DefaultTableModel getResultTable() {
+  /**
+   * Getter for the result table.
+   *
+   * @return the Result table.
+   */
+    /*public DefaultTableModel getResultTable() {
         return resultTable.getDefaultTableModel();
-    }
+    }*/
 }

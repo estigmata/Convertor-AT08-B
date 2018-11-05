@@ -117,10 +117,10 @@ public final class Viewer extends JFrame {
      *
      * @return the object DefaultTableModel.
      */
-    public DefaultTableModel getResultTable() {
+    /*public DefaultTableModel getResultTable() {
         return downPanel.getResultTablePanel().getResultTable();
 
-    }
+    }*/
 
     /**
      * Getter of the Extension Combo Box.

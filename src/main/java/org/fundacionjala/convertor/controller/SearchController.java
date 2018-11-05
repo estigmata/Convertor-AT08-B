@@ -135,10 +135,10 @@ public class SearchController {
      * @param resultTable input.
      */
     public void showFilesInTable(final ArrayList<Asset> resultTable) {
-        viewer.getResultTable().setRowCount(0);
+        /*viewer.getResultTable().setRowCount(0);
         for (Asset asset : resultTable) {
             viewer.getResultTable().addRow(new String[]{asset.getPath(), asset.getFileName(), asset.getExtension(),
                     String.valueOf(asset.getFileSize())});
-        }
+        }*/
     }
 }

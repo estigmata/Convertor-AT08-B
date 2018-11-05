@@ -1,11 +1,18 @@
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.model.FileModel;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
+import java.io.Console;
+import java.util.List;
 
 public class FilePanel extends JPanel {
   private JPanel filesContainer;
+  private GridBagConstraints gbConstraints;
+  private List<String> files;
+  private FileModel fileModel;
 
   public FilePanel() {
     setLayout(new BorderLayout());
@@ -17,25 +24,20 @@ public class FilePanel extends JPanel {
     filesContainer.add(new JPanel(), gridBagConstraints);
     setPreferredSize(new Dimension(720, 350));
     add(new JScrollPane(filesContainer));
-    /***/
-    JPanel panel = new JPanel();
-    panel.add(new JLabel("Hello"));
-    panel.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.gridwidth = GridBagConstraints.REMAINDER;
-    gbc.weightx = 1;
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    filesContainer.add(panel, gbc, 0);
-    /***/
-    JPanel panel1 = new JPanel();
-    panel1.add(new JLabel("Hello"));
-    panel1.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
-    filesContainer.add(panel1, gbc, 0);
-    /***/
-    JPanel panel2 = new JPanel();
-    panel2.add(new JLabel("Hello"));
-    panel2.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
-    filesContainer.add(panel2, gbc, 0);
+    fileModel = new FileModel();
+  }
+
+  public void displayFiles() {
+    GridBagConstraints gbConstraints = new GridBagConstraints();
+    gbConstraints.gridwidth = GridBagConstraints.REMAINDER;
+    gbConstraints.weightx = 1;
+    gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+    for (String file : files = fileModel.getFiles()) {
+      JPanel panel = new JPanel();
+      panel.add(new JLabel(file));
+      panel.setBorder(new MatteBorder(0, 0, 1, 0, Color.GRAY));
+      filesContainer.add(panel, gbConstraints, 0);
+    }
     validate();
     repaint();
   }
