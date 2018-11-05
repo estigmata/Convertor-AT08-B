@@ -15,6 +15,9 @@
 
 package org.fundacionjala.convertor.model.Criteria;
 
+/**
+ * Class of the criteria for convert the video file.
+ */
 public class ConvertVideo extends Criteria {
     private String frameRate;
     private String aspectRatio;
@@ -24,7 +27,7 @@ public class ConvertVideo extends Criteria {
     private String audioCodec;
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         super.setFileName(fileName);
     }
 

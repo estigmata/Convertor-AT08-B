@@ -15,12 +15,15 @@
 
 package org.fundacionjala.convertor.model.Criteria;
 
+/**
+ * Class of the criteria for convert the criteria of the audio file.
+ */
 public class ConvertAudio extends Criteria {
     private int channels;
     private String audioCodec;
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         super.setFileName(fileName);
     }
 
