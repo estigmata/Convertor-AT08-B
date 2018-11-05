@@ -1,5 +1,5 @@
 /*
- * @ConvertorController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @SearchController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -35,7 +35,7 @@ import java.util.ArrayList;
  *
  * @author Roger alvarez.
  */
-public class ConvertorController {
+public class SearchController {
     /**
      * The model of this Convertor.
      */
@@ -56,9 +56,9 @@ public class ConvertorController {
     /**
      * Constructor.
      */
-    public ConvertorController() {
+    public SearchController() {
         AbstractLogger log = AbstractLogger.getInstance();
-        log.setLogger(ConvertorController.class.getName());
+        log.setLogger(SearchController.class.getName());
         try {
             this.mediaFileModel = new MediaFileModel();
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class ConvertorController {
     /**
      * Method Action converter.
      */
-    public void actionConverter() {
+    public void actionSearch() {
         viewer.getSearchButton().addActionListener(e -> {
             if (validator.isPath(viewer.getPath())) {
                 try {
