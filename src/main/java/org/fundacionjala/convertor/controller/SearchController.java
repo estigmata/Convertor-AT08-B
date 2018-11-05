@@ -109,7 +109,6 @@ public class SearchController {
             audioCriteria.setConditionSize("");
             audioCriteria.setFileExtention("");
             audioCriteria.setFileSize(0);
-            System.out.println("Entra al audio");
             basicCriteria = audioCriteria;
         }
 
