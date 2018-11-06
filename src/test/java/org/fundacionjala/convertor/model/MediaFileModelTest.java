@@ -156,7 +156,7 @@ public class MediaFileModelTest {
 
     @Test
     public void searchVideoFiles() throws IOException {
-        int numberFiles = 9;
+        int numberFiles = 4;
         AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
 
         videoCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");

@@ -45,13 +45,15 @@ public class VideoSearchPanel extends JPanel {
 
     public VideoSearchPanel(final String title) {
         this.title = title;
-        frameRate = new JComboBox<>(new String[]{"","0", "24", "25", "27", "29", "30", "60"});
-        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9","13:10"});
-        resolution = new JComboBox<>(new String[]{"", "320*240", "640*480", "740*480", "1280*720", "1920*1080",
+        frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
+        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
+        resolution = new JComboBox<>(new String[]{"", "320*240", "600*350", "624*480", "640*480", "740*480", "1280*720", "1920*1080",
                 "2048*1080", "3840*2160", "4096*2160"});
-        videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H2C4",
+        videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
                 "AVS", "MJPEG", "VP7", "WMV"});
         audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+        audioCodec.setVisible(false);
+
         initComponents();
     }
 
@@ -93,9 +95,9 @@ public class VideoSearchPanel extends JPanel {
         bagConstraints.gridx = one;
         bagConstraints.gridy = three;
         this.add(videoCodec, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = four;
-        this.add(new JLabel("Audio Codec"), bagConstraints);
+//        bagConstraints.gridx = 0;
+//        bagConstraints.gridy = four;
+//        this.add(new JLabel("Audio Codec"), bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
         this.add(audioCodec, bagConstraints);

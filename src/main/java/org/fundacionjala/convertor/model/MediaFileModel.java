@@ -137,8 +137,10 @@ public class MediaFileModel {
                         return true;
                     }
                     FFmpegStream stream = getStreamFFprobe(x);
+                    System.out.println(x.getFileName());
+                    System.out.println(stream.width +"*"+stream.height);
                     return stream.width == criteria.getResolutionWith()
-                            && stream.height == criteria.getResolutionWith();
+                            && stream.height == criteria.getResolutionHeight();
                 })
 //                Video Codec
                 .filter(x -> {

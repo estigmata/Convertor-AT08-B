@@ -129,8 +129,8 @@ public class SearchController {
                     .getVideoCodec().getSelectedItem().toString());
             videoCriteria.setFrameRate(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getFrameRate().getSelectedItem().toString());
-            videoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
-            videoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
+            videoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
+            videoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
             videoCriteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
             basicCriteria = videoCriteria;
