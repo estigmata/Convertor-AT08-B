@@ -16,6 +16,7 @@
 package org.fundacionjala.convertor.view.buttonsresultpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.view.MediaPlayerPanel;
 
 import javax.swing.JButton;
 
@@ -34,7 +35,7 @@ public class PlayButton extends JButton {
     public PlayButton(final Asset file) {
         this.setText("[Play]");
         this.addActionListener(x -> {
-//            System.out.println("Play this:"+file.getPath()+"\\"+file.getFileName()+"."+file.getExtension());
+            MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         });
     }
 }

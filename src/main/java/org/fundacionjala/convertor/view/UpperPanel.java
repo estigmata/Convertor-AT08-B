@@ -15,6 +15,7 @@ import java.awt.Dimension;
  */
 public class UpperPanel extends JPanel {
     private FinderPanel searchPanel;
+    private MediaPlayerPanel mediaPlayer;
 
     /**
      * Constructor for the initialization of the components.
@@ -47,7 +48,7 @@ public class UpperPanel extends JPanel {
         this.add(searchPanel);
 
 //        Panel for the Reproductor Panel
-        MediaPlayerPanel mediaPlayer = new MediaPlayerPanel();
+        mediaPlayer = new MediaPlayerPanel();
         mediaPlayer.setPreferredSize(new Dimension(width, heigth));
         mediaPlayer.setBackground(new Color(color, color, color));
 
@@ -62,4 +63,5 @@ public class UpperPanel extends JPanel {
     public FinderPanel getSearchPanel() {
         return searchPanel;
     }
+
 }

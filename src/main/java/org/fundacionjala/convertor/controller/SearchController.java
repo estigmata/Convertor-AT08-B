@@ -65,6 +65,8 @@ public class SearchController {
             e.printStackTrace();
         }
         viewer = new Viewer();
+        viewer.initComponents();
+        viewer.configWindow();
         this.validator = new Validator();
         log.info();
     }
