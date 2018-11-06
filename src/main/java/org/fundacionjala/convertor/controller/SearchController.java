@@ -101,30 +101,38 @@ public class SearchController {
         if (viewer.getComboMultimedia().getSelectedItem().equals(ALL)) {
             basicCriteria.setFilePath(viewer.getPath());
             basicCriteria.setFileName(viewer.getFileName());
+            basicCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
         }
         if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
             AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
             audioCriteria.setFilePath(viewer.getPath());
             audioCriteria.setFileName(viewer.getFileName());
-            audioCriteria.setAudioCodec("");
-            audioCriteria.setChannels(0);
-            audioCriteria.setConditionSize("");
-            audioCriteria.setFileExtention("");
-            audioCriteria.setFileSize(0);
+            audioCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            audioCriteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
+                    .getAudioCodec().getSelectedItem().toString());
+            String aux = viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
+                    .getChannel().getSelectedItem().toString();
+            audioCriteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
             basicCriteria = audioCriteria;
         }
 
         if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
             AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+
+            String[] resolution = viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel().getResolution().getSelectedItem().toString().split("\\*");
             videoCriteria.setFilePath(viewer.getPath());
             videoCriteria.setFileName(viewer.getFileName());
-            videoCriteria.setAspectRatio("");
-            videoCriteria.setAudioCodec("");
-            videoCriteria.setFrameRate("");
-            videoCriteria.setResolutionHeight(0);
-            videoCriteria.setResolutionWith(0);
-            videoCriteria.setVideoCodec("");
-            videoCriteria.setFileSize(0);
+            videoCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            videoCriteria.setAspectRatio(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+                    .getAspectRatio().getSelectedItem().toString());
+            videoCriteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+                    .getVideoCodec().getSelectedItem().toString());
+            videoCriteria.setFrameRate(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+                    .getFrameRate().getSelectedItem().toString());
+            videoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
+            videoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
+            videoCriteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+                    .getVideoCodec().getSelectedItem().toString());
             basicCriteria = videoCriteria;
         }
 
