@@ -15,13 +15,10 @@
 
 package org.fundacionjala.convertor.view;
 
-
-import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.view.finder.VideoSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -35,7 +32,7 @@ public class DownPanel extends JPanel {
      */
     public DownPanel() {
         resultTablePanel = new ResultTablePanel();
-        videoSearchPanel = new VideoSearchPanel();
+        videoSearchPanel = new VideoSearchPanel("Converter Settings");
         initComponents();
     }
 
@@ -67,7 +64,4 @@ public class DownPanel extends JPanel {
         return resultTablePanel;
     }
 
-    public JPanel getFilesPanel(ArrayList<Asset> files) {
-        return resultTablePanel;
-    }
 }

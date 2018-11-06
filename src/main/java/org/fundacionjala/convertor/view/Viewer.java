@@ -14,14 +14,16 @@
  */
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
 
 /**
  * Class Viewer.
@@ -39,18 +41,15 @@ public final class Viewer extends JFrame {
      */
     public Viewer() {
         super();
-        downPanel = new DownPanel();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info();
-        initComponents();
-        configWindow();
     }
 
     /**
      * Config the JFrame.
      */
-    private void configWindow() {
+    public void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -61,7 +60,7 @@ public final class Viewer extends JFrame {
     /**
      * Initialization of Components.
      */
-    private void initComponents() {
+    public void initComponents() {
         //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
@@ -80,9 +79,7 @@ public final class Viewer extends JFrame {
      * @return the JObject
      */
     public JButton getSearchButton() {
-
         return upperPanel.getSearchPanel().getBasicSearchPanel().getSearchButton();
-
     }
 
     /**
@@ -113,16 +110,12 @@ public final class Viewer extends JFrame {
     }
 
     /**
-     * Getter the result table.
+     * Getter of the down panel.
      *
-     * @return the object DefaultTableModel.
+     * @return the Down panel object.
      */
-    /*public DefaultTableModel getResultTable() {
-        return downPanel.getResultTablePanel().getResultTable();
-
-    }*/
-    public JPanel showFilesPanel(ArrayList<Asset> files) {
-        return downPanel.getFilesPanel(files);
+    public DownPanel getDownPanel() {
+        return downPanel;
     }
 
     /**
@@ -197,5 +190,11 @@ public final class Viewer extends JFrame {
         return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
     }
 
-
+    /**
+     * Getter of the upper panel.
+     * @return the Upper panel object
+     */
+    public UpperPanel getUpperPanel() {
+        return upperPanel;
+    }
 }

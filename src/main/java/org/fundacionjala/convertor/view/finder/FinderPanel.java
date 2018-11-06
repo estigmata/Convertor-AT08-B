@@ -48,7 +48,7 @@ public class FinderPanel extends JPanel {
         audioSearchPanel = new AudioSearchPanel();
         this.add(audioSearchPanel);
 
-        videoSearchPanel = new VideoSearchPanel();
+        videoSearchPanel = new VideoSearchPanel("Video Advanced Search");
         this.add(videoSearchPanel);
 
 

@@ -37,11 +37,13 @@ public class VideoSearchPanel extends JPanel {
     protected JComboBox<String> resolution;
     private JComboBox<String> videoCodec;
     private JComboBox<String> audioCodec;
+    private String title;
 
     /**
      * Constructor.
      */
-    public VideoSearchPanel() {
+    public VideoSearchPanel(final String title) {
+        this.title = title;
         frameRate = new JComboBox<>(new String[]{"Equal to", "Smaller than", "Greater than"});
         aspectRatio = new JComboBox<>(new String[]{"Video", "Multimedia"});
         resolution = new JComboBox<>(new String[]{"899*1024", "1024*1024", "1800*900"});
@@ -58,7 +60,7 @@ public class VideoSearchPanel extends JPanel {
         final int two = 2;
         final int three = 3;
         final int four = 4;
-        TitledBorder title = BorderFactory.createTitledBorder("Video Advanced Search");
+        TitledBorder title = BorderFactory.createTitledBorder(this.title);
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
