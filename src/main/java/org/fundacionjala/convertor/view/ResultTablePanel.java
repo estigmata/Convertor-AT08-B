@@ -15,50 +15,46 @@
 
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
-  private FilesPanel resultTable;
+    private FilesPanel filesPanel;
 
-  /**
-   * Constructor.
-   */
-  ResultTablePanel() {
-    resultTable = new FilesPanel();
-    AbstractLogger log = AbstractLogger.getInstance();
-    log.setLogger(TabPane.class.getName());
-    log.info();
-    initComponents();
-  }
+    /**
+     * Constructor.
+     */
+    ResultTablePanel() {
+        filesPanel = new FilesPanel();
+        AbstractLogger log = AbstractLogger.getInstance();
+        log.setLogger(TabPane.class.getName());
+        log.info();
+        initComponents();
+    }
 
-  /**
-   * Initialization of components.
-   */
-  void initComponents() {
-    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    //Panel for the Search table.
-    this.add(new JLabel("Files:"));
-    this.add(new JScrollPane(resultTable));
-    resultTable.displayFiles();
-  }
+    /**
+     * Initialization of components.
+     */
+    private void initComponents() {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //Panel for the Search table.
+        this.add(new JLabel("Files:"));
+        this.add(new JScrollPane(filesPanel));
+    }
 
-  /**
-   * Getter for the result table.
-   *
-   * @return the Result table.
-   */
-    /*public DefaultTableModel getResultTable() {
-        return resultTable.getDefaultTableModel();
-    }*/
+    /**
+     * Getter of the Files Panel.
+     *
+     * @return the Files panel object.
+     */
+    public FilesPanel getFilesPanel() {
+        return filesPanel;
+    }
 }

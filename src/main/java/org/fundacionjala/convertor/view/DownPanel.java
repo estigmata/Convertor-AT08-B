@@ -16,11 +16,12 @@
 package org.fundacionjala.convertor.view;
 
 
-import org.fundacionjala.convertor.model.objectfile.Asset;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
 
 /**
  *
@@ -63,7 +64,4 @@ public class DownPanel extends JPanel {
         return resultTablePanel;
     }
 
-    public JPanel getFilesPanel(ArrayList<Asset> files) {
-        return resultTablePanel;
-    }
 }
