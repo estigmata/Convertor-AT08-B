@@ -201,7 +201,7 @@ public class MediaFileModel {
                     if (criteria.getAudioCodec().isEmpty()) {
                         return true;
                     }
-                    return stream.codec_name.equals(criteria.getAudioCodec());
+                    return stream.codec_name.toUpperCase().equals(criteria.getAudioCodec());
                 })
                 .forEach(item -> {
                     FFmpegStream stream = getStreamFFprobe(item);
