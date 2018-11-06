@@ -17,7 +17,6 @@ package org.fundacionjala.convertor.view.buttonsresultpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
-import org.fundacionjala.convertor.view.Viewer;
 
 import javax.swing.JButton;
 

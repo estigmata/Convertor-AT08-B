@@ -64,7 +64,4 @@ public class UpperPanel extends JPanel {
         return searchPanel;
     }
 
-    public MediaPlayerPanel getMediaPlayer() {
-        return mediaPlayer;
-    }
 }

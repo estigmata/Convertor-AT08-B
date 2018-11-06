@@ -17,7 +17,6 @@ package org.fundacionjala.convertor;
 
 import org.fundacionjala.convertor.controller.SearchController;
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.view.Viewer;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 
 /**

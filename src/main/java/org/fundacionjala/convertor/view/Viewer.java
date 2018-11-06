@@ -190,6 +190,10 @@ public final class Viewer extends JFrame {
         return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
     }
 
+    /**
+     * Getter of the upper panel.
+     * @return the Upper panel object
+     */
     public UpperPanel getUpperPanel() {
         return upperPanel;
     }
