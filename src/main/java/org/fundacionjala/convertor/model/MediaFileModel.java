@@ -106,12 +106,7 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileSize() == 0
                         || isEqualSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
-                .filter(x -> {
-                            FFmpegStream stream = getStreamFFprobe(x);
-                            assert stream != null;
-                            return stream.nb_frames != 0;
-                        }
-                )
+                .filter(this::isVideo)
 //                Frame Rate
                 .filter(x -> {
                     if (criteria.getFrameRate().isEmpty()) {
@@ -178,12 +173,7 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileSize() == 0
                         || isEqualSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
-                .filter(x -> {
-                            FFmpegStream stream = getStreamFFprobe(x);
-                            assert stream != null;
-                            return stream.nb_frames < 1;
-                        }
-                )
+                .filter(this::isAudio)
 //        CHANNEL
                 .filter(x -> {
                     FFmpegStream stream = getStreamFFprobe(x);
@@ -253,6 +243,30 @@ public class MediaFileModel {
             if (Files.size(x) == size) {
                 return true;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean isVideo(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null){
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("video");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean isAudio(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null){
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("audio");
         } catch (IOException e) {
             e.printStackTrace();
         }
