@@ -5,10 +5,14 @@ import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
+import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -149,5 +153,35 @@ public class MediaFileModelTest {
         }
         assertEquals(numberFiles,fileList.size());
     }
+
+    @Test
+    public void searchVideoFiles() throws IOException {
+        int numberFiles = 9;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+
+        videoCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = mediaFileModel.searchFiles(basicCriteria);
+        for (Asset file :fileList) {
+            VideoFileAsset videoFileAsset = (VideoFileAsset) file;
+            System.out.println(videoFileAsset.getFileName());
+            System.out.println(videoFileAsset.getFrameRate());
+            System.out.println(videoFileAsset.getAspectRatio());
+            System.out.println(videoFileAsset.getResolution());
+            System.out.println(videoFileAsset.getVideoCodec());
+
+            System.out.println(" ");
+        }
+        assertEquals(numberFiles,fileList.size());
+    }
+
 
 }
