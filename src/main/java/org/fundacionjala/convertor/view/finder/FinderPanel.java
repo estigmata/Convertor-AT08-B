@@ -19,6 +19,8 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Class FinderPanel.
@@ -46,12 +48,34 @@ public class FinderPanel extends JPanel {
 
 
         audioSearchPanel = new AudioSearchPanel();
+
+        audioSearchPanel.setVisible(false);
         this.add(audioSearchPanel);
 
         videoSearchPanel = new VideoSearchPanel();
+
+        videoSearchPanel.setVisible(false);
         this.add(videoSearchPanel);
 
+        basicSearchPanel.getMultimediaBox().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                String a = (String) basicSearchPanel.getMultimediaBox().getSelectedItem();
+                if (a.equals("Video")) {
+                    audioSearchPanel.setVisible(false);
+                    videoSearchPanel.setVisible(true);
+                }
+                if (a.equals("Audio")) {
+                    audioSearchPanel.setVisible(true);
+                    videoSearchPanel.setVisible(false);
+                }
+                if (a.equals("All")) {
+                    audioSearchPanel.setVisible(false);
+                    videoSearchPanel.setVisible(false);
 
+                }
+            }
+        });
         initComponents();
     }
 

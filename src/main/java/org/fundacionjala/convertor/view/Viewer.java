@@ -53,8 +53,8 @@ public final class Viewer extends JFrame {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -192,6 +192,7 @@ public final class Viewer extends JFrame {
 
     /**
      * Getter of the upper panel.
+     *
      * @return the Upper panel object
      */
     public UpperPanel getUpperPanel() {
