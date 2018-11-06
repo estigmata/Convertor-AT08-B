@@ -41,18 +41,15 @@ public final class Viewer extends JFrame {
      */
     public Viewer() {
         super();
-        downPanel = new DownPanel();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info();
-        initComponents();
-        configWindow();
     }
 
     /**
      * Config the JFrame.
      */
-    private void configWindow() {
+    public void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -63,7 +60,7 @@ public final class Viewer extends JFrame {
     /**
      * Initialization of Components.
      */
-    private void initComponents() {
+    public void initComponents() {
         //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
@@ -191,5 +188,9 @@ public final class Viewer extends JFrame {
      */
     public JComboBox getComboAudioCodecVideo() {
         return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
+    }
+
+    public UpperPanel getUpperPanel() {
+        return upperPanel;
     }
 }
