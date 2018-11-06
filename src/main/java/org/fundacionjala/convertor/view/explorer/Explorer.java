@@ -106,9 +106,7 @@ public class Explorer extends JPanel {
         mTree.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         add(s, new GridLayout(0, 1));
 
-
         setVisible(true);
-
     }
 
     /**
