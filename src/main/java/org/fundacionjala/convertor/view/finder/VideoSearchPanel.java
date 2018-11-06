@@ -45,13 +45,13 @@ public class VideoSearchPanel extends JPanel {
 
     public VideoSearchPanel(final String title) {
         this.title = title;
-        frameRate = new JComboBox<>(new String[]{"24.0", "25.0", "27.0", "29.0", "30.0", "60.0"});
-        aspectRatio = new JComboBox<>(new String[]{"4:3", "12.5", "16:9", "17:9"});
-        resolution = new JComboBox<>(new String[]{"640*360", "740*480", "1280*720", "1920*1080",
+        frameRate = new JComboBox<>(new String[]{"","24.0", "25.0", "27.0", "29.0", "30.0", "60.0"});
+        aspectRatio = new JComboBox<>(new String[]{"","4:3", "12.5", "16:9", "17:9"});
+        resolution = new JComboBox<>(new String[]{"","640*360", "740*480", "1280*720", "1920*1080",
                 "2048*1080", "3840*2160", "4096*2160"});
-        videoCodec = new JComboBox<>(new String[]{"MPEG-1", "MPEG-2", "H.261", "H.264", "VC-1",
+        videoCodec = new JComboBox<>(new String[]{"","MPEG-1", "MPEG-2", "H.261", "H.264", "VC-1",
                 "AVS", "MJPEG", "VP7", "WMV"});
-        audioCodec = new JComboBox<>(new String[]{"G.711", "G.726", "G.723.1", "G.729A", "GSM", "iLBC"});
+        audioCodec = new JComboBox<>(new String[]{"","G.711", "G.726", "G.723.1", "G.729A", "GSM", "iLBC"});
         initComponents();
     }
 
