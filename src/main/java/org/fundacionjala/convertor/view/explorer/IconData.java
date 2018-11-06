@@ -27,7 +27,7 @@ public class IconData {
     protected Object mData;
 
     /**
-     * Constructor of this class
+     * Constructor of this class.
      *
      * @param iconComputer input
      * @param icon         input

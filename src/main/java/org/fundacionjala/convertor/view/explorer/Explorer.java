@@ -15,7 +15,7 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
-import org.fundacionjala.convertor.view.finder.FinderPanel;
+import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -113,7 +113,7 @@ public class Explorer extends JPanel {
      * @param path input Path
      * @return the Default Mutable Tree Node
      */
-    public DefaultMutableTreeNode getTreeNode(final TreePath path) {
+    private DefaultMutableTreeNode getTreeNode(final TreePath path) {
         return (DefaultMutableTreeNode) (path.getLastPathComponent());
     }
 
@@ -123,7 +123,7 @@ public class Explorer extends JPanel {
      * @param node Input node.
      * @return the File node.
      */
-    public FileNode getFileNode(final DefaultMutableTreeNode node) {
+    private FileNode getFileNode(final DefaultMutableTreeNode node) {
         if (node == null) {
             return null;
         }
@@ -186,9 +186,9 @@ public class Explorer extends JPanel {
             DefaultMutableTreeNode node = getTreeNode(event.getPath());
             FileNode fnode = getFileNode(node);
             if (fnode != null) {
-                FinderPanel.getPath().setText(fnode.getFile().getAbsolutePath());
+                BasicSearchPanel.getPath().setText(fnode.getFile().getAbsolutePath());
             } else {
-                FinderPanel.getPath().setText("");
+                BasicSearchPanel.getPath().setText("");
             }
         }
     }
