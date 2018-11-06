@@ -1,3 +1,18 @@
+/*
+ * @FileNode.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * Please contact Fundacion Jala, 2643 Av Melchor Perez de Olguin, Colquiri
+ * Sud, Cochabamba, Bolivia. www.fundacion-jala.org if you need additional
+ * information or have any questions.
+ */
+
 package org.fundacionjala.convertor.view.explorer;
 
 import javax.swing.JOptionPane;
@@ -6,46 +21,46 @@ import java.io.File;
 import java.util.Vector;
 
 /**
- * Class File Node.
+ * Class for file node used in the explorer.
  */
-class FileNode {
+public class FileNode {
     protected File mFile;
 
     /**
-     * Constructor.
+     * Constructor of the File node.
      *
-     * @param file a File object.
+     * @param file input
      */
-    FileNode(final File file) {
-        this.mFile = file;
+    public FileNode(final File file) {
+        mFile = file;
     }
 
     /**
-     * Method to get File.
+     * Getter of the file.
      *
-     * @return a File object.
+     * @return the File object.
      */
     public File getFile() {
         return mFile;
     }
 
     /**
-     * Method to String.
+     * Method for convert to String.
      *
-     * @return String object.
+     * @return the String object.
      */
     public String toString() {
-        return mFile.getName().length() > 0 ? mFile.getName() : mFile.getPath();
+        return mFile.getName().length() > 0 ? mFile.getName()
+                : mFile.getPath();
     }
 
-
     /**
-     * Method to expand.
+     * Method for expand the tree.
      *
-     * @param parent a DefaultMutableTreeNode object Type.
-     * @return boolean.
+     * @param parent input
+     * @return true or false
      */
-    boolean expand(final DefaultMutableTreeNode parent) {
+    public boolean expand(final DefaultMutableTreeNode parent) {
         DefaultMutableTreeNode flag =
                 (DefaultMutableTreeNode) parent.getFirstChild();
         if (flag == null) {   // No flag
@@ -54,12 +69,15 @@ class FileNode {
         Object obj = flag.getUserObject();
         if (!(obj instanceof Boolean)) {
             return false;
-        }
-        parent.removeAllChildren();
+        }      // Already expanded
+
+        parent.removeAllChildren();  // Remove Flag
+
         File[] files = listFiles();
         if (files == null) {
             return true;
         }
+
         Vector v = new Vector();
 
         for (int k = 0; k < files.length; k++) {
@@ -67,6 +85,7 @@ class FileNode {
             if (!(f.isDirectory())) {
                 continue;
             }
+
             FileNode newNode = new FileNode(f);
 
             boolean isAdded = false;
@@ -85,13 +104,14 @@ class FileNode {
 
         for (int i = 0; i < v.size(); i++) {
             FileNode nd = (FileNode) v.elementAt(i);
-            //IconData idata = new IconData(Explorer.ICON_FOLDER,Explorer.ICON_EXPANDEDFOLDER, nd);
+            IconData idata = new IconData(Explorer.ICON_FOLDER,
+                    Explorer.ICON_EXPANDEDFOLDER, nd);
             DefaultMutableTreeNode node = new
-                    DefaultMutableTreeNode();
+                    DefaultMutableTreeNode(idata);
             parent.add(node);
 
             if (nd.hasSubDirs()) {
-                node.add(new DefaultMutableTreeNode(new Boolean(true)));
+                node.add(new DefaultMutableTreeNode(Boolean.TRUE));
             }
         }
 
@@ -99,11 +119,10 @@ class FileNode {
     }
 
     /**
-     * Method to hasSubdire.
+     * Method for review if the node have sub directory.
      *
-     * @return boolean.
+     * @return true or false.
      */
-
     public boolean hasSubDirs() {
         File[] files = listFiles();
         if (files == null) {
@@ -118,22 +137,21 @@ class FileNode {
     }
 
     /**
-     * Method to compare.
+     * Method for compare File node.
      *
-     * @param toCompare file Node object.
-     * @return int.
+     * @param toCompare input node
+     * @return Integer
      */
-    int compareTo(final FileNode toCompare) {
+    public int compareTo(final FileNode toCompare) {
         return mFile.getName().compareToIgnoreCase(
                 toCompare.mFile.getName());
     }
 
     /**
-     * Method to list files.
+     * Method of the files.
      *
-     * @return File[] object.
+     * @return array of files
      */
-
     protected File[] listFiles() {
         if (!mFile.isDirectory()) {
             return null;

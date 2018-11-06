@@ -15,11 +15,17 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
+import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 import javax.swing.event.TreeSelectionEvent;
@@ -30,72 +36,92 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 import java.io.File;
 
 /**
- * Class Explorer.
- *
- * @version 1.0.
+ * Class in process.
  */
-public class Explorer
-        extends JPanel {
-    public static final ImageIcon ICON_COMPUTER =
+public class Explorer extends JPanel {
+    private static final ImageIcon ICON_COMPUTER =
             new ImageIcon("computer.gif");
-    public static final ImageIcon ICON_DISK =
+    private static final ImageIcon ICON_DISK =
             new ImageIcon("disk.gif");
-    public static final ImageIcon ICON_FOLDER =
+    static final ImageIcon ICON_FOLDER =
             new ImageIcon("folder.gif");
-    public static final ImageIcon ICON_EXPANDEDFOLDER =
+    static final ImageIcon ICON_EXPANDEDFOLDER =
             new ImageIcon("expandedfolder.gif");
 
-    protected JTree mTree;
-    protected DefaultTreeModel mModel;
-    protected StringBuilder pathDir;
+    private JTree mTree;
+    private DefaultTreeModel mModel;
+    private JTextField mDisplay;
 
     /**
-     * Constructor.
+     * Constructor of the explorer.
      */
     public Explorer() {
+        final int width = 400;
+        final int height = 300;
+
+        setSize(width, height);
+
         DefaultMutableTreeNode top = new DefaultMutableTreeNode(
                 new IconData(ICON_COMPUTER, null, "Computer"));
 
         DefaultMutableTreeNode node;
         File[] roots = File.listRoots();
-        for (int k = 0; k < roots.length; k++) {
+        for (File root : roots) {
             node = new DefaultMutableTreeNode(new IconData(ICON_DISK,
-                    null, new FileNode(roots[k])));
+                    null, new FileNode(root)));
             top.add(node);
-            node.add(new DefaultMutableTreeNode(new Boolean(true)));
+            node.add(new DefaultMutableTreeNode(Boolean.TRUE));
         }
+
         mModel = new DefaultTreeModel(top);
         mTree = new JTree(mModel);
+
         mTree.putClientProperty("JTree.lineStyle", "Angled");
-                mTree.addTreeExpansionListener(new DirExpansionListener());
-        mTree.addTreeSelectionListener(new DirSelectionListener());
-        mTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        TreeCellRenderer renderer = new
+                IconCellRenderer();
+        mTree.setCellRenderer(renderer);
+
+        mTree.addTreeExpansionListener(new
+                DirExpansionListener());
+
+        mTree.addTreeSelectionListener(new
+                DirSelectionListener());
+
+        mTree.getSelectionModel().setSelectionMode(
+                TreeSelectionModel.SINGLE_TREE_SELECTION);
         mTree.setShowsRootHandles(true);
         mTree.setEditable(false);
+
         JScrollPane s = new JScrollPane();
         s.getViewport().add(mTree);
         add(s, BorderLayout.CENTER);
+
+        setVisible(true);
+
     }
 
     /**
-     * Method to get Tree Node.
+     * This method its the getter of the default mutable tree node.
      *
-     * @param path input a TreePath object.
-     * @return the object DefaultMutableTreeNode.
+     * @param path input Path
+     * @return the Default Mutable Tree Node
      */
-
-    DefaultMutableTreeNode getTreeNode(final TreePath path) {
+    private DefaultMutableTreeNode getTreeNode(final TreePath path) {
         return (DefaultMutableTreeNode) (path.getLastPathComponent());
     }
 
     /**
-     * Method to get File Node.
+     * This is the method for get the file node.
      *
-     * @param node DefaultMutableTreeNode object.
-     * @return FileNode object.
+     * @param node Input node.
+     * @return the File node.
      */
     private FileNode getFileNode(final DefaultMutableTreeNode node) {
         if (node == null) {
@@ -112,81 +138,155 @@ public class Explorer
         }
     }
 
+    // Make sure expansion is threaded and updating the tree model
+    // only occurs within the event dispatching thread.
+
     /**
-     * Class DirExpansionListener.
-     * <p>
-     * Make sure expansion is threaded and updating the tree model only occurs within the event dispatching thread.
+     * Inner class of the Direction expansion listener.
      */
     class DirExpansionListener implements TreeExpansionListener {
-
         /**
-         * Method to tree expanded.
+         * Method for expand de tree.
          *
-         * @param event event.
+         * @param event input.
          */
         public void treeExpanded(final TreeExpansionEvent event) {
             final DefaultMutableTreeNode node = getTreeNode(
                     event.getPath());
             final FileNode fnode = getFileNode(node);
-            Thread runner = new Thread() {
 
-                public void run() {
-                    if (fnode != null && fnode.expand(node)) {
-                        Runnable runnable = new Runnable() {
-                            public void run() {
-                                mModel.reload(node);
-                            }
-                        };
-                        SwingUtilities.invokeLater(runnable);
-                    }
+            Thread runner = new Thread(() -> {
+                if (fnode != null && fnode.expand(node)) {
+                    Runnable runnable = () -> mModel.reload(node);
+                    SwingUtilities.invokeLater(runnable);
                 }
-            };
+            });
             runner.start();
         }
 
         /**
-         * Method to tree collapsed.
+         * Method for collapse the tree.
          *
-         * @param event event.
+         * @param event input
          */
         public void treeCollapsed(final TreeExpansionEvent event) {
         }
     }
 
     /**
-     * Class DirSelectionListener.
+     * Class for select the direction using Listener.
      */
     class DirSelectionListener implements TreeSelectionListener {
-
         /**
-         * Class to valued changed.
+         * This method change the value of the JLabel showing the path.
          *
-         * @param event event.
+         * @param event input
          */
         public void valueChanged(final TreeSelectionEvent event) {
-            DefaultMutableTreeNode node = getTreeNode(
-                    event.getPath());
+            DefaultMutableTreeNode node = getTreeNode(event.getPath());
             FileNode fnode = getFileNode(node);
             if (fnode != null) {
-                pathDir = new StringBuilder(fnode.getFile().getAbsolutePath());
+                BasicSearchPanel.getPath().setText(fnode.getFile().getAbsolutePath());
             } else {
-                pathDir = new StringBuilder();
+                BasicSearchPanel.getPath().setText("");
             }
         }
     }
 
     /**
-     * Method to get path dir.
-     *
-     * @return String.
+     * Class for the icon renderer.
      */
-    public String getPathDir() {
-        return String.valueOf(pathDir);
+    class IconCellRenderer extends JLabel implements TreeCellRenderer {
+        private Color mTextSelectionColor;
+        private Color mTextNonSelectionColor;
+        private Color mBkSelectionColor;
+        private Color mBkNonSelectionColor;
+        private Color mBorderSelectionColor;
+
+        private boolean mSelected;
+
+        /**
+         * Constructor of the Icon cell renderer.
+         */
+        IconCellRenderer() {
+            super();
+            mTextSelectionColor = UIManager.getColor(
+                    "Tree.selectionForeground");
+            mTextNonSelectionColor = UIManager.getColor(
+                    "Tree.textForeground");
+            mBkSelectionColor = UIManager.getColor(
+                    "Tree.selectionBackground");
+            mBkNonSelectionColor = UIManager.getColor(
+                    "Tree.textBackground");
+            mBorderSelectionColor = UIManager.getColor(
+                    "Tree.selectionBorderColor");
+            setOpaque(false);
+        }
+
+        /**
+         * Method for paint component.
+         *
+         * @param g input graphic
+         */
+        public void paintComponent(final Graphics g) {
+            Color bColor = getBackground();
+            Icon icon = getIcon();
+
+            g.setColor(bColor);
+            int offset = 0;
+            if (icon != null && getText() != null) {
+                offset = (icon.getIconWidth() + getIconTextGap());
+            }
+            g.fillRect(offset, 0, getWidth() - 1 - offset,
+                    getHeight() - 1);
+
+            if (mSelected) {
+                g.setColor(mBorderSelectionColor);
+                g.drawRect(offset, 0, getWidth() - 1 - offset, getHeight() - 1);
+            }
+            super.paintComponent(g);
+        }
+
+        /**
+         * Method for get the tree cell.
+         *
+         * @param tree     input tree
+         * @param value    input value
+         * @param sel      input sel
+         * @param expanded input for expand
+         * @param leaf     input for leaf
+         * @param row      input of the rows
+         * @param hasFocus input for focus
+         * @return the Component.
+         */
+        public Component getTreeCellRendererComponent(final JTree tree, final Object value,
+                                                      final boolean sel, final boolean expanded,
+                                                      final boolean leaf, final int row, final boolean hasFocus) {
+            DefaultMutableTreeNode node =
+                    (DefaultMutableTreeNode) value;
+            Object obj = node.getUserObject();
+            setText(obj.toString());
+
+            if (obj instanceof Boolean) {
+                setText("Retrieving data...");
+            }
+
+            if (obj instanceof IconData) {
+                IconData idata = (IconData) obj;
+                if (expanded) {
+                    setIcon(idata.getExpandedIcon());
+                } else {
+                    setIcon(idata.getIcon());
+                }
+            } else {
+                setIcon(null);
+            }
+            setFont(tree.getFont());
+            setForeground(sel ? mTextSelectionColor : mTextNonSelectionColor);
+            setBackground(sel ? mBkSelectionColor : mBkNonSelectionColor);
+            mSelected = sel;
+            return this;
+        }
     }
 }
-
-
-
-
-
 

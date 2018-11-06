@@ -1,85 +1,90 @@
-package org.fundacionjala.convertor.view.explorer;/*package org.fundacionjala.convertor.view.explorer;
+/*
+ * @IconData.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * This code is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * version 2 for more details (a copy is included in the LICENSE file that
+ * accompanied this code).
+ *
+ * Please contact Fundacion Jala, 2643 Av Melchor Perez de Olguin, Colquiri
+ * Sud, Cochabamba, Bolivia. www.fundacion-jala.org if you need additional
+ * information or have any questions.
+ */
+
+package org.fundacionjala.convertor.view.explorer;
 
 import javax.swing.Icon;
-
-*/
-
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 /**
- * Class Icon Data.
- *
+ * Class of the Icon Data.
  */
-class IconData
-{
-    protected Icon m_icon;
-    protected Icon   m_expandedIcon;
-    protected Object m_data;
+public class IconData {
+    protected Icon mIcon;
+    protected Icon mExpandedIcon;
+    protected Object mData;
 
     /**
-     * Constructor.
+     * Constructor of this class.
      *
-     * @param icon Icon object.
-     * @param data object.
+     * @param iconComputer input
+     * @param icon         input
+     * @param data         input
      */
-    public IconData(Icon icon, Object data)
-    {
-        m_icon = icon;
-        m_expandedIcon = null;
-        m_data = data;
+    public IconData(final ImageIcon iconComputer, final Icon icon, final Object data) {
+        mIcon = icon;
+        mExpandedIcon = null;
+        mData = data;
     }
 
     /**
-     * Constructor.
+     * Constructor with other parameters.
      *
-     * @param icon Icon object.
-     * @param expandedIcon Icon object.
-     * @param data Object data.
+     * @param icon         input
+     * @param expandedIcon input
+     * @param data         input
      */
-    public IconData(Icon icon, Icon expandedIcon, Object data)
-    {
-        m_icon = icon;
-        m_expandedIcon = expandedIcon;
-        m_data = data;
+    public IconData(final Icon icon, final Icon expandedIcon, final Object data) {
+        mIcon = icon;
+        mExpandedIcon = expandedIcon;
+        mData = data;
     }
 
- /**
-     * Method to get Icon.
+    /**
+     * Getter of the Icon.
      *
-     * @return Icon object.
+     * @return the Icon object
      */
-    public Icon getIcon()
-    {
-        return m_icon;
+    public Icon getIcon() {
+        return mIcon;
     }
 
-   /**
-     * Method to get Expanded Icon.
+    /**
+     * Getter of the expanded icon.
      *
-     * @return Icon object.
+     * @return the Icon object
      */
-    public Icon getExpandedIcon()
-    {
-        return m_expandedIcon!=null ? m_expandedIcon : m_icon;
+    public Icon getExpandedIcon() {
+        return mExpandedIcon != null ? mExpandedIcon : mIcon;
     }
 
- /**
-     * Method to get Object.
+    /**
+     * Getter of the Object.
      *
-     * @return Object.
+     * @return the object
      */
-    public Object getObject()
-    {
-        return m_data;
+    public Object getObject() {
+        return mData;
     }
 
- /**
-     * Method to String.
+    /**
+     * Getter of the String.
      *
-     * @return String.
+     * @return String object
      */
-    public String toString()
-    {
-        return m_data.toString();
+    public String toString() {
+        return mData.toString();
     }
 }
