@@ -20,43 +20,71 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.File;
 import java.util.Vector;
 
+/**
+ * Class for file node used in the explorer.
+ */
 public class FileNode {
-    protected File m_file;
+    protected File mFile;
 
-    public FileNode(File file) {
-        m_file = file;
+    /**
+     * Constructor of the File node.
+     *
+     * @param file input
+     */
+    public FileNode(final File file) {
+        mFile = file;
     }
 
+    /**
+     * Getter of the file.
+     *
+     * @return the File object.
+     */
     public File getFile() {
-        return m_file;
+        return mFile;
     }
 
+    /**
+     * Method for convert to String.
+     *
+     * @return the String object.
+     */
     public String toString() {
-        return m_file.getName().length() > 0 ? m_file.getName() :
-                m_file.getPath();
+        return mFile.getName().length() > 0 ? mFile.getName()
+                : mFile.getPath();
     }
 
-    public boolean expand(DefaultMutableTreeNode parent) {
+    /**
+     * Method for expand the tree.
+     *
+     * @param parent input
+     * @return true or false
+     */
+    public boolean expand(final DefaultMutableTreeNode parent) {
         DefaultMutableTreeNode flag =
                 (DefaultMutableTreeNode) parent.getFirstChild();
-        if (flag == null)    // No flag
+        if (flag == null) {   // No flag
             return false;
+        }
         Object obj = flag.getUserObject();
-        if (!(obj instanceof Boolean))
-            return false;      // Already expanded
+        if (!(obj instanceof Boolean)) {
+            return false;
+        }      // Already expanded
 
         parent.removeAllChildren();  // Remove Flag
 
         File[] files = listFiles();
-        if (files == null)
+        if (files == null) {
             return true;
+        }
 
         Vector v = new Vector();
 
         for (int k = 0; k < files.length; k++) {
             File f = files[k];
-            if (!(f.isDirectory()))
+            if (!(f.isDirectory())) {
                 continue;
+            }
 
             FileNode newNode = new FileNode(f);
 
@@ -69,8 +97,9 @@ public class FileNode {
                     break;
                 }
             }
-            if (!isAdded)
+            if (!isAdded) {
                 v.addElement(newNode);
+            }
         }
 
         for (int i = 0; i < v.size(); i++) {
@@ -81,38 +110,57 @@ public class FileNode {
                     DefaultMutableTreeNode(idata);
             parent.add(node);
 
-            if (nd.hasSubDirs())
-                node.add(new DefaultMutableTreeNode(
-                        new Boolean(true)));
+            if (nd.hasSubDirs()) {
+                node.add(new DefaultMutableTreeNode(Boolean.TRUE));
+            }
         }
 
         return true;
     }
 
+    /**
+     * Method for review if the node have sub directory.
+     *
+     * @return true or false.
+     */
     public boolean hasSubDirs() {
         File[] files = listFiles();
-        if (files == null)
+        if (files == null) {
             return false;
+        }
         for (int k = 0; k < files.length; k++) {
-            if (files[k].isDirectory())
+            if (files[k].isDirectory()) {
                 return true;
+            }
         }
         return false;
     }
 
-    public int compareTo(FileNode toCompare) {
-        return m_file.getName().compareToIgnoreCase(
-                toCompare.m_file.getName());
+    /**
+     * Method for compare File node.
+     *
+     * @param toCompare input node
+     * @return Integer
+     */
+    public int compareTo(final FileNode toCompare) {
+        return mFile.getName().compareToIgnoreCase(
+                toCompare.mFile.getName());
     }
 
+    /**
+     * Method of the files.
+     *
+     * @return array of files
+     */
     protected File[] listFiles() {
-        if (!m_file.isDirectory())
+        if (!mFile.isDirectory()) {
             return null;
+        }
         try {
-            return m_file.listFiles();
+            return mFile.listFiles();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,
-                    "Error reading directory " + m_file.getAbsolutePath(),
+                    "Error reading directory " + mFile.getAbsolutePath(),
                     "Warning", JOptionPane.WARNING_MESSAGE);
             return null;
         }

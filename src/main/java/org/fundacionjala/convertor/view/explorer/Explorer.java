@@ -15,6 +15,8 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
+import org.fundacionjala.convertor.view.finder.FinderPanel;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -101,10 +103,6 @@ public class Explorer extends JPanel {
         s.getViewport().add(mTree);
         add(s, BorderLayout.CENTER);
 
-        mDisplay = new JTextField();
-        mDisplay.setEditable(false);
-        add(mDisplay, BorderLayout.NORTH);
-
         setVisible(true);
 
     }
@@ -126,8 +124,9 @@ public class Explorer extends JPanel {
      * @return the File node.
      */
     public FileNode getFileNode(final DefaultMutableTreeNode node) {
-        if (node == null)
+        if (node == null) {
             return null;
+        }
         Object obj = node.getUserObject();
         if (obj instanceof IconData) {
             obj = ((IconData) obj).getObject();
@@ -187,9 +186,9 @@ public class Explorer extends JPanel {
             DefaultMutableTreeNode node = getTreeNode(event.getPath());
             FileNode fnode = getFileNode(node);
             if (fnode != null) {
-                mDisplay.setText(fnode.getFile().getAbsolutePath());
+                FinderPanel.getPath().setText(fnode.getFile().getAbsolutePath());
             } else {
-                mDisplay.setText("");
+                FinderPanel.getPath().setText("");
             }
         }
     }
@@ -198,45 +197,51 @@ public class Explorer extends JPanel {
      * Class for the icon renderer.
      */
     class IconCellRenderer extends JLabel implements TreeCellRenderer {
-        Color m_textSelectionColor;
-        Color m_textNonSelectionColor;
-        Color m_bkSelectionColor;
-        Color m_bkNonSelectionColor;
-        Color m_borderSelectionColor;
+        private Color mTextSelectionColor;
+        private Color mTextNonSelectionColor;
+        private Color mBkSelectionColor;
+        private Color mBkNonSelectionColor;
+        private Color mBorderSelectionColor;
 
-        boolean m_selected;
+        private boolean mSelected;
 
         /**
          * Constructor of the Icon cell renderer.
          */
         IconCellRenderer() {
             super();
-            m_textSelectionColor = UIManager.getColor(
+            mTextSelectionColor = UIManager.getColor(
                     "Tree.selectionForeground");
-            m_textNonSelectionColor = UIManager.getColor(
+            mTextNonSelectionColor = UIManager.getColor(
                     "Tree.textForeground");
-            m_bkSelectionColor = UIManager.getColor(
+            mBkSelectionColor = UIManager.getColor(
                     "Tree.selectionBackground");
-            m_bkNonSelectionColor = UIManager.getColor(
+            mBkNonSelectionColor = UIManager.getColor(
                     "Tree.textBackground");
-            m_borderSelectionColor = UIManager.getColor(
+            mBorderSelectionColor = UIManager.getColor(
                     "Tree.selectionBorderColor");
             setOpaque(false);
         }
 
-        public void paintComponent(Graphics g) {
+        /**
+         * Method for paint component.
+         *
+         * @param g input graphic
+         */
+        public void paintComponent(final Graphics g) {
             Color bColor = getBackground();
             Icon icon = getIcon();
 
             g.setColor(bColor);
             int offset = 0;
-            if (icon != null && getText() != null)
+            if (icon != null && getText() != null) {
                 offset = (icon.getIconWidth() + getIconTextGap());
+            }
             g.fillRect(offset, 0, getWidth() - 1 - offset,
                     getHeight() - 1);
 
-            if (m_selected) {
-                g.setColor(m_borderSelectionColor);
+            if (mSelected) {
+                g.setColor(mBorderSelectionColor);
                 g.drawRect(offset, 0, getWidth() - 1 - offset, getHeight() - 1);
             }
             super.paintComponent(g);
@@ -277,9 +282,9 @@ public class Explorer extends JPanel {
                 setIcon(null);
             }
             setFont(tree.getFont());
-            setForeground(sel ? m_textSelectionColor : m_textNonSelectionColor);
-            setBackground(sel ? m_bkSelectionColor : m_bkNonSelectionColor);
-            m_selected = sel;
+            setForeground(sel ? mTextSelectionColor : mTextNonSelectionColor);
+            setBackground(sel ? mBkSelectionColor : mBkNonSelectionColor);
+            mSelected = sel;
             return this;
         }
     }

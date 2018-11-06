@@ -18,36 +18,73 @@ package org.fundacionjala.convertor.view.explorer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * Class of the Icon Data.
+ */
 public class IconData {
-    protected Icon m_icon;
-    protected Icon m_expandedIcon;
-    protected Object m_data;
+    protected Icon mIcon;
+    protected Icon mExpandedIcon;
+    protected Object mData;
 
-    public IconData(ImageIcon iconComputer, Icon icon, Object data) {
-        m_icon = icon;
-        m_expandedIcon = null;
-        m_data = data;
+    /**
+     * Constructor of this class
+     *
+     * @param iconComputer input
+     * @param icon         input
+     * @param data         input
+     */
+    public IconData(final ImageIcon iconComputer, final Icon icon, final Object data) {
+        mIcon = icon;
+        mExpandedIcon = null;
+        mData = data;
     }
 
-    public IconData(Icon icon, Icon expandedIcon, Object data) {
-        m_icon = icon;
-        m_expandedIcon = expandedIcon;
-        m_data = data;
+    /**
+     * Constructor with other parameters.
+     *
+     * @param icon         input
+     * @param expandedIcon input
+     * @param data         input
+     */
+    public IconData(final Icon icon, final Icon expandedIcon, final Object data) {
+        mIcon = icon;
+        mExpandedIcon = expandedIcon;
+        mData = data;
     }
 
+    /**
+     * Getter of the Icon.
+     *
+     * @return the Icon object
+     */
     public Icon getIcon() {
-        return m_icon;
+        return mIcon;
     }
 
+    /**
+     * Getter of the expanded icon.
+     *
+     * @return the Icon object
+     */
     public Icon getExpandedIcon() {
-        return m_expandedIcon != null ? m_expandedIcon : m_icon;
+        return mExpandedIcon != null ? mExpandedIcon : mIcon;
     }
 
+    /**
+     * Getter of the Object.
+     *
+     * @return the object
+     */
     public Object getObject() {
-        return m_data;
+        return mData;
     }
 
+    /**
+     * Getter of the String.
+     *
+     * @return String object
+     */
     public String toString() {
-        return m_data.toString();
+        return mData.toString();
     }
 }

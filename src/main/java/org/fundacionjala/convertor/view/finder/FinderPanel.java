@@ -34,7 +34,7 @@ import java.awt.Label;
  */
 public class FinderPanel extends JPanel {
     private JButton searchButton;
-    private JTextField path;
+    private static JTextField path;
     private JTextField fileName;
     private JTextField size;
     private BrowseChooser browseChooser;
@@ -118,7 +118,7 @@ public class FinderPanel extends JPanel {
      *
      * @return object.
      */
-    public JTextField getPath() {
+    public static JTextField getPath() {
         return path;
     }
 
