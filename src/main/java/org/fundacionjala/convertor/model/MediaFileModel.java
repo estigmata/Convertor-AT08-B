@@ -75,7 +75,7 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().equals(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
-                        || isEqualSize(x, criteria.getFileSize()))
+                        || isMinorSize(x, criteria.getFileSize()))
                 .forEach(item -> {
                     Asset fileZ = new Asset();
                     fileZ.setFileName(new Util().getStringName(item));
@@ -106,14 +106,9 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().equals(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
-                        || isEqualSize(x, criteria.getFileSize()))
+                        || isMinorSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
-                .filter(x -> {
-                            FFmpegStream stream = getStreamFFprobe(x);
-                            assert stream != null;
-                            return stream.nb_frames != 0;
-                        }
-                )
+                .filter(this::isVideo)
 //                Frame Rate
                 .filter(x -> {
                     if (criteria.getFrameRate().isEmpty()) {
@@ -178,14 +173,9 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().equals(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
-                        || isEqualSize(x, criteria.getFileSize()))
+                        || isMinorSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
-                .filter(x -> {
-                            FFmpegStream stream = getStreamFFprobe(x);
-                            assert stream != null;
-                            return stream.nb_frames < 1;
-                        }
-                )
+                .filter(this::isAudio)
 //        CHANNEL
                 .filter(x -> {
                     FFmpegStream stream = getStreamFFprobe(x);
@@ -216,7 +206,8 @@ public class MediaFileModel {
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
                     ((AudioFileAsset) fileZ).setAudioCodec(stream.codec_name);
-
+                    ((AudioFileAsset) fileZ).setChannels(stream.channels);
+//                    System.out.println("Test=" + stream.channels);
                     fileList.add(fileZ);
                 });
     }
@@ -228,7 +219,6 @@ public class MediaFileModel {
     private FFmpegStream getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
-            System.out.println(x.getParent().toString().concat("\\" + x.getFileName().toString()));
             probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -259,9 +249,9 @@ public class MediaFileModel {
      * @param size Input long for compare.
      * @return the Boolean.
      */
-    private boolean isEqualSize(final Path x, final long size) {
+    private boolean isMinorSize(final Path x, final long size) {
         try {
-            if (Files.size(x) == size) {
+            if (Files.size(x) <= size) {
                 return true;
             }
         } catch (IOException e) {
@@ -270,5 +260,40 @@ public class MediaFileModel {
         return false;
     }
 
+    /**
+     * This method ask if the path is video file.
+     *
+     * @param x input path.
+     * @return if is video.
+     */
+    private boolean isVideo(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null) {
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("video");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * This method ask if the path is video file.
+     *
+     * @param x input path.
+     * @return if is video.
+     */
+    private boolean isAudio(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null) {
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("audio");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
