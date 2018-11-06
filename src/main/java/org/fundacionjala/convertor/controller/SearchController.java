@@ -123,7 +123,7 @@ public class SearchController {
             videoCriteria.setResolutionWith(0);
             videoCriteria.setVideoCodec("");
             videoCriteria.setFileSize(0);
-
+            basicCriteria = videoCriteria;
         }
 
         showFilesInTable(mediaFileModel.searchFiles(basicCriteria));

@@ -23,6 +23,8 @@ import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
+import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.fundacionjala.convertor.utils.Util;
 
 import java.io.IOException;
@@ -148,7 +150,7 @@ public class MediaFileModel {
                     return stream.codec_name.equals(criteria.getVideoCodec());
                 })
                 .forEach(item -> {
-                    Asset fileZ = new Asset();
+                    Asset fileZ = new VideoFileAsset();
                     fileZ.setFileName(new Util().getStringName(item));
 
                     try {
@@ -193,10 +195,17 @@ public class MediaFileModel {
                     assert stream != null;
                     return stream.channels == criteria.getChannels();
                 })
+                .filter(x -> {
+                    FFmpegStream stream = getStreamFFprobe(x);
+                    if (criteria.getAudioCodec().isEmpty()) {
+                        return true;
+                    }
+                    return stream.codec_name.equals(criteria.getAudioCodec());
+                })
                 .forEach(item -> {
                     FFmpegStream stream = getStreamFFprobe(item);
                     FFmpegFormat format = getFormatFFprobe(item);
-                    Asset fileZ = new Asset();
+                    Asset fileZ = new AudioFileAsset();
                     fileZ.setFileName(new Util().getStringName(item));
 
                     try {
@@ -206,6 +215,7 @@ public class MediaFileModel {
                     }
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
+                    ((AudioFileAsset) fileZ).setAudioCodec(stream.codec_name);
 
                     fileList.add(fileZ);
                 });
@@ -218,6 +228,7 @@ public class MediaFileModel {
     private FFmpegStream getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
+            System.out.println(x.getParent().toString().concat("\\" + x.getFileName().toString()));
             probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
         } catch (IOException e) {
             e.printStackTrace();
