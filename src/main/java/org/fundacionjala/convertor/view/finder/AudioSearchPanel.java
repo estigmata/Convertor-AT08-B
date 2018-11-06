@@ -38,7 +38,7 @@ public class AudioSearchPanel extends JPanel {
      * Constructor.
      */
     public AudioSearchPanel() {
-        audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+        audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAY2"});
         channel = new JComboBox<>(new String[]{"0", "1", "2", "3"});
         initComponents();
     }
