@@ -21,19 +21,18 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
-    private ResultTable resultTable;
+    private FilesPanel filesPanel;
 
     /**
      * Constructor.
      */
     ResultTablePanel() {
-        resultTable = new ResultTable();
+        filesPanel = new FilesPanel();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
@@ -43,19 +42,19 @@ public class ResultTablePanel extends JPanel {
     /**
      * Initialization of components.
      */
-    void initComponents() {
+    private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //Panel for the Search table.
         this.add(new JLabel("Files:"));
-        this.add(new JScrollPane(resultTable));
+        this.add(new JScrollPane(filesPanel));
     }
 
     /**
-     * Getter for the result table.
+     * Getter of the Files Panel.
      *
-     * @return the Result table.
+     * @return the Files panel object.
      */
-    public DefaultTableModel getResultTable() {
-        return resultTable.getDefaultTableModel();
+    public FilesPanel getFilesPanel() {
+        return filesPanel;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * @VideoFinderPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @ConvertButton.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -13,23 +13,28 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.view.finder;
+package org.fundacionjala.convertor.view.buttonsresultpanel;
 
+import org.fundacionjala.convertor.model.objectfile.Asset;
 
-import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 /**
- * Class for the Video Finder Panel, this will have the special advanced method for Videos.
+ * Class for convert the file in the dynamic panel.
  *
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public class VideoFinderPanel extends FinderPanel {
+public class ConvertButton extends JButton {
     /**
-     * Initial Constructor.
+     * Constructor for the button for the conversion.
+     *
+     * @param file input of the list.
      */
-    public VideoFinderPanel() {
-        super();
-        multimediaBox = new JComboBox<>(new String[]{"mp4", "avi", "flv"});
+    public ConvertButton(final Asset file) {
+        this.setText("[Convert]");
+        this.addActionListener(x -> {
+//            System.out.println("Convert this:"+file.getPath()+"\\"+file.getFileName()+"."+file.getExtension());
+        });
     }
 }
