@@ -44,7 +44,8 @@ public class Util {
      * @return Value of return of String Type.
      */
     public String getExtension(final String fileName) {
-        return fileName.split("\\.")[1];
+        String[] aux = fileName.split("\\.");
+        return aux.length == 1 ? "" : aux[1];
     }
 
     /**

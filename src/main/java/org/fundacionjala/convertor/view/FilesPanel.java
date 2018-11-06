@@ -68,7 +68,7 @@ public class FilesPanel extends JPanel {
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         for (Asset file : files) {
             JPanel panel = new JPanel();
-            panel.add(new JLabel(file.getFileName() + file.getExtension()));
+            panel.add(new JLabel(file.getFileName().concat(".").concat(file.getExtension())));
             JPanel btnPanel = new JPanel();
             btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
             btnPanel.add(new PlayButton(file));

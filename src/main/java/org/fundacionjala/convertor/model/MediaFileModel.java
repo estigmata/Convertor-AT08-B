@@ -125,6 +125,9 @@ public class MediaFileModel {
                     }
                     FFmpegStream stream = getStreamFFprobe(x);
                     assert stream != null;
+                    if (stream.display_aspect_ratio == null) {
+                        return false;
+                    }
                     return stream.display_aspect_ratio.equals(criteria.getAspectRatio());
                 })
 ////                WxH
@@ -142,7 +145,9 @@ public class MediaFileModel {
                     if (criteria.getVideoCodec().isEmpty()) {
                         return true;
                     }
-                    return stream.codec_name.equals(criteria.getVideoCodec());
+                    System.out.println("FILENAME" + x.getFileName());
+                    System.out.println(stream.codec_name);
+                    return stream.codec_name.toUpperCase().equals(criteria.getVideoCodec());
                 })
                 .forEach(item -> {
                     Asset fileZ = new VideoFileAsset();
