@@ -94,7 +94,7 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
-        this.add(new Label("Output file?"), bagConstraints);
+        this.add(new Label("Output file"), bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
         this.add(outputPath, bagConstraints);
