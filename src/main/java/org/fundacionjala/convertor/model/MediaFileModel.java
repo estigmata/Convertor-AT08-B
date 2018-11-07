@@ -19,7 +19,6 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
-import org.apache.commons.lang3.math.Fraction;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
@@ -43,6 +42,7 @@ import java.util.ArrayList;
 public class MediaFileModel {
     private ArrayList<Asset> fileList;
     private FFprobe ffprobe = new FFprobe("C:\\ffmpeg\\bin\\ffprobe.exe");
+
 
     /**
      * Constructor for extract the files.
@@ -102,6 +102,7 @@ public class MediaFileModel {
      * @throws IOException the exception of the walk function.
      */
     private void searchVideo(final AdvancedCriteriaVideo criteria, final ArrayList<Asset> list) throws IOException {
+        final int mil = 1000;
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
@@ -138,7 +139,7 @@ public class MediaFileModel {
                     }
                     FFmpegStream stream = getStreamFFprobe(x);
                     System.out.println(x.getFileName());
-                    System.out.println(stream.width +"*"+stream.height);
+                    System.out.println(stream.width + "*" + stream.height);
                     return stream.width == criteria.getResolutionWith()
                             && stream.height == criteria.getResolutionHeight();
                 })
@@ -166,8 +167,8 @@ public class MediaFileModel {
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
                     ((VideoFileAsset) fileZ).setAspectRatio(stream.display_aspect_ratio);
                     int fr = Integer.parseInt(stream.avg_frame_rate.toString().split("/")[0]);
-                    ((VideoFileAsset) fileZ).setFrameRate(String.valueOf(fr>1000 ? fr/1000 : fr));
-                    ((VideoFileAsset) fileZ).setResolution(stream.width +"*"+stream.height);
+                    ((VideoFileAsset) fileZ).setFrameRate(String.valueOf(fr > mil ? fr / mil : fr));
+                    ((VideoFileAsset) fileZ).setResolution(stream.width + "*" + stream.height);
                     ((VideoFileAsset) fileZ).setVideoCodec(stream.codec_name);
                     fileList.add(fileZ);
                 });

@@ -119,7 +119,8 @@ public class SearchController {
         if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
             AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
 
-            String[] resolution = viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel().getResolution().getSelectedItem().toString().split("\\*");
+            String[] resolution = viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+                    .getResolution().getSelectedItem().toString().split("\\*");
             videoCriteria.setFilePath(viewer.getPath());
             videoCriteria.setFileName(viewer.getFileName());
             videoCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
