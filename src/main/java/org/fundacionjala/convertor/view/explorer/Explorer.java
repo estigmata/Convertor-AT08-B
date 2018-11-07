@@ -35,6 +35,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -100,11 +101,12 @@ public class Explorer extends JPanel {
         mTree.setShowsRootHandles(true);
         mTree.setEditable(false);
 
+        final int explorerWidth = 430;
+        final int explorerHeight = 230;
+//        mTree.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         JScrollPane s = new JScrollPane(mTree);
-        final int explorerWidth = 450;
-        final int explorerHeight = 300;
-        mTree.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
-        add(s, new GridLayout(0, 1));
+        s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
+        add(s, BorderLayout.CENTER);
 
         setVisible(true);
     }
