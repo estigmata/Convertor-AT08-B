@@ -18,13 +18,14 @@ package org.fundacionjala.convertor.model.Criteria;
 /**
  * Class of the criteria for convert the video file.
  */
-public class ConvertVideo extends Criteria {
+public class ConvertCriteriaVideo extends Criteria {
     private String frameRate;
     private String aspectRatio;
     private int resolutionWith;
     private int resolutionHeight;
     private String videoCodec;
     private String audioCodec;
+    private String format;
 
     @Override
     public void setFileName(final String fileName) {
@@ -114,4 +115,22 @@ public class ConvertVideo extends Criteria {
     public void setAudioCodec(final String audioCodec) {
         this.audioCodec = audioCodec;
     }
+
+    /**
+     *
+     * @return .
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     *
+     * @param format .
+     */
+
+    public void setFormat(final String format) {
+        this.format = format;
+    }
+
 }

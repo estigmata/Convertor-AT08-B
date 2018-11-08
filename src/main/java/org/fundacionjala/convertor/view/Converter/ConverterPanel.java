@@ -87,6 +87,27 @@ public class ConverterPanel extends JPanel {
 
     }
 
+    /**
+     * @return .
+     */
+    public BasicConverterPanel getBasicConverterPanel() {
+        return basicConverterPanel;
+    }
+
+    /**
+     * @return .
+     */
+    public AudioConverterPanel getAudioConverterPanel() {
+        return audioConverterPanel;
+    }
+
+    /**
+     * @return .
+     */
+    public VideoConverterPanel getVideoConverterPanel() {
+        return videoConverterPanel;
+    }
+
 }
 
 

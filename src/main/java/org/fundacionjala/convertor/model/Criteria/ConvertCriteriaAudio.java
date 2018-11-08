@@ -18,9 +18,10 @@ package org.fundacionjala.convertor.model.Criteria;
 /**
  * Class of the criteria for convert the criteria of the audio file.
  */
-public class ConvertAudio extends Criteria {
+public class ConvertCriteriaAudio extends Criteria {
     private int channels;
     private String audioCodec;
+    private String format;
 
     @Override
     public void setFileName(final String fileName) {
@@ -53,5 +54,22 @@ public class ConvertAudio extends Criteria {
      */
     public void setAudioCodec(final String audioCodec) {
         this.audioCodec = audioCodec;
+    }
+
+    /**
+     *
+     * @return .
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     *
+     * @param format .
+     */
+
+    public void setFormat(final String format) {
+        this.format = format;
     }
 }
