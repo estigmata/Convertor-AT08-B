@@ -12,7 +12,7 @@
  * Sud, Cochabamba, Bolivia. www.fundacion-jala.org if you need additional
  * information or have any questions.
  */
-package org.fundacionjala.convertor.view.finder;
+package org.fundacionjala.convertor.view.Converter;
 
 
 import javax.swing.BorderFactory;
@@ -31,7 +31,10 @@ import java.awt.Label;
  * @author Abel Mallcu Chiri.
  * @version 1.0
  */
-public class VideoSearchPanel extends JPanel {
+public class VideoConverterPanel extends JPanel {
+
+
+    private JComboBox<String> fomat;
     protected JComboBox<String> frameRate;
     private JComboBox<String> aspectRatio;
     protected JComboBox<String> resolution;
@@ -40,12 +43,10 @@ public class VideoSearchPanel extends JPanel {
     private String title;
 
     /**
-     * Constuctor.
-     *
      * @param title .
      */
 
-    public VideoSearchPanel(final String title) {
+    public VideoConverterPanel(final String title) {
         this.title = title;
         frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
         aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
@@ -54,6 +55,8 @@ public class VideoSearchPanel extends JPanel {
         videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
                 "AVS", "MJPEG", "VP7", "WMV"});
         audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+        fomat = new JComboBox<>(new String[]{"MP4", "FLV", "AVI", "3GP"});
+
         initComponents();
     }
 
@@ -65,6 +68,7 @@ public class VideoSearchPanel extends JPanel {
         final int two = 2;
         final int three = 3;
         final int four = 4;
+        final int five = 5;
         TitledBorder title = BorderFactory.createTitledBorder(this.title);
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
@@ -101,6 +105,13 @@ public class VideoSearchPanel extends JPanel {
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
         this.add(audioCodec, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = five;
+        this.add(new JLabel("Format"), bagConstraints);
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = five;
+        this.add(fomat, bagConstraints);
     }
 
     /**
@@ -110,12 +121,6 @@ public class VideoSearchPanel extends JPanel {
         return frameRate;
     }
 
-    /**
-     * @param frameRate .
-     */
-    public void setFrameRate(final JComboBox<String> frameRate) {
-        this.frameRate = frameRate;
-    }
 
     /**
      * @return .
@@ -124,12 +129,6 @@ public class VideoSearchPanel extends JPanel {
         return aspectRatio;
     }
 
-    /**
-     * @param aspectRatio .
-     */
-    public void setAspectRatio(final JComboBox<String> aspectRatio) {
-        this.aspectRatio = aspectRatio;
-    }
 
     /**
      * @return .
@@ -138,12 +137,6 @@ public class VideoSearchPanel extends JPanel {
         return resolution;
     }
 
-    /**
-     * @param resolution .
-     */
-    public void setResolution(final JComboBox<String> resolution) {
-        this.resolution = resolution;
-    }
 
     /**
      * @return .
@@ -152,12 +145,6 @@ public class VideoSearchPanel extends JPanel {
         return videoCodec;
     }
 
-    /**
-     * @param videoCodec .
-     */
-    public void setVideoCodec(final JComboBox<String> videoCodec) {
-        this.videoCodec = videoCodec;
-    }
 
     /**
      * @return .
@@ -167,9 +154,9 @@ public class VideoSearchPanel extends JPanel {
     }
 
     /**
-     * @param audioCodec .
+     * @return .
      */
-    public void setAudioCodec(final JComboBox<String> audioCodec) {
-        this.audioCodec = audioCodec;
+    public JComboBox<String> getFomat() {
+        return fomat;
     }
 }

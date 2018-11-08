@@ -15,24 +15,28 @@
 
 package org.fundacionjala.convertor.view;
 
-import org.fundacionjala.convertor.view.finder.VideoSearchPanel;
+import org.fundacionjala.convertor.view.Converter.ConverterPanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import java.awt.Color;
+
 
 /**
  *
  */
 public class DownPanel extends JPanel {
     private ResultTablePanel resultTablePanel;
-    private VideoSearchPanel videoSearchPanel;
+    private ConverterPanel converterPanel;
 
     /**
      *
      */
     public DownPanel() {
         resultTablePanel = new ResultTablePanel();
-        videoSearchPanel = new VideoSearchPanel("Converter Settings");
+
+        converterPanel = new ConverterPanel();
+        //    videoSearchPanel = new VideoSearchPanel("Converter Settings");
         initComponents();
     }
 
@@ -40,19 +44,12 @@ public class DownPanel extends JPanel {
      *
      */
     private void initComponents() {
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
         this.add(resultTablePanel);
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        rightPanel.add(new JLabel("SETTINGS"));
-        rightPanel.add(new JLabel("Archive source path:"));
-        rightPanel.add(new JTextField());
-        rightPanel.add(new JLabel("Archive destination path:"));
-        rightPanel.add(new JTextField());
-        rightPanel.add(new JLabel("Convert to:"));
-        rightPanel.add(new JComboBox<>());
-        rightPanel.add(videoSearchPanel);
-        this.add(rightPanel);
+        converterPanel.setBackground(Color.BLACK);
+        this.add(converterPanel);
+
     }
 
     /**
