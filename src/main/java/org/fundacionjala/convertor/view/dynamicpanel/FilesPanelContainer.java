@@ -1,5 +1,5 @@
 /*
- * @FilesPanel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @FilesPanelContainer.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -13,16 +13,19 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.view;
+package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.view.buttonsresultpanel.ConvertButton;
 import org.fundacionjala.convertor.view.buttonsresultpanel.PlayButton;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,13 +40,14 @@ import java.util.ArrayList;
  * @author Nestor Otondo [nestor.otondo@fundacion-jala.org]
  * @version 1.0
  */
-public class FilesPanel extends JPanel {
+public class FilesPanelContainer extends JPanel {
     private JPanel filesContainer;
 
     /**
      * Constructor Files Panel class.
      */
-    public FilesPanel() {
+    public FilesPanelContainer() {
+        setBorder(BorderFactory.createTitledBorder("Files"));
         setLayout(new BorderLayout());
         filesContainer = new JPanel(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -67,15 +71,18 @@ public class FilesPanel extends JPanel {
         gbConstraints.weightx = 1;
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         for (Asset file : files) {
-            JPanel panel = new JPanel();
-            panel.add(new JLabel(file.getFileName().concat(".").concat(file.getExtension())));
-            JPanel btnPanel = new JPanel();
-            btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-            btnPanel.add(new PlayButton(file));
-            btnPanel.add(new ConvertButton(file));
-            panel.add(btnPanel);
-            panel.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
-            filesContainer.add(panel, gbConstraints, 0);
+            Files itemFile = new Files(file);
+            itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
+            itemFile.add(new JLabel("File Name: \t" + file.getFileName().concat(".").concat(file.getExtension())));
+//            itemFile.add(new JLabel("Size:\t" + String.valueOf(file.getFileSize())));
+//            itemFile.add(new JLabel("Path:\t" + file.getPath()));
+//            JPanel btnPanel = new JPanel();
+//            btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+//            btnPanel.add(new PlayButton(file));
+//            btnPanel.add(new ConvertButton(file));
+//            item.add(btnPanel);
+            itemFile.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
+            filesContainer.add(itemFile, gbConstraints, 0);
         }
         validate();
         repaint();
