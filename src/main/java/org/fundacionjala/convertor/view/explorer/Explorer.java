@@ -40,7 +40,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.io.File;
 
 /**
@@ -103,7 +102,6 @@ public class Explorer extends JPanel {
 
         final int explorerWidth = 430;
         final int explorerHeight = 230;
-//        mTree.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         add(s, BorderLayout.CENTER);
