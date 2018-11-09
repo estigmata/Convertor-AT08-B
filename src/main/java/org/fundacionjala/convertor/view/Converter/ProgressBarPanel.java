@@ -14,9 +14,7 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
-
 import javax.swing.BorderFactory;
-
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.TitledBorder;
@@ -32,9 +30,7 @@ import java.awt.Label;
  */
 public class ProgressBarPanel extends JPanel {
 
-
     protected JProgressBar status;
-
 
     /**
      * Constructor.
@@ -54,20 +50,15 @@ public class ProgressBarPanel extends JPanel {
         TitledBorder title = BorderFactory.createTitledBorder("Progres Status");
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
-
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
-
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         this.add(new Label("Status"), bagConstraints);
-
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         status.setValue(state);
         this.add(status, bagConstraints);
-
-
     }
 
     /**

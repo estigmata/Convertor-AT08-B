@@ -29,8 +29,6 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class ConverterPanel extends JPanel {
-
-
     private BasicConverterPanel basicConverterPanel;
     private AudioConverterPanel audioConverterPanel;
     private VideoConverterPanel videoConverterPanel;
@@ -43,23 +41,17 @@ public class ConverterPanel extends JPanel {
         TitledBorder title = BorderFactory.createTitledBorder("Converter");
         this.setBorder(title);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
         basicConverterPanel = new BasicConverterPanel();
         this.add(basicConverterPanel);
-
-
         audioConverterPanel = new AudioConverterPanel();
         audioConverterPanel.setVisible(false);
         this.add(audioConverterPanel);
-
         videoConverterPanel = new VideoConverterPanel("Video Advanced Search");
         videoConverterPanel.setVisible(false);
         this.add(videoConverterPanel);
-
         progressBarPanel = new ProgressBarPanel();
         progressBarPanel.setVisible(false);
         this.add(progressBarPanel);
-
         basicConverterPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -84,7 +76,6 @@ public class ConverterPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-
     }
 
     /**
@@ -114,9 +105,4 @@ public class ConverterPanel extends JPanel {
     public ProgressBarPanel getProgressBarPanel() {
         return progressBarPanel;
     }
-
-
 }
-
-
-
