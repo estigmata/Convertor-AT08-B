@@ -34,6 +34,7 @@ public class ConverterPanel extends JPanel {
     private BasicConverterPanel basicConverterPanel;
     private AudioConverterPanel audioConverterPanel;
     private VideoConverterPanel videoConverterPanel;
+    private ProgressBarPanel progressBarPanel;
 
     /**
      * Constructor.
@@ -48,15 +49,16 @@ public class ConverterPanel extends JPanel {
 
 
         audioConverterPanel = new AudioConverterPanel();
-
         audioConverterPanel.setVisible(false);
         this.add(audioConverterPanel);
 
         videoConverterPanel = new VideoConverterPanel("Video Advanced Search");
-        this.add(videoConverterPanel);
-
         videoConverterPanel.setVisible(false);
         this.add(videoConverterPanel);
+
+        progressBarPanel = new ProgressBarPanel();
+        progressBarPanel.setVisible(false);
+        this.add(progressBarPanel);
 
         basicConverterPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
@@ -65,16 +67,14 @@ public class ConverterPanel extends JPanel {
                 if (a.equals("Video")) {
                     audioConverterPanel.setVisible(false);
                     videoConverterPanel.setVisible(true);
+                    progressBarPanel.setVisible(true);
                 }
                 if (a.equals("Audio")) {
                     audioConverterPanel.setVisible(true);
                     videoConverterPanel.setVisible(false);
+                    progressBarPanel.setVisible(true);
                 }
-                if (a.equals("All")) {
-                    audioConverterPanel.setVisible(false);
-                    videoConverterPanel.setVisible(false);
 
-                }
             }
         });
         initComponents();
@@ -107,6 +107,14 @@ public class ConverterPanel extends JPanel {
     public VideoConverterPanel getVideoConverterPanel() {
         return videoConverterPanel;
     }
+
+    /**
+     * @return .
+     */
+    public ProgressBarPanel getProgressBarPanel() {
+        return progressBarPanel;
+    }
+
 
 }
 
