@@ -4,7 +4,7 @@ import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
-
+import org.fundacionjala.convertor.model.Criteria.Criteria;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,10 +27,9 @@ public class ConverterModel {
 
     /**
      * Method to convert multimedia files.
-     * @return boolean.
+     * @param criteria object.
      */
-
-    public boolean convertFile() {
+    public void convertFile(final Criteria criteria) {
          File file = new File("C:\\ffmpeg\\videoPrueba\\Alize - LA ISLA BONITA (EN VIVO).avi");
          final int width = 640;
          final int height = 480;
@@ -59,6 +58,6 @@ public class ConverterModel {
 
         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
         executor.createTwoPassJob(builder).run();
-        return false;
+
     }
 }

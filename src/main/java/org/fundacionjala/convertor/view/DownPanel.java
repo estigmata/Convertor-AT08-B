@@ -27,6 +27,8 @@ import java.awt.Color;
  */
 public class DownPanel extends JPanel {
     private ResultTablePanel resultTablePanel;
+
+
     private ConverterPanel converterPanel;
 
     /**
@@ -61,4 +63,11 @@ public class DownPanel extends JPanel {
         return resultTablePanel;
     }
 
+    /**
+     * @return .
+     */
+
+    public ConverterPanel getConverterPanel() {
+        return converterPanel;
+    }
 }

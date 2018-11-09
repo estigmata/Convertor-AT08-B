@@ -37,7 +37,7 @@ public class BasicConverterPanel extends JPanel {
 
 
     private JButton converterButton;
-    private static JTextField outputPath;
+    private JTextField outputPath;
     private JTextField outputName;
     private JTextField currentPath;
     private BrowseChooser browseChooser;
@@ -127,7 +127,7 @@ public class BasicConverterPanel extends JPanel {
     /**
      * @return .
      */
-    public static JTextField getOutputPath() {
+    public JTextField getOutputPath() {
         return outputPath;
     }
 
@@ -158,4 +158,6 @@ public class BasicConverterPanel extends JPanel {
     public JComboBox<String> getMultimediaBox() {
         return multimediaBox;
     }
+
+
 }
