@@ -29,11 +29,10 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class ConverterPanel extends JPanel {
-
-
     private BasicConverterPanel basicConverterPanel;
     private AudioConverterPanel audioConverterPanel;
     private VideoConverterPanel videoConverterPanel;
+    private ProgressBarPanel progressBarPanel;
 
     /**
      * Constructor.
@@ -42,22 +41,17 @@ public class ConverterPanel extends JPanel {
         TitledBorder title = BorderFactory.createTitledBorder("Converter");
         this.setBorder(title);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
         basicConverterPanel = new BasicConverterPanel();
         this.add(basicConverterPanel);
-
-
         audioConverterPanel = new AudioConverterPanel();
-
         audioConverterPanel.setVisible(false);
         this.add(audioConverterPanel);
-
         videoConverterPanel = new VideoConverterPanel("Video Advanced Search");
-        this.add(videoConverterPanel);
-
         videoConverterPanel.setVisible(false);
         this.add(videoConverterPanel);
-
+        progressBarPanel = new ProgressBarPanel();
+        progressBarPanel.setVisible(false);
+        this.add(progressBarPanel);
         basicConverterPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -65,16 +59,14 @@ public class ConverterPanel extends JPanel {
                 if (a.equals("Video")) {
                     audioConverterPanel.setVisible(false);
                     videoConverterPanel.setVisible(true);
+                    progressBarPanel.setVisible(true);
                 }
                 if (a.equals("Audio")) {
                     audioConverterPanel.setVisible(true);
                     videoConverterPanel.setVisible(false);
+                    progressBarPanel.setVisible(true);
                 }
-                if (a.equals("All")) {
-                    audioConverterPanel.setVisible(false);
-                    videoConverterPanel.setVisible(false);
 
-                }
             }
         });
         initComponents();
@@ -84,7 +76,6 @@ public class ConverterPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-
     }
 
     /**
@@ -108,7 +99,10 @@ public class ConverterPanel extends JPanel {
         return videoConverterPanel;
     }
 
+    /**
+     * @return .
+     */
+    public ProgressBarPanel getProgressBarPanel() {
+        return progressBarPanel;
+    }
 }
-
-
-
