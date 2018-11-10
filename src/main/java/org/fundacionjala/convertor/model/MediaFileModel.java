@@ -23,6 +23,7 @@ import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.model.objectfile.AssetFactory;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.fundacionjala.convertor.utils.Util;
@@ -40,9 +41,12 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class MediaFileModel {
-    private ArrayList<Asset> fileList;
     private FFprobe ffprobe = new FFprobe("C:\\ffmpeg\\bin\\ffprobe.exe");
+    private AssetFactory assetFactory;
 
+    private static final String VIDEO = "Video";
+    private static final String AUDIO = "Audio";
+    private static final String ALL = "All";
 
     /**
      * Constructor for extract the files.
@@ -50,7 +54,7 @@ public class MediaFileModel {
      * @throws IOException because the Path.
      */
     public MediaFileModel() throws IOException {
-
+        assetFactory = new AssetFactory();
     }
 
     /**
@@ -61,24 +65,20 @@ public class MediaFileModel {
      * @throws IOException Exception.
      */
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
-        fileList = new ArrayList<>();
         if (criteria instanceof AdvancedCriteriaVideo) {
-            AdvancedCriteriaVideo auxVideo = (AdvancedCriteriaVideo) criteria;
-            searchVideo(auxVideo, fileList);
-            return fileList;
+            return searchVideo((AdvancedCriteriaVideo) criteria);
         }
         if (criteria instanceof AdvancedCriteriaAudio) {
-            AdvancedCriteriaAudio auxAudio = (AdvancedCriteriaAudio) criteria;
-            searchAudio(auxAudio, fileList);
-            return fileList;
+            return searchAudio((AdvancedCriteriaAudio) criteria);
         }
+        ArrayList<Asset> fileList = new ArrayList<>();
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().equals(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 .forEach(item -> {
-                    Asset fileZ = new Asset();
+                    Asset fileZ = assetFactory.createAsset(ALL);
                     fileZ.setFileName(new Util().getStringName(item));
 
                     try {
@@ -98,11 +98,12 @@ public class MediaFileModel {
      * Class for search Video.
      *
      * @param criteria Advanced criteria of video.
-     * @param list     of the Results.
+     * @return The Array list of video file.
      * @throws IOException the exception of the walk function.
      */
-    private void searchVideo(final AdvancedCriteriaVideo criteria, final ArrayList<Asset> list) throws IOException {
+    private ArrayList<Asset> searchVideo(final AdvancedCriteriaVideo criteria) throws IOException {
         final int mil = 1000;
+        ArrayList<Asset> list = new ArrayList<>();
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
@@ -138,8 +139,6 @@ public class MediaFileModel {
                         return true;
                     }
                     FFmpegStream stream = getStreamFFprobe(x);
-                    System.out.println(x.getFileName());
-                    System.out.println(stream.width + "*" + stream.height);
                     return stream.width == criteria.getResolutionWith()
                             && stream.height == criteria.getResolutionHeight();
                 })
@@ -149,13 +148,11 @@ public class MediaFileModel {
                     if (criteria.getVideoCodec().isEmpty()) {
                         return true;
                     }
-                    System.out.println("FILENAME" + x.getFileName());
-                    System.out.println(stream.codec_name);
                     return stream.codec_name.toUpperCase().equals(criteria.getVideoCodec());
                 })
                 .forEach(item -> {
                     FFmpegStream stream = getStreamFFprobe(item);
-                    Asset fileZ = new VideoFileAsset();
+                    VideoFileAsset fileZ = (VideoFileAsset) assetFactory.createAsset(VIDEO);
                     fileZ.setFileName(new Util().getStringName(item));
 
                     try {
@@ -165,23 +162,25 @@ public class MediaFileModel {
                     }
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
-                    ((VideoFileAsset) fileZ).setAspectRatio(stream.display_aspect_ratio);
+                    fileZ.setAspectRatio(stream.display_aspect_ratio);
                     int fr = Integer.parseInt(stream.avg_frame_rate.toString().split("/")[0]);
-                    ((VideoFileAsset) fileZ).setFrameRate(String.valueOf(fr > mil ? fr / mil : fr));
-                    ((VideoFileAsset) fileZ).setResolution(stream.width + "*" + stream.height);
-                    ((VideoFileAsset) fileZ).setVideoCodec(stream.codec_name);
-                    fileList.add(fileZ);
+                    fileZ.setFrameRate(String.valueOf(fr > mil ? fr / mil : fr));
+                    fileZ.setResolution(stream.width + "*" + stream.height);
+                    fileZ.setVideoCodec(stream.codec_name);
+                    list.add(fileZ);
                 });
+        return list;
     }
 
     /**
      * Class of the search audio.
      *
      * @param criteria Advanced criteria audio.
-     * @param list     of the audio results.
+     * @return The Array list of audio file.
      * @throws IOException of the walk function.
      */
-    private void searchAudio(final AdvancedCriteriaAudio criteria, final ArrayList<Asset> list) throws IOException {
+    private ArrayList<Asset> searchAudio(final AdvancedCriteriaAudio criteria) throws IOException {
+        ArrayList<Asset> list = new ArrayList<>();
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
@@ -208,8 +207,7 @@ public class MediaFileModel {
                 })
                 .forEach(item -> {
                     FFmpegStream stream = getStreamFFprobe(item);
-                    FFmpegFormat format = getFormatFFprobe(item);
-                    Asset fileZ = new AudioFileAsset();
+                    AudioFileAsset fileZ = (AudioFileAsset) assetFactory.createAsset(AUDIO);
                     fileZ.setFileName(new Util().getStringName(item));
 
                     try {
@@ -219,11 +217,11 @@ public class MediaFileModel {
                     }
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
-                    ((AudioFileAsset) fileZ).setAudioCodec(stream.codec_name);
-                    ((AudioFileAsset) fileZ).setChannels(stream.channels);
-//                    System.out.println("Test=" + stream.channels);
-                    fileList.add(fileZ);
+                    fileZ.setAudioCodec(stream.codec_name);
+                    fileZ.setChannels(stream.channels);
+                    list.add(fileZ);
                 });
+        return list;
     }
 
     /**

@@ -22,6 +22,7 @@ import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.model.Criteria.CriteriaFactory;
 import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
@@ -58,6 +59,8 @@ public class SearchController {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
+    private CriteriaFactory criteriaFactory;
+
     /**
      * Constructor.
      */
@@ -75,6 +78,7 @@ public class SearchController {
         viewer.initComponents();
         viewer.configWindow();
         this.validator = new Validator();
+        criteriaFactory = new CriteriaFactory();
         log.info();
     }
 
@@ -117,48 +121,45 @@ public class SearchController {
      * @throws IOException defined IOException.
      */
     public void findFile() throws IOException {
-        Criteria basicCriteria = new Criteria();
-
         if (viewer.getComboMultimedia().getSelectedItem().equals(ALL)) {
-            basicCriteria.setFilePath(viewer.getPath());
-            basicCriteria.setFileName(viewer.getFileName());
-            basicCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            Criteria criteria = criteriaFactory.createCriteria(ALL);
+            criteria.setFilePath(viewer.getPath());
+            criteria.setFileName(viewer.getFileName());
+            criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            showFilesInTable(mediaFileModel.searchFiles(criteria));
         }
         if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
-            AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-            audioCriteria.setFilePath(viewer.getPath());
-            audioCriteria.setFileName(viewer.getFileName());
-            audioCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
-            audioCriteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
+            AdvancedCriteriaAudio criteria = (AdvancedCriteriaAudio) criteriaFactory.createCriteria(AUDIO);
+            criteria.setFilePath(viewer.getPath());
+            criteria.setFileName(viewer.getFileName());
+            criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            criteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
                     .getAudioCodec().getSelectedItem().toString());
             String aux = viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
                     .getChannel().getSelectedItem().toString();
-            audioCriteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
-            basicCriteria = audioCriteria;
+            criteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
+            showFilesInTable(mediaFileModel.searchFiles(criteria));
         }
 
         if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
-            AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
-
+            AdvancedCriteriaVideo criteria = (AdvancedCriteriaVideo) criteriaFactory.createCriteria(VIDEO);
             String[] resolution = viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getResolution().getSelectedItem().toString().split("\\*");
-            videoCriteria.setFilePath(viewer.getPath());
-            videoCriteria.setFileName(viewer.getFileName());
-            videoCriteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
-            videoCriteria.setAspectRatio(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+            criteria.setFilePath(viewer.getPath());
+            criteria.setFileName(viewer.getFileName());
+            criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
+            criteria.setAspectRatio(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getAspectRatio().getSelectedItem().toString());
-            videoCriteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+            criteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
-            videoCriteria.setFrameRate(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+            criteria.setFrameRate(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getFrameRate().getSelectedItem().toString());
-            videoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
-            videoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
-            videoCriteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
+            criteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
+            criteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
+            criteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
-            basicCriteria = videoCriteria;
+            showFilesInTable(mediaFileModel.searchFiles(criteria));
         }
-
-        showFilesInTable(mediaFileModel.searchFiles(basicCriteria));
     }
 
     /**
