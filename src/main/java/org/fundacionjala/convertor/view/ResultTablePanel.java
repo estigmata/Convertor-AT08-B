@@ -20,22 +20,22 @@ import org.fundacionjala.convertor.view.dynamicpanel.FilesPanelContainer;
 import org.fundacionjala.convertor.view.dynamicpanel.Information;
 
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
+import java.awt.Dimension;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
     private FilesPanelContainer filesPanel;
+    private Information informationPanel;
 
     /**
      * Constructor.
      */
     ResultTablePanel() {
         filesPanel = new FilesPanelContainer();
+        informationPanel = new Information();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
@@ -49,7 +49,12 @@ public class ResultTablePanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         //Panel for the Search table.
         this.add(filesPanel);
-        this.add(new Information());
+        final int widthInfo = 200;
+        final int heightInfo = 200;
+        informationPanel.setPreferredSize(new Dimension(widthInfo, heightInfo));
+        informationPanel.showInformation();
+        this.add(informationPanel);
+
     }
 
     /**

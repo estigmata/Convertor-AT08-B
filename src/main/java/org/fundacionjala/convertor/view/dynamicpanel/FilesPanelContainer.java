@@ -16,8 +16,6 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
-import org.fundacionjala.convertor.view.buttonsresultpanel.ConvertButton;
-import org.fundacionjala.convertor.view.buttonsresultpanel.PlayButton;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -25,11 +23,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -73,14 +69,7 @@ public class FilesPanelContainer extends JPanel {
         for (Asset file : files) {
             Files itemFile = new Files(file);
             itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
-            itemFile.add(new JLabel("File Name: \t" + file.getFileName().concat(".").concat(file.getExtension())));
-//            itemFile.add(new JLabel("Size:\t" + String.valueOf(file.getFileSize())));
-//            itemFile.add(new JLabel("Path:\t" + file.getPath()));
-//            JPanel btnPanel = new JPanel();
-//            btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-//            btnPanel.add(new PlayButton(file));
-//            btnPanel.add(new ConvertButton(file));
-//            item.add(btnPanel);
+            itemFile.add(new JLabel(file.getFileName().concat(".").concat(file.getExtension())));
             itemFile.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
             filesContainer.add(itemFile, gbConstraints, 0);
         }

@@ -20,59 +20,156 @@ import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 
+/**
+ * This class is the panel of the information.
+ */
 public class Information extends JPanel {
+    private static JLabel path;
+    private static JLabel size;
+    private static JLabel extension;
 
+    private static JLabel videoCodec;
+    private static JLabel resolution;
+    private static JLabel aspectRatio;
+    private static JLabel frameRate;
+
+    private static JLabel audioCodec;
+    private static JLabel channels;
+
+    private JLabel pathLabel;
+    private JLabel sizeLabel;
+    private JLabel extensionLabel;
+
+    private static JLabel videoCodecLabel;
+    private static JLabel resolutionLabel;
+    private static JLabel aspectRatioLabel;
+    private static JLabel frameRateLabel;
+
+    private static JLabel audioCodecLabel;
+    private static JLabel channelsLabel;
+
+    /**
+     * The constructor starts with the basic panel.
+     */
     public Information() {
         setBorder(BorderFactory.createTitledBorder("Information of:"));
-//        setLocationRelativeTo(owner);
         this.setVisible(true);
+        path = new JLabel("");
+        size = new JLabel("");
+        extension = new JLabel("");
+        videoCodec = new JLabel("");
+        resolution = new JLabel("");
+        aspectRatio = new JLabel("");
+        frameRate = new JLabel("");
+        audioCodec = new JLabel("");
+        channels = new JLabel("");
+
+        pathLabel = new JLabel("Path :");
+        sizeLabel = new JLabel("Size :");
+        extensionLabel = new JLabel("Extension :");
+        videoCodecLabel = new JLabel("Video Codec :");
+        resolutionLabel = new JLabel("Resolution :");
+        aspectRatioLabel = new JLabel("Aspect Ratio :");
+        frameRateLabel = new JLabel("Frame Rate :");
+        audioCodecLabel = new JLabel("Audio Codec :");
+        channelsLabel = new JLabel("Channels :");
     }
 
-    public void showInformation(Asset file) {
-        setLayout(new GridLayout(3,2));
+    /**
+     * This method start the objects for the view in the panel.
+     */
+    public void showInformation() {
+        final int rows = 9;
+        final int cols = 2;
+        setLayout(new GridLayout(rows, cols));
 
-        add(new JLabel("Path:"));
-        add(new JLabel(file.getPath()));
+        add(pathLabel);
+        add(path);
 
-        add(new JLabel("Size:"));
-        add(new JLabel(String.valueOf(file.getFileSize())));
+        add(sizeLabel);
+        add(size);
 
+        add(extensionLabel);
+        add(extension);
 
-        add(new JLabel("Extension:"));
-        add(new JLabel(file.getExtension()));
+        add(videoCodecLabel);
+        add(videoCodec);
 
+        add(resolutionLabel);
+        add(resolution);
+
+        add(aspectRatioLabel);
+        add(aspectRatio);
+
+        add(frameRateLabel);
+        add(frameRate);
+
+        add(audioCodecLabel);
+        add(audioCodec);
+
+        add(channelsLabel);
+        add(channels);
+    }
+
+    /**
+     * This method set all the information depending about the type of file.
+     *
+     * @param file Input.
+     */
+    public static void setInformation(final Asset file) {
+        hideInformation(file);
+        path.setText(file.getPath());
+        size.setText(String.valueOf(file.getFileSize()));
+        extension.setText(file.getExtension());
         if (file instanceof VideoFileAsset) {
-            VideoFileAsset videoFileAsset = (VideoFileAsset) file;
-            setLayout(new GridLayout(7,2));
-            add(new JLabel("VideoCodec:"));
-            add(new JLabel(videoFileAsset.getVideoCodec()));
-
-            add(new JLabel("Resolution:"));
-            add(new JLabel(videoFileAsset.getResolution()));
-
-            add(new JLabel("Aspect Ratio:"));
-            add(new JLabel(videoFileAsset.getAspectRatio()));
-
-            add(new JLabel("Frame Rate:"));
-            add(new JLabel(videoFileAsset.getFrameRate()));
+            videoCodec.setText(((VideoFileAsset) file).getVideoCodec());
+            resolution.setText(((VideoFileAsset) file).getResolution());
+            aspectRatio.setText(((VideoFileAsset) file).getAspectRatio());
+            frameRate.setText(((VideoFileAsset) file).getFrameRate());
         }
         if (file instanceof AudioFileAsset) {
-            AudioFileAsset audioFileAsset = (AudioFileAsset) file;
-            setLayout(new GridLayout(5,2));
-
-            add(new JLabel("Audio Codec:"));
-            add(new JLabel(audioFileAsset.getAudioCodec()));
-
-            add(new JLabel("Channels:"));
-            add(new JLabel(String.valueOf(audioFileAsset.getChannels())));
+            audioCodec.setText(((AudioFileAsset) file).getAudioCodec());
+            channels.setText(String.valueOf(((AudioFileAsset) file).getChannels()));
         }
     }
 
+    /**
+     * This method hide the JObject for show only the appropriate information.
+     *
+     * @param file Input.
+     */
+    private static void hideInformation(final Asset file) {
+        videoCodecLabel.setVisible(false);
+        videoCodec.setVisible(false);
+        resolutionLabel.setVisible(false);
+        resolution.setVisible(false);
+        aspectRatioLabel.setVisible(false);
+        aspectRatio.setVisible(false);
+        frameRateLabel.setVisible(false);
+        frameRate.setVisible(false);
+        audioCodecLabel.setVisible(false);
+        audioCodec.setVisible(false);
+        channelsLabel.setVisible(false);
+        channels.setVisible(false);
+        if (file instanceof VideoFileAsset) {
+            videoCodecLabel.setVisible(true);
+            videoCodec.setVisible(true);
+            resolutionLabel.setVisible(true);
+            resolution.setVisible(true);
+            aspectRatioLabel.setVisible(true);
+            aspectRatio.setVisible(true);
+            frameRateLabel.setVisible(true);
+            frameRate.setVisible(true);
+        }
+        if (file instanceof AudioFileAsset) {
+            audioCodecLabel.setVisible(true);
+            audioCodec.setVisible(true);
+            channelsLabel.setVisible(true);
+            channels.setVisible(true);
+        }
+    }
 }

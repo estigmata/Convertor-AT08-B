@@ -26,12 +26,21 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * This class its the personal panel for each file and uses Mouse Listener for update the information in the
+ * information panel.
+ */
 public class Files extends JPanel implements MouseListener {
     private MatteBorder borderDefault = new MatteBorder(1, 1, 1, 1, Color.GRAY);
     private Border borderSelected = BorderFactory.createLineBorder(Color.CYAN);
     private Boolean isHighLighted;
     private Asset file;
 
+    /**
+     * The constructor who start the panel.
+     *
+     * @param file input.
+     */
     Files(final Asset file) {
         addMouseListener(this);
         setFocusable(true);
@@ -40,7 +49,7 @@ public class Files extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
         if (isHighLighted) {
             setBorder(borderDefault);
         } else {
@@ -48,24 +57,25 @@ public class Files extends JPanel implements MouseListener {
         }
         isHighLighted = !isHighLighted;
         MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
-//        new Information();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
+        Information.setInformation(file);
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(final MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(final MouseEvent e) {
     }
 }
