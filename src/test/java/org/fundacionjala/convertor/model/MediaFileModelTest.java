@@ -46,6 +46,10 @@ public class MediaFileModelTest {
         assertEquals(numberFiles,fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchFilesByName() throws IOException {
         int numberFiles = 1;
@@ -63,6 +67,11 @@ public class MediaFileModelTest {
         assertEquals(numberFiles,fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
+
     @Test
     public void searchFilesBySize() throws IOException {
         final int numberFiles = 9;
@@ -79,6 +88,11 @@ public class MediaFileModelTest {
         }
         assertEquals(numberFiles,fileList.size());
     }
+
+    /**
+     *
+     * @throws IOException .
+     */
 
    @Test
     public void searchAudioFiles() throws IOException {
@@ -109,6 +123,10 @@ public class MediaFileModelTest {
        assertEquals(numberFiles,fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchAudioFilesByAudioCodec() throws IOException {
         int numberFiles = 1;
@@ -132,6 +150,10 @@ public class MediaFileModelTest {
         assertEquals(numberFiles,fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchAudioFilesByChannels() throws IOException {
         int numberFiles = 1;
@@ -154,6 +176,11 @@ public class MediaFileModelTest {
         }
         assertEquals(numberFiles,fileList.size());
     }
+
+    /**
+     *
+     * @throws IOException .
+     */
 
     @Test
     public void searchVideoFiles() throws IOException {
@@ -183,6 +210,4 @@ public class MediaFileModelTest {
         }
         assertEquals(numberFiles,fileList.size());
     }
-
-
 }
