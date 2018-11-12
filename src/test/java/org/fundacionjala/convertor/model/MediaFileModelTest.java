@@ -37,7 +37,7 @@ public class MediaFileModelTest {
      */
     @Test
     public void searchFilesByPath() throws IOException {
-        final int numberFiles = 16;
+        final int numberFiles = 19;
         basicCriteria = new Criteria();
         basicCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
         basicCriteria.setFileName("");
@@ -64,7 +64,7 @@ public class MediaFileModelTest {
 
     @Test
     public void searchFilesBySize() throws IOException {
-        final int numberFiles = 8;
+        final int numberFiles = 9;
         final int fileSize = 50000000;
         basicCriteria = new Criteria();
         basicCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
