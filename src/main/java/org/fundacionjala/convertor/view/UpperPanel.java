@@ -1,9 +1,6 @@
 package org.fundacionjala.convertor.view;
-
 import org.fundacionjala.convertor.view.explorer.Explorer;
 import org.fundacionjala.convertor.view.finder.FinderPanel;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import java.awt.Color;

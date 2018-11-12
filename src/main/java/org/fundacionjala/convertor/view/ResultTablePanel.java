@@ -14,14 +14,12 @@
  */
 
 package org.fundacionjala.convertor.view;
-
 import org.fundacionjala.convertor.utils.AbstractLogger;
-
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import java.awt.*;
+import java.awt.Color;
+
 
 /**
  * Class for the result panel.
@@ -46,6 +44,7 @@ public class ResultTablePanel extends JPanel {
     private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         filesPanel.setBackground(Color.red);
+
         JScrollPane listResult = new JScrollPane(filesPanel);
         this.add(listResult);
     }

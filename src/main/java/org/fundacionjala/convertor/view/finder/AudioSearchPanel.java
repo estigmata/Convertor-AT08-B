@@ -20,7 +20,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 
 /**
  * Class FinderPanel.
@@ -31,6 +34,8 @@ import java.awt.*;
 public class AudioSearchPanel extends JPanel {
     protected JComboBox<String> channel;
     private JComboBox<String> audioCodec;
+    private JLabel labelChannel;
+    private JLabel labelAudioCodec;
 
     /**
      * Constructor.
@@ -38,6 +43,9 @@ public class AudioSearchPanel extends JPanel {
     public AudioSearchPanel() {
         audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAV2"});
         channel = new JComboBox<>(new String[]{"", "1", "2", "3"});
+
+        labelChannel = new JLabel("Channel :");
+        labelAudioCodec = new JLabel("Audio Codec :");
         initComponents();
     }
 
@@ -53,13 +61,16 @@ public class AudioSearchPanel extends JPanel {
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new Label("Audio Codec:"), bagConstraints);
+
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAudioCodec, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(audioCodec, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        this.add(new JLabel("Channel:"), bagConstraints);
+        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelChannel, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(channel, bagConstraints);

@@ -14,11 +14,8 @@
  */
 package org.fundacionjala.convertor.view.finder;
 
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

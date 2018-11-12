@@ -15,11 +15,10 @@
 package org.fundacionjala.convertor.view.Converter;
 
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
