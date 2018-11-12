@@ -17,29 +17,23 @@ package org.fundacionjala.convertor.view.explorer;
 
 import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.io.File;
 
 /**
@@ -85,9 +79,7 @@ public class Explorer extends JPanel {
 
         mTree.putClientProperty("JTree.lineStyle", "Angled");
 
-        TreeCellRenderer renderer = new
-                IconCellRenderer();
-        mTree.setCellRenderer(renderer);
+        mTree.setCellRenderer(new DefaultTreeCellRenderer());
 
         mTree.addTreeExpansionListener(new
                 DirExpansionListener());
@@ -192,102 +184,6 @@ public class Explorer extends JPanel {
             } else {
                 BasicSearchPanel.getPath().setText("");
             }
-        }
-    }
-
-    /**
-     * Class for the icon renderer.
-     */
-    class IconCellRenderer extends JLabel implements TreeCellRenderer {
-        private Color mTextSelectionColor;
-        private Color mTextNonSelectionColor;
-        private Color mBkSelectionColor;
-        private Color mBkNonSelectionColor;
-        private Color mBorderSelectionColor;
-
-        private boolean mSelected;
-
-        /**
-         * Constructor of the Icon cell renderer.
-         */
-        IconCellRenderer() {
-            super();
-            mTextSelectionColor = UIManager.getColor(
-                    "Tree.selectionForeground");
-            mTextNonSelectionColor = UIManager.getColor(
-                    "Tree.textForeground");
-            mBkSelectionColor = UIManager.getColor(
-                    "Tree.selectionBackground");
-            mBkNonSelectionColor = UIManager.getColor(
-                    "Tree.textBackground");
-            mBorderSelectionColor = UIManager.getColor(
-                    "Tree.selectionBorderColor");
-            setOpaque(false);
-        }
-
-        /**
-         * Method for paint component.
-         *
-         * @param g input graphic
-         */
-        public void paintComponent(final Graphics g) {
-            Color bColor = getBackground();
-            Icon icon = getIcon();
-
-            g.setColor(bColor);
-            int offset = 0;
-            if (icon != null && getText() != null) {
-                offset = (icon.getIconWidth() + getIconTextGap());
-            }
-            g.fillRect(offset, 0, getWidth() - 1 - offset,
-                    getHeight() - 1);
-
-            if (mSelected) {
-                g.setColor(mBorderSelectionColor);
-                g.drawRect(offset, 0, getWidth() - 1 - offset, getHeight() - 1);
-            }
-            super.paintComponent(g);
-        }
-
-        /**
-         * Method for get the tree cell.
-         *
-         * @param tree     input tree
-         * @param value    input value
-         * @param sel      input sel
-         * @param expanded input for expand
-         * @param leaf     input for leaf
-         * @param row      input of the rows
-         * @param hasFocus input for focus
-         * @return the Component.
-         */
-        public Component getTreeCellRendererComponent(final JTree tree, final Object value,
-                                                      final boolean sel, final boolean expanded,
-                                                      final boolean leaf, final int row, final boolean hasFocus) {
-            DefaultMutableTreeNode node =
-                    (DefaultMutableTreeNode) value;
-            Object obj = node.getUserObject();
-            setText(obj.toString());
-
-            if (obj instanceof Boolean) {
-                setText("Retrieving data...");
-            }
-
-            if (obj instanceof IconData) {
-                IconData idata = (IconData) obj;
-                if (expanded) {
-                    setIcon(idata.getExpandedIcon());
-                } else {
-                    setIcon(idata.getIcon());
-                }
-            } else {
-                setIcon(null);
-            }
-            setFont(tree.getFont());
-            setForeground(sel ? mTextSelectionColor : mTextNonSelectionColor);
-            setBackground(sel ? mBkSelectionColor : mBkNonSelectionColor);
-            mSelected = sel;
-            return this;
         }
     }
 }
