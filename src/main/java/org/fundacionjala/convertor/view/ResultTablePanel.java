@@ -14,24 +14,28 @@
  */
 
 package org.fundacionjala.convertor.view;
+
 import org.fundacionjala.convertor.utils.AbstractLogger;
+import org.fundacionjala.convertor.view.dynamicpanel.FilesPanelContainer;
+import org.fundacionjala.convertor.view.dynamicpanel.Information;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import java.awt.Color;
-
+import java.awt.Dimension;
 
 /**
  * Class for the result panel.
  */
 public class ResultTablePanel extends JPanel {
-    private FilesPanel filesPanel;
+    private FilesPanelContainer filesPanel;
+    private Information informationPanel;
 
     /**
      * Constructor.
      */
     ResultTablePanel() {
-        filesPanel = new FilesPanel();
+        filesPanel = new FilesPanelContainer();
+        informationPanel = new Information();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
         log.info();
@@ -42,11 +46,15 @@ public class ResultTablePanel extends JPanel {
      * Initialization of components.
      */
     private void initComponents() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        filesPanel.setBackground(Color.red);
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        //Panel for the Search table.
+        this.add(filesPanel);
+        final int widthInfo = 200;
+        final int heightInfo = 200;
+        informationPanel.setPreferredSize(new Dimension(widthInfo, heightInfo));
+        informationPanel.showInformation();
+        this.add(informationPanel);
 
-        JScrollPane listResult = new JScrollPane(filesPanel);
-        this.add(listResult);
     }
 
     /**
@@ -54,7 +62,7 @@ public class ResultTablePanel extends JPanel {
      *
      * @return the Files panel object.
      */
-    public FilesPanel getFilesPanel() {
+    public FilesPanelContainer getFilesPanel() {
         return filesPanel;
     }
 }

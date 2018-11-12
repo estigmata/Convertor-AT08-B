@@ -50,7 +50,7 @@ public class VideoSearchPanel extends JPanel {
     public VideoSearchPanel() {
 
         frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
-        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
+        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "16:9", "16:10"});
         resolution = new JComboBox<>(new String[]{"", "320*240", "600*350", "624*480", "640*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
