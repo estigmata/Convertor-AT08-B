@@ -14,12 +14,9 @@
  */
 package org.fundacionjala.convertor.view.finder;
 
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,22 +37,16 @@ public class FinderPanel extends JPanel {
      * Constructor.
      */
     public FinderPanel() {
-        TitledBorder title = BorderFactory.createTitledBorder("Search");
-        this.setBorder(title);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         basicSearchPanel = new BasicSearchPanel();
         this.add(basicSearchPanel);
 
-
         audioSearchPanel = new AudioSearchPanel();
-
         audioSearchPanel.setVisible(false);
         this.add(audioSearchPanel);
 
-        videoSearchPanel = new VideoSearchPanel("Video Advanced Search");
-        this.add(videoSearchPanel);
-
+        videoSearchPanel = new VideoSearchPanel();
         videoSearchPanel.setVisible(false);
         this.add(videoSearchPanel);
 

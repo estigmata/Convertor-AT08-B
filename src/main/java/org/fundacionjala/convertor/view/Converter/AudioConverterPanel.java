@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
+
 
 /**
  * Class FinderPanel.
@@ -35,9 +35,11 @@ public class AudioConverterPanel extends JPanel {
 
     protected JComboBox<String> channelConverter;
     private JComboBox<String> audioCodecConverter;
-
-
     private JComboBox<String> formatCodecConverter;
+
+    private JLabel labelChannel;
+    private JLabel labelAudioCodec;
+    private JLabel labelFormatCode;
 
     /**
      * Constructor.
@@ -46,6 +48,10 @@ public class AudioConverterPanel extends JPanel {
         audioCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WMAV2"});
         channelConverter = new JComboBox<>(new String[]{"", "1", "2", "3"});
         formatCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WAP"});
+        labelChannel = new JLabel("Channel :");
+        labelAudioCodec = new JLabel("AudioCodec :");
+        labelFormatCode = new JLabel("Format :");
+
         initComponents();
     }
 
@@ -62,20 +68,23 @@ public class AudioConverterPanel extends JPanel {
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new Label("Audio Codec:"), bagConstraints);
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAudioCodec, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(audioCodecConverter, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        this.add(new JLabel("Channel:"), bagConstraints);
+        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelChannel, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(channelConverter, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        this.add(new JLabel("Format"), bagConstraints);
+        labelFormatCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelFormatCode, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = two;
         this.add(formatCodecConverter, bagConstraints);

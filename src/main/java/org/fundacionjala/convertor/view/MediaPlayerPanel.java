@@ -26,6 +26,7 @@ import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,7 @@ public class MediaPlayerPanel extends JPanel {
     private static String filePath;
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = 100;
-    private static final int WIDTH = 460;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 240;
 
     /**
@@ -70,9 +71,17 @@ public class MediaPlayerPanel extends JPanel {
      */
     private void createButtons() {
         JPanel buttonsContainer = new JPanel();
-        JButton btnStart = new JButton("[Start]");
-        JButton btnPlayPause = new JButton("[Pause]");
-        JToggleButton btnMute = new JToggleButton("[Mute]");
+        JButton btnStart = new JButton();
+        JButton btnPlayPause = new JButton();
+        JToggleButton btnMute = new JToggleButton();
+        btnStart.setBackground(Color.WHITE);
+        btnPlayPause.setBackground(Color.WHITE);
+        btnMute.setBackground(Color.WHITE);
+
+        btnStart.setIcon(new javax.swing.ImageIcon("Image\\play.PNG"));
+        btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
+        btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
+
         JSlider sldVolume = new JSlider();
         sldVolume.setMinimum(MIN_VALUE);
         sldVolume.setMaximum(MAX_VALUE);

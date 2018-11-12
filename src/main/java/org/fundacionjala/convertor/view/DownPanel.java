@@ -27,8 +27,6 @@ import java.awt.Color;
  */
 public class DownPanel extends JPanel {
     private ResultTablePanel resultTablePanel;
-
-
     private ConverterPanel converterPanel;
 
     /**
@@ -36,9 +34,7 @@ public class DownPanel extends JPanel {
      */
     public DownPanel() {
         resultTablePanel = new ResultTablePanel();
-
         converterPanel = new ConverterPanel();
-        //    videoSearchPanel = new VideoSearchPanel("Converter Settings");
         initComponents();
     }
 
@@ -48,10 +44,11 @@ public class DownPanel extends JPanel {
     private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
+        resultTablePanel.setBackground(Color.white);
         this.add(resultTablePanel);
-        converterPanel.setBackground(Color.BLACK);
-        this.add(converterPanel);
+        converterPanel.setBackground(Color.white);
 
+        this.add(converterPanel);
     }
 
     /**
