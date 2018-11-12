@@ -22,8 +22,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.Container;
+import java.awt.*;
 
 /**
  * Class Viewer.
@@ -33,6 +32,8 @@ import java.awt.Container;
  */
 public final class Viewer extends JFrame {
 
+
+    private TitlePanel titlePanel;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
@@ -55,6 +56,7 @@ public final class Viewer extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setBackground(Color.BLACK);
     }
 
     /**
@@ -65,11 +67,17 @@ public final class Viewer extends JFrame {
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
+        titlePanel = new TitlePanel();
+     //  titlePanel.setBackground(Color.WHITE);
+        titlePanel.setPreferredSize(new Dimension(500, 50));
+        principalPane.add(titlePanel);
+
         upperPanel = new UpperPanel();
+        upperPanel.setPreferredSize(new Dimension(100, 530));
         principalPane.add(upperPanel);
 
+
         downPanel = new DownPanel();
-        downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         principalPane.add(downPanel);
     }
 
@@ -197,5 +205,13 @@ public final class Viewer extends JFrame {
      */
     public UpperPanel getUpperPanel() {
         return upperPanel;
+    }
+
+
+    /**
+     * @return the titlepanel object.
+     */
+    public TitlePanel getTitlePanel() {
+        return titlePanel;
     }
 }

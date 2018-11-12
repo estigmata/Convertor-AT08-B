@@ -39,22 +39,16 @@ public class FinderPanel extends JPanel {
      * Constructor.
      */
     public FinderPanel() {
-        TitledBorder title = BorderFactory.createTitledBorder("Search");
-        this.setBorder(title);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         basicSearchPanel = new BasicSearchPanel();
         this.add(basicSearchPanel);
 
-
         audioSearchPanel = new AudioSearchPanel();
-
         audioSearchPanel.setVisible(false);
         this.add(audioSearchPanel);
 
-        videoSearchPanel = new VideoSearchPanel("Video Advanced Search");
-        this.add(videoSearchPanel);
-
+        videoSearchPanel = new VideoSearchPanel();
         videoSearchPanel.setVisible(false);
         this.add(videoSearchPanel);
 

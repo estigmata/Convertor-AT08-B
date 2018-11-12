@@ -101,7 +101,7 @@ public class Explorer extends JPanel {
         mTree.setEditable(false);
 
         final int explorerWidth = 430;
-        final int explorerHeight = 230;
+        final int explorerHeight = 350;
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         add(s, BorderLayout.CENTER);

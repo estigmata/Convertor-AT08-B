@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,20 +39,27 @@ public class ConverterPanel extends JPanel {
      * Constructor.
      */
     public ConverterPanel() {
-        TitledBorder title = BorderFactory.createTitledBorder("Converter");
-        this.setBorder(title);
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         basicConverterPanel = new BasicConverterPanel();
+        basicConverterPanel.setBackground(Color.WHITE);
         this.add(basicConverterPanel);
+
         audioConverterPanel = new AudioConverterPanel();
+        audioConverterPanel.setBackground(Color.WHITE);
         audioConverterPanel.setVisible(false);
         this.add(audioConverterPanel);
-        videoConverterPanel = new VideoConverterPanel("Video Advanced Search");
+
+        videoConverterPanel = new VideoConverterPanel();
+        videoConverterPanel.setBackground(Color.WHITE);
         videoConverterPanel.setVisible(false);
         this.add(videoConverterPanel);
+
         progressBarPanel = new ProgressBarPanel();
         progressBarPanel.setVisible(false);
+        progressBarPanel.setBackground(Color.WHITE);
         this.add(progressBarPanel);
+
         basicConverterPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {

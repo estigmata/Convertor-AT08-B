@@ -23,9 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
+import java.awt.*;
 
 /**
  * Class FinderPanel.
@@ -40,7 +38,10 @@ public class BasicSearchPanel extends JPanel {
     private JTextField size;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
-    private JComboBox<String> sizeBox;
+
+
+    private JLabel labelPath;
+    private JLabel labelSize;
 
     /**
      * Constructor.
@@ -56,7 +57,9 @@ public class BasicSearchPanel extends JPanel {
         browseChooser.setPath(path);
 
         multimediaBox = new JComboBox<>(new String[]{"All", "Video", "Audio"});
-
+        labelPath = new JLabel("What find ?");
+        labelSize = new JLabel("Size :");
+        this.setBackground(Color.WHITE);
         initComponents();
     }
 
@@ -69,6 +72,7 @@ public class BasicSearchPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         TitledBorder title = BorderFactory.createTitledBorder("Basic Search");
+
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
@@ -77,22 +81,25 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new Label("What Find?"), bagConstraints);
+        labelPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(path, bagConstraints);
-        bagConstraints.gridx = two;
+         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
         this.add(browseChooser, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
+
         this.add(new JLabel("File Name:"), bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(fileName, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        this.add(new JLabel("Size:"), bagConstraints);
+        labelSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelSize, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = two;
         this.add(size, bagConstraints);
@@ -137,14 +144,6 @@ public class BasicSearchPanel extends JPanel {
         return multimediaBox;
     }
 
-    /**
-     * Getter for the Combo size.
-     *
-     * @return the JComboBox
-     */
-    public JComboBox<String> getSizeBox() {
-        return sizeBox;
-    }
 
     /**
      * Getter of the File Name.

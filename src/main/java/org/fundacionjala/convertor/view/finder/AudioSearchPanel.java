@@ -20,9 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
+import java.awt.*;
 
 /**
  * Class FinderPanel.
@@ -65,6 +63,8 @@ public class AudioSearchPanel extends JPanel {
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(channel, bagConstraints);
+        this.setBackground(Color.WHITE);
+
     }
 
     /**

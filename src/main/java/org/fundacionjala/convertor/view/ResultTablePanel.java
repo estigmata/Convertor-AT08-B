@@ -21,6 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import java.awt.*;
 
 /**
  * Class for the result panel.
@@ -44,9 +45,9 @@ public class ResultTablePanel extends JPanel {
      */
     private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //Panel for the Search table.
-        this.add(new JLabel("Files:"));
-        this.add(new JScrollPane(filesPanel));
+        filesPanel.setBackground(Color.red);
+        JScrollPane listResult = new JScrollPane(filesPanel);
+        this.add(listResult);
     }
 
     /**

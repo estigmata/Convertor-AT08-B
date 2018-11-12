@@ -41,7 +41,7 @@ public class MediaPlayerPanel extends JPanel {
     private static String filePath;
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = 100;
-    private static final int WIDTH = 460;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 240;
 
     /**

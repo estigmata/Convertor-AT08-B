@@ -20,9 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
+import java.awt.*;
 
 
 /**
@@ -45,8 +43,8 @@ public class VideoSearchPanel extends JPanel {
      * @param title .
      */
 
-    public VideoSearchPanel(final String title) {
-        this.title = title;
+    public VideoSearchPanel() {
+
         frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
         aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
         resolution = new JComboBox<>(new String[]{"", "320*240", "600*350", "624*480", "640*480",
@@ -54,6 +52,8 @@ public class VideoSearchPanel extends JPanel {
         videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
                 "AVS", "MJPEG", "VP7", "WMV"});
         audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+        this.setBackground(Color.WHITE);
+
         initComponents();
     }
 
