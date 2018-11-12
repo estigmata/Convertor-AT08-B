@@ -17,13 +17,13 @@ package org.fundacionjala.convertor.view;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Container;
+
 
 /**
  * Class Viewer.
@@ -33,6 +33,8 @@ import java.awt.Container;
  */
 public final class Viewer extends JFrame {
 
+
+    private TitlePanel titlePanel;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
@@ -52,25 +54,29 @@ public final class Viewer extends JFrame {
     public void configWindow() {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setBackground(Color.BLACK);
     }
 
     /**
      * Initialization of Components.
      */
     public void initComponents() {
-        //DECLARACION PANELES
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
+
+        titlePanel = new TitlePanel();
+        principalPane.add(titlePanel);
 
         upperPanel = new UpperPanel();
         principalPane.add(upperPanel);
 
         downPanel = new DownPanel();
-        downPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         principalPane.add(downPanel);
+
     }
 
     /**
@@ -197,5 +203,13 @@ public final class Viewer extends JFrame {
      */
     public UpperPanel getUpperPanel() {
         return upperPanel;
+    }
+
+
+    /**
+     * @return the titlepanel object.
+     */
+    public TitlePanel getTitlePanel() {
+        return titlePanel;
     }
 }

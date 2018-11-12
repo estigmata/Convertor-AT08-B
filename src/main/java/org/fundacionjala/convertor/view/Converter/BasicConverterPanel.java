@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
+
 
 /**
  * Class FinderPanel.
@@ -42,13 +42,17 @@ public class BasicConverterPanel extends JPanel {
     private JTextField currentPath;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
+    private JLabel labelOutPath;
+    private JLabel labelOutputName;
+    private JLabel labelCurrentPath;
+    private JLabel labelMultimediaBox;
 
 
     /**
      * Constructor.
      */
     public BasicConverterPanel() {
-        this.setName("Settings");
+
         outputPath = new JTextField("");
         converterButton = new JButton("Converter");
         outputName = new JTextField();
@@ -56,8 +60,12 @@ public class BasicConverterPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
-
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
+        labelOutPath = new JLabel("Output File :");
+        labelOutputName = new JLabel("File Name :");
+        labelCurrentPath = new JLabel("Current Path :");
+        labelMultimediaBox = new JLabel("Multimedia :");
+
 
         initComponents();
     }
@@ -70,7 +78,7 @@ public class BasicConverterPanel extends JPanel {
         final int tree = 3;
         final int one = 1;
         final int two = 2;
-        final int five = 0;
+        final int six = 6;
         TitledBorder title = BorderFactory.createTitledBorder("Output Setting");
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
@@ -79,14 +87,16 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new JLabel("File Name:"), bagConstraints);
+        labelOutputName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelOutputName, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(outputName, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        this.add(new JLabel("Current Path:"), bagConstraints);
+        labelCurrentPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelCurrentPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(currentPath, bagConstraints);
@@ -94,7 +104,8 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
-        this.add(new Label("Output file"), bagConstraints);
+        labelOutPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelOutPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
         this.add(outputPath, bagConstraints);
@@ -105,15 +116,16 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
-        this.add(new JLabel("Multimedia:"), bagConstraints);
+        labelMultimediaBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelMultimediaBox, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
         this.add(multimediaBox, bagConstraints);
 
 
-        bagConstraints.gridx = tree;
+        bagConstraints.gridx = one;
 
-        bagConstraints.gridy = five;
+        bagConstraints.gridy = six;
         this.add(converterButton, bagConstraints);
     }
 

@@ -20,9 +20,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
 
 
 /**
@@ -37,23 +37,35 @@ public class VideoSearchPanel extends JPanel {
     protected JComboBox<String> resolution;
     private JComboBox<String> videoCodec;
     private JComboBox<String> audioCodec;
-    private String title;
+    private JLabel labelFrameRate;
+    private JLabel labelAspectRatio;
+    private JLabel labelResolution;
+    private JLabel labelVideoCodec;
+    private JLabel labelAudioCodec;
+
 
     /**
-     * Constuctor.
      *
-     * @param title .
      */
+    public VideoSearchPanel() {
 
-    public VideoSearchPanel(final String title) {
-        this.title = title;
         frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
-        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
+        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "16:9", "16:10"});
         resolution = new JComboBox<>(new String[]{"", "320*240", "600*350", "624*480", "640*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
                 "AVS", "MJPEG", "VP7", "WMV"});
         audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+
+        labelFrameRate = new JLabel("Frame Rate :");
+        labelAspectRatio = new JLabel("Aspect Ratio :");
+        labelResolution = new JLabel("Resolution :");
+        labelVideoCodec = new JLabel("Video Codec :");
+        labelAudioCodec = new JLabel("Audio Codec >");
+
+
+        this.setBackground(Color.WHITE);
+
         initComponents();
     }
 
@@ -65,7 +77,7 @@ public class VideoSearchPanel extends JPanel {
         final int two = 2;
         final int three = 3;
         final int four = 4;
-        TitledBorder title = BorderFactory.createTitledBorder(this.title);
+        TitledBorder title = BorderFactory.createTitledBorder("Video Advanced Search");
         this.setBorder(title);
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
@@ -73,31 +85,36 @@ public class VideoSearchPanel extends JPanel {
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new Label("Frame Rate:"), bagConstraints);
+        labelFrameRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelFrameRate, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(frameRate, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        this.add(new JLabel("Aspect Ratio:"), bagConstraints);
+        labelAspectRatio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAspectRatio, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         this.add(aspectRatio, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        this.add(new JLabel("Resolution"), bagConstraints);
+        labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelResolution, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = two;
         this.add(resolution, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = three;
-        this.add(new JLabel("Video Codec"), bagConstraints);
+        labelVideoCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelVideoCodec, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = three;
         this.add(videoCodec, bagConstraints);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
-        this.add(new JLabel("Audio Codec"), bagConstraints);
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAudioCodec, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
         this.add(audioCodec, bagConstraints);
