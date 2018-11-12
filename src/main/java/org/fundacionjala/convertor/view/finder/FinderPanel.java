@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.view.finder;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
@@ -76,6 +77,28 @@ public class FinderPanel extends JPanel {
 
                 }
             }
+        });
+        videoSearchPanel.getAspectRatio().addActionListener(x -> {
+            String ratio = (String) videoSearchPanel.getAspectRatio().getSelectedItem();
+            if (ratio.equals("4:3")) {
+                videoSearchPanel.getResolution().removeAllItems();
+                String[] resolution = {"640*480", "800*600", "960*720", "1024*768", "1280*960", "1400*1050",
+                        "1440*1080", "1600*1200", "1856*1392", "1920*1440", "2048*1536"};
+                videoSearchPanel.getResolution().setModel(new DefaultComboBoxModel<>(resolution));
+            }
+            if (ratio.equals("16:9")) {
+                videoSearchPanel.getResolution().removeAllItems();
+                String[] resolution = {"1024*576", "1152*648", "1280*720", "1366*768", "1600*900",
+                        "1920*1080", "2560*1440", "3840*2160"};
+                videoSearchPanel.getResolution().setModel(new DefaultComboBoxModel<>(resolution));
+            }
+
+            if (ratio.equals("16:10")) {
+                videoSearchPanel.getResolution().removeAllItems();
+                String[] resolution = {"1280*800", "1440*900", "1680*1050", "1920*1200", "2560*1600"};
+                videoSearchPanel.getResolution().setModel(new DefaultComboBoxModel<>(resolution));
+            }
+
         });
         initComponents();
     }
