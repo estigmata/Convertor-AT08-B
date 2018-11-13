@@ -29,6 +29,12 @@ public class Criteria {
     private String fileExtention;
     private String conditionSize;
 
+    public Criteria(CriteriaBuilder criteriaBuilder) {
+        this.fileName = criteriaBuilder.fileName;
+        this.filePath = criteriaBuilder.filePath;
+        this.fileSize = criteriaBuilder.fileSize;
+    }
+
     /**
      * This method return the value of file Extention atributte.
      *

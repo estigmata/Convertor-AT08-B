@@ -26,6 +26,12 @@ public class AdvancedCriteriaAudio extends Criteria {
     private int channels;
     private String audioCodec;
 
+    public AdvancedCriteriaAudio(CriteriaAudioBuilder criteriaBuilder) {
+        super(criteriaBuilder);
+        this.channels=criteriaBuilder.channels;
+        this.audioCodec=criteriaBuilder.audioCodec;
+    }
+
     /**
      * @return value return.
      */
