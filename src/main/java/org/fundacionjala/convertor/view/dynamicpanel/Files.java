@@ -1,4 +1,4 @@
-/*
+/**
  * @Files.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -16,6 +16,7 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
 
 import javax.swing.BorderFactory;
@@ -58,7 +59,9 @@ public class Files extends JPanel implements MouseListener {
         isHighLighted = !isHighLighted;
         MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         Information.setInformation(file);
-
+        BasicConverterPanel.setFileToConvert(file.getFileName());
+        BasicConverterPanel.setPathSource(file.getPath());
+        BasicConverterPanel.setPathDestination(file.getPath());
     }
 
     @Override

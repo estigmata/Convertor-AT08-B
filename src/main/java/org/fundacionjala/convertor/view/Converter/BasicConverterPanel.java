@@ -14,6 +14,10 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
+import net.bramp.ffmpeg.FFmpeg;
+import net.bramp.ffmpeg.FFmpegExecutor;
+import net.bramp.ffmpeg.FFprobe;
+import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import org.fundacionjala.convertor.view.BrowseChooser;
 
 import javax.swing.BorderFactory;
@@ -25,6 +29,8 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -35,11 +41,11 @@ import java.awt.GridBagLayout;
  */
 public class BasicConverterPanel extends JPanel {
 
-
-    private JButton converterButton;
-    private JTextField outputPath;
+    private JButton btnConverter;
+    private static JTextField outputPath;
     private JTextField outputName;
-    private JTextField currentPath;
+    private static JTextField currentPath;
+    private static String fileToConvert;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
@@ -47,6 +53,11 @@ public class BasicConverterPanel extends JPanel {
     private JLabel labelCurrentPath;
     private JLabel labelMultimediaBox;
 
+    private static FFmpeg ffmpeg;
+    private static FFprobe ffprobe;
+
+    private static final String FFMPEG_PATH = "C:\\FFMpeg\\bin\\ffmpeg.exe";
+    private static final String FFPROBE_PATH = "C:\\FFMpeg\\bin\\ffprobe.exe";
 
     /**
      * Constructor.
@@ -54,18 +65,17 @@ public class BasicConverterPanel extends JPanel {
     public BasicConverterPanel() {
 
         outputPath = new JTextField("");
-        converterButton = new JButton("Converter");
+        btnConverter = new JButton("Converter");
         outputName = new JTextField();
         currentPath = new JTextField();
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
-        labelOutPath = new JLabel("Output File :");
-        labelOutputName = new JLabel("File Name :");
+        labelOutPath = new JLabel("Destination Path :");
+        labelOutputName = new JLabel("Output File Name :");
         labelCurrentPath = new JLabel("Current Path :");
         labelMultimediaBox = new JLabel("Multimedia :");
-
 
         initComponents();
     }
@@ -122,18 +132,24 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridy = four;
         this.add(multimediaBox, bagConstraints);
 
-
         bagConstraints.gridx = one;
 
         bagConstraints.gridy = six;
-        this.add(converterButton, bagConstraints);
+
+        btnConverter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                converterFile();
+            }
+        });
+        this.add(btnConverter, bagConstraints);
     }
 
     /**
      * @return .
      */
     public JButton getConverterButton() {
-        return converterButton;
+        return btnConverter;
     }
 
     /**
@@ -171,5 +187,57 @@ public class BasicConverterPanel extends JPanel {
         return multimediaBox;
     }
 
+    public static void setFileToConvert(final String fileName) {
+        fileToConvert = fileName;
+    }
 
+    public static void setPathSource(final String pathSource) {
+        currentPath.setText(pathSource);
+    }
+
+    public static void setPathDestination(final String pathDestination) {
+        outputPath.setText(pathDestination);
+    }
+
+    private void converterFile() {
+        //TODO
+        try {
+            ffmpeg = new FFmpeg(FFMPEG_PATH);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        try {
+            ffprobe = new FFprobe(FFPROBE_PATH);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+
+        FFmpegBuilder builder = new FFmpegBuilder()
+
+            .setInput(currentPath + fileToConvert)     // Filename, or a FFmpegProbeResult
+            .overrideOutputFiles(true) // Override the output if it exists
+
+            .addOutput("C:/Videos/FuryTigerVSSherman.avi")   // Filename for the destination
+            .setFormat("avi")        // Format is inferred from filename, or can be set
+            //.setTargetSize(250_000)  // Aim for a 250KB file
+
+            .disableSubtitle()       // No subtiles
+
+            .setAudioChannels(1)         // Mono audio
+            .setAudioCodec("aac")        // using the aac codec
+            .setAudioSampleRate(48_000)  // at 48KHz
+            .setAudioBitRate(32768)      // at 32 kbit/s
+
+            .setVideoCodec("libx264")     // Video using x264
+            .setVideoFrameRate(24, 1)     // at 24 frames per second
+            .setVideoResolution(640, 480) // at 640x480 resolution
+
+            .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL) // Allow FFmpeg to use experimental specs
+            .done();
+
+        FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+
+// Run a one-pass encode
+        executor.createJob(builder).run();
+    }
 }
