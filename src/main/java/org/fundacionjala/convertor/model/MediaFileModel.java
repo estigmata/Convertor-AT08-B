@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class MediaFileModel {
-    private FFprobe ffprobe = new FFprobe("C:\\ffmpeg\\bin\\ffprobe.exe");
+    private FFprobe ffprobe = new FFprobe("src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
     private AssetFactory assetFactory;
 
     private static final String VIDEO = "Video";
@@ -74,7 +74,7 @@ public class MediaFileModel {
         ArrayList<Asset> fileList = new ArrayList<>();
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                        || criteria.getFileName().contains(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 .forEach(item -> {
@@ -107,7 +107,7 @@ public class MediaFileModel {
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                        || criteria.getFileName().contains(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
@@ -184,7 +184,7 @@ public class MediaFileModel {
         Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().equals(new Util().getStringName(x)))
+                        || criteria.getFileName().contains(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
