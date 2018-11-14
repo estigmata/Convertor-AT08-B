@@ -16,7 +16,6 @@
 package org.fundacionjala.convertor.model;
 
 import net.bramp.ffmpeg.FFprobe;
-import net.bramp.ffmpeg.probe.FFmpegFormat;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
@@ -33,6 +32,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is part of the model in which fileList are searched from a path.
@@ -117,7 +117,7 @@ public class MediaFileModel {
                     if (criteria.getFrameRate().isEmpty()) {
                         return true;
                     }
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamVideo(getStreamFFprobe(x));
                     assert stream != null;
                     return stream.avg_frame_rate.toString().split("/")[0].equals(criteria.getFrameRate());
                 })
@@ -126,7 +126,7 @@ public class MediaFileModel {
                     if (criteria.getAspectRatio().isEmpty()) {
                         return true;
                     }
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamVideo(getStreamFFprobe(x));
                     assert stream != null;
                     if (stream.display_aspect_ratio == null) {
                         return false;
@@ -138,20 +138,21 @@ public class MediaFileModel {
                     if (criteria.getResolutionHeight() == 0 || criteria.getResolutionWith() == 0) {
                         return true;
                     }
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamVideo(getStreamFFprobe(x));
                     return stream.width == criteria.getResolutionWith()
                             && stream.height == criteria.getResolutionHeight();
                 })
 //                Video Codec
                 .filter(x -> {
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamVideo(getStreamFFprobe(x));
                     if (criteria.getVideoCodec().isEmpty()) {
                         return true;
                     }
                     return stream.codec_name.toUpperCase().equals(criteria.getVideoCodec());
                 })
                 .forEach(item -> {
-                    FFmpegStream stream = getStreamFFprobe(item);
+                    FFmpegStream videoStream = getStreamVideo(getStreamFFprobe(item));
+                    FFmpegStream audioStream = getStreamAudio(getStreamFFprobe(item));
                     VideoFileAsset fileZ = (VideoFileAsset) assetFactory.createAsset(VIDEO);
                     fileZ.setFileName(new Util().getStringName(item));
 
@@ -162,11 +163,12 @@ public class MediaFileModel {
                     }
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
-                    fileZ.setAspectRatio(stream.display_aspect_ratio);
-                    int fr = Integer.parseInt(stream.avg_frame_rate.toString().split("/")[0]);
+                    fileZ.setAspectRatio(videoStream.display_aspect_ratio);
+                    int fr = Integer.parseInt(videoStream.avg_frame_rate.toString().split("/")[0]);
                     fileZ.setFrameRate(String.valueOf(fr > mil ? fr / mil : fr));
-                    fileZ.setResolution(stream.width + "*" + stream.height);
-                    fileZ.setVideoCodec(stream.codec_name);
+                    fileZ.setResolution(videoStream.width + "*" + videoStream.height);
+                    fileZ.setVideoCodec(videoStream.codec_name);
+                    fileZ.setAudioCodec(audioStream.codec_name);
                     list.add(fileZ);
                 });
         return list;
@@ -191,7 +193,7 @@ public class MediaFileModel {
                 .filter(this::isAudio)
 //        CHANNEL
                 .filter(x -> {
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamFFprobe(x).get(0);
                     if (criteria.getChannels() == 0) {
                         return true;
                     }
@@ -199,14 +201,14 @@ public class MediaFileModel {
                     return stream.channels == criteria.getChannels();
                 })
                 .filter(x -> {
-                    FFmpegStream stream = getStreamFFprobe(x);
+                    FFmpegStream stream = getStreamFFprobe(x).get(0);
                     if (criteria.getAudioCodec().isEmpty()) {
                         return true;
                     }
                     return stream.codec_name.toUpperCase().equals(criteria.getAudioCodec());
                 })
                 .forEach(item -> {
-                    FFmpegStream stream = getStreamFFprobe(item);
+                    FFmpegStream stream = getStreamFFprobe(item).get(0);
                     AudioFileAsset fileZ = (AudioFileAsset) assetFactory.createAsset(AUDIO);
                     fileZ.setFileName(new Util().getStringName(item));
 
@@ -225,34 +227,60 @@ public class MediaFileModel {
     }
 
     /**
-     * @param x parameter input.
-     * @return value return.
+     * Getter of the Video Stream.
+     *
+     * @param list of the Stream list of ffprobe.
+     * @return the video Stream.
      */
-    private FFmpegStream getStreamFFprobe(final Path x) {
-        FFmpegProbeResult probeResult = null;
-        try {
-            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
-        } catch (IOException e) {
-            e.printStackTrace();
+    private FFmpegStream getStreamVideo(final List<FFmpegStream> list) {
+        if (list.size() > 1) {
+            return String.valueOf(list.get(0).codec_type).equals("VIDEO") ? list.get(0) : list.get(1);
         }
-        return probeResult != null ? probeResult.getStreams().get(0) : null;
+        return list.get(0);
     }
 
     /**
-     * This class is for get FFmpeg.
+     * Getter of the Audio Stream.
      *
-     * @param x input Path
-     * @return the FFmpegformat
+     * @param list The list of Streams.
+     * @return The audio Stream.
      */
-    private FFmpegFormat getFormatFFprobe(final Path x) {
+    private FFmpegStream getStreamAudio(final List<FFmpegStream> list) {
+        if (list.size() > 1) {
+            return String.valueOf(list.get(0).codec_type).equals("AUDIO") ? list.get(0) : list.get(1);
+        }
+        return list.get(0);
+    }
+
+    /**
+     * @param x parameter input.
+     * @return value return.
+     */
+    private List<FFmpegStream> getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
             probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return probeResult != null ? probeResult.getFormat() : null;
+        return probeResult != null ? probeResult.getStreams() : null;
     }
+
+//    /**
+//     * This class is for get FFmpeg.
+//     *
+//     * @param x input Path
+//     * @return the FFmpegformat
+//     */
+//    private FFmpegFormat getFormatFFprobe(final Path x) {
+//        FFmpegProbeResult probeResult = null;
+//        try {
+//            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return probeResult != null ? probeResult.getFormat() : null;
+//    }
 
     /**
      * This class compare the Equal Size.
