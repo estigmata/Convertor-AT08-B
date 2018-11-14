@@ -30,6 +30,9 @@ import java.awt.event.MouseListener;
 /**
  * This class its the personal panel for each file and uses Mouse Listener for update the information in the
  * information panel.
+ * 
+ * @author Nestor Otondo.
+ * @version 1.0
  */
 public class Files extends JPanel implements MouseListener {
     private MatteBorder borderDefault = new MatteBorder(1, 1, 1, 1, Color.GRAY);
