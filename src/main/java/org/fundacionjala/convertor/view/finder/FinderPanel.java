@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.view.finder;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,6 +50,12 @@ public class FinderPanel extends JPanel {
         videoSearchPanel = new VideoSearchPanel();
         videoSearchPanel.setVisible(false);
         this.add(videoSearchPanel);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                createLineBorder(new java.awt.Color(255, 51, 0)), "SEARCH",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 11),
+                new java.awt.Color(255, 51, 0)));
 
         basicSearchPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
@@ -98,7 +105,7 @@ public class FinderPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-
+this.setBackground(Color.WHITE);
     }
 
     /**

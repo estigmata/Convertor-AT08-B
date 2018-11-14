@@ -20,6 +20,7 @@ package org.fundacionjala.convertor.view;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.*;
 
 /**
  * Class Viewer.
@@ -36,6 +37,7 @@ public class TitlePanel extends JPanel {
     public TitlePanel() {
         title = new JLabel();
         title.setIcon(new javax.swing.ImageIcon("Image\\logo.PNG"));
+    
         initComponents();
     }
 
@@ -45,6 +47,7 @@ public class TitlePanel extends JPanel {
     private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         this.add(title);
+
     }
 
 }

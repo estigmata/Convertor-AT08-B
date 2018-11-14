@@ -57,7 +57,7 @@ public class Explorer extends JPanel {
      * Constructor of the explorer.
      */
     public Explorer() {
-        final int width = 400;
+        final int width = 250;
         final int height = 300;
 
         setSize(width, height);
@@ -92,10 +92,12 @@ public class Explorer extends JPanel {
         mTree.setShowsRootHandles(true);
         mTree.setEditable(false);
 
-        final int explorerWidth = 430;
-        final int explorerHeight = 350;
+        final int explorerWidth = 250;
+        final int explorerHeight = 290;
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
+        s.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(new java.awt.Color(255, 51, 0))));
         add(s, BorderLayout.CENTER);
 
         setVisible(true);

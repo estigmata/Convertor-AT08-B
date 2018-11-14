@@ -36,16 +36,19 @@ public class UpperPanel extends JPanel {
 
         Explorer explorer = new Explorer();
         explorer.setBackground(Color.white);
-        explorer.setPreferredSize(new Dimension(width2, heigth2));
+        explorer.setPreferredSize(new Dimension(250, 300));
         this.add(explorer);
 
         searchPanel = new FinderPanel();
+        searchPanel.setPreferredSize(new Dimension(350, 300));
         this.add(searchPanel);
 
         mediaPlayer = new MediaPlayerPanel();
-        mediaPlayer.setPreferredSize(new Dimension(width, heigth));
+        mediaPlayer.setPreferredSize(new Dimension(500, 300));
         mediaPlayer.setBackground(new Color(color, color, color));
         this.add(mediaPlayer);
+
+
     }
 
     /**

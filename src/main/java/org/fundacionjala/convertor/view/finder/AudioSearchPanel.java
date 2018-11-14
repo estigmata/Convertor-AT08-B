@@ -20,9 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 
 
 /**
@@ -37,6 +35,8 @@ public class AudioSearchPanel extends JPanel {
     private JLabel labelChannel;
     private JLabel labelAudioCodec;
 
+    private JPanel container;
+
     /**
      * Constructor.
      */
@@ -46,6 +46,8 @@ public class AudioSearchPanel extends JPanel {
 
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("Audio Codec :");
+
+        container=new JPanel(new GridBagLayout());
         initComponents();
     }
 
@@ -54,27 +56,42 @@ public class AudioSearchPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        TitledBorder title = BorderFactory.createTitledBorder("Audio Advanced Search");
-        this.setBorder(title);
-        this.setLayout(new GridBagLayout());
+
+        this.setBackground(Color.WHITE);
+
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(new java.awt.Color(255, 51, 0)), "Audio Advanced Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 11),
+                new java.awt.Color(255, 51, 0)));
+        container.setBackground(Color.WHITE);
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
+
         bagConstraints.gridx = 0;
+        bagConstraints.gridy = 0;
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        container.add(labelAudioCodec, bagConstraints);
+
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = 0;
+        container.add(audioCodec, bagConstraints);
+
+        bagConstraints.gridx = 2;
+        bagConstraints.gridy = 0;
+        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        container.add(labelChannel, bagConstraints);
+        bagConstraints.gridx = 3;
         bagConstraints.gridy = 0;
 
-        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelAudioCodec, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = 0;
-        this.add(audioCodec, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = one;
-        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelChannel, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = one;
-        this.add(channel, bagConstraints);
-        this.setBackground(Color.WHITE);
+        container.add(channel, bagConstraints);
+
+
+
+        this.add(container);
 
     }
 

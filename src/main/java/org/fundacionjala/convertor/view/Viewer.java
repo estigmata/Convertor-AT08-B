@@ -21,8 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.Container;
+import java.awt.*;
 
 
 /**
@@ -55,6 +54,7 @@ public final class Viewer extends JFrame {
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.setSize(new Dimension(1100,600));
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -69,12 +69,16 @@ public final class Viewer extends JFrame {
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
         titlePanel = new TitlePanel();
+        titlePanel.setSize(new Dimension(1100,50));
+
         principalPane.add(titlePanel);
 
         upperPanel = new UpperPanel();
+        upperPanel.setSize(new Dimension(1100,300));
         principalPane.add(upperPanel);
 
         downPanel = new DownPanel();
+        downPanel.setSize(new Dimension(1100,200));
         principalPane.add(downPanel);
 
     }

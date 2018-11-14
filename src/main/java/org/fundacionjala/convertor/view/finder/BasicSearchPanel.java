@@ -15,6 +15,7 @@
 package org.fundacionjala.convertor.view.finder;
 
 import org.fundacionjala.convertor.view.BrowseChooser;
+import org.fundacionjala.convertor.view.Converter.ConverterPanel;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -23,9 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 
 
 /**
@@ -40,13 +39,14 @@ public class BasicSearchPanel extends JPanel {
     private JTextField fileName;
     private JTextField size;
     private BrowseChooser browseChooser;
-    protected JComboBox<String> multimediaBox;
+    private JComboBox<String> multimediaBox;
 
 
     private JLabel labelPath;
     private JLabel labelSize;
     private JLabel labelName;
     private JLabel labelMultimedia;
+    private JPanel conatainer;
 
     /**
      * Constructor.
@@ -54,20 +54,24 @@ public class BasicSearchPanel extends JPanel {
     public BasicSearchPanel() {
         this.setName("Basic Search");
         path = new JTextField("");
-        searchButton = new JButton("Find");
+        searchButton = new JButton();
         fileName = new JTextField();
         size = new JTextField();
-        this.setVisible(true);
         browseChooser = new BrowseChooser();
+        browseChooser.setBackground(Color.WHITE);
         browseChooser.setPath(path);
 
+        searchButton.setBackground(Color.WHITE);
+        searchButton.setIcon(new javax.swing.ImageIcon("Image\\search.PNG"));
+searchButton.setBorder(null);
+
         multimediaBox = new JComboBox<>(new String[]{"All", "Video", "Audio"});
-        labelPath = new JLabel("What find ? ");
+        labelPath = new JLabel("What find ? :");
         labelSize = new JLabel("Size :");
         labelName = new JLabel("Name :");
         labelMultimedia = new JLabel("Multimedia :");
 
-
+        conatainer = new JPanel(new GridBagLayout());
         this.setBackground(Color.WHITE);
         initComponents();
     }
@@ -80,49 +84,99 @@ public class BasicSearchPanel extends JPanel {
         final int tree = 3;
         final int one = 1;
         final int two = 2;
-        TitledBorder title = BorderFactory.createTitledBorder("Basic Search");
 
-        this.setBorder(title);
-        this.setLayout(new GridBagLayout());
+this.setBackground(Color.WHITE);
+        conatainer.setBackground(Color.WHITE);
+
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(new java.awt.Color(255, 51, 0)), "Basic Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 11),
+                new java.awt.Color(255, 51, 0)));
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        labelPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelPath, bagConstraints);
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.6;
+        bagConstraints.weighty = 0;
+        conatainer.add(labelPath, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
-        this.add(path, bagConstraints);
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.4;
+        bagConstraints.weighty = 0;
+        conatainer.add(path, bagConstraints);
+
+        bagConstraints.gridx = 3;
+        bagConstraints.gridy = 0;
+        bagConstraints.anchor = GridBagConstraints.PAGE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.4;
+        bagConstraints.weighty = 0;
+        conatainer.add(browseChooser, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = one;
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.6;
+        bagConstraints.weighty = 0;
+        conatainer.add(labelName, bagConstraints);
+
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = one;
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.6;
+        bagConstraints.weighty = 0;
+        conatainer.add(fileName, bagConstraints);
+
         bagConstraints.gridx = two;
-        bagConstraints.gridy = 0;
-        this.add(browseChooser, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = one;
-        labelName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelName, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = one;
-        this.add(fileName, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = two;
-        labelSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelSize, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = two;
-        this.add(size, bagConstraints);
+        bagConstraints.gridy = 1;
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.6;
+        bagConstraints.weighty = 0;
+        conatainer.add(labelSize, bagConstraints);
+
+        bagConstraints.gridx = 3;
+        bagConstraints.gridy = 1;
+        bagConstraints.anchor = GridBagConstraints.PAGE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.4;
+        bagConstraints.weighty = 0;
+        conatainer.add(size, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
-        labelMultimedia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelMultimedia, bagConstraints);
+        bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.6;
+        bagConstraints.weighty = 0;
+        conatainer.add(labelMultimedia, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
-        this.add(multimediaBox, bagConstraints);
+        bagConstraints.anchor = GridBagConstraints.PAGE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 0.4;
+        bagConstraints.weighty = 0;
+        conatainer.add(multimediaBox, bagConstraints);
 
 
-        bagConstraints.gridx = one;
+        bagConstraints.gridx = 3;
         bagConstraints.gridy = four;
-        this.add(searchButton, bagConstraints);
+        conatainer.add(searchButton, bagConstraints);
+
+
+        this.add(conatainer);
     }
 
     /**
