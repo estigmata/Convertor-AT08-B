@@ -19,9 +19,10 @@ import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 /**
@@ -56,8 +57,15 @@ public class Information extends JPanel {
      * The constructor starts with the basic panel.
      */
     public Information() {
-        setBorder(BorderFactory.createTitledBorder("Information of:"));
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Information",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
         this.setVisible(true);
+        this.setBackground(Color.WHITE);
         path = new JLabel("");
         size = new JLabel("");
         extension = new JLabel("");

@@ -15,9 +15,14 @@
 package org.fundacionjala.convertor.view.finder;
 
 
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 
 /**
@@ -76,13 +81,13 @@ public class VideoSearchPanel extends JPanel {
         final int four = 4;
 
         this.setBackground(Color.WHITE);
-
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(255, 51, 0)), "Video Advanced Search",
+                        createLineBorder(orangeColor), "Video Advanced Search",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                new java.awt.Font("Tahoma", 0, 11),
-                new java.awt.Color(255, 51, 0)));
+                font, orangeColor));
         container.setBackground(Color.WHITE);
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.insets = new Insets(1, 1, 1, 1);
@@ -93,44 +98,44 @@ public class VideoSearchPanel extends JPanel {
         labelFrameRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelFrameRate, bagConstraints);
 
-        bagConstraints.gridx = 1;
+        bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         container.add(frameRate, bagConstraints);
 
-        bagConstraints.gridx = 2;
+        bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
         labelAspectRatio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelAspectRatio, bagConstraints);
 
-        bagConstraints.gridx = 3;
+        bagConstraints.gridx = three;
         bagConstraints.gridy = 0;
         container.add(aspectRatio, bagConstraints);
 
         bagConstraints.gridx = 0;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridy = three;
         labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         container.add(labelResolution, bagConstraints);
-        bagConstraints.gridx = 1;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = one;
         container.add(resolution, bagConstraints);
 
-        bagConstraints.gridx = 2;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = one;
         labelVideoCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelVideoCodec, bagConstraints);
 
-        bagConstraints.gridx = 3;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = one;
         container.add(videoCodec, bagConstraints);
 
-        bagConstraints.gridx = 1;
-        bagConstraints.gridy = 2;
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = two;
         labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelAudioCodec, bagConstraints);
 
-        bagConstraints.gridx = 2;
-        bagConstraints.gridy = 2;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = two;
         container.add(audioCodec, bagConstraints);
         this.add(container);
     }

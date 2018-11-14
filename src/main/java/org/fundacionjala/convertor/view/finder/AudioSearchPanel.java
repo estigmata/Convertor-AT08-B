@@ -15,12 +15,14 @@
 package org.fundacionjala.convertor.view.finder;
 
 
-import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 
 /**
@@ -47,7 +49,7 @@ public class AudioSearchPanel extends JPanel {
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("Audio Codec :");
 
-        container=new JPanel(new GridBagLayout());
+        container = new JPanel(new GridBagLayout());
         initComponents();
     }
 
@@ -56,15 +58,17 @@ public class AudioSearchPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-
+        final int two = 1;
+        final int tree = 1;
         this.setBackground(Color.WHITE);
-
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(255, 51, 0)), "Audio Advanced Search",
+                        createLineBorder(orangeColor), "Audio Advanced Search",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                new java.awt.Font("Tahoma", 0, 11),
-                new java.awt.Color(255, 51, 0)));
+                font,
+                orangeColor));
         container.setBackground(Color.WHITE);
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.insets = new Insets(1, 1, 1, 1);
@@ -79,16 +83,15 @@ public class AudioSearchPanel extends JPanel {
         bagConstraints.gridy = 0;
         container.add(audioCodec, bagConstraints);
 
-        bagConstraints.gridx = 2;
+        bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
         labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         container.add(labelChannel, bagConstraints);
-        bagConstraints.gridx = 3;
+        bagConstraints.gridx = tree;
         bagConstraints.gridy = 0;
 
         container.add(channel, bagConstraints);
-
 
 
         this.add(container);

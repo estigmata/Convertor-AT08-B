@@ -16,15 +16,17 @@ package org.fundacionjala.convertor.view.Converter;
 
 import org.fundacionjala.convertor.view.BrowseChooser;
 
-import javax.swing.BorderFactory;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 
 /**
@@ -47,6 +49,7 @@ public class BasicConverterPanel extends JPanel {
     private JLabel labelCurrentPath;
     private JLabel labelMultimediaBox;
 
+    private JPanel container;
 
     /**
      * Constructor.
@@ -66,7 +69,7 @@ public class BasicConverterPanel extends JPanel {
         labelCurrentPath = new JLabel("Current Path :");
         labelMultimediaBox = new JLabel("Multimedia :");
 
-
+        container = new JPanel(new GridBagLayout());
         initComponents();
     }
 
@@ -74,59 +77,70 @@ public class BasicConverterPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-        final int four = 4;
-        final int tree = 3;
+
         final int one = 1;
         final int two = 2;
+        final int tree = 3;
+        final int four = 4;
         final int six = 6;
-        TitledBorder title = BorderFactory.createTitledBorder("Output Setting");
-        this.setBorder(title);
-        this.setLayout(new GridBagLayout());
+
+        this.setBackground(Color.WHITE);
+        container.setBackground(Color.WHITE);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Basic Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
+
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         labelOutputName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelOutputName, bagConstraints);
+        container.add(labelOutputName, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
-        this.add(outputName, bagConstraints);
+        container.add(outputName, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
         labelCurrentPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelCurrentPath, bagConstraints);
+        container.add(labelCurrentPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
-        this.add(currentPath, bagConstraints);
+        container.add(currentPath, bagConstraints);
 
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
         labelOutPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelOutPath, bagConstraints);
+        container.add(labelOutPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
-        this.add(outputPath, bagConstraints);
+        container.add(outputPath, bagConstraints);
         bagConstraints.gridx = two;
         bagConstraints.gridy = tree;
-        this.add(browseChooser, bagConstraints);
+        container.add(browseChooser, bagConstraints);
 
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
         labelMultimediaBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelMultimediaBox, bagConstraints);
+        container.add(labelMultimediaBox, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
-        this.add(multimediaBox, bagConstraints);
+        container.add(multimediaBox, bagConstraints);
 
 
         bagConstraints.gridx = one;
 
         bagConstraints.gridy = six;
-        this.add(converterButton, bagConstraints);
+        container.add(converterButton, bagConstraints);
+        this.add(container);
     }
 
     /**

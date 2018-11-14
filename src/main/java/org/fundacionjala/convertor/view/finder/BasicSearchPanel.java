@@ -15,16 +15,18 @@
 package org.fundacionjala.convertor.view.finder;
 
 import org.fundacionjala.convertor.view.BrowseChooser;
-import org.fundacionjala.convertor.view.Converter.ConverterPanel;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 
 /**
@@ -52,18 +54,19 @@ public class BasicSearchPanel extends JPanel {
      * Constructor.
      */
     public BasicSearchPanel() {
-        this.setName("Basic Search");
+
         path = new JTextField("");
         searchButton = new JButton();
         fileName = new JTextField();
         size = new JTextField();
         browseChooser = new BrowseChooser();
         browseChooser.setBackground(Color.WHITE);
+
         browseChooser.setPath(path);
 
         searchButton.setBackground(Color.WHITE);
         searchButton.setIcon(new javax.swing.ImageIcon("Image\\search.PNG"));
-searchButton.setBorder(null);
+        searchButton.setBorder(null);
 
         multimediaBox = new JComboBox<>(new String[]{"All", "Video", "Audio"});
         labelPath = new JLabel("What find ? :");
@@ -80,20 +83,24 @@ searchButton.setBorder(null);
      * Initialization of Components.
      */
     public void initComponents() {
-        final int four = 4;
-        final int tree = 3;
+
         final int one = 1;
         final int two = 2;
+        final int tree = 3;
+        final int four = 4;
 
-this.setBackground(Color.WHITE);
+        this.setBackground(Color.WHITE);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Basic Search",
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
+
         conatainer.setBackground(Color.WHITE);
 
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(255, 51, 0)), "Basic Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                new java.awt.Font("Tahoma", 0, 11),
-                new java.awt.Color(255, 51, 0)));
+
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -101,77 +108,50 @@ this.setBackground(Color.WHITE);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.6;
-        bagConstraints.weighty = 0;
         conatainer.add(labelPath, bagConstraints);
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.4;
-        bagConstraints.weighty = 0;
         conatainer.add(path, bagConstraints);
 
-        bagConstraints.gridx = 3;
+        bagConstraints.gridx = tree;
         bagConstraints.gridy = 0;
         bagConstraints.anchor = GridBagConstraints.PAGE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.4;
-        bagConstraints.weighty = 0;
         conatainer.add(browseChooser, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.6;
-        bagConstraints.weighty = 0;
         conatainer.add(labelName, bagConstraints);
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.6;
-        bagConstraints.weighty = 0;
         conatainer.add(fileName, bagConstraints);
 
         bagConstraints.gridx = two;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridy = one;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.6;
-        bagConstraints.weighty = 0;
         conatainer.add(labelSize, bagConstraints);
 
-        bagConstraints.gridx = 3;
-        bagConstraints.gridy = 1;
+        bagConstraints.gridx = tree;
+        bagConstraints.gridy = one;
         bagConstraints.anchor = GridBagConstraints.PAGE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.4;
-        bagConstraints.weighty = 0;
         conatainer.add(size, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.6;
-        bagConstraints.weighty = 0;
         conatainer.add(labelMultimedia, bagConstraints);
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
         bagConstraints.anchor = GridBagConstraints.PAGE_END;
-        bagConstraints.ipady = 0;
-        bagConstraints.weightx = 0.4;
-        bagConstraints.weighty = 0;
         conatainer.add(multimediaBox, bagConstraints);
 
 
-        bagConstraints.gridx = 3;
+        bagConstraints.gridx = tree;
         bagConstraints.gridy = four;
         conatainer.add(searchButton, bagConstraints);
 
