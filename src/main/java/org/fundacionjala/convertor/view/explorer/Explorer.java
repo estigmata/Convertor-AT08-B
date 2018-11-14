@@ -33,6 +33,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
 
@@ -57,9 +58,10 @@ public class Explorer extends JPanel {
      * Constructor of the explorer.
      */
     public Explorer() {
-        final int width = 400;
+        final int width = 250;
         final int height = 300;
 
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
         setSize(width, height);
 
         DefaultMutableTreeNode top = new DefaultMutableTreeNode(
@@ -92,10 +94,12 @@ public class Explorer extends JPanel {
         mTree.setShowsRootHandles(true);
         mTree.setEditable(false);
 
-        final int explorerWidth = 430;
-        final int explorerHeight = 350;
+        final int explorerWidth = 250;
+        final int explorerHeight = 290;
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
+        s.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                createLineBorder(orangeColor)));
         add(s, BorderLayout.CENTER);
 
         setVisible(true);

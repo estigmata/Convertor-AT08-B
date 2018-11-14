@@ -19,8 +19,6 @@ import org.fundacionjala.convertor.view.Converter.ConverterPanel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import java.awt.Color;
-
 
 /**
  *
@@ -43,11 +41,7 @@ public class DownPanel extends JPanel {
      */
     private void initComponents() {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-        resultTablePanel.setBackground(Color.white);
         this.add(resultTablePanel);
-        converterPanel.setBackground(Color.white);
-
         this.add(converterPanel);
     }
 

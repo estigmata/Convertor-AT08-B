@@ -17,7 +17,7 @@ package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
-import javax.swing.BorderFactory;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +26,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -43,14 +44,24 @@ public class FilesPanelContainer extends JPanel {
      * Constructor Files Panel class.
      */
     public FilesPanelContainer() {
-        setBorder(BorderFactory.createTitledBorder("Files"));
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Files",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
+
+
         setLayout(new BorderLayout());
+        this.setBackground(Color.white);
         filesContainer = new JPanel(new GridBagLayout());
+        filesContainer.setBackground(Color.BLACK);
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.weightx = 1;
         gridBagConstraints.weighty = 1;
-        final int width = 620;
+        final int width = 600;
         final int height = 350;
         setPreferredSize(new Dimension(width, height));
         add(new JScrollPane(filesContainer));

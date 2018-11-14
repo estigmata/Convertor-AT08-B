@@ -19,6 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,6 +41,7 @@ public class ConverterPanel extends JPanel {
     public ConverterPanel() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         basicConverterPanel = new BasicConverterPanel();
         basicConverterPanel.setBackground(Color.WHITE);
         this.add(basicConverterPanel);
@@ -58,6 +60,15 @@ public class ConverterPanel extends JPanel {
         progressBarPanel.setVisible(false);
         progressBarPanel.setBackground(Color.WHITE);
         this.add(progressBarPanel);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Converter ",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
+
+        this.setBackground(Color.WHITE);
 
         basicConverterPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
