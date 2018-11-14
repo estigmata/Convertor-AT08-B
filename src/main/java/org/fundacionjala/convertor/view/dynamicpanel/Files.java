@@ -59,7 +59,7 @@ public class Files extends JPanel implements MouseListener {
         isHighLighted = !isHighLighted;
         MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         Information.setInformation(file);
-        BasicConverterPanel.setFileToConvert(file.getFileName());
+        BasicConverterPanel.setFileToConvert(file.getFileName() + "." + file.getExtension());
         BasicConverterPanel.setPathSource(file.getPath());
         BasicConverterPanel.setPathDestination(file.getPath());
     }
