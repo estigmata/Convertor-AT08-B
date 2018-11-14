@@ -151,7 +151,7 @@ public class SearchController {
             criteria.setAspectRatio(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getAspectRatio().getSelectedItem().toString());
             criteria.setAudioCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
-                    .getVideoCodec().getSelectedItem().toString());
+                    .getAudioCodec().getSelectedItem().toString());
             criteria.setFrameRate(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getFrameRate().getSelectedItem().toString());
             criteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));

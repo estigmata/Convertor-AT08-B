@@ -55,13 +55,13 @@ public class VideoSearchPanel extends JPanel {
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
                 "AVS", "MJPEG", "VP7", "WMV"});
-        audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
+        audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAV2", "AAC", "PCM_S16LE"});
 
         labelFrameRate = new JLabel("Frame Rate :");
         labelAspectRatio = new JLabel("Aspect Ratio :");
         labelResolution = new JLabel("Resolution :");
         labelVideoCodec = new JLabel("Video Codec :");
-        labelAudioCodec = new JLabel("Audio Codec >");
+        labelAudioCodec = new JLabel("Audio Codec :");
 
 
         this.setBackground(Color.WHITE);
