@@ -14,8 +14,8 @@ import java.io.IOException;
  */
 
 public class ConverterModel {
-    private FFmpeg ffmpeg = new FFmpeg("C:\\ffmpeg\\bin\\ffmpeg.exe");
-    private FFprobe ffprobe = new FFprobe("C:\\ffmpeg\\bin\\ffprobe.exe");
+    private FFmpeg ffmpeg = new FFmpeg("src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe");
+    private FFprobe ffprobe = new FFprobe("src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
 
     /**
      * Constructor.
