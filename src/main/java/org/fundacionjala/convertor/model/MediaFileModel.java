@@ -150,6 +150,14 @@ public class MediaFileModel {
                     }
                     return stream.codec_name.toUpperCase().equals(criteria.getVideoCodec());
                 })
+//                Audio Codec
+                .filter(x -> {
+                    FFmpegStream stream = getStreamAudio(getStreamFFprobe(x));
+                    if (criteria.getAudioCodec().isEmpty()) {
+                        return true;
+                    }
+                    return stream.codec_name.toUpperCase().equals(criteria.getAudioCodec());
+                })
                 .forEach(item -> {
                     FFmpegStream videoStream = getStreamVideo(getStreamFFprobe(item));
                     FFmpegStream audioStream = getStreamAudio(getStreamFFprobe(item));

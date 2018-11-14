@@ -138,6 +138,7 @@ public class Information extends JPanel {
             resolution.setText(((VideoFileAsset) file).getResolution());
             aspectRatio.setText(((VideoFileAsset) file).getAspectRatio());
             frameRate.setText(((VideoFileAsset) file).getFrameRate());
+            audioCodec.setText(((VideoFileAsset) file).getAudioCodec());
         }
         if (file instanceof AudioFileAsset) {
             audioCodec.setText(((AudioFileAsset) file).getAudioCodec());
@@ -172,6 +173,8 @@ public class Information extends JPanel {
             aspectRatio.setVisible(true);
             frameRateLabel.setVisible(true);
             frameRate.setVisible(true);
+            audioCodecLabel.setVisible(true);
+            audioCodec.setVisible(true);
         }
         if (file instanceof AudioFileAsset) {
             audioCodecLabel.setVisible(true);
