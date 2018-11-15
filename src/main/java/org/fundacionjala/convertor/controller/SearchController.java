@@ -27,6 +27,7 @@ import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
@@ -181,9 +182,18 @@ public class SearchController {
 
     public void convertFile() throws IOException {
         Criteria basicCriteria = new Criteria();
+        ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
+        convertVideoCriteria.setFilePath(viewer.getDownPanel()
+            .getConverterPanel()
+            .getBasicConverterPanel()
+            .getCurrentPath()
+            .getText());
+        convertVideoCriteria.setFileName("blah blah");
+        basicCriteria = convertVideoCriteria;
+
         if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
                 .getMultimediaBox().getSelectedItem().equals(VIDEO)) {
-            ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
+            //ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
             convertVideoCriteria.setFilePath(viewer.getDownPanel().getConverterPanel()
                     .getBasicConverterPanel().getCurrentPath().toString());
             convertVideoCriteria.setFileName(viewer.getDownPanel().getConverterPanel()
@@ -224,7 +234,8 @@ public class SearchController {
                     .getAudioConverterPanel().getFormatCodecConverter().toString());
             basicCriteria = convertAudioCriteria;
         }
-
+        System.out.println("Basic Criteria: ");
+        System.out.println(basicCriteria.getFileName());
         converterModel.convertFile(basicCriteria);
     }
 }

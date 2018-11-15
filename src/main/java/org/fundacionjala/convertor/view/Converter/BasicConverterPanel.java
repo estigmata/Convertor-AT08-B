@@ -54,11 +54,8 @@ public class BasicConverterPanel extends JPanel {
   private JLabel labelCurrentPath;
   private JLabel labelMultimediaBox;
 
-  private static FFmpeg ffmpeg;
-  private static FFprobe ffprobe;
-
-  private static final String FFMPEG_PATH = "C:\\ffmpeg\\bin\\ffmpeg.exe";
-  private static final String FFPROBE_PATH = "C:\\ffmpeg\\bin\\ffprobe.exe";
+  /*private static FFmpeg ffmpeg;
+  private static FFprobe ffprobe;*/
 
   /**
    * Constructor.
@@ -140,7 +137,7 @@ public class BasicConverterPanel extends JPanel {
     btnConverter.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
-        converterFile();
+        //converterFile();
       }
     });
     this.add(btnConverter, bagConstraints);
@@ -200,41 +197,11 @@ public class BasicConverterPanel extends JPanel {
     outputPath.setText(pathDestination);
   }
 
+  public static String getFileToConvert() {
+      return fileToConvert;
+  }
+
   private void converterFile() {
     //TODO
-    try {
-      ffmpeg = new FFmpeg(FFMPEG_PATH);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-    try {
-      ffprobe = new FFprobe(FFPROBE_PATH);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-    FFmpegBuilder builder = new FFmpegBuilder()
-
-        .setInput(currentPath.getText() + "/" + fileToConvert)
-        .overrideOutputFiles(true)
-
-        .addOutput(outputPath.getText() + "/" + (outputFileName.getText().length() == 0 ? fileToConvert.split("\\.")[0] : outputFileName.getText()) + ".avi")
-        .setFormat("avi")
-
-        .disableSubtitle()
-
-        .setAudioChannels(1)
-        .setAudioCodec("aac")
-        .setAudioSampleRate(48_000)
-        .setAudioBitRate(32768)
-
-        .setVideoCodec("libx264")
-        .setVideoFrameRate(24, 1)
-        .setVideoResolution(640, 480)
-
-        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
-        .done();
-
-    FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-    executor.createJob(builder).run();
   }
 }
