@@ -27,6 +27,7 @@ import org.fundacionjala.convertor.model.MediaFileModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
@@ -181,27 +182,66 @@ public class SearchController {
 
     public void convertFile() throws IOException {
         Criteria basicCriteria = new Criteria();
+
         if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
                 .getMultimediaBox().getSelectedItem().equals(VIDEO)) {
             ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
-            convertVideoCriteria.setFilePath(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getCurrentPath().toString());
-            convertVideoCriteria.setFileName(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getOutputName().toString());
-            String[] resolution = viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
-                    .getResolution().getSelectedItem().toString().split("\\*");
-            convertVideoCriteria.setFrameRate(viewer.getDownPanel().getConverterPanel()
-                    .getVideoConverterPanel().toString());
-            convertVideoCriteria.setAspectRatio(viewer.getDownPanel().getConverterPanel()
-                    .getVideoConverterPanel().getAspectRatio().toString());
+            convertVideoCriteria.setFilePath(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getBasicConverterPanel()
+                .getCurrentPath()
+                .getText());
+            convertVideoCriteria.setFileName(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getBasicConverterPanel()
+                .getOutputName()
+                .getText());
+            String[] resolution = viewer
+                .getUpperPanel()
+                .getSearchPanel()
+                .getVideoSearchPanel()
+                .getResolution()
+                .getSelectedItem()
+                .toString()
+                .split("\\*");
+            convertVideoCriteria.setFileToConvert(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getBasicConverterPanel()
+                .getFileToConvert());
+            convertVideoCriteria.setFrameRate(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getVideoConverterPanel()
+                .toString());
+            convertVideoCriteria.setAspectRatio(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getVideoConverterPanel()
+                .getAspectRatio()
+                .toString());
             convertVideoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
             convertVideoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
-            convertVideoCriteria.setVideoCodec(viewer.getDownPanel().getConverterPanel()
-                    .getVideoConverterPanel().getVideoCodec().toString());
-            convertVideoCriteria.setAudioCodec(viewer.getDownPanel().getConverterPanel()
-                    .getVideoConverterPanel().getAudioCodec().toString());
-            convertVideoCriteria.setFormat(viewer.getDownPanel().getConverterPanel()
-                    .getVideoConverterPanel().getFomat().toString());
+            convertVideoCriteria.setVideoCodec(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getVideoConverterPanel()
+                .getVideoCodec()
+                .toString());
+            convertVideoCriteria.setAudioCodec(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getVideoConverterPanel()
+                .getAudioCodec()
+                .toString());
+            convertVideoCriteria.setFormat(viewer
+                .getDownPanel()
+                .getConverterPanel()
+                .getVideoConverterPanel()
+                .getFomat()
+                .toString());
             basicCriteria = convertVideoCriteria;
 
         }
@@ -210,9 +250,10 @@ public class SearchController {
                 .getMultimediaBox().getSelectedItem().equals(AUDIO)) {
             ConvertCriteriaAudio convertAudioCriteria = new ConvertCriteriaAudio();
             convertAudioCriteria.setFilePath(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getCurrentPath().toString());
+                    .getBasicConverterPanel().getCurrentPath().getText());
+            System.out.println(convertAudioCriteria.getFilePath());
             convertAudioCriteria.setFileName(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getOutputName().toString());
+                    .getBasicConverterPanel().getOutputName().getText());
 
 
             convertAudioCriteria.setAudioCodec(viewer.getDownPanel().getConverterPanel()
@@ -224,7 +265,8 @@ public class SearchController {
                     .getAudioConverterPanel().getFormatCodecConverter().toString());
             basicCriteria = convertAudioCriteria;
         }
-
+        /*System.out.println(basicCriteria.getFilePath());
+        System.out.println(basicCriteria.getFileToConvert());*/
         converterModel.convertFile(basicCriteria);
     }
 }

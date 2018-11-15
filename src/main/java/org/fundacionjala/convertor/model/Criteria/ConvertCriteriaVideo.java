@@ -26,6 +26,7 @@ public class ConvertCriteriaVideo extends Criteria {
     private String videoCodec;
     private String audioCodec;
     private String format;
+    private String fileToConvert;
 
     @Override
     public void setFileName(final String fileName) {
@@ -133,4 +134,11 @@ public class ConvertCriteriaVideo extends Criteria {
         this.format = format;
     }
 
+    public void setFileToConvert(final String fileToConvert) {
+        this.fileToConvert = fileToConvert;
+    }
+
+    public String getFileToConvert() {
+        return this.fileToConvert;
+    }
 }

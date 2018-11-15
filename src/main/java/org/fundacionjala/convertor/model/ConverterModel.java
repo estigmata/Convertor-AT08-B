@@ -5,6 +5,7 @@ import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -14,50 +15,56 @@ import java.io.IOException;
  */
 
 public class ConverterModel {
-    private FFmpeg ffmpeg = new FFmpeg("src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe");
-    private FFprobe ffprobe = new FFprobe("src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
 
-    /**
-     * Constructor.
-     * @throws IOException .
-     */
+  private FFmpeg ffmpeg;
+  private FFprobe ffprobe;
 
-    public ConverterModel() throws IOException {
+  private static final String FFMPEG_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe";
+  private static final String FFPROBE_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe";
+
+  /**
+   * Constructor.
+   *
+   * @throws IOException .
+   */
+
+  public ConverterModel() throws IOException {
+  }
+
+  /**
+   * Method to convert multimedia files.
+   *
+   * @param criteria object.
+   */
+  public void convertFile(final Criteria criteria) {
+    try {
+      ffmpeg = new FFmpeg(FFMPEG_PATH);
+    } catch (Exception e) {
+      System.out.println(e);
     }
-
-    /**
-     * Method to convert multimedia files.
-     * @param criteria object.
-     */
-    public void convertFile(final Criteria criteria) {
-         File file = new File("C:\\ffmpeg\\videoPrueba\\Alize - LA ISLA BONITA (EN VIVO).avi");
-         final int width = 640;
-         final int height = 480;
-         final int frameRate = 24;
-         final int audioChannels = 1;
-         final int targetSize = 250000;
-
-        FFmpegBuilder builder = new FFmpegBuilder()
-                .setInput(file.getAbsolutePath())
-                .overrideOutputFiles(true)
-                .addOutput("C:\\ffmpeg\\output.mp4")
-                .setFormat("mp4")
-                .setTargetSize(targetSize)
-
-                .disableSubtitle()
-
-                .setAudioChannels(audioChannels)
-                .setAudioCodec("libfdk_aac")
-
-                .setVideoCodec("libx264")
-                .setVideoFrameRate(frameRate)
-                .setVideoResolution(width, height)
-
-                .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
-                .done();
-
-        FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-        executor.createTwoPassJob(builder).run();
-
+    try {
+      ffprobe = new FFprobe(FFPROBE_PATH);
+    } catch (Exception e) {
+      System.out.println(e);
     }
+    FFmpegBuilder builder = new FFmpegBuilder()
+
+        .setInput(criteria.getFilePath() + "/" + criteria.getFileToConvert())
+        .overrideOutputFiles(true)
+        .addOutput(criteria.getFilePath() + "/" + (criteria.getFileToConvert().split("\\.")[0]) + ".avi")
+        .setFormat("avi")
+        .disableSubtitle()
+        .setAudioChannels(1)
+        .setAudioCodec("aac")
+        .setAudioSampleRate(48_000)
+        .setAudioBitRate(32768)
+        .setVideoCodec("libx264")
+        .setVideoFrameRate(24, 1)
+        .setVideoResolution(640, 480)
+        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+        .done();
+
+    FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+    executor.createJob(builder).run();
+  }
 }

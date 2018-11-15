@@ -1,4 +1,4 @@
-/*
+/**
  * @Files.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -16,6 +16,7 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
 
 import javax.swing.BorderFactory;
@@ -29,6 +30,9 @@ import java.awt.event.MouseListener;
 /**
  * This class its the personal panel for each file and uses Mouse Listener for update the information in the
  * information panel.
+ * 
+ * @author Nestor Otondo.
+ * @version 1.0
  */
 public class Files extends JPanel implements MouseListener {
     private final Color orangeColor = new java.awt.Color(255, 51, 0);
@@ -61,7 +65,9 @@ public class Files extends JPanel implements MouseListener {
         isHighLighted = !isHighLighted;
         MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         Information.setInformation(file);
-
+        BasicConverterPanel.setFileToConvert(file.getFileName() + "." + file.getExtension());
+        BasicConverterPanel.setPathSource(file.getPath());
+        BasicConverterPanel.setPathDestination(file.getPath());
     }
 
     @Override
