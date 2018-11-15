@@ -54,9 +54,6 @@ public class BasicConverterPanel extends JPanel {
   private JLabel labelCurrentPath;
   private JLabel labelMultimediaBox;
 
-  /*private static FFmpeg ffmpeg;
-  private static FFprobe ffprobe;*/
-
   /**
    * Constructor.
    */
@@ -198,7 +195,7 @@ public class BasicConverterPanel extends JPanel {
   }
 
   public static String getFileToConvert() {
-      return fileToConvert;
+    return fileToConvert;
   }
 
   private void converterFile() {

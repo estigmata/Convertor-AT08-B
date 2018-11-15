@@ -28,6 +28,7 @@ public class Criteria {
     private long fileSize;
     private String fileExtention;
     private String conditionSize;
+    private String fileToConvert;
 
     /**
      * This method return the value of file Extention atributte.
@@ -117,5 +118,9 @@ public class Criteria {
      */
     public void setConditionSize(final String conditionSize) {
         this.conditionSize = conditionSize;
+    }
+
+    public String getFileToConvert() {
+        return this.fileToConvert;
     }
 }
