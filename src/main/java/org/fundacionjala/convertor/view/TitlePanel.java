@@ -37,6 +37,7 @@ public class TitlePanel extends JPanel {
     private JLabel title;
     private JLabel logo;
     private JButton close;
+
     private JPanel container;
 
     /**
