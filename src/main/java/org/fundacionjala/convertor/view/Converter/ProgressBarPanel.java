@@ -31,12 +31,15 @@ import java.awt.Label;
 public class ProgressBarPanel extends JPanel {
 
     protected JProgressBar status;
+    private final int oneHundred = 100;
 
     /**
      * Constructor.
      */
     public ProgressBarPanel() {
         status = new JProgressBar();
+        status.setMinimum(0);
+        status.setMaximum(oneHundred);
         initComponents();
     }
 
@@ -45,7 +48,7 @@ public class ProgressBarPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        final int state = 50;
+        final int state = 0;
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -64,7 +67,7 @@ public class ProgressBarPanel extends JPanel {
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
-        status.setValue(state);
+        status.setValue(0);
 
         this.add(status, bagConstraints);
     }
@@ -74,5 +77,16 @@ public class ProgressBarPanel extends JPanel {
      */
     public JProgressBar getStatus() {
         return status;
+    }
+
+    /**
+     * This method updates the progress bar while the conversion its executed.
+     *
+     * @param percentage Input percentage.
+     */
+    public void setValue1(final int percentage) {
+        status.setValue(percentage);
+        status.update(status.getGraphics());
+        status.setStringPainted(true);
     }
 }
