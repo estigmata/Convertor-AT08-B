@@ -187,61 +187,67 @@ public class SearchController {
                 .getMultimediaBox().getSelectedItem().equals(VIDEO)) {
             ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
             convertVideoCriteria.setFilePath(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getBasicConverterPanel()
-                .getCurrentPath()
-                .getText());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getCurrentPath()
+                    .getText());
             convertVideoCriteria.setFileName(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getBasicConverterPanel()
-                .getOutputName()
-                .getText());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getOutputName()
+                    .getText());
             String[] resolution = viewer
-                .getUpperPanel()
-                .getSearchPanel()
-                .getVideoSearchPanel()
-                .getResolution()
-                .getSelectedItem()
-                .toString()
-                .split("\\*");
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getResolution()
+                    .getSelectedItem()
+                    .toString()
+                    .split("\\*");
             convertVideoCriteria.setFileToConvert(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getBasicConverterPanel()
-                .getFileToConvert());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getFileToConvert());
             convertVideoCriteria.setFrameRate(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getVideoConverterPanel()
-                .toString());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getFrameRate()
+                    .getSelectedItem()
+                    .toString());
             convertVideoCriteria.setAspectRatio(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getVideoConverterPanel()
-                .getAspectRatio()
-                .toString());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getAspectRatio()
+                    .getSelectedItem()
+                    .toString());
             convertVideoCriteria.setResolutionWith(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[0]));
             convertVideoCriteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
             convertVideoCriteria.setVideoCodec(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getVideoConverterPanel()
-                .getVideoCodec()
-                .toString());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getVideoCodec()
+                    .getSelectedItem()
+                    .toString());
             convertVideoCriteria.setAudioCodec(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getVideoConverterPanel()
-                .getAudioCodec()
-                .toString());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getAudioCodec()
+                    .getSelectedItem()
+                    .toString());
             convertVideoCriteria.setFormat(viewer
-                .getDownPanel()
-                .getConverterPanel()
-                .getVideoConverterPanel()
-                .getFomat()
-                .toString());
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getVideoConverterPanel()
+                    .getFomat()
+                    .getSelectedItem()
+                    .toString());
             basicCriteria = convertVideoCriteria;
 
         }
