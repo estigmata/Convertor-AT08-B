@@ -11,7 +11,9 @@ import net.bramp.ffmpeg.progress.Progress;
 import net.bramp.ffmpeg.progress.ProgressListener;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
+import javax.swing.JProgressBar;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -39,10 +41,10 @@ public class ConverterModel {
 
   /**
    * Method to convert multimedia files.
-   *
-   * @param criteria object.
+   *  @param criteria object.
+   * @param status
    */
-  public void convertFile(final Criteria criteria) {
+  public void convertFile(final Criteria criteria, ProgressBarPanel status) {
     try {
       ffmpeg = new FFmpeg(FFMPEG_PATH);
     } catch (Exception e) {
@@ -98,7 +100,7 @@ public class ConverterModel {
         double percentage = progress.out_time_ns / duration_ns;
 
         // Print out interesting information about the progress
-        
+        status.setValue1((int) percentage);
         System.out.println(String.format(
                 "[%.0f%%] status:%s frame:%d time:%s ms fps:%.0f speed:%.2fx",
                 percentage * 100,

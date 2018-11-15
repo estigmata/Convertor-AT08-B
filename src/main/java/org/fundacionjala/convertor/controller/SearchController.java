@@ -306,6 +306,6 @@ public class SearchController {
                     .toString());
             basicCriteria = convertAudioCriteria;
         }
-        converterModel.convertFile(basicCriteria);
+        converterModel.convertFile(basicCriteria, viewer.getDownPanel().getConverterPanel().getProgressBarPanel());
     }
 }
