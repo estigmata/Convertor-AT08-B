@@ -15,14 +15,14 @@
 package org.fundacionjala.convertor.view.finder;
 
 
-import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 
 /**
@@ -37,15 +37,19 @@ public class AudioSearchPanel extends JPanel {
     private JLabel labelChannel;
     private JLabel labelAudioCodec;
 
+    private JPanel container;
+
     /**
      * Constructor.
      */
     public AudioSearchPanel() {
-        audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAV2"});
+        audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAV2", "AAC", "PCM_S16LE"});
         channel = new JComboBox<>(new String[]{"", "1", "2", "3"});
 
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("Audio Codec :");
+
+        container = new JPanel(new GridBagLayout());
         initComponents();
     }
 
@@ -54,27 +58,43 @@ public class AudioSearchPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        TitledBorder title = BorderFactory.createTitledBorder("Audio Advanced Search");
-        this.setBorder(title);
-        this.setLayout(new GridBagLayout());
+        final int two = 1;
+        final int tree = 1;
+        this.setBackground(Color.WHITE);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Audio Advanced Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font,
+                orangeColor));
+        container.setBackground(Color.WHITE);
         GridBagConstraints bagConstraints = new GridBagConstraints();
+        bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
+
         bagConstraints.gridx = 0;
+        bagConstraints.gridy = 0;
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        container.add(labelAudioCodec, bagConstraints);
+
+        bagConstraints.gridx = one;
+        bagConstraints.gridy = 0;
+        container.add(audioCodec, bagConstraints);
+
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 0;
+        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        container.add(labelChannel, bagConstraints);
+        bagConstraints.gridx = tree;
         bagConstraints.gridy = 0;
 
-        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelAudioCodec, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = 0;
-        this.add(audioCodec, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = one;
-        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        this.add(labelChannel, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = one;
-        this.add(channel, bagConstraints);
-        this.setBackground(Color.WHITE);
+        container.add(channel, bagConstraints);
+
+
+        this.add(container);
 
     }
 

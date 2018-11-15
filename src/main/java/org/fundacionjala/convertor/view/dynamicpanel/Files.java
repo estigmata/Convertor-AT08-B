@@ -35,8 +35,9 @@ import java.awt.event.MouseListener;
  * @version 1.0
  */
 public class Files extends JPanel implements MouseListener {
-    private MatteBorder borderDefault = new MatteBorder(1, 1, 1, 1, Color.GRAY);
-    private Border borderSelected = BorderFactory.createLineBorder(Color.CYAN);
+    private final Color orangeColor = new java.awt.Color(255, 51, 0);
+    private MatteBorder borderDefault = new MatteBorder(1, 1, 1, 1, Color.white);
+    private Border borderSelected = BorderFactory.createLineBorder(orangeColor);
     private Boolean isHighLighted;
     private Asset file;
 
@@ -50,6 +51,8 @@ public class Files extends JPanel implements MouseListener {
         setFocusable(true);
         isHighLighted = false;
         this.file = file;
+        this.setBackground(Color.white);
+
     }
 
     @Override

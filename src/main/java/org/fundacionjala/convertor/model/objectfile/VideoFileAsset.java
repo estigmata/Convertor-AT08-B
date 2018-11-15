@@ -26,6 +26,7 @@ public class VideoFileAsset extends Asset {
     private String aspectRatio;
     private String resolution;
     private String videoCodec;
+    private String audioCodec;
 
     /**
      * Getter  of the Frame rate of the current file.
@@ -97,5 +98,23 @@ public class VideoFileAsset extends Asset {
      */
     public void setVideoCodec(final String videoCodec) {
         this.videoCodec = videoCodec;
+    }
+
+    /**
+     * Getter of the Audio Codec.
+     *
+     * @return the Audio Codec.
+     */
+    public String getAudioCodec() {
+        return audioCodec;
+    }
+
+    /**
+     * Setter of the Audio Codec.
+     *
+     * @param audioCodec Input String.
+     */
+    public void setAudioCodec(final String audioCodec) {
+        this.audioCodec = audioCodec;
     }
 }

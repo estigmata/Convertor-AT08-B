@@ -14,10 +14,10 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.border.TitledBorder;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
@@ -45,19 +45,27 @@ public class ProgressBarPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        final int two = 2;
         final int state = 50;
-        TitledBorder title = BorderFactory.createTitledBorder("Progres Status");
-        this.setBorder(title);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Basic Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
+
         this.setLayout(new GridBagLayout());
+
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         this.add(new Label("Status"), bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         status.setValue(state);
+
         this.add(status, bagConstraints);
     }
 

@@ -46,15 +46,15 @@ public class ResultTablePanel extends JPanel {
      * Initialization of components.
      */
     private void initComponents() {
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        //Panel for the Search table.
-        this.add(filesPanel);
         final int widthInfo = 200;
         final int heightInfo = 200;
+
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.add(filesPanel);
+
         informationPanel.setPreferredSize(new Dimension(widthInfo, heightInfo));
         informationPanel.showInformation();
         this.add(informationPanel);
-
     }
 
     /**
