@@ -85,6 +85,7 @@ public class ProgressBarPanel extends JPanel {
      * @param percentage Input percentage.
      */
     public void setValue1(final int percentage) {
+        System.out.println(percentage);
         status.setValue(percentage);
         status.update(status.getGraphics());
         status.setStringPainted(true);

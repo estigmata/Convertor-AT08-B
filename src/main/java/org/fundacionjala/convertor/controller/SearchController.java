@@ -87,15 +87,15 @@ public class SearchController {
      */
     public void actionSearch() {
         viewer.getSearchButton().addActionListener(e -> {
-            if (validator.isPath(viewer.getPath())) {
+//            if (validator.isPath(viewer.getPath())) {
                 try {
                     findFile();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-            } else {
-                new ErrorMessage("Isn't a valid path!!!");
-            }
+//            } else {
+//                new ErrorMessage("Isn't a valid path!!!");
+//            }
         });
 
         viewer.getDownPanel().getConverterPanel()

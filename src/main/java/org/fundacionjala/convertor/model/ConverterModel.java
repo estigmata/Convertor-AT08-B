@@ -68,6 +68,7 @@ public class ConverterModel {
     System.out.println(convertCriteria.getVideoCodec());
     System.setProperty("java.io.tmpdir", "/home/stathis/Temp");
     FFmpegProbeResult in = null;
+
     try {
       in = ffprobe.probe(criteria.getInputPath());
     } catch (IOException e) {
@@ -75,8 +76,8 @@ public class ConverterModel {
     }
     FFmpegBuilder builder = new FFmpegBuilder()
         .setInput(in)
-        .overrideOutputFiles(true)
-        .addOutput(convertCriteria.getOutputPath())
+//        .overrideOutputFiles(true)
+        .addOutput("C:\\JalaTemp\\Hola.avi")
         .setFormat(convertCriteria.getFormat())
         .disableSubtitle()
         .setAudioChannels(convertCriteria.getAudioChannels())
@@ -86,7 +87,7 @@ public class ConverterModel {
         .setVideoCodec(convertCriteria.getVideoCodec())
         .setVideoFrameRate(convertCriteria.getFrameRate(), 1)
         .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
-        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+//        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
         .done();
 
     FFmpegProbeResult finalIn = in;
@@ -100,7 +101,7 @@ public class ConverterModel {
         double percentage = progress.out_time_ns / duration_ns;
 
         // Print out interesting information about the progress
-        status.setValue1((int) percentage);
+        status.setValue1((int) (percentage*100));
         System.out.println(String.format(
                 "[%.0f%%] status:%s frame:%d time:%s ms fps:%.0f speed:%.2fx",
                 percentage * 100,
