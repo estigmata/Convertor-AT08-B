@@ -35,6 +35,7 @@ import java.awt.event.ActionListener;
  * Class Media Player, class main container embedded media player component.
  *
  * @author Nestor Otondo [nestor.otondo@fundacion-jala.org]
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class MediaPlayerPanel extends JPanel {
@@ -94,7 +95,13 @@ public class MediaPlayerPanel extends JPanel {
         btnPlayPause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                btnPlayPause.setText(player.getMediaPlayer().isPlaying() ? "[Play]" : "[Pause]");
+                // btnPlayPause.setText(player.getMediaPlayer().isPlaying() ? "[Play]" : "[Pause]");
+
+                if (player.getMediaPlayer().isPlaying()) {
+                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\play_1.PNG"));
+                } else {
+                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
+                }
                 player.getMediaPlayer().setPause(player.getMediaPlayer().isPlaying());
             }
         });

@@ -53,7 +53,7 @@ public class ConverterPanel extends JPanel {
 
         videoConverterPanel = new VideoConverterPanel();
         videoConverterPanel.setBackground(Color.WHITE);
-        videoConverterPanel.setVisible(false);
+
         this.add(videoConverterPanel);
 
         progressBarPanel = new ProgressBarPanel();

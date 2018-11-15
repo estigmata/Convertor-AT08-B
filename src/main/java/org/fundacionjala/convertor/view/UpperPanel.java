@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 /**
+ * @author Abel Gustavo Mallcu Chiri.
  * Class of the upper panel who contais 3 panels.
  */
 public class UpperPanel extends JPanel {

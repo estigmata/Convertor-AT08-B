@@ -28,7 +28,7 @@ import java.awt.Insets;
 /**
  * Class FinderPanel.
  *
- * @author Abel Mallcu Chiri.
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class VideoSearchPanel extends JPanel {
@@ -78,7 +78,7 @@ public class VideoSearchPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int three = 3;
-        final int four = 4;
+
 
         this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
@@ -88,7 +88,9 @@ public class VideoSearchPanel extends JPanel {
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
+
         container.setBackground(Color.WHITE);
+
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -112,7 +114,7 @@ public class VideoSearchPanel extends JPanel {
         container.add(aspectRatio, bagConstraints);
 
         bagConstraints.gridx = 0;
-        bagConstraints.gridy = three;
+        bagConstraints.gridy = one;
         labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         container.add(labelResolution, bagConstraints);
@@ -147,12 +149,6 @@ public class VideoSearchPanel extends JPanel {
         return frameRate;
     }
 
-    /**
-     * @param frameRate .
-     */
-    public void setFrameRate(final JComboBox<String> frameRate) {
-        this.frameRate = frameRate;
-    }
 
     /**
      * @return .
@@ -161,12 +157,6 @@ public class VideoSearchPanel extends JPanel {
         return aspectRatio;
     }
 
-    /**
-     * @param aspectRatio .
-     */
-    public void setAspectRatio(final JComboBox<String> aspectRatio) {
-        this.aspectRatio = aspectRatio;
-    }
 
     /**
      * @return .
@@ -175,12 +165,6 @@ public class VideoSearchPanel extends JPanel {
         return resolution;
     }
 
-    /**
-     * @param resolution .
-     */
-    public void setResolution(final JComboBox<String> resolution) {
-        this.resolution = resolution;
-    }
 
     /**
      * @return .
@@ -189,12 +173,6 @@ public class VideoSearchPanel extends JPanel {
         return videoCodec;
     }
 
-    /**
-     * @param videoCodec .
-     */
-    public void setVideoCodec(final JComboBox<String> videoCodec) {
-        this.videoCodec = videoCodec;
-    }
 
     /**
      * @return .
