@@ -19,8 +19,8 @@ public class ConverterModel {
   private FFmpeg ffmpeg;
   private FFprobe ffprobe;
 
-  private static final String FFMPEG_PATH = "C:\\ffmpeg\\bin\\ffmpeg.exe";
-  private static final String FFPROBE_PATH = "C:\\ffmpeg\\bin\\ffprobe.exe";
+  private static final String FFMPEG_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe";
+  private static final String FFPROBE_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe";
 
   /**
    * Constructor.

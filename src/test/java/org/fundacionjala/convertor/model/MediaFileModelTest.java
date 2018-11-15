@@ -10,14 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-
+/**
+ * Class Media File Model Test.
+ */
 public class MediaFileModelTest {
 
     private MediaFileModel mediaFileModel;
@@ -25,7 +24,12 @@ public class MediaFileModelTest {
     private AdvancedCriteriaAudio audioCriteria;
     private AdvancedCriteriaVideo videoCriteria;
     private ArrayList<Asset> fileList;
+    static final String PATH = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder";
 
+    /**
+     * Unit Test.
+     * @throws Exception .
+     */
     @Before
     public void setUp() throws Exception {
         mediaFileModel = new MediaFileModel();
@@ -33,23 +37,27 @@ public class MediaFileModelTest {
 
     /**
      * Unit test.
-     * @throws IOException
+     * @throws IOException .
      */
     @Test
     public void searchFilesByPath() throws IOException {
-        final int numberFiles = 16;
+        final int numberFiles = 40;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        basicCriteria.setFilePath(PATH);
         basicCriteria.setFileName("");
         fileList = mediaFileModel.searchFiles(basicCriteria);
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchFilesByName() throws IOException {
         int numberFiles = 1;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        basicCriteria.setFilePath(PATH);
         basicCriteria.setFileName("como jugar contra caos");
         fileList = mediaFileModel.searchFiles(basicCriteria);
         for (Asset file :fileList) {
@@ -59,15 +67,20 @@ public class MediaFileModelTest {
             System.out.println(file.getFileSize());
             System.out.println(" ");
         }
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
+
+    /**
+     *
+     * @throws IOException .
+     */
 
     @Test
     public void searchFilesBySize() throws IOException {
-        final int numberFiles = 8;
+        final int numberFiles = 9;
         final int fileSize = 50000000;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        basicCriteria.setFilePath(PATH);
         basicCriteria.setFileName("");
         basicCriteria.setFileSize(fileSize);
         fileList = mediaFileModel.searchFiles(basicCriteria);
@@ -76,15 +89,20 @@ public class MediaFileModelTest {
             System.out.println(file.getFileSize());
             System.out.println(" ");
         }
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
+
+    /**
+     *
+     * @throws IOException .
+     */
 
    @Test
     public void searchAudioFiles() throws IOException {
         //Criteria basicCriteria = new Criteria();
-        int numberFiles = 5;
+        final int numberFiles = 5;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        audioCriteria.setFilePath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("");
         audioCriteria.setChannels(0);
@@ -105,14 +123,18 @@ public class MediaFileModelTest {
             System.out.println(audioFileAsset.getExtension());*/
             System.out.println(" ");
         }
-       assertEquals(numberFiles,fileList.size());
+       assertEquals(numberFiles, fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchAudioFilesByAudioCodec() throws IOException {
-        int numberFiles = 1;
+        final int numberFiles = 1;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        audioCriteria.setFilePath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("wmav2");
         audioCriteria.setChannels(0);
@@ -128,14 +150,18 @@ public class MediaFileModelTest {
             System.out.println(audioFileAsset.getAudioCodec());
             System.out.println(" ");
         }
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
 
+    /**
+     *
+     * @throws IOException .
+     */
     @Test
     public void searchAudioFilesByChannels() throws IOException {
-        int numberFiles = 1;
+        final int numberFiles = 1;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        audioCriteria.setFilePath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("");
         audioCriteria.setChannels(1);
@@ -151,15 +177,20 @@ public class MediaFileModelTest {
             System.out.println(audioFileAsset.getChannels());
             System.out.println(" ");
         }
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
+
+    /**
+     *
+     * @throws IOException .
+     */
 
     @Test
     public void searchVideoFiles() throws IOException {
-        int numberFiles = 4;
+        final int numberFiles = 4;
         AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
 
-        videoCriteria.setFilePath("C:\\Users\\Admin\\Desktop\\multimediaPrueba");
+        videoCriteria.setFilePath(PATH);
         videoCriteria.setFileName("");
         videoCriteria.setFileSize(0);
         videoCriteria.setAspectRatio("");
@@ -180,8 +211,6 @@ public class MediaFileModelTest {
 
             System.out.println(" ");
         }
-        assertEquals(numberFiles,fileList.size());
+        assertEquals(numberFiles, fileList.size());
     }
-
-
 }

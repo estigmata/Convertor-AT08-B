@@ -17,6 +17,9 @@ package org.fundacionjala.convertor.view.finder;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,6 +52,14 @@ public class FinderPanel extends JPanel {
         videoSearchPanel = new VideoSearchPanel();
         videoSearchPanel.setVisible(false);
         this.add(videoSearchPanel);
+
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "SEARCH",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
 
         basicSearchPanel.getMultimediaBox().addActionListener(new ActionListener() {
             @Override
@@ -98,7 +109,7 @@ public class FinderPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-
+        this.setBackground(Color.WHITE);
     }
 
     /**

@@ -15,14 +15,13 @@
 package org.fundacionjala.convertor.view.Converter;
 
 
-import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
 
 
 /**
@@ -82,56 +81,65 @@ public class VideoConverterPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int three = 3;
-        final int four = 4;
-        final int five = 5;
-        TitledBorder title = BorderFactory.createTitledBorder("Video Advanced Converter");
-        this.setBorder(title);
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+                        createLineBorder(orangeColor), "Basic Search",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                font, orangeColor));
         this.setLayout(new GridBagLayout());
         GridBagConstraints bagConstraints = new GridBagConstraints();
-        //bagConstraints.insets = new Insets(2, 2, 2, 2);
+
+
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
+
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-
         this.add(labelFrameRate, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         this.add(frameRate, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = one;
 
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 0;
         this.add(labelAspectRatio, bagConstraints);
+
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = 0;
+        this.add(aspectRatio, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = one;
+        this.add(labelResolution, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
-        this.add(aspectRatio, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = two;
-
-        this.add(labelResolution, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = two;
         this.add(resolution, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = three;
 
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = one;
         this.add(labelVideoCodec, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = three;
-        this.add(videoCodec, bagConstraints);
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = four;
 
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = one;
+        this.add(videoCodec, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = two;
         this.add(labelAudioCodec, bagConstraints);
+
         bagConstraints.gridx = one;
-        bagConstraints.gridy = four;
+        bagConstraints.gridy = 0;
         this.add(audioCodec, bagConstraints);
 
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = five;
-
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = two;
         this.add(labelFormat, bagConstraints);
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = five;
+
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = two;
         this.add(fomat, bagConstraints);
     }
 
