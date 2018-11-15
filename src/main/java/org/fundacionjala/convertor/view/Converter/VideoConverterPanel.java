@@ -92,7 +92,7 @@ public class VideoConverterPanel extends JPanel {
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
-                        createLineBorder(orangeColor), "Basic Search",
+                        createLineBorder(orangeColor), "Video Conveter",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
