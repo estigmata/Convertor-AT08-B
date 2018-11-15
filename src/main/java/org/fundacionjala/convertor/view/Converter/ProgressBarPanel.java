@@ -42,6 +42,7 @@ public class ProgressBarPanel extends JPanel {
 
     /**
      * Initialization of Components.
+     * init components
      */
     public void initComponents() {
         final int one = 1;
