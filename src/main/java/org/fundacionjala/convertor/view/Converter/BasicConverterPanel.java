@@ -55,8 +55,9 @@ public class BasicConverterPanel extends JPanel {
      * Constructor.
      */
     public BasicConverterPanel() {
-
+        final int ten = 10;
         outputPath = new JTextField("");
+        outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
         outputFileName = new JTextField();
         currentPath = new JTextField();
