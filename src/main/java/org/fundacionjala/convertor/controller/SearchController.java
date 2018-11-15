@@ -249,30 +249,48 @@ public class SearchController {
                     .getSelectedItem()
                     .toString());
             basicCriteria = convertVideoCriteria;
-
         }
 
         if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
                 .getMultimediaBox().getSelectedItem().equals(AUDIO)) {
             ConvertCriteriaAudio convertAudioCriteria = new ConvertCriteriaAudio();
-            convertAudioCriteria.setFilePath(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getCurrentPath().getText());
-            System.out.println(convertAudioCriteria.getFilePath());
-            convertAudioCriteria.setFileName(viewer.getDownPanel().getConverterPanel()
-                    .getBasicConverterPanel().getOutputName().getText());
+            convertAudioCriteria.setFilePath(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getCurrentPath()
+                    .getText());
+            convertAudioCriteria.setFileName(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getOutputName()
+                    .getText());
 
-
-            convertAudioCriteria.setAudioCodec(viewer.getDownPanel().getConverterPanel()
-                    .getAudioConverterPanel().getAudioCodecConverter().toString());
-            String aux = viewer.getDownPanel().getConverterPanel().getAudioConverterPanel()
-                    .getChannelConverter().getSelectedItem().toString();
+            convertAudioCriteria.setAudioCodec(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
+                    .getAudioCodecConverter()
+                    .getSelectedItem()
+                    .toString());
+            String aux = viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
+                    .getChannelConverter()
+                    .getSelectedItem()
+                    .toString();
             convertAudioCriteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
-            convertAudioCriteria.setFormat(viewer.getDownPanel().getConverterPanel()
-                    .getAudioConverterPanel().getFormatCodecConverter().toString());
+            convertAudioCriteria.setFormat(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
+                    .getFormatCodecConverter()
+                    .getSelectedItem()
+                    .toString());
             basicCriteria = convertAudioCriteria;
         }
-        /*System.out.println(basicCriteria.getFilePath());
-        System.out.println(basicCriteria.getFileToConvert());*/
         converterModel.convertFile(basicCriteria);
     }
 }

@@ -120,6 +120,11 @@ public class Criteria {
         this.conditionSize = conditionSize;
     }
 
+    public void setFileToConvert(String fileToConvert) {
+        this.fileToConvert = fileToConvert;
+    }
+
+
     public String getFileToConvert() {
         return this.fileToConvert;
     }
