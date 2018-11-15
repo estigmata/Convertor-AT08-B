@@ -32,7 +32,7 @@ import java.awt.Insets;
 /**
  * Class FinderPanel.
  *
- * @author Abel Mallcu Chiri.
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class BasicSearchPanel extends JPanel {
@@ -54,14 +54,14 @@ public class BasicSearchPanel extends JPanel {
      * Constructor.
      */
     public BasicSearchPanel() {
-
-        path = new JTextField("");
+        final int ten = 10;
+        path = new JTextField();
+        path.setColumns(ten);
         searchButton = new JButton();
         fileName = new JTextField();
         size = new JTextField();
         browseChooser = new BrowseChooser();
         browseChooser.setBackground(Color.WHITE);
-
         browseChooser.setPath(path);
 
         searchButton.setBackground(Color.WHITE);
@@ -102,7 +102,7 @@ public class BasicSearchPanel extends JPanel {
 
 
         GridBagConstraints bagConstraints = new GridBagConstraints();
-        bagConstraints.insets = new Insets(1, 1, 1, 1);
+        bagConstraints.insets = new Insets(0, 0, 0, 0);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         bagConstraints.gridx = 0;
@@ -113,6 +113,9 @@ public class BasicSearchPanel extends JPanel {
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
+        bagConstraints.ipady = 0;
+        bagConstraints.weightx = 1;
+        bagConstraints.weighty = 0;
         conatainer.add(path, bagConstraints);
 
         bagConstraints.gridx = tree;

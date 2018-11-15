@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
  * This is the Browse file class.
  *
  * @author Rodrigo Menacho
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class BrowseChooser extends JPanel implements ActionListener {
@@ -49,6 +50,7 @@ public class BrowseChooser extends JPanel implements ActionListener {
 
     /**
      * Setter for update the JTextField path.
+     *
      * @param path Input of the FinderPanel current JTextField.
      */
     public void setPath(final JTextField path) {
@@ -57,6 +59,7 @@ public class BrowseChooser extends JPanel implements ActionListener {
 
     /**
      * Action event for update the Path.
+     *
      * @param e the current action event.
      */
     public void actionPerformed(final ActionEvent e) {

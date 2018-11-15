@@ -57,16 +57,6 @@ public class ConverterModel {
     }
     FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
     ConvertCriteriaVideo convertCriteria= (ConvertCriteriaVideo) criteria;
-    System.out.println(criteria.getInputPath());
-    System.out.println(convertCriteria.getOutputPath());
-    System.out.println(convertCriteria.getFileName());
-    System.out.println(convertCriteria.getFormat());
-    System.out.println(convertCriteria.getAudioChannels());
-    System.out.println(convertCriteria.getAudioCodec());
-    System.out.println(convertCriteria.getAudioSampleRate());
-    System.out.println(convertCriteria.getAudioBitRate());
-    System.out.println(convertCriteria.getVideoCodec());
-    System.setProperty("java.io.tmpdir", "/home/stathis/Temp");
     FFmpegProbeResult in = null;
 
     try {
@@ -77,7 +67,7 @@ public class ConverterModel {
     FFmpegBuilder builder = new FFmpegBuilder()
         .setInput(in)
 //        .overrideOutputFiles(true)
-        .addOutput("C:\\JalaTemp\\Hola.avi")
+        .addOutput(convertCriteria.getOutputPath()+"\\"+convertCriteria.getFileName())
         .setFormat(convertCriteria.getFormat())
         .disableSubtitle()
         .setAudioChannels(convertCriteria.getAudioChannels())

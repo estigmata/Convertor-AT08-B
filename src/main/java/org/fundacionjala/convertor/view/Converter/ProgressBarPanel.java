@@ -45,10 +45,11 @@ public class ProgressBarPanel extends JPanel {
 
     /**
      * Initialization of Components.
+     * init components
      */
     public void initComponents() {
         final int one = 1;
-        final int state = 0;
+
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.

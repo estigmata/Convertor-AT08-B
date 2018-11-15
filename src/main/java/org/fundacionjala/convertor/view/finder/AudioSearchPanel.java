@@ -58,8 +58,8 @@ public class AudioSearchPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        final int two = 1;
-        final int tree = 1;
+        final int two = 2;
+        final int tree = 3;
         this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
