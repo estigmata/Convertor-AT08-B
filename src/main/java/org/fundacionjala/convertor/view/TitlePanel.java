@@ -17,9 +17,14 @@
 package org.fundacionjala.convertor.view;
 
 
-import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
 
 
 /**
@@ -30,13 +35,40 @@ import javax.swing.JPanel;
  */
 public class TitlePanel extends JPanel {
     private JLabel title;
+    private JLabel logo;
+    private JButton close;
+    private JPanel container;
 
     /**
      * Constructor for the initialization of the components.
      */
     public TitlePanel() {
+        final int width = 1000;
+        final int heigth = 50;
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+
+        this.setBackground(Color.WHITE);
+        this.setLayout(new GridBagLayout());
+
+        container = new JPanel();
+        container.setSize(new Dimension(width, heigth));
+        container.setBackground(Color.white);
+
         title = new JLabel();
         title.setIcon(new javax.swing.ImageIcon("Image\\logo.PNG"));
+
+        logo = new JLabel();
+        logo.setIcon(new javax.swing.ImageIcon("Image\\monkey.PNG"));
+
+        close = new JButton();
+        close.setBackground(Color.WHITE);
+        close.setForeground(orangeColor);
+        close.setText("CLOSE");
+        close.setBorder(null);
+        close.setBounds(new Rectangle());
+        close.addActionListener(evt -> System.exit(0));
+
+
         initComponents();
     }
 
@@ -44,9 +76,10 @@ public class TitlePanel extends JPanel {
      * Initialization of the .
      */
     private void initComponents() {
-        this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        this.add(title);
-
+        this.setLayout(new GridLayout());
+        container.add(close);
+        this.add(logo);
+        this.add(container);
     }
 
 }

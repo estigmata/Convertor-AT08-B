@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
  * Class of the tabs.
  *
  * @author Rodrigo Menacho
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class TabPane extends JPanel {

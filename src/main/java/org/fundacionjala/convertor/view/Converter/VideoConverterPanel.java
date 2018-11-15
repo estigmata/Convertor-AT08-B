@@ -131,7 +131,7 @@ public class VideoConverterPanel extends JPanel {
         this.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = one;
-        bagConstraints.gridy = 0;
+        bagConstraints.gridy = two;
         this.add(audioCodec, bagConstraints);
 
         bagConstraints.gridx = two;

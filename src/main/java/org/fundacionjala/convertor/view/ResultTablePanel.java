@@ -25,6 +25,8 @@ import java.awt.Dimension;
 
 /**
  * Class for the result panel.
+ *
+ * @author Abel Gustavo Mallcu Chiri.
  */
 public class ResultTablePanel extends JPanel {
     private FilesPanelContainer filesPanel;

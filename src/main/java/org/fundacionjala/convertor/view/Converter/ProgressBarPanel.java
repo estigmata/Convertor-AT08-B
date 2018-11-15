@@ -45,7 +45,7 @@ public class ProgressBarPanel extends JPanel {
      */
     public void initComponents() {
         final int one = 1;
-        final int state = 50;
+
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -64,7 +64,7 @@ public class ProgressBarPanel extends JPanel {
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
-        status.setValue(state);
+        status.setValue(0);
 
         this.add(status, bagConstraints);
     }

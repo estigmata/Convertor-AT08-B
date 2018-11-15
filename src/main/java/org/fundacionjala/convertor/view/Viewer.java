@@ -30,6 +30,7 @@ import java.awt.Dimension;
  * Class Viewer.
  *
  * @author Rodrigo Menacho
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public final class Viewer extends JFrame {
@@ -47,6 +48,8 @@ public final class Viewer extends JFrame {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info();
+
+        this.setUndecorated(true);
     }
 
     /**
@@ -54,16 +57,18 @@ public final class Viewer extends JFrame {
      */
     public void configWindow() {
         final int widthAll = 1100;
-        final int heightAll = 1100;
+        final int heightAll = 800;
 
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        //this.setResizable(false);
         this.setSize(new Dimension(widthAll, heightAll));
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setBackground(Color.BLACK);
+
+
     }
 
     /**
