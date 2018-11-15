@@ -61,7 +61,7 @@ public final class Viewer extends JFrame {
 
         this.setTitle("CONVERTER AT-08");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //  this.setResizable(false);
+
         this.setSize(new Dimension(widthAll, heightAll));
         this.pack();
         this.setVisible(true);

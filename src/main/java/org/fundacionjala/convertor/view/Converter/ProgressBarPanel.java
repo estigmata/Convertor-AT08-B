@@ -31,12 +31,15 @@ import java.awt.Label;
 public class ProgressBarPanel extends JPanel {
 
     protected JProgressBar status;
+    private final int oneHundred = 100;
 
     /**
      * Constructor.
      */
     public ProgressBarPanel() {
         status = new JProgressBar();
+        status.setMinimum(0);
+        status.setMaximum(oneHundred);
         initComponents();
     }
 
@@ -75,5 +78,16 @@ public class ProgressBarPanel extends JPanel {
      */
     public JProgressBar getStatus() {
         return status;
+    }
+
+    /**
+     * This method updates the progress bar while the conversion its executed.
+     *
+     * @param percentage Input percentage.
+     */
+    public void setValue1(final int percentage) {
+        status.setValue(percentage);
+        status.update(status.getGraphics());
+        status.setStringPainted(true);
     }
 }

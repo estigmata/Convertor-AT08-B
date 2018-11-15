@@ -57,7 +57,7 @@ public class ConverterPanel extends JPanel {
         this.add(videoConverterPanel);
 
         progressBarPanel = new ProgressBarPanel();
-        progressBarPanel.setVisible(false);
+        progressBarPanel.setVisible(true);
         progressBarPanel.setBackground(Color.WHITE);
         this.add(progressBarPanel);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
