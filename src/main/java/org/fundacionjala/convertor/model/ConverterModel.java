@@ -2,12 +2,20 @@ package org.fundacionjala.convertor.model;
 
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
+import net.bramp.ffmpeg.FFmpegUtils;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
+import net.bramp.ffmpeg.job.FFmpegJob;
+import net.bramp.ffmpeg.probe.FFmpegProbeResult;
+import net.bramp.ffmpeg.progress.Progress;
+import net.bramp.ffmpeg.progress.ProgressListener;
+import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
-import java.io.File;
+import javax.swing.JProgressBar;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class Converter Model.
@@ -33,10 +41,10 @@ public class ConverterModel {
 
   /**
    * Method to convert multimedia files.
-   *
-   * @param criteria object.
+   *  @param criteria object.
+   * @param status
    */
-  public void convertFile(final Criteria criteria) {
+  public void convertFile(final Criteria criteria, ProgressBarPanel status) {
     try {
       ffmpeg = new FFmpeg(FFMPEG_PATH);
     } catch (Exception e) {
@@ -47,24 +55,54 @@ public class ConverterModel {
     } catch (Exception e) {
       System.out.println(e);
     }
-    FFmpegBuilder builder = new FFmpegBuilder()
+    FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
+    ConvertCriteriaVideo convertCriteria= (ConvertCriteriaVideo) criteria;
+    FFmpegProbeResult in = null;
 
-        .setInput(criteria.getFilePath() + "/" + criteria.getFileToConvert())
-        .overrideOutputFiles(true)
-        .addOutput(criteria.getFilePath() + "/" + (criteria.getFileToConvert().split("\\.")[0]) + ".avi")
-        .setFormat("avi")
+    try {
+      in = ffprobe.probe(criteria.getInputPath());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    FFmpegBuilder builder = new FFmpegBuilder()
+        .setInput(in)
+//        .overrideOutputFiles(true)
+        .addOutput(convertCriteria.getOutputPath()+"\\"+convertCriteria.getFileName())
+        .setFormat(convertCriteria.getFormat())
         .disableSubtitle()
-        .setAudioChannels(1)
-        .setAudioCodec("aac")
-        .setAudioSampleRate(48_000)
-        .setAudioBitRate(32768)
-        .setVideoCodec("libx264")
-        .setVideoFrameRate(24, 1)
-        .setVideoResolution(640, 480)
-        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+        .setAudioChannels(convertCriteria.getAudioChannels())
+        .setAudioCodec(convertCriteria.getAudioCodec())
+        .setAudioSampleRate(convertCriteria.getAudioSampleRate())
+        .setAudioBitRate(convertCriteria.getAudioBitRate())
+        .setVideoCodec(convertCriteria.getVideoCodec())
+        .setVideoFrameRate(convertCriteria.getFrameRate(), 1)
+        .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
+//        .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
         .done();
 
-    FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-    executor.createJob(builder).run();
+    FFmpegProbeResult finalIn = in;
+    FFmpegJob job = executor.createJob(builder, new ProgressListener() {
+
+      // Using the FFmpegProbeResult determine the duration of the input
+      final double duration_ns = finalIn.getFormat().duration * TimeUnit.SECONDS.toNanos(1);
+
+      @Override
+      public void progress(Progress progress) {
+        double percentage = progress.out_time_ns / duration_ns;
+
+        // Print out interesting information about the progress
+        status.setValue1((int) (percentage*100));
+        System.out.println(String.format(
+                "[%.0f%%] status:%s frame:%d time:%s ms fps:%.0f speed:%.2fx",
+                percentage * 100,
+                progress.status,
+                progress.frame,
+                FFmpegUtils.toTimecode(progress.out_time_ns, TimeUnit.NANOSECONDS),
+                progress.fps.doubleValue(),
+                progress.speed
+        ));
+      }
+    });
+    job.run();
   }
 }

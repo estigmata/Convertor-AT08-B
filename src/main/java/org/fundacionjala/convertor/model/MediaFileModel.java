@@ -72,7 +72,7 @@ public class MediaFileModel {
             return searchAudio((AdvancedCriteriaAudio) criteria);
         }
         ArrayList<Asset> fileList = new ArrayList<>();
-        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+        Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().contains(new Util().getStringName(x)))
                 .filter(x -> criteria.getFileSize() == 0
@@ -104,7 +104,7 @@ public class MediaFileModel {
     private ArrayList<Asset> searchVideo(final AdvancedCriteriaVideo criteria) throws IOException {
         final int mil = 1000;
         ArrayList<Asset> list = new ArrayList<>();
-        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+        Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().contains(new Util().getStringName(x)))
@@ -191,7 +191,7 @@ public class MediaFileModel {
      */
     private ArrayList<Asset> searchAudio(final AdvancedCriteriaAudio criteria) throws IOException {
         ArrayList<Asset> list = new ArrayList<>();
-        Files.walk(Paths.get(criteria.getFilePath())).filter(Files::isRegularFile)
+        Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
                         || criteria.getFileName().contains(new Util().getStringName(x)))

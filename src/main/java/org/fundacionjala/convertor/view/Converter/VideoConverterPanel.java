@@ -33,13 +33,15 @@ import java.awt.GridBagLayout;
 public class VideoConverterPanel extends JPanel {
 
 
-    private JComboBox<String> fomat;
+    private JComboBox<String> format;
     protected JComboBox<String> frameRate;
     private JComboBox<String> aspectRatio;
     protected JComboBox<String> resolution;
     private JComboBox<String> videoCodec;
     private JComboBox<String> audioCodec;
-
+    private JComboBox<String> audioSampleRate;
+    private JComboBox<String> audioBitRate;
+    private JComboBox<String> audioChannels;
 
     private JLabel labelFormat;
     private JLabel labelFrameRate;
@@ -47,7 +49,9 @@ public class VideoConverterPanel extends JPanel {
     private JLabel labelVideoCodec;
     private JLabel labelResolution;
     private JLabel labelAudioCodec;
-
+    private JLabel labelAudioSampleRate;
+    private JLabel labelBitRate;
+    private JLabel labelAudioChannels;
 
     /**
      *
@@ -55,21 +59,25 @@ public class VideoConverterPanel extends JPanel {
 
     public VideoConverterPanel() {
 
-        frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
-        aspectRatio = new JComboBox<>(new String[]{"", "4:3", "12:5", "12:7", "17:9", "13:10"});
-        resolution = new JComboBox<>(new String[]{"", "320*240", "600*350", "624*480", "640*480",
+        frameRate = new JComboBox<>(new String[]{"24", "25", "27", "29", "30", "60"});
+        aspectRatio = new JComboBox<>(new String[]{"4:3", "12:5", "12:7", "17:9", "13:10"});
+        resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
-        videoCodec = new JComboBox<>(new String[]{"", "MPEG4", "AAC", "H264",
-                "AVS", "MJPEG", "VP7", "WMV"});
-        audioCodec = new JComboBox<>(new String[]{"", "mp3", "wmav2"});
-        fomat = new JComboBox<>(new String[]{"MP4", "FLV", "AVI", "3GP"});
-
+        videoCodec = new JComboBox<>(new String[]{"libx264"});
+        audioCodec = new JComboBox<>(new String[]{"aac"});
+        format = new JComboBox<>(new String[]{"avi"});
+        audioSampleRate = new JComboBox<>(new String[]{"48000"});
+        audioBitRate = new JComboBox<>(new String[]{"32768"});
+        audioChannels = new JComboBox<>(new String[]{"1", "2"});
         labelFormat = new JLabel("Format :");
         labelFrameRate = new JLabel("Frame Rate :");
         labelAspectRatio = new JLabel("Aspect Ratio :");
         labelVideoCodec = new JLabel("Video Codec :");
         labelResolution = new JLabel("Resolution :");
         labelAudioCodec = new JLabel("Audio Codec :");
+        labelAudioChannels = new JLabel("Audio Channels :");
+        labelAudioSampleRate = new JLabel("Audio Sample Rate :");
+        labelBitRate = new JLabel("Audio Bit Rate :");
 
         initComponents();
     }
@@ -140,7 +148,31 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = three;
         bagConstraints.gridy = two;
-        this.add(fomat, bagConstraints);
+        this.add(format, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = three;
+        this.add(labelAudioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = three;
+        this.add(audioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = 2;
+        bagConstraints.gridy = three;
+        this.add(labelBitRate, bagConstraints);
+
+        bagConstraints.gridx = 3;
+        bagConstraints.gridy = three;
+        this.add(audioBitRate, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = 4;
+        this.add(labelAudioChannels, bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = 4;
+        this.add(audioChannels, bagConstraints);
     }
 
     /**
@@ -185,7 +217,19 @@ public class VideoConverterPanel extends JPanel {
     /**
      * @return .
      */
-    public JComboBox<String> getFomat() {
-        return fomat;
+    public JComboBox<String> getFormat() {
+        return format;
+    }
+
+    public JComboBox<String> getAudioSampleRate() {
+        return audioSampleRate;
+    }
+
+    public JComboBox<String> getAudioBitRate() {
+        return audioBitRate;
+    }
+
+    public JComboBox<String> getAudioChannels() {
+        return audioChannels;
     }
 }

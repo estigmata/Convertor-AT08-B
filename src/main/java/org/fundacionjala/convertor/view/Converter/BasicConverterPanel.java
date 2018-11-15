@@ -26,6 +26,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Insets;
 
 
@@ -41,9 +43,8 @@ public class BasicConverterPanel extends JPanel {
     private JPanel container;
     private JButton btnConverter;
     private static JTextField outputPath;
-    private JTextField outputFileName;
+    private static JTextField outputFileName;
     private static JTextField currentPath;
-    private static String fileToConvert;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
@@ -55,9 +56,8 @@ public class BasicConverterPanel extends JPanel {
      * Constructor.
      */
     public BasicConverterPanel() {
-        final int ten = 10;
+
         outputPath = new JTextField("");
-        outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
         outputFileName = new JTextField();
         currentPath = new JTextField();
@@ -186,38 +186,19 @@ public class BasicConverterPanel extends JPanel {
         return multimediaBox;
     }
 
-    /**
-     * @param fileName .
-     */
     public static void setFileToConvert(final String fileName) {
-        fileToConvert = fileName;
+        outputFileName.setText(fileName);
     }
 
-    /**
-     * @param pathSource .
-     */
     public static void setPathSource(final String pathSource) {
         currentPath.setText(pathSource);
     }
 
-    /**
-     * @param pathDestination .
-     */
     public static void setPathDestination(final String pathDestination) {
         outputPath.setText(pathDestination);
     }
 
-    /**
-     * @return .
-     */
-    public static String getFileToConvert() {
-        return fileToConvert;
-    }
-
-    /**
-     *
-     */
-    private void converterFile() {
-        //TODO
+    public static JTextField getFileToConvert() {
+        return outputFileName;
     }
 }

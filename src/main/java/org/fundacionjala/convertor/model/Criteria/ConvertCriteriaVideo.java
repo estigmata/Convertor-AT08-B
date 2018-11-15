@@ -19,7 +19,7 @@ package org.fundacionjala.convertor.model.Criteria;
  * Class of the criteria for convert the video file.
  */
 public class ConvertCriteriaVideo extends Criteria {
-    private String frameRate;
+    private int frameRate;
     private String aspectRatio;
     private int resolutionWith;
     private int resolutionHeight;
@@ -27,6 +27,10 @@ public class ConvertCriteriaVideo extends Criteria {
     private String audioCodec;
     private String format;
     private String fileToConvert;
+    private int audioSampleRate;
+    private long audioBitRate;
+    private String outputFile;
+    private int audioChannels;
 
     @Override
     public void setFileName(final String fileName) {
@@ -36,7 +40,7 @@ public class ConvertCriteriaVideo extends Criteria {
     /**
      * @return value return.
      */
-    public String getFrameRate() {
+    public int getFrameRate() {
         return frameRate;
     }
 
@@ -44,7 +48,7 @@ public class ConvertCriteriaVideo extends Criteria {
      * @param frameRate value input.
      */
     public void setFrameRate(final String frameRate) {
-        this.frameRate = frameRate;
+        this.frameRate = Integer.parseInt(frameRate);
     }
 
     /**
@@ -118,27 +122,72 @@ public class ConvertCriteriaVideo extends Criteria {
     }
 
     /**
+     * Getter of the format to convert.
      *
-     * @return .
+     * @return the Format String.
      */
     public String getFormat() {
         return format;
     }
 
     /**
+     * Setter of the Format to convert.
      *
-     * @param format .
+     * @param format Input the format.
      */
-
     public void setFormat(final String format) {
         this.format = format;
     }
 
-    public void setFileToConvert(final String fileToConvert) {
-        this.fileToConvert = fileToConvert;
+    /**
+     * Getter of the Audio sample Rate.
+     *
+     * @return the String of audiosamplerate.
+     */
+    public int getAudioSampleRate() {
+        return audioSampleRate;
     }
 
-    public String getFileToConvert() {
-        return this.fileToConvert;
+    /**
+     * Setter of the Audio Sample rate in this form .
+     *
+     * @param audioSampleRate input String in this form XX_XXX.
+     */
+    public void setAudioSampleRate(String audioSampleRate) {
+        this.audioSampleRate = Integer.parseInt(audioSampleRate);
+    }
+
+    /**
+     * Getter of the audio bit rate.
+     *
+     * @return the String audio bit rate.
+     */
+    public long getAudioBitRate() {
+        return audioBitRate;
+    }
+
+    /**
+     * Setter of the audio bit rate.
+     *
+     * @param audioBitRate the input audio bit rate.
+     */
+    public void setAudioBitRate(String audioBitRate) {
+        this.audioBitRate = Long.parseLong(audioBitRate);
+    }
+
+    public String getOutputPath() {
+        return outputFile;
+    }
+
+    public void setOutputPath(String outputFile) {
+        this.outputFile = outputFile;
+    }
+
+    public int getAudioChannels() {
+        return audioChannels;
+    }
+
+    public void setAudioChannels(int audioChannels) {
+        this.audioChannels = audioChannels;
     }
 }
