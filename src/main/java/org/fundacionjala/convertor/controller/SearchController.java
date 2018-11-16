@@ -292,18 +292,23 @@ public class SearchController {
                     .getConverterPanel()
                     .getAudioConverterPanel()
                     .getAudioCodecConverter()
+                    .getSelectedItem()
                     .toString());
-            String aux = viewer.getDownPanel().getConverterPanel().getAudioConverterPanel()
+            String aux = viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
                     .getChannelConverter()
                     .getSelectedItem()
-                    .toString();
+                    .toString();;
             convertAudioCriteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
             convertAudioCriteria.setFormat(viewer
                     .getDownPanel()
                     .getConverterPanel()
                     .getAudioConverterPanel()
                     .getFormatCodecConverter()
-                    .toString());
+                    .getSelectedItem()
+                    .toString());;
             basicCriteria = convertAudioCriteria;
         }
         converterModel.convertFile(basicCriteria, viewer.getDownPanel().getConverterPanel().getProgressBarPanel());
