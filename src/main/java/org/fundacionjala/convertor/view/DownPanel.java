@@ -21,7 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 /**
- *
+ * @author Abel Gustavo Mallcu Chiri.
  */
 public class DownPanel extends JPanel {
     private ResultTablePanel resultTablePanel;

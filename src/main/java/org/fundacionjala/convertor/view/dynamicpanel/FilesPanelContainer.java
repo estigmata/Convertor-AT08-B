@@ -18,7 +18,6 @@ package org.fundacionjala.convertor.view.dynamicpanel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
 
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -56,11 +55,8 @@ public class FilesPanelContainer extends JPanel {
         setLayout(new BorderLayout());
         this.setBackground(Color.white);
         filesContainer = new JPanel(new GridBagLayout());
-        filesContainer.setBackground(Color.BLACK);
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        gridBagConstraints.weightx = 1;
-        gridBagConstraints.weighty = 1;
+        filesContainer.setBackground(Color.white);
+
         final int width = 600;
         final int height = 350;
         setPreferredSize(new Dimension(width, height));
@@ -79,7 +75,7 @@ public class FilesPanelContainer extends JPanel {
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         for (Asset file : files) {
             Files itemFile = new Files(file);
-            itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
+            //  itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
             itemFile.add(new JLabel(file.getFileName().concat(".").concat(file.getExtension())));
             itemFile.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
             filesContainer.add(itemFile, gbConstraints, 0);

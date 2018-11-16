@@ -43,7 +43,7 @@ public class MediaFileModelTest {
     public void searchFilesByPath() throws IOException {
         final int numberFiles = 40;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath(PATH);
+        basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("");
         fileList = mediaFileModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
@@ -57,7 +57,7 @@ public class MediaFileModelTest {
     public void searchFilesByName() throws IOException {
         int numberFiles = 1;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath(PATH);
+        basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("como jugar contra caos");
         fileList = mediaFileModel.searchFiles(basicCriteria);
         for (Asset file :fileList) {
@@ -80,7 +80,7 @@ public class MediaFileModelTest {
         final int numberFiles = 9;
         final int fileSize = 50000000;
         basicCriteria = new Criteria();
-        basicCriteria.setFilePath(PATH);
+        basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("");
         basicCriteria.setFileSize(fileSize);
         fileList = mediaFileModel.searchFiles(basicCriteria);
@@ -102,7 +102,7 @@ public class MediaFileModelTest {
         //Criteria basicCriteria = new Criteria();
         final int numberFiles = 5;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath(PATH);
+        audioCriteria.setInputPath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("");
         audioCriteria.setChannels(0);
@@ -134,7 +134,7 @@ public class MediaFileModelTest {
     public void searchAudioFilesByAudioCodec() throws IOException {
         final int numberFiles = 1;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath(PATH);
+        audioCriteria.setInputPath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("wmav2");
         audioCriteria.setChannels(0);
@@ -161,7 +161,7 @@ public class MediaFileModelTest {
     public void searchAudioFilesByChannels() throws IOException {
         final int numberFiles = 1;
         AdvancedCriteriaAudio audioCriteria = new AdvancedCriteriaAudio();
-        audioCriteria.setFilePath(PATH);
+        audioCriteria.setInputPath(PATH);
         audioCriteria.setFileName("");
         audioCriteria.setAudioCodec("");
         audioCriteria.setChannels(1);
@@ -190,7 +190,7 @@ public class MediaFileModelTest {
         final int numberFiles = 4;
         AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
 
-        videoCriteria.setFilePath(PATH);
+        videoCriteria.setInputPath(PATH);
         videoCriteria.setFileName("");
         videoCriteria.setFileSize(0);
         videoCriteria.setAspectRatio("");

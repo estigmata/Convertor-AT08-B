@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
  * Class FinderPanel.
  *
  * @author Rodrigo Menacho
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class FinderPanel extends JPanel {
