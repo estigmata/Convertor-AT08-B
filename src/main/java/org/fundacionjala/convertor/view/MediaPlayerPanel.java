@@ -94,7 +94,6 @@ public class MediaPlayerPanel extends JPanel {
         sldVolume.setValue(MAX_VALUE);
 
         btnStart.addActionListener(e -> {
-            System.out.println(filePath);
             Path path = Paths.get(filePath);
             if(validator.isAudio(path) || validator.isVideo(path)) {
                 player.getMediaPlayer().playMedia(filePath);
