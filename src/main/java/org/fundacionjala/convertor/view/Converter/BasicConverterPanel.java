@@ -60,10 +60,13 @@ public class BasicConverterPanel extends JPanel {
         outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
         outputFileName = new JTextField();
+        outputFileName.setColumns(ten);
         currentPath = new JTextField();
+        currentPath.setColumns(ten);
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
+        
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
         labelOutPath = new JLabel("Output File :");
         labelOutputName = new JLabel("File Name :");
@@ -186,14 +189,23 @@ public class BasicConverterPanel extends JPanel {
         return multimediaBox;
     }
 
+    /**
+     * @param fileName .
+     */
     public static void setFileToConvert(final String fileName) {
         fileToConvert = fileName;
     }
 
+    /**
+     * @param pathSource .
+     */
     public static void setPathSource(final String pathSource) {
         currentPath.setText(pathSource);
     }
 
+    /**
+     * @param pathDestination .
+     */
     public static void setPathDestination(final String pathDestination) {
         outputPath.setText(pathDestination);
     }
@@ -202,6 +214,9 @@ public class BasicConverterPanel extends JPanel {
         return fileToConvert;
     }
 
+    /**
+     *
+     */
     private void converterFile() {
         //TODO
     }
