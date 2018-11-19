@@ -59,10 +59,13 @@ public class BasicConverterPanel extends JPanel {
         outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
         outputFileName = new JTextField();
+        outputFileName.setColumns(ten);
         currentPath = new JTextField();
+        currentPath.setColumns(ten);
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
+
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
         labelOutPath = new JLabel("Output File :");
         labelOutputName = new JLabel("File Name :");
