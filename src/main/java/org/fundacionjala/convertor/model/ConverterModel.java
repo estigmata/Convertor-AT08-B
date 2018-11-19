@@ -2,7 +2,6 @@ package org.fundacionjala.convertor.model;
 
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
-import net.bramp.ffmpeg.FFmpegUtils;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import net.bramp.ffmpeg.job.FFmpegJob;
@@ -14,7 +13,6 @@ import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
-import javax.swing.JProgressBar;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +28,8 @@ public class ConverterModel {
 
     private static final String FFMPEG_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe";
     private static final String FFPROBE_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe";
+    private static final int ONEHUNDRED = 100;
+    private static final int BYTETOKB = 1024;
 
     /**
      * Constructor.
@@ -44,9 +44,9 @@ public class ConverterModel {
      * Method to convert multimedia files.
      *
      * @param criteria object.
-     * @param status
+     * @param status   is the panel of the progress bar.
      */
-    public void convertFile(final Criteria criteria, ProgressBarPanel status) {
+    public void convertFile(final Criteria criteria, final ProgressBarPanel status) {
         try {
             ffmpeg = new FFmpeg(FFMPEG_PATH);
         } catch (Exception e) {
@@ -58,7 +58,6 @@ public class ConverterModel {
             System.out.println(e);
         }
         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-//        ConvertCriteriaVideo convertCriteria = (ConvertCriteriaVideo) criteria;
         FFmpegProbeResult in = null;
 
         try {
@@ -76,17 +75,23 @@ public class ConverterModel {
 
     }
 
-    private void convertVideo(Criteria criteria, FFmpegProbeResult in
-            , FFmpegExecutor executor, ProgressBarPanel status) {
+    /**
+     * This method convert the video of to video or audio.
+     *
+     * @param criteria Its the criteria conversion.
+     * @param in       its the ffproberesult input.
+     * @param executor Its the executor of the ffmpeg.
+     * @param status   Its the Panel of the ProgressBar.
+     */
+    private void convertVideo(final Criteria criteria, final FFmpegProbeResult in,
+                              final FFmpegExecutor executor, final ProgressBarPanel status) {
         ConvertCriteriaVideo convertCriteria = (ConvertCriteriaVideo) criteria;
         FFmpegBuilder builder;
-
-
         if (convertCriteria.getFormat().equals("mp3")) {
             builder = new FFmpegBuilder()
                     .setInput(in)
-                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName() +
-                            "." + ((ConvertCriteriaVideo) criteria).getFormat())
+                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                            + "." + ((ConvertCriteriaVideo) criteria).getFormat())
                     .disableVideo()
                     .setAudioSampleRate(convertCriteria.getAudioSampleRate())
                     .setAudioChannels(convertCriteria.getAudioChannels())
@@ -97,14 +102,14 @@ public class ConverterModel {
             builder = new FFmpegBuilder()
                     .setInput(in)
                     .overrideOutputFiles(true)
-                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName() +
-                            "." + ((ConvertCriteriaVideo) criteria).getFormat())
+                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                            + "." + ((ConvertCriteriaVideo) criteria).getFormat())
                     .setFormat(convertCriteria.getFormat())
                     .disableSubtitle()
                     .setAudioChannels(convertCriteria.getAudioChannels())
                     .setAudioCodec(convertCriteria.getAudioCodec())
                     .setAudioSampleRate(convertCriteria.getAudioSampleRate())
-                    .setAudioBitRate(convertCriteria.getAudioBitRate() * 1024)
+                    .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
                     .setVideoCodec(convertCriteria.getVideoCodec())
                     .setVideoFrameRate(convertCriteria.getFrameRate(), 1)
                     .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
@@ -114,65 +119,54 @@ public class ConverterModel {
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input
-            final double duration_ns = in.getFormat().duration * TimeUnit.SECONDS.toNanos(1);
+            private final double durationNs = in.getFormat().duration * TimeUnit.SECONDS.toNanos(1);
 
             @Override
-            public void progress(Progress progress) {
-                double percentage = progress.out_time_ns / duration_ns;
-
+            public void progress(final Progress progress) {
+                double percentage = progress.out_time_ns / durationNs;
                 // Print out interesting information about the progress
-                status.setValue1((int) (percentage * 100));
-                System.out.println(String.format(
-                        "[%.0f%%] status:%s frame:%d time:%s ms fps:%.0f speed:%.2fx",
-                        percentage * 100,
-                        progress.status,
-                        progress.frame,
-                        FFmpegUtils.toTimecode(progress.out_time_ns, TimeUnit.NANOSECONDS),
-                        progress.fps.doubleValue(),
-                        progress.speed
-                ));
+                status.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
         job.run();
     }
 
-    private void convertAudio(Criteria criteria, FFmpegProbeResult in
-            , FFmpegExecutor executor, ProgressBarPanel status) {
+    /**
+     * This method convert the audio to other formats of audio.
+     *
+     * @param criteria Its the criteria conversion.
+     * @param in       its the ffproberesult input.
+     * @param executor Its the executor of the ffmpeg.
+     * @param status   Its the Panel of the ProgressBar.
+     */
+    private void convertAudio(final Criteria criteria, final FFmpegProbeResult in,
+                              final FFmpegExecutor executor, final ProgressBarPanel status) {
         ConvertCriteriaAudio convertCriteria = (ConvertCriteriaAudio) criteria;
         FFmpegBuilder builder;
+
         builder = new FFmpegBuilder()
                 .setInput(in)
-                .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName() +
-                        "." + convertCriteria.getFormat())
+                .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                        + "." + convertCriteria.getFormat())
                 .disableVideo()
                 .setAudioSampleRate(convertCriteria.getAudioSampleRate())
                 .setAudioChannels(convertCriteria.getChannels())
-                .setAudioBitRate(convertCriteria.getAudioBitRate())
+                .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
                 .setFormat(convertCriteria.getFormat())
                 .done();
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input
-            final double duration_ns = in.getFormat().duration * TimeUnit.SECONDS.toNanos(1);
+            private final double durationNs = in.getFormat().duration * TimeUnit.SECONDS.toNanos(1);
 
             @Override
-            public void progress(Progress progress) {
-                double percentage = progress.out_time_ns / duration_ns;
+            public void progress(final Progress progress) {
+                double percentage = progress.out_time_ns / durationNs;
 
                 // Print out interesting information about the progress
-                status.setValue1((int) (percentage * 100));
-                System.out.println(String.format(
-                        "[%.0f%%] status:%s frame:%d time:%s ms fps:%.0f speed:%.2fx",
-                        percentage * 100,
-                        progress.status,
-                        progress.frame,
-                        FFmpegUtils.toTimecode(progress.out_time_ns, TimeUnit.NANOSECONDS),
-                        progress.fps.doubleValue(),
-                        progress.speed
-                ));
+                status.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
         job.run();
     }
-
 }

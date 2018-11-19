@@ -60,7 +60,6 @@ public class ConvertCriteriaAudio extends Criteria {
     }
 
     /**
-     *
      * @return .
      */
     public String getFormat() {
@@ -68,7 +67,6 @@ public class ConvertCriteriaAudio extends Criteria {
     }
 
     /**
-     *
      * @param format .
      */
 
@@ -76,26 +74,56 @@ public class ConvertCriteriaAudio extends Criteria {
         this.format = format;
     }
 
+    /**
+     * Getter of the Audio sample Rate.
+     *
+     * @return the String of audiosamplerate.
+     */
     public int getAudioSampleRate() {
         return audioSampleRate;
     }
 
-    public void setAudioSampleRate(int audioSampleRate) {
+    /**
+     * Setter of the Audio Sample rate in this form .
+     *
+     * @param audioSampleRate input String in this form XX_XXX.
+     */
+    public void setAudioSampleRate(final int audioSampleRate) {
         this.audioSampleRate = audioSampleRate;
     }
 
+    /**
+     * Getter of the audio bit rate.
+     *
+     * @return the String audio bit rate.
+     */
     public long getAudioBitRate() {
         return audioBitRate;
     }
 
-    public void setAudioBitRate(long audioBitRate) {
+    /**
+     * Setter of the audio bit rate.
+     *
+     * @param audioBitRate the input audio bit rate.
+     */
+    public void setAudioBitRate(final long audioBitRate) {
         this.audioBitRate = audioBitRate;
     }
 
-    public void setOutputPath(String outputFile) {
+    /**
+     * Setter of the output path.
+     *
+     * @param outputFile Input of the outputFile.
+     */
+    public void setOutputPath(final String outputFile) {
         this.outputFile = outputFile;
     }
 
+    /**
+     * Getter of the output path.
+     *
+     * @return the String.
+     */
     public String getOutputPath() {
         return outputFile;
     }
