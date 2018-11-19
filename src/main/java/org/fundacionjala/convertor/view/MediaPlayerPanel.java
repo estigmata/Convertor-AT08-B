@@ -15,6 +15,7 @@
 
 package org.fundacionjala.convertor.view;
 
+import org.fundacionjala.convertor.utils.Validator;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 
 import javax.swing.AbstractButton;
@@ -30,6 +31,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Class Media Player, class main container embedded media player component.
@@ -45,11 +48,13 @@ public class MediaPlayerPanel extends JPanel {
     private static final int MAX_VALUE = 100;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 240;
+    public Validator validator;
 
     /**
      * Method constructor, initialize player, Media Player instance and create buttons.
      */
     public MediaPlayerPanel() {
+        validator = new Validator();
         player = new EmbeddedMediaPlayerComponent();
         iniMediaPlayer();
         createButtons();
@@ -89,8 +94,11 @@ public class MediaPlayerPanel extends JPanel {
         sldVolume.setValue(MAX_VALUE);
 
         btnStart.addActionListener(e -> {
-            System.out.println(filePath);
-            player.getMediaPlayer().playMedia(filePath);
+            Path path = Paths.get(filePath);
+            if(validator.isAudio(path) || validator.isVideo(path)) {
+                player.getMediaPlayer().playMedia(filePath);
+            } else {new ErrorMessage("Non-Multimedia file !!!");}
+
         });
         btnPlayPause.addActionListener(new ActionListener() {
             @Override

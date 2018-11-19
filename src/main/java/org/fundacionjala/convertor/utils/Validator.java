@@ -14,6 +14,9 @@
  */
 
 package org.fundacionjala.convertor.utils;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 /**
@@ -53,5 +56,41 @@ public class Validator {
     public boolean isPath(final String path) {
         String regularExpression = "(?:[a-zA-Z]\\:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+";
         return Pattern.matches(regularExpression, path) ? true : false;
+    }
+
+    /**
+     * This method ask if the path is video file.
+     *
+     * @param x input path.
+     * @return if is video.
+     */
+    public boolean isVideo(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null) {
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("video");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * This method ask if the path is video file.
+     *
+     * @param x input path.
+     * @return if is video.
+     */
+   public boolean isAudio(final Path x) {
+        try {
+            if (Files.probeContentType(x) == null) {
+                return false;
+            }
+            return Files.probeContentType(x).split("/")[0].equals("audio");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
