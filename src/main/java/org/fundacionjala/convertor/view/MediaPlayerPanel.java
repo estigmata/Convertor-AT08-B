@@ -15,7 +15,9 @@
 
 package org.fundacionjala.convertor.view;
 
+import com.sun.jna.NativeLibrary;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -50,6 +52,8 @@ public class MediaPlayerPanel extends JPanel {
      * Method constructor, initialize player, Media Player instance and create buttons.
      */
     public MediaPlayerPanel() {
+        //NativeLibrary.addSearchPath(
+            //RuntimeUtil.getLibVlcLibraryName(), "src/vlc");
         player = new EmbeddedMediaPlayerComponent();
         iniMediaPlayer();
         createButtons();

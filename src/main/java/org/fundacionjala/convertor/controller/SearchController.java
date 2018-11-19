@@ -79,7 +79,7 @@ public class SearchController {
         viewer.configWindow();
         this.validator = new Validator();
         criteriaFactory = new CriteriaFactory();
-        log.info();
+        log.info("Search controller.");
     }
 
     /**

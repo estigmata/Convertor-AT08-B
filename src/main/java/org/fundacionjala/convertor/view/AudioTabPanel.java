@@ -44,7 +44,7 @@ class AudioTabPanel extends JPanel {
         finderPanel = new FinderPanel();
         finderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         initComponents();
-        log.info();
+        log.info("Set audio panel");
     }
 
     /**

@@ -71,8 +71,8 @@ public final class AbstractLogger {
     /**
      * Method to append info.
      */
-    public void info() {
-        logger.info("Info message.");
+    public void info(final String message) {
+        logger.info(message);
     }
 
     /**
