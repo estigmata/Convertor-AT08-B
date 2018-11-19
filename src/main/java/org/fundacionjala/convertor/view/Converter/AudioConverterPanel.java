@@ -33,6 +33,10 @@ import java.awt.GridBagLayout;
 public class AudioConverterPanel extends JPanel {
 
 
+    private final JComboBox<String> audioSampleRate;
+    private final JLabel labelAudioSampleRate;
+    private final JComboBox<String> audioBitRate;
+    private final JLabel labelBitRate;
     protected JComboBox<String> channelConverter;
     private JComboBox<String> audioCodecConverter;
     private JComboBox<String> formatCodecConverter;
@@ -45,13 +49,17 @@ public class AudioConverterPanel extends JPanel {
      * Constructor.
      */
     public AudioConverterPanel() {
-        audioCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WMAV2"});
-        channelConverter = new JComboBox<>(new String[]{"", "1", "2", "3"});
-        formatCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WAP"});
+        audioCodecConverter = new JComboBox<>(new String[]{"aac", "wmav2", "mp3"});
+        channelConverter = new JComboBox<>(new String[]{"1", "2", "3"});
+        formatCodecConverter = new JComboBox<>(new String[]{"mp3", "wav ", "3gp", "flac", "m4a"});
+        audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
+        audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
+
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("AudioCodec :");
         labelFormatCode = new JLabel("Format :");
-
+        labelAudioSampleRate = new JLabel("Audio Sample Rate :");
+        labelBitRate = new JLabel("Audio Bit Rate :");
         initComponents();
     }
 
@@ -61,6 +69,8 @@ public class AudioConverterPanel extends JPanel {
     public void initComponents() {
         final int one = 1;
         final int two = 2;
+        final int three = 3;
+        final int four = 4;
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -91,35 +101,76 @@ public class AudioConverterPanel extends JPanel {
         bagConstraints.gridy = one;
         this.add(channelConverter, bagConstraints);
 
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = two;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 0;
         labelFormatCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFormatCode, bagConstraints);
 
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = two;
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = 0;
         this.add(formatCodecConverter, bagConstraints);
+
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 1;
+        labelAudioSampleRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAudioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = three;
+        bagConstraints.gridy = 1;
+        this.add(audioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = two;
+        labelBitRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelBitRate, bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = two;
+        this.add(audioBitRate, bagConstraints);
     }
 
     /**
-     * @return .
+     * This is the getter of the combobox of Audio Channel.
+     *
+     * @return the JComboBox.
      */
     public JComboBox<String> getChannelConverter() {
         return channelConverter;
     }
 
     /**
-     * @return .
+     * This is the getter of the combobox of Audio Codec.
+     *
+     * @return the JComboBox.
      */
     public JComboBox<String> getAudioCodecConverter() {
         return audioCodecConverter;
     }
 
     /**
-     * @return .
+     * This is the getter of the combobox of Format Codec Converter.
+     *
+     * @return the JComboBox.
      */
     public JComboBox<String> getFormatCodecConverter() {
         return formatCodecConverter;
     }
 
+    /**
+     * This is the getter of the ComboBox of Audio Sample rate.
+     *
+     * @return the JComboBox.
+     */
+    public JComboBox<String> getAudioSampleRate() {
+        return audioSampleRate;
+    }
+
+    /**
+     * Getter of the Combo Box of Audio bit rate.
+     *
+     * @return the JComboBox.
+     */
+    public JComboBox<String> getAudioBitRate() {
+        return audioBitRate;
+    }
 }

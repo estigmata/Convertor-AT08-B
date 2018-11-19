@@ -26,7 +26,6 @@ public class ConvertCriteriaVideo extends Criteria {
     private String videoCodec;
     private String audioCodec;
     private String format;
-    private String fileToConvert;
     private int audioSampleRate;
     private long audioBitRate;
     private String outputFile;
@@ -153,7 +152,7 @@ public class ConvertCriteriaVideo extends Criteria {
      *
      * @param audioSampleRate input String in this form XX_XXX.
      */
-    public void setAudioSampleRate(String audioSampleRate) {
+    public void setAudioSampleRate(final String audioSampleRate) {
         this.audioSampleRate = Integer.parseInt(audioSampleRate);
     }
 
@@ -171,23 +170,43 @@ public class ConvertCriteriaVideo extends Criteria {
      *
      * @param audioBitRate the input audio bit rate.
      */
-    public void setAudioBitRate(String audioBitRate) {
+    public void setAudioBitRate(final String audioBitRate) {
         this.audioBitRate = Long.parseLong(audioBitRate);
     }
 
+    /**
+     * Getter of the output path.
+     *
+     * @return the String.
+     */
     public String getOutputPath() {
         return outputFile;
     }
 
-    public void setOutputPath(String outputFile) {
+    /**
+     * Setter of the output path.
+     *
+     * @param outputFile Input of the outputFile.
+     */
+    public void setOutputPath(final String outputFile) {
         this.outputFile = outputFile;
     }
 
+    /**
+     * Getter of the Audio Channels.
+     *
+     * @return The audio channels.
+     */
     public int getAudioChannels() {
         return audioChannels;
     }
 
-    public void setAudioChannels(int audioChannels) {
+    /**
+     * Setter of the audio Channels.
+     *
+     * @param audioChannels Input int of audio channels.
+     */
+    public void setAudioChannels(final int audioChannels) {
         this.audioChannels = audioChannels;
     }
 }

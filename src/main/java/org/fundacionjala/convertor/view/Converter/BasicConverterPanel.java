@@ -16,7 +16,6 @@ package org.fundacionjala.convertor.view.Converter;
 
 import org.fundacionjala.convertor.view.BrowseChooser;
 
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -34,6 +33,7 @@ import java.awt.Insets;
  *
  * @author Abel Mallcu Chiri.
  * @author Nestor Otondo.
+ * @author Rodrigo Menacho.
  * @version 1.0
  */
 public class BasicConverterPanel extends JPanel {
@@ -41,9 +41,8 @@ public class BasicConverterPanel extends JPanel {
     private JPanel container;
     private JButton btnConverter;
     private static JTextField outputPath;
-    private JTextField outputFileName;
+    private static JTextField outputFileName;
     private static JTextField currentPath;
-    private static String fileToConvert;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
@@ -66,7 +65,7 @@ public class BasicConverterPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
-        
+
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
         labelOutPath = new JLabel("Output File :");
         labelOutputName = new JLabel("File Name :");
@@ -105,6 +104,7 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
         labelOutputName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         container.add(labelOutputName, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
@@ -114,10 +114,10 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridy = one;
         labelCurrentPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelCurrentPath, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
         container.add(currentPath, bagConstraints);
-
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
@@ -130,94 +130,99 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridy = tree;
         container.add(browseChooser, bagConstraints);
 
-
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
         labelMultimediaBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelMultimediaBox, bagConstraints);
+
         bagConstraints.gridx = one;
         bagConstraints.gridy = four;
         container.add(multimediaBox, bagConstraints);
 
-
         bagConstraints.gridx = one;
-
         bagConstraints.gridy = six;
         container.add(btnConverter, bagConstraints);
         this.add(container);
     }
 
     /**
-     * @return .
+     * Getter of the Converter Button.
+     *
+     * @return JButton.
      */
     public JButton getConverterButton() {
         return btnConverter;
     }
 
     /**
-     * @return .
+     * Getter of the outputpath.
+     *
+     * @return the Jtextfield.
      */
     public JTextField getOutputPath() {
         return outputPath;
     }
 
     /**
-     * @return .
+     * Getter of the output Name.
+     *
+     * @return JTextField
      */
     public JTextField getOutputName() {
         return outputFileName;
     }
 
     /**
-     * @return .
+     * Getter of the Text input field - Current Path.
+     *
+     * @return the JTextField.
      */
     public JTextField getCurrentPath() {
         return currentPath;
     }
 
     /**
-     * @return .
+     * Getter of the Browse Chooser.
+     *
+     * @return The BrowseChooser.
      */
     public BrowseChooser getBrowseChooser() {
         return browseChooser;
     }
 
     /**
-     * @return .
+     * Getter of the Combo Box - Multimedia.
+     *
+     * @return the JComboBox.
      */
     public JComboBox<String> getMultimediaBox() {
         return multimediaBox;
     }
 
     /**
-     * @param fileName .
-     */
-    public static void setFileToConvert(final String fileName) {
-        fileToConvert = fileName;
-    }
-
-    /**
-     * @param pathSource .
+     * Setter of the Input Field - Path Source.
+     *
+     * @param pathSource input source path.
      */
     public static void setPathSource(final String pathSource) {
         currentPath.setText(pathSource);
     }
 
     /**
-     * @param pathDestination .
+     * Setter of the Text input field-Path destination.
+     *
+     * @param pathDestination input path.
      */
     public static void setPathDestination(final String pathDestination) {
         outputPath.setText(pathDestination);
     }
 
-    public static String getFileToConvert() {
-        return fileToConvert;
-    }
-
     /**
+     * Setter of the Text field-Output File name.
      *
+     * @param outputName input name.
      */
-    private void converterFile() {
-        //TODO
+    public static void setOutputFileName(final String outputName) {
+        outputFileName.setText(outputName);
     }
 }
