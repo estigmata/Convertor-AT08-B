@@ -189,14 +189,23 @@ public class BasicConverterPanel extends JPanel {
         return multimediaBox;
     }
 
+    /**
+     * @param fileName .
+     */
     public static void setFileToConvert(final String fileName) {
         fileToConvert = fileName;
     }
 
+    /**
+     * @param pathSource .
+     */
     public static void setPathSource(final String pathSource) {
         currentPath.setText(pathSource);
     }
 
+    /**
+     * @param pathDestination .
+     */
     public static void setPathDestination(final String pathDestination) {
         outputPath.setText(pathDestination);
     }
@@ -205,6 +214,9 @@ public class BasicConverterPanel extends JPanel {
         return fileToConvert;
     }
 
+    /**
+     *
+     */
     private void converterFile() {
         //TODO
     }

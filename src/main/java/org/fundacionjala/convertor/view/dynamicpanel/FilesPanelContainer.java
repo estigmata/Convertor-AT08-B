@@ -18,7 +18,10 @@ package org.fundacionjala.convertor.view.dynamicpanel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
