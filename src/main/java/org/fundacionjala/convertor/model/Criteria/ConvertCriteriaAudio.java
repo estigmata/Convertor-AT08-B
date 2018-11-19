@@ -22,6 +22,9 @@ public class ConvertCriteriaAudio extends Criteria {
     private int channels;
     private String audioCodec;
     private String format;
+    private int audioSampleRate;
+    private long audioBitRate;
+    private String outputFile;
 
     @Override
     public void setFileName(final String fileName) {
@@ -71,5 +74,29 @@ public class ConvertCriteriaAudio extends Criteria {
 
     public void setFormat(final String format) {
         this.format = format;
+    }
+
+    public int getAudioSampleRate() {
+        return audioSampleRate;
+    }
+
+    public void setAudioSampleRate(int audioSampleRate) {
+        this.audioSampleRate = audioSampleRate;
+    }
+
+    public long getAudioBitRate() {
+        return audioBitRate;
+    }
+
+    public void setAudioBitRate(long audioBitRate) {
+        this.audioBitRate = audioBitRate;
+    }
+
+    public void setOutputPath(String outputFile) {
+        this.outputFile = outputFile;
+    }
+
+    public String getOutputPath() {
+        return outputFile;
     }
 }

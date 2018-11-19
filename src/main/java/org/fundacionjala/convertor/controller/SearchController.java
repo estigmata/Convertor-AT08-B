@@ -88,11 +88,11 @@ public class SearchController {
     public void actionSearch() {
         viewer.getSearchButton().addActionListener(e -> {
 //            if (validator.isPath(viewer.getPath())) {
-                try {
-                    findFile();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+            try {
+                findFile();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 //            } else {
 //                new ErrorMessage("Isn't a valid path!!!");
 //            }
@@ -281,6 +281,12 @@ public class SearchController {
                     .getBasicConverterPanel()
                     .getCurrentPath()
                     .getText());
+            convertAudioCriteria.setOutputPath(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getBasicConverterPanel()
+                    .getOutputPath()
+                    .getText());
             convertAudioCriteria.setFileName(viewer
                     .getDownPanel()
                     .getConverterPanel()
@@ -300,7 +306,7 @@ public class SearchController {
                     .getAudioConverterPanel()
                     .getChannelConverter()
                     .getSelectedItem()
-                    .toString();;
+                    .toString();
             convertAudioCriteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
             convertAudioCriteria.setFormat(viewer
                     .getDownPanel()
@@ -308,7 +314,23 @@ public class SearchController {
                     .getAudioConverterPanel()
                     .getFormatCodecConverter()
                     .getSelectedItem()
-                    .toString());;
+                    .toString());
+            convertAudioCriteria.setAudioBitRate(Long.parseLong(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
+                    .getAudioBitRate()
+                    .getSelectedItem()
+                    .toString())
+            );
+            convertAudioCriteria.setAudioSampleRate(Integer.parseInt(viewer
+                    .getDownPanel()
+                    .getConverterPanel()
+                    .getAudioConverterPanel()
+                    .getAudioSampleRate()
+                    .getSelectedItem()
+                    .toString())
+            );
             basicCriteria = convertAudioCriteria;
         }
         converterModel.convertFile(basicCriteria, viewer.getDownPanel().getConverterPanel().getProgressBarPanel());

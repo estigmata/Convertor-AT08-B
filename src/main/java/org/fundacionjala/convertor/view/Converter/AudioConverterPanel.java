@@ -33,6 +33,10 @@ import java.awt.GridBagLayout;
 public class AudioConverterPanel extends JPanel {
 
 
+    private final JComboBox<String> audioSampleRate;
+    private final JLabel labelAudioSampleRate;
+    private final JComboBox<String> audioBitRate;
+    private final JLabel labelBitRate;
     protected JComboBox<String> channelConverter;
     private JComboBox<String> audioCodecConverter;
     private JComboBox<String> formatCodecConverter;
@@ -45,13 +49,17 @@ public class AudioConverterPanel extends JPanel {
      * Constructor.
      */
     public AudioConverterPanel() {
-        audioCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WMAV2"});
-        channelConverter = new JComboBox<>(new String[]{"", "1", "2", "3"});
-        formatCodecConverter = new JComboBox<>(new String[]{"", "MP3", "WAP"});
+        audioCodecConverter = new JComboBox<>(new String[]{"aac", "wmav2", "mp3"});
+        channelConverter = new JComboBox<>(new String[]{"1", "2", "3"});
+        formatCodecConverter = new JComboBox<>(new String[]{"mp3", "wav ","3gp","flac","m4a"});
+        audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
+        audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
+
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("AudioCodec :");
         labelFormatCode = new JLabel("Format :");
-
+        labelAudioSampleRate = new JLabel("Audio Sample Rate :");
+        labelBitRate = new JLabel("Audio Bit Rate :");
         initComponents();
     }
 
@@ -91,14 +99,33 @@ public class AudioConverterPanel extends JPanel {
         bagConstraints.gridy = one;
         this.add(channelConverter, bagConstraints);
 
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = two;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 0;
         labelFormatCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFormatCode, bagConstraints);
 
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = two;
+        bagConstraints.gridx = 3;
+        bagConstraints.gridy = 0;
         this.add(formatCodecConverter, bagConstraints);
+
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = 1;
+        labelAudioSampleRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelAudioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = 3;
+        bagConstraints.gridy = 1;
+        this.add(audioSampleRate, bagConstraints);
+
+        bagConstraints.gridx = 0;
+        bagConstraints.gridy = 2;
+        labelBitRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.add(labelBitRate, bagConstraints);
+
+        bagConstraints.gridx = 1;
+        bagConstraints.gridy = 2;
+        this.add(audioBitRate, bagConstraints);
+
     }
 
     /**
@@ -122,4 +149,11 @@ public class AudioConverterPanel extends JPanel {
         return formatCodecConverter;
     }
 
+    public JComboBox<String> getAudioSampleRate() {
+        return audioSampleRate;
+    }
+
+    public JComboBox<String> getAudioBitRate() {
+        return audioBitRate;
+    }
 }

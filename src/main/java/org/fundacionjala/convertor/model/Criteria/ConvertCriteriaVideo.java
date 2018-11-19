@@ -26,7 +26,6 @@ public class ConvertCriteriaVideo extends Criteria {
     private String videoCodec;
     private String audioCodec;
     private String format;
-    private String fileToConvert;
     private int audioSampleRate;
     private long audioBitRate;
     private String outputFile;

@@ -64,10 +64,10 @@ public class VideoConverterPanel extends JPanel {
         resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"libx264"});
-        audioCodec = new JComboBox<>(new String[]{"aac"});
-        format = new JComboBox<>(new String[]{"avi"});
-        audioSampleRate = new JComboBox<>(new String[]{"48000"});
-        audioBitRate = new JComboBox<>(new String[]{"32768"});
+        audioCodec = new JComboBox<>(new String[]{"aac", "mp2"});
+        format = new JComboBox<>(new String[]{"avi","mp4","mpeg","flv","mp3"});
+        audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
+        audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
         audioChannels = new JComboBox<>(new String[]{"1", "2"});
         labelFormat = new JLabel("Format :");
         labelFrameRate = new JLabel("Frame Rate :");

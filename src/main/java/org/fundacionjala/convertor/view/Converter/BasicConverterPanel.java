@@ -41,9 +41,8 @@ public class BasicConverterPanel extends JPanel {
     private JPanel container;
     private JButton btnConverter;
     private static JTextField outputPath;
-    private JTextField outputFileName;
+    private static JTextField outputFileName;
     private static JTextField currentPath;
-    private static String fileToConvert;
     private BrowseChooser browseChooser;
     protected JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
@@ -186,9 +185,6 @@ public class BasicConverterPanel extends JPanel {
         return multimediaBox;
     }
 
-    public static void setFileToConvert(final String fileName) {
-        fileToConvert = fileName;
-    }
 
     public static void setPathSource(final String pathSource) {
         currentPath.setText(pathSource);
@@ -198,11 +194,7 @@ public class BasicConverterPanel extends JPanel {
         outputPath.setText(pathDestination);
     }
 
-    public static String getFileToConvert() {
-        return fileToConvert;
-    }
-
-    private void converterFile() {
-        //TODO
+    public static void setOutputFileName(String outputName) {
+        outputFileName.setText(outputName);
     }
 }
