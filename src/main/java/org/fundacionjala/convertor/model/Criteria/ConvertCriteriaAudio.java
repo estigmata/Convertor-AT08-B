@@ -32,20 +32,26 @@ public class ConvertCriteriaAudio extends Criteria {
     }
 
     /**
-     * @return value return.
+     * Getter of the Channels.
+     *
+     * @return the audio channels.
      */
     public int getChannels() {
         return channels;
     }
 
     /**
-     * @param channels value input.
+     * Setter of the audio Channels.
+     *
+     * @param channels Integer of Channels.
      */
     public void setChannels(final int channels) {
         this.channels = channels;
     }
 
     /**
+     * Getter of the Audio Codec.
+     *
      * @return value return.
      */
     public String getAudioCodec() {
@@ -53,6 +59,8 @@ public class ConvertCriteriaAudio extends Criteria {
     }
 
     /**
+     * Setter of the Audio Codec.
+     *
      * @param audioCodec value input.
      */
     public void setAudioCodec(final String audioCodec) {
@@ -60,14 +68,18 @@ public class ConvertCriteriaAudio extends Criteria {
     }
 
     /**
-     * @return .
+     * Getter of the Format for conversion.
+     *
+     * @return the String-Format.
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * @param format .
+     * Setter of the format conversion.
+     *
+     * @param format Input format.
      */
 
     public void setFormat(final String format) {
