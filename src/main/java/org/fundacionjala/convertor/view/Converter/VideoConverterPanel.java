@@ -105,6 +105,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
+        labelFrameRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFrameRate, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -113,6 +114,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
+        labelAspectRatio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAspectRatio, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -121,6 +123,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
+        labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelResolution, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -129,6 +132,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = one;
+        labelVideoCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelVideoCodec, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -137,6 +141,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -145,6 +150,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = two;
+        labelFormat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFormat, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -153,6 +159,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = three;
+        labelAudioSampleRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioSampleRate, bagConstraints);
 
         bagConstraints.gridx = 1;
@@ -161,6 +168,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 2;
         bagConstraints.gridy = three;
+        labelBitRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelBitRate, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -169,6 +177,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
+        labelAudioChannels.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioChannels, bagConstraints);
 
         bagConstraints.gridx = 1;
