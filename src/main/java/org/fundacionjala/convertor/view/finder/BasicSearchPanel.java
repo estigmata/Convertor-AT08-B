@@ -126,6 +126,7 @@ public class BasicSearchPanel extends JPanel {
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
         bagConstraints.anchor = GridBagConstraints.LINE_END;
+        labelName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         conatainer.add(labelName, bagConstraints);
 
         bagConstraints.gridx = one;
