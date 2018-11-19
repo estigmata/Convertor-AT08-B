@@ -66,7 +66,7 @@ public class BasicConverterPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
-        browseChooser.setName("Busacar");
+        
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
         labelOutPath = new JLabel("Output File :");
         labelOutputName = new JLabel("File Name :");
