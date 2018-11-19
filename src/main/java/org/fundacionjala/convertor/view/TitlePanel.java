@@ -60,6 +60,7 @@ public class TitlePanel extends JPanel {
 
         logo = new JLabel();
         logo.setIcon(new javax.swing.ImageIcon("Image\\monkey.PNG"));
+/*
 
         close = new JButton();
         close.setBackground(Color.WHITE);
@@ -68,6 +69,7 @@ public class TitlePanel extends JPanel {
         close.setBorder(null);
         close.setBounds(new Rectangle());
         close.addActionListener(evt -> System.exit(0));
+*/
 
 
         initComponents();
@@ -78,7 +80,7 @@ public class TitlePanel extends JPanel {
      */
     private void initComponents() {
         this.setLayout(new GridLayout());
-        container.add(close);
+//        container.add(close);
         this.add(logo);
         this.add(container);
     }
