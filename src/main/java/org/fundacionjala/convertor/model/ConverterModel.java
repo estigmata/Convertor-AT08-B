@@ -11,6 +11,7 @@ import net.bramp.ffmpeg.progress.ProgressListener;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.view.CompletedMessage;
 import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
 import java.io.IOException;
@@ -129,6 +130,9 @@ public class ConverterModel {
             }
         });
         job.run();
+        if (job.getState()== FFmpegJob.State.FINISHED){
+            new CompletedMessage("Conversion Completed");
+        }
     }
 
     /**
@@ -168,5 +172,8 @@ public class ConverterModel {
             }
         });
         job.run();
+        if (job.getState()== FFmpegJob.State.FINISHED){
+            new CompletedMessage("Conversion Completed");
+        }
     }
 }

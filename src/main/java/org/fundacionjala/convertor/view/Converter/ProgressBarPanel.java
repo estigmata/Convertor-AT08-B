@@ -14,6 +14,8 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
+import org.fundacionjala.convertor.view.ErrorMessage;
+
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import java.awt.Color;
@@ -86,7 +88,6 @@ public class ProgressBarPanel extends JPanel {
      * @param percentage Input percentage.
      */
     public void setValue1(final int percentage) {
-        System.out.println(percentage);
         status.setValue(percentage);
         status.update(status.getGraphics());
         status.setStringPainted(true);
