@@ -24,14 +24,14 @@ import java.util.Vector;
  * Class for file node used in the explorer.
  */
 public class FileNode {
-    protected File mFile;
+    private File mFile;
 
     /**
      * Constructor of the File node.
      *
      * @param file input
      */
-    public FileNode(final File file) {
+    FileNode(final File file) {
         mFile = file;
     }
 
@@ -60,7 +60,7 @@ public class FileNode {
      * @param parent input
      * @return true or false
      */
-    public boolean expand(final DefaultMutableTreeNode parent) {
+    boolean expand(final DefaultMutableTreeNode parent) {
         DefaultMutableTreeNode flag =
                 (DefaultMutableTreeNode) parent.getFirstChild();
         if (flag == null) {   // No flag
@@ -78,10 +78,9 @@ public class FileNode {
             return true;
         }
 
-        Vector v = new Vector();
+        Vector<FileNode> v = new Vector<>();
 
-        for (int k = 0; k < files.length; k++) {
-            File f = files[k];
+        for (File f : files) {
             if (!(f.isDirectory())) {
                 continue;
             }
@@ -90,7 +89,7 @@ public class FileNode {
 
             boolean isAdded = false;
             for (int i = 0; i < v.size(); i++) {
-                FileNode nd = (FileNode) v.elementAt(i);
+                FileNode nd = v.elementAt(i);
                 if (newNode.compareTo(nd) < 0) {
                     v.insertElementAt(newNode, i);
                     isAdded = true;
@@ -103,7 +102,7 @@ public class FileNode {
         }
 
         for (int i = 0; i < v.size(); i++) {
-            FileNode nd = (FileNode) v.elementAt(i);
+            FileNode nd = v.elementAt(i);
             IconData idata = new IconData(Explorer.ICON_FOLDER,
                     Explorer.ICON_EXPANDEDFOLDER, nd);
             DefaultMutableTreeNode node = new
@@ -123,13 +122,13 @@ public class FileNode {
      *
      * @return true or false.
      */
-    public boolean hasSubDirs() {
+    private boolean hasSubDirs() {
         File[] files = listFiles();
         if (files == null) {
             return false;
         }
-        for (int k = 0; k < files.length; k++) {
-            if (files[k].isDirectory()) {
+        for (File file : files) {
+            if (file.isDirectory()) {
                 return true;
             }
         }
@@ -142,7 +141,7 @@ public class FileNode {
      * @param toCompare input node
      * @return Integer
      */
-    public int compareTo(final FileNode toCompare) {
+    private int compareTo(final FileNode toCompare) {
         return mFile.getName().compareToIgnoreCase(
                 toCompare.mFile.getName());
     }
@@ -152,7 +151,7 @@ public class FileNode {
      *
      * @return array of files
      */
-    protected File[] listFiles() {
+    private File[] listFiles() {
         if (!mFile.isDirectory()) {
             return null;
         }
