@@ -96,9 +96,11 @@ public class MediaPlayerPanel extends JPanel {
 
         btnStart.addActionListener(e -> {
             Path path = Paths.get(filePath);
-            if(validator.isAudio(path) || validator.isVideo(path)) {
+            if (validator.isAudio(path) || validator.isVideo(path)) {
                 player.getMediaPlayer().playMedia(filePath);
-            } else {new ErrorMessage("Non-Multimedia file !!!");}
+            } else {
+                new ErrorMessage("Non-Multimedia file !!!");
+            }
 
         });
         btnPlayPause.addActionListener(new ActionListener() {
