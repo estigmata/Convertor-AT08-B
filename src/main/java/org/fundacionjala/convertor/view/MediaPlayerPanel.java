@@ -79,13 +79,16 @@ public class MediaPlayerPanel extends JPanel {
         JPanel buttonsContainer = new JPanel();
         JButton btnStart = new JButton();
         JButton btnPlayPause = new JButton();
+        JButton btnFullScreen = new JButton();
         JToggleButton btnMute = new JToggleButton();
         btnStart.setBackground(Color.WHITE);
         btnPlayPause.setBackground(Color.WHITE);
+        btnFullScreen.setBackground(Color.WHITE);
         btnMute.setBackground(Color.WHITE);
 
         btnStart.setIcon(new javax.swing.ImageIcon("Image\\start.PNG"));
         btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
+        btnFullScreen.setIcon(new javax.swing.ImageIcon("Image\\fullscreen.PNG"));
         btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
 
         JSlider sldVolume = new JSlider();
@@ -98,7 +101,6 @@ public class MediaPlayerPanel extends JPanel {
             if(validator.isAudio(path) || validator.isVideo(path)) {
                 player.getMediaPlayer().playMedia(filePath);
             } else {new ErrorMessage("Non-Multimedia file !!!");}
-
         });
         btnPlayPause.addActionListener(new ActionListener() {
             @Override
@@ -112,6 +114,12 @@ public class MediaPlayerPanel extends JPanel {
                 }
                 player.getMediaPlayer().setPause(player.getMediaPlayer().isPlaying());
             }
+        });
+        btnFullScreen.addActionListener(e -> {
+
+
+
+
         });
         btnMute.addActionListener(new ActionListener() {
             @Override
@@ -136,6 +144,7 @@ public class MediaPlayerPanel extends JPanel {
         buttonsContainer.setLayout(new BoxLayout(buttonsContainer, BoxLayout.LINE_AXIS));
         buttonsContainer.add(btnStart);
         buttonsContainer.add(btnPlayPause);
+        buttonsContainer.add(btnFullScreen);
         buttonsContainer.add(btnMute);
         buttonsContainer.add(sldVolume);
         this.add(buttonsContainer, BorderLayout.CENTER);
