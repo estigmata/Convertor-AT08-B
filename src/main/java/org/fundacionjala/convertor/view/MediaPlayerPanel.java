@@ -46,9 +46,9 @@ public class MediaPlayerPanel extends JPanel {
     private static String filePath;
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = 100;
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 350;
     private static final int HEIGHT = 240;
-    public Validator validator;
+    private Validator validator;
 
     /**
      * Method constructor, initialize player, Media Player instance and create buttons.
@@ -95,9 +95,11 @@ public class MediaPlayerPanel extends JPanel {
 
         btnStart.addActionListener(e -> {
             Path path = Paths.get(filePath);
-            if(validator.isAudio(path) || validator.isVideo(path)) {
+            if (validator.isAudio(path) || validator.isVideo(path)) {
                 player.getMediaPlayer().playMedia(filePath);
-            } else {new ErrorMessage("Non-Multimedia file !!!");}
+            } else {
+                new ErrorMessage("Non-Multimedia file !!!");
+            }
 
         });
         btnPlayPause.addActionListener(new ActionListener() {

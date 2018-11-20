@@ -14,6 +14,7 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
+import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.BrowseChooser;
 
 import javax.swing.JButton;
@@ -49,15 +50,21 @@ public class BasicConverterPanel extends JPanel {
     private JLabel labelOutputName;
     private JLabel labelCurrentPath;
     private JLabel labelMultimediaBox;
+    private Style style;
 
     /**
      * Constructor.
      */
     public BasicConverterPanel() {
+        style = new Style();
         final int ten = 10;
+
         outputPath = new JTextField("");
         outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
+        btnConverter.setBackground(Color.WHITE);
+        btnConverter.setIcon(new javax.swing.ImageIcon("Image\\converter.PNG"));
+
         outputFileName = new JTextField();
         outputFileName.setColumns(ten);
         currentPath = new JTextField();
@@ -71,6 +78,19 @@ public class BasicConverterPanel extends JPanel {
         labelOutputName = new JLabel("File Name :");
         labelCurrentPath = new JLabel("Current Path :");
         labelMultimediaBox = new JLabel("Multimedia :");
+
+
+        btnConverter.setFont(style.getFont());
+        outputPath.setFont(style.getFont());
+        outputFileName.setFont(style.getFont());
+        currentPath.setFont(style.getFont());
+        browseChooser.setFont(style.getFont());
+        multimediaBox.setFont(style.getFont());
+        labelOutPath.setFont(style.getFont());
+        labelOutputName.setFont(style.getFont());
+        labelCurrentPath.setFont(style.getFont());
+        labelMultimediaBox.setFont(style.getFont());
+
 
         container = new JPanel(new GridBagLayout());
         initComponents();
@@ -128,7 +148,7 @@ public class BasicConverterPanel extends JPanel {
         container.add(outputPath, bagConstraints);
         bagConstraints.gridx = two;
         bagConstraints.gridy = tree;
-        container.add(browseChooser, bagConstraints);
+         container.add(browseChooser, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
@@ -139,8 +159,8 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridy = four;
         container.add(multimediaBox, bagConstraints);
 
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = six;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = four;
         container.add(btnConverter, bagConstraints);
         this.add(container);
     }

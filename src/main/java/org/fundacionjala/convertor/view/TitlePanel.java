@@ -43,10 +43,8 @@ public class TitlePanel extends JPanel {
      * Constructor for the initialization of the components.
      */
     public TitlePanel() {
-        final int width = 1000;
-        final int heigth = 50;
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-
+        final int width = 800;
+        final int heigth = 25;
         this.setBackground(Color.WHITE);
         this.setLayout(new GridBagLayout());
 
@@ -59,19 +57,7 @@ public class TitlePanel extends JPanel {
 
         logo = new JLabel();
         logo.setIcon(new javax.swing.ImageIcon("Image\\monkey.PNG"));
-/*
-
-        close = new JButton();
-        close.setBackground(Color.WHITE);
-        close.setForeground(orangeColor);
-        close.setText("CLOSE");
-        close.setBorder(null);
-        close.setBounds(new Rectangle());
-        close.addActionListener(evt -> System.exit(0));
-*/
-
-
-        initComponents();
+       initComponents();
     }
 
     /**

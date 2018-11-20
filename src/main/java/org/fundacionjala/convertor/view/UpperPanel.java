@@ -28,10 +28,10 @@ public class UpperPanel extends JPanel {
      */
     private void initComponents() {
         final int color = 64;
-        final int height = 300;
-        final int width1 = 250;
-        final int width2 = 350;
-        final int width3 = 500;
+        final int height = 250;
+        final int width1 = 200;
+        final int width2 = 300;
+        final int width3 = 300;
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
