@@ -39,6 +39,6 @@ public class CompletedMessage {
                 message,
                 "Finished",
                 JOptionPane.INFORMATION_MESSAGE);
-        log.info("");
+        log.info("Show a completed conversion message");
     }
 }
