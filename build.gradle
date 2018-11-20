@@ -32,6 +32,7 @@ checkstyle {
 // FindBugs configuration
 findbugs {
     toolVersion = '3.0.1'
+    excludeFilter = file("config/findbugs/filter.xml")
 }
 tasks.withType(FindBugs) {
     reports {

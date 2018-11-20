@@ -289,6 +289,6 @@ public class SearchController {
             );
             basicCriteria = convertAudioCriteria;
         }
-        converterModel.convertFile(basicCriteria);
+        converterModel.convertData(basicCriteria);
     }
 }
