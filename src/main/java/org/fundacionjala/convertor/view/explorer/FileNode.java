@@ -78,31 +78,31 @@ public class FileNode {
             return true;
         }
 
-        Vector<FileNode> v = new Vector<>();
+        Vector<FileNode> fileNodes = new Vector<>();
 
-        for (File f : files) {
-            if (!(f.isDirectory())) {
+        for (File file : files) {
+            if (!(file.isDirectory())) {
                 continue;
             }
 
-            FileNode newNode = new FileNode(f);
+            FileNode newNode = new FileNode(file);
 
             boolean isAdded = false;
-            for (int i = 0; i < v.size(); i++) {
-                FileNode nd = v.elementAt(i);
+            for (int i = 0; i < fileNodes.size(); i++) {
+                FileNode nd = fileNodes.elementAt(i);
                 if (newNode.compareTo(nd)) {
-                    v.insertElementAt(newNode, i);
+                    fileNodes.insertElementAt(newNode, i);
                     isAdded = true;
                     break;
                 }
             }
             if (!isAdded) {
-                v.addElement(newNode);
+                fileNodes.addElement(newNode);
             }
         }
 
-        for (int i = 0; i < v.size(); i++) {
-            FileNode nd = v.elementAt(i);
+        for (int i = 0; i < fileNodes.size(); i++) {
+            FileNode nd = fileNodes.elementAt(i);
             IconData idata = new IconData(Explorer.ICON_FOLDER,
                     Explorer.ICON_EXPANDEDFOLDER, nd);
             DefaultMutableTreeNode node = new
