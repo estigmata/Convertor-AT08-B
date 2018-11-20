@@ -49,7 +49,7 @@ public class MediaPlayerPanel extends JPanel {
     private static final int MAX_VALUE = 100;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 240;
-    public Validator validator;
+    private Validator validator;
 
     /**
      * Method constructor, initialize player, Media Player instance and create buttons.

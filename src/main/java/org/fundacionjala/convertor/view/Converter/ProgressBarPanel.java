@@ -30,8 +30,8 @@ import java.awt.Label;
  */
 public class ProgressBarPanel extends JPanel {
 
-    protected static JProgressBar status;
-    private final int oneHundred = 100;
+    private static JProgressBar status;
+    private static final int ONEHUNDRED = 100;
 
     /**
      * Constructor.
@@ -39,7 +39,7 @@ public class ProgressBarPanel extends JPanel {
     public ProgressBarPanel() {
         status = new JProgressBar();
         status.setMinimum(0);
-        status.setMaximum(oneHundred);
+        status.setMaximum(ONEHUNDRED);
         initComponents();
     }
 
