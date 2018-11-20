@@ -16,9 +16,6 @@
 
 package org.fundacionjala.convertor.utils;
 
-import java.nio.file.Path;
-
-
 /**
  * this class contain utils for used in Model and controller.
  *
@@ -34,8 +31,9 @@ public class Util {
      * @param path input String of the FileName.
      * @return the String of the File Name.
      */
-    public String getStringName(final Path path) {
-        return path.getFileName().toString().split("\\.")[0];
+    public String getStringName(final String path) {
+        String[] aux = path.split("\\.");
+        return aux.length == 1 ? "" : aux[0];
     }
 
     /**
