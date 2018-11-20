@@ -45,7 +45,7 @@ public class BrowseChooser extends JPanel implements ActionListener {
         browse.addActionListener(this);
         path = new JTextField();
         add(browse);
-        log.info();
+        log.info("Set Browser Choose.");
     }
 
     /**

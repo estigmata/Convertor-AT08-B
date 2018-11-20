@@ -23,6 +23,5 @@ public class ErrorMessage extends JOptionPane {
                 message,
                 "Error",
                 JOptionPane.WARNING_MESSAGE);
-        log.info();
     }
 }
