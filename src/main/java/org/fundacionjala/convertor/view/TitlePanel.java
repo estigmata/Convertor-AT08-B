@@ -45,7 +45,7 @@ public class TitlePanel extends JPanel {
     public TitlePanel() {
         final int width = 1000;
         final int heigth = 50;
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
+//        final Color orangeColor = new java.awt.Color(255, 51, 0);
 
         this.setBackground(Color.WHITE);
         this.setLayout(new GridBagLayout());
