@@ -19,8 +19,6 @@ public class MediaFileModelTest {
 
     private MediaFileModel mediaFileModel;
     private Criteria basicCriteria;
-    private AdvancedCriteriaAudio audioCriteria;
-    private AdvancedCriteriaVideo videoCriteria;
     private ArrayList<Asset> fileList;
     static final String PATH = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder";
 
