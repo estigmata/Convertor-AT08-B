@@ -90,7 +90,7 @@ public class FileNode {
             boolean isAdded = false;
             for (int i = 0; i < v.size(); i++) {
                 FileNode nd = v.elementAt(i);
-                if (newNode.compareTo(nd) < 0) {
+                if (newNode.compareTo(nd)) {
                     v.insertElementAt(newNode, i);
                     isAdded = true;
                     break;
@@ -141,9 +141,8 @@ public class FileNode {
      * @param toCompare input node
      * @return Integer
      */
-    private int compareTo(final FileNode toCompare) {
-        return mFile.getName().compareToIgnoreCase(
-                toCompare.mFile.getName());
+    private boolean compareTo(final FileNode toCompare) {
+        return toCompare.mFile.getName().equals(mFile.getName());
     }
 
     /**
