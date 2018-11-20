@@ -5,8 +5,10 @@ import org.fundacionjala.convertor.utils.AbstractLogger;
 import javax.swing.JOptionPane;
 
 /**
- * @author Abel Gustavo Mallcu Chiri.
  * Class of the message error.
+ *
+ * @author Abel Gustavo Mallcu Chiri.
+ * @author Rodrigo Menacho.
  */
 public class ErrorMessage extends JOptionPane {
     /**

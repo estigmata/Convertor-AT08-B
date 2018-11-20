@@ -30,6 +30,7 @@ import java.awt.event.MouseListener;
 /**
  * This class its the personal panel for each file and uses Mouse Listener for update the information in the
  * information panel.
+ *
  * @author Nestor Otondo.
  * @version 1.0
  */
@@ -64,8 +65,8 @@ public class Files extends JPanel implements MouseListener {
         isHighLighted = !isHighLighted;
         MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         Information.setInformation(file);
-        BasicConverterPanel.setFileToConvert(file.getFileName() + "." + file.getExtension());
-        BasicConverterPanel.setPathSource(file.getPath()+"\\"+file.getFileName() + "." + file.getExtension());
+        BasicConverterPanel.setOutputFileName(file.getFileName());
+        BasicConverterPanel.setPathSource(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
         BasicConverterPanel.setPathDestination(file.getPath());
     }
 

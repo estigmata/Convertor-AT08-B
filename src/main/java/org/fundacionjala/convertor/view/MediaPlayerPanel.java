@@ -15,9 +15,9 @@
 
 package org.fundacionjala.convertor.view;
 
-import com.sun.jna.NativeLibrary;
+
+import org.fundacionjala.convertor.utils.Validator;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
-import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -32,6 +32,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Class Media Player, class main container embedded media player component.
@@ -47,13 +49,13 @@ public class MediaPlayerPanel extends JPanel {
     private static final int MAX_VALUE = 100;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 240;
+    public Validator validator;
 
     /**
      * Method constructor, initialize player, Media Player instance and create buttons.
      */
     public MediaPlayerPanel() {
-        //NativeLibrary.addSearchPath(
-            //RuntimeUtil.getLibVlcLibraryName(), "src/vlc");
+        validator = new Validator();
         player = new EmbeddedMediaPlayerComponent();
         iniMediaPlayer();
         createButtons();
@@ -83,7 +85,7 @@ public class MediaPlayerPanel extends JPanel {
         btnPlayPause.setBackground(Color.WHITE);
         btnMute.setBackground(Color.WHITE);
 
-        btnStart.setIcon(new javax.swing.ImageIcon("Image\\play.PNG"));
+        btnStart.setIcon(new javax.swing.ImageIcon("Image\\start.PNG"));
         btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
         btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
 
@@ -93,8 +95,11 @@ public class MediaPlayerPanel extends JPanel {
         sldVolume.setValue(MAX_VALUE);
 
         btnStart.addActionListener(e -> {
-            System.out.println(filePath);
-            player.getMediaPlayer().playMedia(filePath);
+            Path path = Paths.get(filePath);
+            if(validator.isAudio(path) || validator.isVideo(path)) {
+                player.getMediaPlayer().playMedia(filePath);
+            } else {new ErrorMessage("Non-Multimedia file !!!");}
+
         });
         btnPlayPause.addActionListener(new ActionListener() {
             @Override
@@ -102,9 +107,9 @@ public class MediaPlayerPanel extends JPanel {
                 // btnPlayPause.setText(player.getMediaPlayer().isPlaying() ? "[Play]" : "[Pause]");
 
                 if (player.getMediaPlayer().isPlaying()) {
-                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\play_1.PNG"));
-                } else {
                     btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
+                } else {
+                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\play.PNG"));
                 }
                 player.getMediaPlayer().setPause(player.getMediaPlayer().isPlaying());
             }
@@ -113,7 +118,10 @@ public class MediaPlayerPanel extends JPanel {
             @Override
             public void actionPerformed(final ActionEvent actionEvent) {
                 AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
+                btnMute.setIcon(new javax.swing.ImageIcon("Image\\mute.PNG"));
                 player.getMediaPlayer().mute(abstractButton.getModel().isSelected());
+
+
             }
         });
         sldVolume.addChangeListener(new ChangeListener() {
@@ -121,6 +129,7 @@ public class MediaPlayerPanel extends JPanel {
             public void stateChanged(final ChangeEvent e) {
 
                 Object source = e.getSource();
+                btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
                 player.getMediaPlayer().setVolume(((JSlider) source).getValue());
             }
         });

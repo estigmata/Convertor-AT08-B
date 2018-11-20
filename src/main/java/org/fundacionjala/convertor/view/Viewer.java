@@ -48,18 +48,18 @@ public final class Viewer extends JFrame {
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info("Set Viewer");
+        this.setIconImage(new javax.swing.ImageIcon("Image\\monkey2.PNG").getImage());
 
-        this.setUndecorated(true);
     }
 
     /**
      * Config the JFrame.
      */
     public void configWindow() {
-        final int widthAll = 1100;
+        final int widthAll = 800;
         final int heightAll = 800;
 
-        this.setTitle("CONVERTER AT-08");
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setSize(new Dimension(widthAll, heightAll));
@@ -75,7 +75,7 @@ public final class Viewer extends JFrame {
      * Initialization of Components.
      */
     public void initComponents() {
-        final int width = 1100;
+        final int width = 800;
         final int heigth1 = 50;
         final int heigth2 = 300;
         final int heigth3 = 200;

@@ -131,12 +131,12 @@ public class VideoSearchPanel extends JPanel {
         bagConstraints.gridy = one;
         container.add(videoCodec, bagConstraints);
 
-        bagConstraints.gridx = one;
+        bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
         labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelAudioCodec, bagConstraints);
 
-        bagConstraints.gridx = two;
+        bagConstraints.gridx = 1;
         bagConstraints.gridy = two;
         container.add(audioCodec, bagConstraints);
         this.add(container);

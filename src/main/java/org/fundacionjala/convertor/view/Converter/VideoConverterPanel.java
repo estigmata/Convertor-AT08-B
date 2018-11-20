@@ -64,10 +64,10 @@ public class VideoConverterPanel extends JPanel {
         resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"libx264"});
-        audioCodec = new JComboBox<>(new String[]{"aac"});
-        format = new JComboBox<>(new String[]{"avi"});
-        audioSampleRate = new JComboBox<>(new String[]{"48000"});
-        audioBitRate = new JComboBox<>(new String[]{"32768"});
+        audioCodec = new JComboBox<>(new String[]{"aac", "mp2"});
+        format = new JComboBox<>(new String[]{"avi", "mp4", "mpeg", "flv", "mp3"});
+        audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
+        audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
         audioChannels = new JComboBox<>(new String[]{"1", "2"});
         labelFormat = new JLabel("Format :");
         labelFrameRate = new JLabel("Frame Rate :");
@@ -89,6 +89,7 @@ public class VideoConverterPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int three = 3;
+        final int four = 4;
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -104,6 +105,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
+        labelFrameRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFrameRate, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -112,6 +114,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
+        labelAspectRatio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAspectRatio, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -120,6 +123,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
+        labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelResolution, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -128,6 +132,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = one;
+        labelVideoCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelVideoCodec, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -136,6 +141,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
+        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -144,6 +150,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = two;
+        labelFormat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelFormat, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -152,6 +159,7 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = three;
+        labelAudioSampleRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioSampleRate, bagConstraints);
 
         bagConstraints.gridx = 1;
@@ -160,18 +168,20 @@ public class VideoConverterPanel extends JPanel {
 
         bagConstraints.gridx = 2;
         bagConstraints.gridy = three;
+        labelBitRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelBitRate, bagConstraints);
 
-        bagConstraints.gridx = 3;
+        bagConstraints.gridx = three;
         bagConstraints.gridy = three;
         this.add(audioBitRate, bagConstraints);
 
         bagConstraints.gridx = 0;
-        bagConstraints.gridy = 4;
+        bagConstraints.gridy = four;
+        labelAudioChannels.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         this.add(labelAudioChannels, bagConstraints);
 
         bagConstraints.gridx = 1;
-        bagConstraints.gridy = 4;
+        bagConstraints.gridy = four;
         this.add(audioChannels, bagConstraints);
     }
 
@@ -221,14 +231,29 @@ public class VideoConverterPanel extends JPanel {
         return format;
     }
 
+    /**
+     * Getter of the ComboBox - Audio Sample Rate.
+     *
+     * @return the JComboBox.
+     */
     public JComboBox<String> getAudioSampleRate() {
         return audioSampleRate;
     }
 
+    /**
+     * Getter of the ComboBox - Audio Bit rate.
+     *
+     * @return the JComboBox.
+     */
     public JComboBox<String> getAudioBitRate() {
         return audioBitRate;
     }
 
+    /**
+     * Getter of the ComboBox - Audio Channels.
+     *
+     * @return the JComboBox.
+     */
     public JComboBox<String> getAudioChannels() {
         return audioChannels;
     }
