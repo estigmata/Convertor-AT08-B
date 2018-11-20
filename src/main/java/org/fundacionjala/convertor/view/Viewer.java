@@ -45,7 +45,7 @@ public final class Viewer extends JFrame {
         super();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
-        log.info();
+        log.info("Set Viewer");
         this.setIconImage(new javax.swing.ImageIcon("Image\\monkey2.PNG").getImage());
     }
 

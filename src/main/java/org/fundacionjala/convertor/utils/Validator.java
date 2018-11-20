@@ -14,26 +14,33 @@
  */
 
 package org.fundacionjala.convertor.utils;
-import java.io.IOException;
-import java.nio.file.Files;
+
+
+
+import org.apache.tika.Tika;
+
 import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 /**
  * Validator.
+ *
  * @author Roger alvarez.
  */
 public class Validator {
     /**
      * Method that checks if an object is a String.
+     *
      * @param obj is a Object.
      * @return Value of return of String Type.     *
      */
     public boolean isString(final Object obj) {
         return obj.equals(obj.toString()) ? true : false;
     }
+
     /**
      * Method that checks if an object is a String.
+     *
      * @param str is a file name String.
      * @return Value of return of String Type.     *
      */
@@ -48,8 +55,10 @@ public class Validator {
             return false;
         }
     }
+
     /**
      * Method that checks if an String is a path valid.
+     *
      * @param path is a path in String.
      * @return Value of return of String Type.
      */
@@ -65,15 +74,11 @@ public class Validator {
      * @return if is video.
      */
     public boolean isVideo(final Path x) {
-        try {
-            if (Files.probeContentType(x) == null) {
-                return false;
-            }
-            return Files.probeContentType(x).split("/")[0].equals("video");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String type = new Tika().detect(x.toFile().getAbsolutePath());
+        if (type == null) {
+            return false;
         }
-        return false;
+        return type.contains("video");
     }
 
     /**
@@ -82,15 +87,11 @@ public class Validator {
      * @param x input path.
      * @return if is video.
      */
-   public boolean isAudio(final Path x) {
-        try {
-            if (Files.probeContentType(x) == null) {
-                return false;
-            }
-            return Files.probeContentType(x).split("/")[0].equals("audio");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public boolean isAudio(final Path x) {
+        String type = new Tika().detect(x.toFile().getAbsolutePath());
+        if (type == null) {
+            return false;
         }
-        return false;
+        return type.contains("audio");
     }
 }

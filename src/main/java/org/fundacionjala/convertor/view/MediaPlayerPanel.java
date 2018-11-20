@@ -15,6 +15,7 @@
 
 package org.fundacionjala.convertor.view;
 
+
 import org.fundacionjala.convertor.utils.Validator;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 

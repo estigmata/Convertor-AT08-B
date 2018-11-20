@@ -33,10 +33,12 @@ import java.awt.GridBagLayout;
  */
 public class ProgressBarPanel extends JPanel {
 
+
     protected static JProgressBar status;
     private static JLabel statusLabel;
-    private final int oneHundred = 100;
+    private static final int ONEHUNDRED = 100;
     private Style style;
+
 
     /**
      * Constructor.
@@ -47,11 +49,13 @@ public class ProgressBarPanel extends JPanel {
         status = new JProgressBar();
         status.setFont(style.getFont());
         status.setMinimum(0);
-        status.setMaximum(oneHundred);
+
+        status.setMaximum(ONEHUNDRED);
 
         statusLabel = new JLabel();
         statusLabel.setText("Status");
         statusLabel.setFont(style.getFont());
+
         initComponents();
     }
 

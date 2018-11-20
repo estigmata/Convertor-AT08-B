@@ -40,7 +40,7 @@ public class ResultTablePanel extends JPanel {
         informationPanel = new Information();
         AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(TabPane.class.getName());
-        log.info();
+        log.info("Show Result panel.");
         initComponents();
     }
 

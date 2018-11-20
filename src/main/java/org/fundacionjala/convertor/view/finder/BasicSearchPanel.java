@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -74,6 +75,7 @@ public class BasicSearchPanel extends JPanel {
         size.setFont(style.getFont());
 
         browseChooser = new BrowseChooser();
+
         browseChooser.setBackground(Color.WHITE);
         browseChooser.setPath(path);
         browseChooser.setFont(style.getFont());

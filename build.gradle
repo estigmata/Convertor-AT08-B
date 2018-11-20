@@ -20,7 +20,8 @@ dependencies {
     compile 'net.bramp.ffmpeg:ffmpeg:0.6.2'
     compile "org.slf4j:slf4j-api:1.6.1"
     compile "org.slf4j:slf4j-simple:1.6.1"
-    compile 'uk.co.caprica:vlcj:3.10.1'
+    compile 'uk.co.caprica:vlcj:3.0.1'
+    compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.19.1'
 }
 
 // Checkstyle configuration
