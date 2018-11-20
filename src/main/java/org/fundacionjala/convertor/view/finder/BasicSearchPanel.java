@@ -106,7 +106,6 @@ public class BasicSearchPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int tree = 3;
-        final int four = 4;
 
         this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
@@ -131,7 +130,7 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
-        bagConstraints.gridwidth = 2;
+        bagConstraints.gridwidth = two;
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         container.add(path, bagConstraints);
 
@@ -148,18 +147,18 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = one;
-        bagConstraints.gridwidth = 2;
+        bagConstraints.gridwidth = two;
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         container.add(fileName, bagConstraints);
 
         bagConstraints.gridx = 0;
-        bagConstraints.gridy = 2;
+        bagConstraints.gridy = two;
         labelSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         container.add(labelSize, bagConstraints);
 
         bagConstraints.gridx = 1;
-        bagConstraints.gridy = 2;
-        bagConstraints.gridwidth = 2;
+        bagConstraints.gridy = two;
+        bagConstraints.gridwidth = two;
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         container.add(size, bagConstraints);
 
@@ -169,7 +168,7 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
-        bagConstraints.gridwidth = 2;
+        bagConstraints.gridwidth = two;
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         container.add(multimediaBox, bagConstraints);
 

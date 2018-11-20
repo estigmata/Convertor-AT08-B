@@ -15,59 +15,19 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * Class of the Icon Data.
  */
 public class IconData {
-    protected Icon mIcon;
-    protected Icon mExpandedIcon;
-    protected Object mData;
+    private Object mData;
 
     /**
      * Constructor of this class.
      *
-     * @param iconComputer input
-     * @param icon         input
-     * @param data         input
+     * @param data input
      */
-    public IconData(final ImageIcon iconComputer, final Icon icon, final Object data) {
-        mIcon = icon;
-        mExpandedIcon = null;
+    IconData(final Object data) {
         mData = data;
-    }
-
-    /**
-     * Constructor with other parameters.
-     *
-     * @param icon         input
-     * @param expandedIcon input
-     * @param data         input
-     */
-    public IconData(final Icon icon, final Icon expandedIcon, final Object data) {
-        mIcon = icon;
-        mExpandedIcon = expandedIcon;
-        mData = data;
-    }
-
-    /**
-     * Getter of the Icon.
-     *
-     * @return the Icon object
-     */
-    public Icon getIcon() {
-        return mIcon;
-    }
-
-    /**
-     * Getter of the expanded icon.
-     *
-     * @return the Icon object
-     */
-    public Icon getExpandedIcon() {
-        return mExpandedIcon != null ? mExpandedIcon : mIcon;
     }
 
     /**

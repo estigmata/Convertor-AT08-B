@@ -26,11 +26,6 @@ public class ConvertCriteriaAudio extends Criteria {
     private long audioBitRate;
     private String outputFile;
 
-    @Override
-    public void setFileName(final String fileName) {
-        super.setFileName(fileName);
-    }
-
     /**
      * Getter of the Channels.
      *

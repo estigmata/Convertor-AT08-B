@@ -26,12 +26,12 @@ import java.awt.Font;
  * @version 1.0
  */
 public class Style {
-    private final int size = 10;
-    private final int red = 255;
-    private final int green = 51;
-    private final int black = 0;
-    private Color orange = new java.awt.Color(red, green, black);
-    private Font font = new Font("Calibri", Font.BOLD, size);
+    private static final int SIZE = 10;
+    private static final int RED = 255;
+    private static final int GREEN = 51;
+    private static final int BLACK = 0;
+    private Color orange = new java.awt.Color(RED, GREEN, BLACK);
+    private Font font = new Font("Calibri", Font.BOLD, SIZE);
 
     /**
      * @return .

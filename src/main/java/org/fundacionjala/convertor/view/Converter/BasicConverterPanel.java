@@ -105,7 +105,6 @@ public class BasicConverterPanel extends JPanel {
         final int two = 2;
         final int tree = 3;
         final int four = 4;
-        final int six = 6;
 
         this.setBackground(Color.WHITE);
         container.setBackground(Color.WHITE);

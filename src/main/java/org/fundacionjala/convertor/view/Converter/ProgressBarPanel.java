@@ -34,7 +34,7 @@ import java.awt.GridBagLayout;
 public class ProgressBarPanel extends JPanel {
 
 
-    protected static JProgressBar status;
+    private static JProgressBar status;
     private static JLabel statusLabel;
     private static final int ONEHUNDRED = 100;
     private Style style;
