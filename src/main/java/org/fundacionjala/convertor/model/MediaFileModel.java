@@ -18,6 +18,7 @@ package org.fundacionjala.convertor.model;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import org.apache.tika.Tika;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
@@ -315,15 +316,11 @@ public class MediaFileModel {
      * @return if is video.
      */
     private boolean isVideo(final Path x) {
-        try {
-            if (Files.probeContentType(x) == null) {
-                return false;
-            }
-            return Files.probeContentType(x).split("/")[0].equals("video");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String type = new Tika().detect(x.toFile().getAbsolutePath());
+        if (type == null) {
+            return false;
         }
-        return false;
+        return type.contains("video");
     }
 
     /**
@@ -333,15 +330,10 @@ public class MediaFileModel {
      * @return if is video.
      */
     private boolean isAudio(final Path x) {
-        try {
-            if (Files.probeContentType(x) == null) {
-                return false;
-            }
-            return Files.probeContentType(x).split("/")[0].equals("audio");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String type = new Tika().detect(x.toFile().getAbsolutePath());
+        if (type == null) {
+            return false;
         }
-        return false;
+        return type.contains("audio");
     }
-
 }
