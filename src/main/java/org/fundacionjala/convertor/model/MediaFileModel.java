@@ -75,18 +75,14 @@ public class MediaFileModel {
         ArrayList<Asset> fileList = new ArrayList<>();
         Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().contains(new Util().getStringName(x)))
+                        || x.getFileName().toString().contains(criteria.getFileName()))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 .forEach(item -> {
                     Asset fileZ = assetFactory.createAsset(ALL);
-                    fileZ.setFileName(new Util().getStringName(item));
 
-                    try {
-                        fileZ.setFileSize(Files.size(item));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    fileZ.setFileName(new Util().getStringName(item.getFileName().toString()));
+                    fileZ.setFileSize(item.toFile().length());
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
 
@@ -108,7 +104,7 @@ public class MediaFileModel {
         Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().contains(new Util().getStringName(x)))
+                        || x.getFileName().toString().contains(criteria.getFileName()))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
@@ -162,14 +158,11 @@ public class MediaFileModel {
                 .forEach(item -> {
                     FFmpegStream videoStream = getStreamVideo(getStreamFFprobe(item));
                     FFmpegStream audioStream = getStreamAudio(getStreamFFprobe(item));
-                    VideoFileAsset fileZ = (VideoFileAsset) assetFactory.createAsset(VIDEO);
-                    fileZ.setFileName(new Util().getStringName(item));
 
-                    try {
-                        fileZ.setFileSize(Files.size(item));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    VideoFileAsset fileZ = (VideoFileAsset) assetFactory.createAsset(VIDEO);
+
+                    fileZ.setFileName(new Util().getStringName(item.getFileName().toString()));
+                    fileZ.setFileSize(item.toFile().length());
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
                     fileZ.setAspectRatio(videoStream.display_aspect_ratio);
@@ -178,6 +171,7 @@ public class MediaFileModel {
                     fileZ.setResolution(videoStream.width + "*" + videoStream.height);
                     fileZ.setVideoCodec(videoStream.codec_name);
                     fileZ.setAudioCodec(audioStream.codec_name);
+
                     list.add(fileZ);
                 });
         return list;
@@ -195,7 +189,7 @@ public class MediaFileModel {
         Files.walk(Paths.get(criteria.getInputPath())).filter(Files::isRegularFile)
                 //In this part will be appear all the filters for the advanced search.
                 .filter(x -> criteria.getFileName().isEmpty()
-                        || criteria.getFileName().contains(new Util().getStringName(x)))
+                        || x.getFileName().toString().contains(criteria.getFileName()))
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
@@ -219,17 +213,14 @@ public class MediaFileModel {
                 .forEach(item -> {
                     FFmpegStream stream = getStreamFFprobe(item).get(0);
                     AudioFileAsset fileZ = (AudioFileAsset) assetFactory.createAsset(AUDIO);
-                    fileZ.setFileName(new Util().getStringName(item));
 
-                    try {
-                        fileZ.setFileSize(Files.size(item));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    fileZ.setFileName(new Util().getStringName(item.getFileName().toString()));
+                    fileZ.setFileSize(item.toFile().length());
                     fileZ.setPath(item.getParent().toString());
                     fileZ.setExtension(new Util().getExtension(item.getFileName().toString()));
                     fileZ.setAudioCodec(stream.codec_name);
                     fileZ.setChannels(stream.channels);
+
                     list.add(fileZ);
                 });
         return list;
@@ -268,28 +259,12 @@ public class MediaFileModel {
     private List<FFmpegStream> getStreamFFprobe(final Path x) {
         FFmpegProbeResult probeResult = null;
         try {
-            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
+            probeResult = ffprobe.probe(x.toFile().getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return probeResult != null ? probeResult.getStreams() : null;
     }
-
-//    /**
-//     * This class is for get FFmpeg.
-//     *
-//     * @param x input Path
-//     * @return the FFmpegformat
-//     */
-//    private FFmpegFormat getFormatFFprobe(final Path x) {
-//        FFmpegProbeResult probeResult = null;
-//        try {
-//            probeResult = ffprobe.probe(x.getParent().toString().concat("\\" + x.getFileName().toString()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return probeResult != null ? probeResult.getFormat() : null;
-//    }
 
     /**
      * This class compare the Equal Size.
