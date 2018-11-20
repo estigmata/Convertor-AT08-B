@@ -45,9 +45,8 @@ public class ConverterModel {
      * Method to convert multimedia files.
      *
      * @param criteria object.
-     * @param status   is the panel of the progress bar.
      */
-    public void convertFile(final Criteria criteria, final ProgressBarPanel status) {
+    public void convertFile(final Criteria criteria) {
         try {
             ffmpeg = new FFmpeg(FFMPEG_PATH);
         } catch (Exception e) {
@@ -67,10 +66,10 @@ public class ConverterModel {
             e.printStackTrace();
         }
         if (criteria instanceof ConvertCriteriaVideo) {
-            convertVideo(criteria, in, executor, status);
+            convertVideo(criteria, in, executor);
         }
         if (criteria instanceof ConvertCriteriaAudio) {
-            convertAudio(criteria, in, executor, status);
+            convertAudio(criteria, in, executor);
         }
 
 
@@ -82,10 +81,9 @@ public class ConverterModel {
      * @param criteria Its the criteria conversion.
      * @param in       its the ffproberesult input.
      * @param executor Its the executor of the ffmpeg.
-     * @param status   Its the Panel of the ProgressBar.
      */
     private void convertVideo(final Criteria criteria, final FFmpegProbeResult in,
-                              final FFmpegExecutor executor, final ProgressBarPanel status) {
+                              final FFmpegExecutor executor) {
         ConvertCriteriaVideo convertCriteria = (ConvertCriteriaVideo) criteria;
         FFmpegBuilder builder;
         if (convertCriteria.getFormat().equals("mp3")) {
@@ -126,11 +124,11 @@ public class ConverterModel {
             public void progress(final Progress progress) {
                 double percentage = progress.out_time_ns / durationNs;
                 // Print out interesting information about the progress
-                status.setValue1((int) (percentage * ONEHUNDRED));
+                ProgressBarPanel.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
         job.run();
-        if (job.getState()== FFmpegJob.State.FINISHED){
+        if (job.getState() == FFmpegJob.State.FINISHED) {
             new CompletedMessage("Conversion Completed");
         }
     }
@@ -141,10 +139,9 @@ public class ConverterModel {
      * @param criteria Its the criteria conversion.
      * @param in       its the ffproberesult input.
      * @param executor Its the executor of the ffmpeg.
-     * @param status   Its the Panel of the ProgressBar.
      */
     private void convertAudio(final Criteria criteria, final FFmpegProbeResult in,
-                              final FFmpegExecutor executor, final ProgressBarPanel status) {
+                              final FFmpegExecutor executor) {
         ConvertCriteriaAudio convertCriteria = (ConvertCriteriaAudio) criteria;
         FFmpegBuilder builder;
 
@@ -168,11 +165,11 @@ public class ConverterModel {
                 double percentage = progress.out_time_ns / durationNs;
 
                 // Print out interesting information about the progress
-                status.setValue1((int) (percentage * ONEHUNDRED));
+                ProgressBarPanel.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
         job.run();
-        if (job.getState()== FFmpegJob.State.FINISHED){
+        if (job.getState() == FFmpegJob.State.FINISHED) {
             new CompletedMessage("Conversion Completed");
         }
     }
