@@ -18,6 +18,7 @@ package org.fundacionjala.convertor.view.dynamicpanel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
+import org.fundacionjala.convertor.utils.Style;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,11 +53,14 @@ public class Information extends JPanel {
 
     private static JLabel audioCodecLabel;
     private static JLabel channelsLabel;
+    private Style style;
+
 
     /**
      * The constructor starts with the basic panel.
      */
     public Information() {
+        style = new Style();
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -85,6 +89,33 @@ public class Information extends JPanel {
         frameRateLabel = new JLabel("Frame Rate :");
         audioCodecLabel = new JLabel("Audio Codec :");
         channelsLabel = new JLabel("Channels :");
+
+
+        path.setFont(style.getFont());
+        size.setFont(style.getFont());
+        extension.setFont(style.getFont());
+
+        videoCodec.setFont(style.getFont());
+        resolution.setFont(style.getFont());
+        aspectRatio.setFont(style.getFont());
+        frameRate.setFont(style.getFont());
+
+        audioCodec.setFont(style.getFont());
+        channels.setFont(style.getFont());
+
+        pathLabel.setFont(style.getFont());
+        sizeLabel.setFont(style.getFont());
+        extensionLabel.setFont(style.getFont());
+
+        videoCodecLabel.setFont(style.getFont());
+        resolutionLabel.setFont(style.getFont());
+        aspectRatioLabel.setFont(style.getFont());
+        frameRateLabel.setFont(style.getFont());
+
+        audioCodecLabel.setFont(style.getFont());
+        channelsLabel.setFont(style.getFont());
+
+
     }
 
     /**

@@ -15,6 +15,8 @@
 package org.fundacionjala.convertor.view.Converter;
 
 
+import org.fundacionjala.convertor.utils.Style;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,13 +54,14 @@ public class VideoConverterPanel extends JPanel {
     private JLabel labelAudioSampleRate;
     private JLabel labelBitRate;
     private JLabel labelAudioChannels;
+    private Style style;
 
     /**
      *
      */
 
     public VideoConverterPanel() {
-
+        style = new Style();
         frameRate = new JComboBox<>(new String[]{"24", "25", "27", "29", "30", "60"});
         aspectRatio = new JComboBox<>(new String[]{"4:3", "12:5", "12:7", "17:9", "13:10"});
         resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
@@ -78,6 +81,28 @@ public class VideoConverterPanel extends JPanel {
         labelAudioChannels = new JLabel("Audio Channels :");
         labelAudioSampleRate = new JLabel("Audio Sample Rate :");
         labelBitRate = new JLabel("Audio Bit Rate :");
+
+
+        format.setFont(style.getFont());
+        frameRate.setFont(style.getFont());
+        aspectRatio.setFont(style.getFont());
+        resolution.setFont(style.getFont());
+        videoCodec.setFont(style.getFont());
+        audioCodec.setFont(style.getFont());
+        audioSampleRate.setFont(style.getFont());
+        audioBitRate.setFont(style.getFont());
+        audioChannels.setFont(style.getFont());
+
+        labelFormat.setFont(style.getFont());
+        labelFrameRate.setFont(style.getFont());
+        labelAspectRatio.setFont(style.getFont());
+        labelVideoCodec.setFont(style.getFont());
+        labelResolution.setFont(style.getFont());
+        labelAudioCodec.setFont(style.getFont());
+        labelAudioSampleRate.setFont(style.getFont());
+        labelBitRate.setFont(style.getFont());
+        labelAudioChannels.setFont(style.getFont());
+
 
         initComponents();
     }

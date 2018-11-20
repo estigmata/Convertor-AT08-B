@@ -16,6 +16,7 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.utils.Style;
 
 
 import javax.swing.BoxLayout;
@@ -39,11 +40,13 @@ import java.util.ArrayList;
  */
 public class FilesPanelContainer extends JPanel {
     private JPanel filesContainer;
+    private Style style;
 
     /**
      * Constructor Files Panel class.
      */
     public FilesPanelContainer() {
+        style = new Style();
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
@@ -72,12 +75,16 @@ public class FilesPanelContainer extends JPanel {
     public void displayFiles(final ArrayList<Asset> files) {
         GridBagConstraints gbConstraints = new GridBagConstraints();
         gbConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        gbConstraints.weightx = 1;
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         for (Asset file : files) {
             Files itemFile = new Files(file);
             itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
-            itemFile.add(new JLabel(file.getFileName().concat(".").concat(file.getExtension())));
+            JLabel labelAux = new JLabel();
+
+            labelAux.setText(file.getFileName().concat(".").concat(file.getExtension()));
+            labelAux.setFont(style.getFont());
+
+            itemFile.add(labelAux);
             itemFile.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
             filesContainer.add(itemFile, gbConstraints, 0);
         }

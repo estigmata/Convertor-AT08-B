@@ -17,13 +17,11 @@
 package org.fundacionjala.convertor.view;
 
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
 
 /**
@@ -33,18 +31,17 @@ import java.awt.GridLayout;
  * @version 1.0
  */
 public class TitlePanel extends JPanel {
-    private JLabel title;
-    private JLabel logo;
-    private JButton close;
 
+    private JLabel logo;
     private JPanel container;
 
     /**
      * Constructor for the initialization of the components.
      */
     public TitlePanel() {
-        final int width = 1000;
-        final int heigth = 50;
+
+        final int width = 800;
+        final int heigth = 25;
 
         this.setBackground(Color.WHITE);
         this.setLayout(new GridBagLayout());
@@ -53,20 +50,16 @@ public class TitlePanel extends JPanel {
         container.setSize(new Dimension(width, heigth));
         container.setBackground(Color.white);
 
-        title = new JLabel();
-        title.setIcon(new javax.swing.ImageIcon("Image\\logo.PNG"));
-
         logo = new JLabel();
         logo.setIcon(new javax.swing.ImageIcon("Image\\monkey.PNG"));
-
         initComponents();
+
     }
 
     /**
      * Initialization of the .
      */
     private void initComponents() {
-        this.setLayout(new GridLayout());
         this.add(logo);
         this.add(container);
     }
