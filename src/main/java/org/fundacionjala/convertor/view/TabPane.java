@@ -43,7 +43,7 @@ public class TabPane extends JPanel {
         audioTabPanel = new AudioTabPanel();
         //videoPanel = new JPanel();
         //converterPanel = new JPanel();
-        log.info();
+        log.info("Tab Panel");
         initComponents();
     }
 
