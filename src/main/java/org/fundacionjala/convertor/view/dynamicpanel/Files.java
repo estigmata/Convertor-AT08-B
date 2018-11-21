@@ -16,6 +16,8 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.utils.Util;
+import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
 
@@ -40,6 +42,7 @@ public class Files extends JPanel implements MouseListener {
     private Border borderSelected = BorderFactory.createLineBorder(orangeColor);
     private Boolean isHighLighted;
     private Asset file;
+    private Validator validator;
 
     /**
      * The constructor who start the panel.
@@ -47,6 +50,7 @@ public class Files extends JPanel implements MouseListener {
      * @param file input.
      */
     Files(final Asset file) {
+        validator = new Validator();
         addMouseListener(this);
         setFocusable(true);
         isHighLighted = false;
@@ -67,7 +71,8 @@ public class Files extends JPanel implements MouseListener {
         Information.setInformation(file);
         BasicConverterPanel.setOutputFileName(file.getFileName());
         BasicConverterPanel.setPathSource(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
-        BasicConverterPanel.setPathDestination(file.getPath());
+        BasicConverterPanel.setPathDestination("C:\\JalaTemp "/*file.getPath()*/);
+        if (validator.isVideo())
     }
 
     @Override
