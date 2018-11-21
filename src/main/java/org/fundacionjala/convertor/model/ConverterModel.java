@@ -120,7 +120,7 @@ public class ConverterModel implements IConvert {
                               final FFmpegExecutor executor) {
         ConvertCriteriaAudio convertCriteria = (ConvertCriteriaAudio) criteria;
         FFmpegBuilder builder;
-        if(!convertCriteria.getFormat().equals("wav")) {
+        if (!convertCriteria.getFormat().equals("wav")) {
             builder = new FFmpegBuilder()
                     .setInput(in)
                     .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
@@ -131,7 +131,7 @@ public class ConverterModel implements IConvert {
                     .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
                     .setFormat(convertCriteria.getFormat())
                     .done();
-        }else {
+        } else {
             builder = new FFmpegBuilder()
                     .setInput(in)
                     .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
