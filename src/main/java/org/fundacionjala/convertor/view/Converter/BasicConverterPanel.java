@@ -72,6 +72,8 @@ public class BasicConverterPanel extends JPanel {
         this.setVisible(true);
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
+        browseChooser.setBackground(Color.WHITE);
+
 
         multimediaBox = new JComboBox<>(new String[]{"Video", "Audio"});
         labelOutPath = new JLabel("Output File :");
@@ -117,7 +119,7 @@ public class BasicConverterPanel extends JPanel {
                 font, orangeColor));
 
         GridBagConstraints bagConstraints = new GridBagConstraints();
-        bagConstraints.insets = new Insets(1, 1, 1, 1);
+        bagConstraints.insets = new Insets(0, 0, 0, 0);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         bagConstraints.gridx = 0;
@@ -147,7 +149,8 @@ public class BasicConverterPanel extends JPanel {
         container.add(outputPath, bagConstraints);
         bagConstraints.gridx = two;
         bagConstraints.gridy = tree;
-         container.add(browseChooser, bagConstraints);
+
+        container.add(browseChooser, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
