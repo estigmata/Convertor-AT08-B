@@ -1,5 +1,5 @@
 /*
- * @MediaFileModel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @SearchModel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -41,7 +41,7 @@ import java.util.List;
  * @author Abel Gustavo Mallcu Chiri
  * @version 1.0
  */
-public class MediaFileModel {
+public class SearchModel implements ISearch {
     private FFprobe ffprobe = new FFprobe("src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
     private AssetFactory assetFactory;
 
@@ -54,7 +54,7 @@ public class MediaFileModel {
      *
      * @throws IOException because the Path.
      */
-    public MediaFileModel() throws IOException {
+    public SearchModel() throws IOException {
         assetFactory = new AssetFactory();
     }
 
