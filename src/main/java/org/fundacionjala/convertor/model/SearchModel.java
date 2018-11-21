@@ -18,7 +18,6 @@ package org.fundacionjala.convertor.model;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
-import org.apache.tika.Tika;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
@@ -27,6 +26,7 @@ import org.fundacionjala.convertor.model.objectfile.AssetFactory;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.fundacionjala.convertor.utils.Util;
+import org.fundacionjala.convertor.utils.Validator;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,7 +38,8 @@ import java.util.List;
 /**
  * This class is part of the model in which fileList are searched from a path.
  *
- * @author Abel Gustavo Mallcu Chiri
+ * @author Abel Gustavo Mallcu Chiri.
+ * @author Rodrigo Menacho.
  * @version 1.0
  */
 public class SearchModel implements ISearch {
@@ -49,6 +50,8 @@ public class SearchModel implements ISearch {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
+    private Validator validator;
+
     /**
      * Constructor for extract the files.
      *
@@ -56,6 +59,7 @@ public class SearchModel implements ISearch {
      */
     public SearchModel() throws IOException {
         assetFactory = new AssetFactory();
+        validator = new Validator();
     }
 
     /**
@@ -108,7 +112,7 @@ public class SearchModel implements ISearch {
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
-                .filter(this::isVideo)
+                .filter(x -> validator.isVideo(x))
 //                Frame Rate
                 .filter(x -> {
                     if (criteria.getFrameRate().isEmpty()) {
@@ -193,7 +197,7 @@ public class SearchModel implements ISearch {
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
-                .filter(this::isAudio)
+                .filter(x -> validator.isAudio(x))
 //        CHANNEL
                 .filter(x -> {
                     FFmpegStream stream = getStreamFFprobe(x).get(0);
@@ -282,33 +286,5 @@ public class SearchModel implements ISearch {
             e.printStackTrace();
         }
         return false;
-    }
-
-    /**
-     * This method ask if the path is video file.
-     *
-     * @param x input path.
-     * @return if is video.
-     */
-    private boolean isVideo(final Path x) {
-        String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            return false;
-        }
-        return type.contains("video");
-    }
-
-    /**
-     * This method ask if the path is video file.
-     *
-     * @param x input path.
-     * @return if is video.
-     */
-    private boolean isAudio(final Path x) {
-        String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            return false;
-        }
-        return type.contains("audio");
     }
 }
