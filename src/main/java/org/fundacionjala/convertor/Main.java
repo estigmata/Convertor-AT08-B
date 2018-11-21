@@ -28,29 +28,29 @@ import uk.co.caprica.vlcj.runtime.RuntimeUtil;
  * @version 1.0
  */
 public final class Main {
-  private static AbstractLogger log;
-  private static final String NATIVE_LIBRARY_VLC_PATH = "src/thirdparty/vlc";
+    private static final String NATIVE_LIBRARY_VLC_PATH = "src/thirdparty/vlc";
 
-  /**
-   * Constructor not called.
-   */
-  private Main() {
-  }
+    public static AbstractLogger log = AbstractLogger.getInstance();
 
-  /**
-   * Main method.
-   *
-   * @param args type array of String.
-   */
-  public static void main(final String[] args) {
-    log = AbstractLogger.getInstance();
-    log.setLogger(SearchController.class.getName());
-    log.info("Path VLC Library: " + NATIVE_LIBRARY_VLC_PATH);
-    NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), NATIVE_LIBRARY_VLC_PATH);
-    log.info("Library VLC loaded");
-    new NativeDiscovery().discover();
-    SearchController controller = new SearchController();
-    controller.actionSearch();
-  }
+    /**
+     * Constructor not called.
+     */
+    private Main() {
+    }
+
+    /**
+     * Main method.
+     *
+     * @param args type array of String.
+     */
+    public static void main(final String[] args) {
+        log.setLogger(Main.class.getName());
+        log.info("Path VLC Library: " + NATIVE_LIBRARY_VLC_PATH);
+        NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), NATIVE_LIBRARY_VLC_PATH);
+        log.info("Library VLC loaded");
+        new NativeDiscovery().discover();
+        SearchController controller = new SearchController();
+        controller.actionSearch();
+    }
 
 }

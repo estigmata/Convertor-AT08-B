@@ -61,7 +61,7 @@ public class SearchController {
 
     private CriteriaFactory criteriaFactory;
 
-    AbstractLogger log = AbstractLogger.getInstance();
+    public static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
      * Constructor.

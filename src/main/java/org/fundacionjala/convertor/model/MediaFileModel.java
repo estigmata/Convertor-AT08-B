@@ -50,7 +50,7 @@ public class MediaFileModel {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
-    AbstractLogger log = AbstractLogger.getInstance();
+    public static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
      * Constructor for extract the files.
@@ -272,8 +272,10 @@ public class MediaFileModel {
         FFmpegProbeResult probeResult = null;
         try {
             probeResult = ffprobe.probe(x.toFile().getAbsolutePath());
+            log.info("Using ffprobe get stream");
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
         return probeResult != null ? probeResult.getStreams() : null;
     }
@@ -288,10 +290,12 @@ public class MediaFileModel {
     private boolean isMinorSize(final Path x, final long size) {
         try {
             if (Files.size(x) <= size) {
+                log.info("Compare file size.");
                 return true;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
         return false;
     }
@@ -305,8 +309,10 @@ public class MediaFileModel {
     private boolean isVideo(final Path x) {
         String type = new Tika().detect(x.toFile().getAbsolutePath());
         if (type == null) {
+            log.info("Cannot get file type.");
             return false;
         }
+        log.info("File video type returned.");
         return type.contains("video");
     }
 
@@ -319,8 +325,10 @@ public class MediaFileModel {
     private boolean isAudio(final Path x) {
         String type = new Tika().detect(x.toFile().getAbsolutePath());
         if (type == null) {
+            log.info("Cannot get file type.");
             return false;
         }
+        log.info("File audio type returned.");
         return type.contains("audio");
     }
 }
