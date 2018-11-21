@@ -211,7 +211,7 @@ public class MediaFileModelTest {
 
     /**
      * Unit test to verify that the application finds 11 video files that have a size smaller than 1000000 bytes.
-     * @throws IOException .
+     * @throws IOException exception.
      */
     @Test
     public void searchVideoBySize() throws IOException {
@@ -224,6 +224,28 @@ public class MediaFileModelTest {
         videoCriteria.setAspectRatio("");
         videoCriteria.setAudioCodec("");
         videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = mediaFileModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 5 video files that have a frame rate equal to 30.
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByFrameRate() throws IOException {
+        final int numberFiles = 5;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("30");
         videoCriteria.setResolutionHeight(0);
         videoCriteria.setResolutionWith(0);
         videoCriteria.setVideoCodec("");
