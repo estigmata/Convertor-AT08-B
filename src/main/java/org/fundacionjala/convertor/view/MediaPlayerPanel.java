@@ -111,9 +111,9 @@ public class MediaPlayerPanel extends JPanel {
                 // btnPlayPause.setText(player.getMediaPlayer().isPlaying() ? "[Play]" : "[Pause]");
 
                 if (player.getMediaPlayer().isPlaying()) {
-                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
-                } else {
                     btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\play.PNG"));
+                } else {
+                    btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\pause.PNG"));
                 }
                 player.getMediaPlayer().setPause(player.getMediaPlayer().isPlaying());
             }
@@ -122,18 +122,22 @@ public class MediaPlayerPanel extends JPanel {
             @Override
             public void actionPerformed(final ActionEvent actionEvent) {
                 AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
-                btnMute.setIcon(new javax.swing.ImageIcon("Image\\mute.PNG"));
+
                 player.getMediaPlayer().mute(abstractButton.getModel().isSelected());
 
-
+                if (player.getMediaPlayer().isMute()) {
+                    btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
+                } else {
+                    btnMute.setIcon(new javax.swing.ImageIcon("Image\\mute.PNG"));
+                }
             }
+
         });
         sldVolume.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(final ChangeEvent e) {
 
                 Object source = e.getSource();
-                btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
                 player.getMediaPlayer().setVolume(((JSlider) source).getValue());
             }
         });
