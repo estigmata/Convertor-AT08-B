@@ -40,12 +40,12 @@ import java.awt.Insets;
 public class BasicConverterPanel extends JPanel {
 
     private JPanel container;
-    private JButton btnConverter;
+    private static JButton btnConverter;
     private static JTextField outputPath;
     private static JTextField outputFileName;
     private static JTextField currentPath;
     private BrowseChooser browseChooser;
-    protected JComboBox<String> multimediaBox;
+    private static JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
     private JLabel labelOutputName;
     private JLabel labelCurrentPath;
@@ -169,7 +169,7 @@ public class BasicConverterPanel extends JPanel {
      *
      * @return JButton.
      */
-    public JButton getConverterButton() {
+    public static JButton getConverterButton() {
         return btnConverter;
     }
 
@@ -214,7 +214,7 @@ public class BasicConverterPanel extends JPanel {
      *
      * @return the JComboBox.
      */
-    public JComboBox<String> getMultimediaBox() {
+    public static JComboBox<String> getMultimediaBox() {
         return multimediaBox;
     }
 
