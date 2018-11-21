@@ -53,9 +53,9 @@ public class AudioConverterPanel extends JPanel {
      */
     public AudioConverterPanel() {
         style = new Style();
-        audioCodecConverter = new JComboBox<>(new String[]{"aac", "wmav2", "mp3"});
+        audioCodecConverter = new JComboBox<>(new String[]{"aac", "mp2", "wmav1", "wmav2", "flac"});
         channelConverter = new JComboBox<>(new String[]{"1", "2", "3"});
-        formatCodecConverter = new JComboBox<>(new String[]{"mp3", "wav ", "3gp", "flac", "m4a"});
+        formatCodecConverter = new JComboBox<>(new String[]{"mp3", "aac", "wav", "3gp", "flac", "m4a", "ogg", "wma"});
         audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
         audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
 
