@@ -1,5 +1,5 @@
 /*
- * @SearchController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @Controller.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -23,7 +23,7 @@ import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.Criteria.CriteriaFactory;
-import org.fundacionjala.convertor.model.MediaFileModel;
+import org.fundacionjala.convertor.model.SearchModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
@@ -40,11 +40,11 @@ import java.util.ArrayList;
  *
  * @author Roger alvarez.
  */
-public class SearchController {
+public class Controller {
     /**
      * The model of this Convertor.
      */
-    private MediaFileModel mediaFileModel;
+    private SearchModel searchModel;
     private ConverterModel converterModel;
     /**
      * The view of this Convertor.
@@ -64,11 +64,11 @@ public class SearchController {
     /**
      * Constructor.
      */
-    public SearchController() {
+    public Controller() {
         AbstractLogger log = AbstractLogger.getInstance();
-        log.setLogger(SearchController.class.getName());
+        log.setLogger(Controller.class.getName());
         try {
-            this.mediaFileModel = new MediaFileModel();
+            this.searchModel = new SearchModel();
             this.converterModel = new ConverterModel();
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,7 +122,7 @@ public class SearchController {
             criteria.setInputPath(viewer.getPath());
             criteria.setFileName(viewer.getFileName());
             criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
         }
         if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
             AdvancedCriteriaAudio criteria = (AdvancedCriteriaAudio) criteriaFactory.createCriteria(AUDIO);
@@ -134,7 +134,7 @@ public class SearchController {
             String aux = viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
                     .getChannel().getSelectedItem().toString();
             criteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
         }
 
         if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
@@ -154,7 +154,7 @@ public class SearchController {
             criteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
             criteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
         }
     }
 
