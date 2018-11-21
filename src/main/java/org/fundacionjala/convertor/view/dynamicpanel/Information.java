@@ -20,8 +20,11 @@ import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.fundacionjala.convertor.utils.Style;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -30,27 +33,23 @@ import java.awt.GridLayout;
  * This class is the panel of the information.
  */
 public class Information extends JPanel {
-    private static JLabel path;
-    private static JLabel size;
-    private static JLabel extension;
-
-    private static JLabel videoCodec;
-    private static JLabel resolution;
-    private static JLabel aspectRatio;
-    private static JLabel frameRate;
-
-    private static JLabel audioCodec;
-    private static JLabel channels;
+    private static JTextField path;
+    private static JTextField size;
+    private static JTextField extension;
+    private static JTextField videoCodec;
+    private static JTextField resolution;
+    private static JTextField aspectRatio;
+    private static JTextField frameRate;
+    private static JTextField audioCodec;
+    private static JTextField channels;
 
     private JLabel pathLabel;
     private JLabel sizeLabel;
     private JLabel extensionLabel;
-
     private static JLabel videoCodecLabel;
     private static JLabel resolutionLabel;
     private static JLabel aspectRatioLabel;
     private static JLabel frameRateLabel;
-
     private static JLabel audioCodecLabel;
     private static JLabel channelsLabel;
     private Style style;
@@ -60,60 +59,84 @@ public class Information extends JPanel {
      * The constructor starts with the basic panel.
      */
     public Information() {
+        final int ten = 10;
         style = new Style();
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
-                        createLineBorder(orangeColor), "Information",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                font, orangeColor));
-        this.setVisible(true);
-        this.setBackground(Color.WHITE);
-        path = new JLabel("");
-        size = new JLabel("");
-        extension = new JLabel("");
-        videoCodec = new JLabel("");
-        resolution = new JLabel("");
-        aspectRatio = new JLabel("");
-        frameRate = new JLabel("");
-        audioCodec = new JLabel("");
-        channels = new JLabel("");
-
-        pathLabel = new JLabel("Path :");
-        sizeLabel = new JLabel("Size :");
-        extensionLabel = new JLabel("Extension :");
-        videoCodecLabel = new JLabel("Video Codec :");
-        resolutionLabel = new JLabel("Resolution :");
-        aspectRatioLabel = new JLabel("Aspect Ratio :");
-        frameRateLabel = new JLabel("Frame Rate :");
-        audioCodecLabel = new JLabel("Audio Codec :");
-        channelsLabel = new JLabel("Channels :");
+        final Font font = new java.awt.Font( "Tahoma", 0, 11 );
+        final Color orangeColor = new java.awt.Color( 255, 51, 0 );
+        this.setBorder( BorderFactory.createTitledBorder( BorderFactory.
+                        createLineBorder( orangeColor ), "Information",
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                font, orangeColor ) );
+        this.setVisible( true );
+        this.setBackground( Color.WHITE );
 
 
-        path.setFont(style.getFont());
-        size.setFont(style.getFont());
-        extension.setFont(style.getFont());
+        path = new JTextField();
+        path.setColumns( ten );
 
-        videoCodec.setFont(style.getFont());
-        resolution.setFont(style.getFont());
-        aspectRatio.setFont(style.getFont());
-        frameRate.setFont(style.getFont());
+        size = new JTextField();
+        size.setColumns( ten );
 
-        audioCodec.setFont(style.getFont());
-        channels.setFont(style.getFont());
+        extension = new JTextField();
+        extension.setColumns( ten );
 
-        pathLabel.setFont(style.getFont());
-        sizeLabel.setFont(style.getFont());
-        extensionLabel.setFont(style.getFont());
+        videoCodec = new JTextField();
+        videoCodec.setColumns( ten );
 
-        videoCodecLabel.setFont(style.getFont());
-        resolutionLabel.setFont(style.getFont());
-        aspectRatioLabel.setFont(style.getFont());
-        frameRateLabel.setFont(style.getFont());
+        resolution = new JTextField();
+        aspectRatio = new JTextField();
+        frameRate = new JTextField();
+        audioCodec = new JTextField();
+        channels = new JTextField();
 
-        audioCodecLabel.setFont(style.getFont());
-        channelsLabel.setFont(style.getFont());
+        pathLabel = new JLabel( "Path :" );
+        pathLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        sizeLabel = new JLabel( "Size :" );
+        sizeLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        extensionLabel = new JLabel( "Extension :" );
+        extensionLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        videoCodecLabel = new JLabel( "Video Codec :" );
+        videoCodecLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        resolutionLabel = new JLabel( "Resolution :" );
+        resolutionLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        aspectRatioLabel = new JLabel( "Aspect Ratio :" );
+        aspectRatioLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        frameRateLabel = new JLabel( "Frame Rate :" );
+        frameRateLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        audioCodecLabel = new JLabel( "Audio Codec :" );
+        audioCodecLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+        channelsLabel = new JLabel( "Channels :" );
+        channelsLabel.setHorizontalAlignment( javax.swing.SwingConstants.RIGHT );
+
+
+        path.setFont( style.getFont() );
+        size.setFont( style.getFont() );
+        extension.setFont( style.getFont() );
+
+        videoCodec.setFont( style.getFont() );
+        resolution.setFont( style.getFont() );
+        aspectRatio.setFont( style.getFont() );
+        frameRate.setFont( style.getFont() );
+        audioCodec.setFont( style.getFont() );
+        channels.setFont( style.getFont() );
+        pathLabel.setFont( style.getFont() );
+        sizeLabel.setFont( style.getFont() );
+        extensionLabel.setFont( style.getFont() );
+        videoCodecLabel.setFont( style.getFont() );
+        resolutionLabel.setFont( style.getFont() );
+        aspectRatioLabel.setFont( style.getFont() );
+        frameRateLabel.setFont( style.getFont() );
+        audioCodecLabel.setFont( style.getFont() );
+        channelsLabel.setFont( style.getFont() );
 
 
     }
@@ -124,34 +147,35 @@ public class Information extends JPanel {
     public void showInformation() {
         final int rows = 9;
         final int cols = 2;
-        setLayout(new GridLayout(rows, cols));
+        setLayout( new GridLayout( rows, cols ) );
 
-        add(pathLabel);
-        add(path);
+        add( pathLabel );
 
-        add(sizeLabel);
-        add(size);
+        add( path );
 
-        add(extensionLabel);
-        add(extension);
+        add( sizeLabel );
+        add( size );
 
-        add(videoCodecLabel);
-        add(videoCodec);
+        add( extensionLabel );
+        add( extension );
 
-        add(resolutionLabel);
-        add(resolution);
+        add( videoCodecLabel );
+        add( videoCodec );
 
-        add(aspectRatioLabel);
-        add(aspectRatio);
+        add( resolutionLabel );
+        add( resolution );
 
-        add(frameRateLabel);
-        add(frameRate);
+        add( aspectRatioLabel );
+        add( aspectRatio );
 
-        add(audioCodecLabel);
-        add(audioCodec);
+        add( frameRateLabel );
+        add( frameRate );
 
-        add(channelsLabel);
-        add(channels);
+        add( audioCodecLabel );
+        add( audioCodec );
+
+        add( channelsLabel );
+        add( channels );
     }
 
     /**
@@ -160,20 +184,20 @@ public class Information extends JPanel {
      * @param file Input.
      */
     public static void setInformation(final Asset file) {
-        hideInformation(file);
-        path.setText(file.getPath());
-        size.setText(String.valueOf(file.getFileSize()));
-        extension.setText(file.getExtension());
+        hideInformation( file );
+        path.setText( file.getPath() );
+        size.setText( String.valueOf( file.getFileSize() ) );
+        extension.setText( file.getExtension() );
         if (file instanceof VideoFileAsset) {
-            videoCodec.setText(((VideoFileAsset) file).getVideoCodec());
-            resolution.setText(((VideoFileAsset) file).getResolution());
-            aspectRatio.setText(((VideoFileAsset) file).getAspectRatio());
-            frameRate.setText(((VideoFileAsset) file).getFrameRate());
-            audioCodec.setText(((VideoFileAsset) file).getAudioCodec());
+            videoCodec.setText( ((VideoFileAsset) file).getVideoCodec() );
+            resolution.setText( ((VideoFileAsset) file).getResolution() );
+            aspectRatio.setText( ((VideoFileAsset) file).getAspectRatio() );
+            frameRate.setText( ((VideoFileAsset) file).getFrameRate() );
+            audioCodec.setText( ((VideoFileAsset) file).getAudioCodec() );
         }
         if (file instanceof AudioFileAsset) {
-            audioCodec.setText(((AudioFileAsset) file).getAudioCodec());
-            channels.setText(String.valueOf(((AudioFileAsset) file).getChannels()));
+            audioCodec.setText( ((AudioFileAsset) file).getAudioCodec() );
+            channels.setText( String.valueOf( ((AudioFileAsset) file).getChannels() ) );
         }
     }
 
@@ -183,35 +207,35 @@ public class Information extends JPanel {
      * @param file Input.
      */
     private static void hideInformation(final Asset file) {
-        videoCodecLabel.setVisible(false);
-        videoCodec.setVisible(false);
-        resolutionLabel.setVisible(false);
-        resolution.setVisible(false);
-        aspectRatioLabel.setVisible(false);
-        aspectRatio.setVisible(false);
-        frameRateLabel.setVisible(false);
-        frameRate.setVisible(false);
-        audioCodecLabel.setVisible(false);
-        audioCodec.setVisible(false);
-        channelsLabel.setVisible(false);
-        channels.setVisible(false);
+        videoCodecLabel.setVisible( false );
+        videoCodec.setVisible( false );
+        resolutionLabel.setVisible( false );
+        resolution.setVisible( false );
+        aspectRatioLabel.setVisible( false );
+        aspectRatio.setVisible( false );
+        frameRateLabel.setVisible( false );
+        frameRate.setVisible( false );
+        audioCodecLabel.setVisible( false );
+        audioCodec.setVisible( false );
+        channelsLabel.setVisible( false );
+        channels.setVisible( false );
         if (file instanceof VideoFileAsset) {
-            videoCodecLabel.setVisible(true);
-            videoCodec.setVisible(true);
-            resolutionLabel.setVisible(true);
-            resolution.setVisible(true);
-            aspectRatioLabel.setVisible(true);
-            aspectRatio.setVisible(true);
-            frameRateLabel.setVisible(true);
-            frameRate.setVisible(true);
-            audioCodecLabel.setVisible(true);
-            audioCodec.setVisible(true);
+            videoCodecLabel.setVisible( true );
+            videoCodec.setVisible( true );
+            resolutionLabel.setVisible( true );
+            resolution.setVisible( true );
+            aspectRatioLabel.setVisible( true );
+            aspectRatio.setVisible( true );
+            frameRateLabel.setVisible( true );
+            frameRate.setVisible( true );
+            audioCodecLabel.setVisible( true );
+            audioCodec.setVisible( true );
         }
         if (file instanceof AudioFileAsset) {
-            audioCodecLabel.setVisible(true);
-            audioCodec.setVisible(true);
-            channelsLabel.setVisible(true);
-            channels.setVisible(true);
+            audioCodecLabel.setVisible( true );
+            audioCodec.setVisible( true );
+            channelsLabel.setVisible( true );
+            channels.setVisible( true );
         }
     }
 }

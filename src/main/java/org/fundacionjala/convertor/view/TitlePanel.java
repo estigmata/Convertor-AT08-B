@@ -51,7 +51,7 @@ public class TitlePanel extends JPanel {
         container.setBackground(Color.white);
 
         logo = new JLabel();
-        logo.setIcon(new javax.swing.ImageIcon("Image\\monkey.PNG"));
+        logo.setIcon(new javax.swing.ImageIcon("Image\\mono_logo.PNG"));
         initComponents();
 
     }
