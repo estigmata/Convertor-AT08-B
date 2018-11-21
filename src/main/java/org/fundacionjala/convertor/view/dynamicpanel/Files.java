@@ -16,7 +16,6 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
-import org.fundacionjala.convertor.utils.Util;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
@@ -75,7 +74,7 @@ public class Files extends JPanel implements MouseListener {
         Information.setInformation(file);
         BasicConverterPanel.setOutputFileName(file.getFileName());
         BasicConverterPanel.setPathSource(absoutePath);
-        BasicConverterPanel.setPathDestination("C:\\JalaTemp "/*file.getPath()*/);
+        BasicConverterPanel.setPathDestination(file.getPath());
 
         if (validator.isVideo(Paths.get(absoutePath))) {
             BasicConverterPanel.getConverterButton().setVisible(true);
@@ -87,7 +86,7 @@ public class Files extends JPanel implements MouseListener {
             String[] items = {"Audio"};
             BasicConverterPanel.getMultimediaBox().setModel(new DefaultComboBoxModel<>(items));
         }
-        if (!validator.isVideo(Paths.get(absoutePath)) && !validator.isAudio(Paths.get(absoutePath))){
+        if (!validator.isVideo(Paths.get(absoutePath)) && !validator.isAudio(Paths.get(absoutePath))) {
             BasicConverterPanel.getConverterButton().setVisible(false);
         }
     }

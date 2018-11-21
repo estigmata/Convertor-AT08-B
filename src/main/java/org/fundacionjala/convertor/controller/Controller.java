@@ -27,6 +27,7 @@ import org.fundacionjala.convertor.model.SearchModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
@@ -87,19 +88,18 @@ public class Controller {
      */
     public void actionSearch() {
         viewer.getSearchButton().addActionListener(e -> {
-//            if (validator.isPath(viewer.getPath())) {
+            if (validator.isPath(viewer.getPath())) {
                 try {
                     findFile();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-//            } else {
-//                new ErrorMessage("Isn't a valid path!!!");
-//            }
+            } else {
+                new ErrorMessage("Isn't a valid path!!!");
+            }
         });
 
-        viewer.getDownPanel().getConverterPanel()
-                .getBasicConverterPanel().getConverterButton().addActionListener(e -> {
+        BasicConverterPanel.getConverterButton().addActionListener(e -> {
 
             try {
                 convertFile();
@@ -177,7 +177,7 @@ public class Controller {
 
     public void convertFile() throws IOException {
         Criteria basicCriteria = new Criteria();
-        if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
+        if (BasicConverterPanel
                 .getMultimediaBox().getSelectedItem().equals(VIDEO)) {
             ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
             convertVideoCriteria.setInputPath(viewer.getDownPanel().getConverterPanel()
@@ -244,7 +244,7 @@ public class Controller {
             );
             basicCriteria = convertVideoCriteria;
         }
-        if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
+        if (BasicConverterPanel
                 .getMultimediaBox().getSelectedItem().equals(AUDIO)) {
             ConvertCriteriaAudio convertAudioCriteria = new ConvertCriteriaAudio();
             convertAudioCriteria.setInputPath(viewer.getDownPanel().getConverterPanel()
