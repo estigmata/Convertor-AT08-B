@@ -51,7 +51,7 @@ public class SearchModel implements ISearch {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
-    public static AbstractLogger log = AbstractLogger.getInstance();
+    private static AbstractLogger log = AbstractLogger.getInstance();
 
     private Validator validator;
 
