@@ -74,7 +74,7 @@ public class Files extends JPanel implements MouseListener {
         Information.setInformation(file);
         BasicConverterPanel.setOutputFileName(file.getFileName());
         BasicConverterPanel.setPathSource(absoutePath);
-        BasicConverterPanel.setPathDestination(file.getPath());
+        BasicConverterPanel.setPathDestination("C:\\convertedFiles"/*file.getPath()*/);
 
         if (validator.isVideo(Paths.get(absoutePath))) {
             BasicConverterPanel.getConverterButton().setVisible(true);

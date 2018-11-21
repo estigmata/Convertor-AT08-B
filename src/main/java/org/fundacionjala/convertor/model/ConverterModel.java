@@ -120,17 +120,25 @@ public class ConverterModel implements IConvert {
                               final FFmpegExecutor executor) {
         ConvertCriteriaAudio convertCriteria = (ConvertCriteriaAudio) criteria;
         FFmpegBuilder builder;
+        if(!convertCriteria.getFormat().equals("wav")) {
+            builder = new FFmpegBuilder()
+                    .setInput(in)
+                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                            + "." + convertCriteria.getFormat())
+                    .disableVideo()
+                    .setAudioSampleRate(convertCriteria.getAudioSampleRate())
+                    .setAudioChannels(convertCriteria.getChannels())
+                    .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
+                    .setFormat(convertCriteria.getFormat())
+                    .done();
+        }else {
+            builder = new FFmpegBuilder()
+                    .setInput(in)
+                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                            + "." + convertCriteria.getFormat())
+                    .done();
+        }
 
-        builder = new FFmpegBuilder()
-                .setInput(in)
-                .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
-                        + "." + convertCriteria.getFormat())
-                .disableVideo()
-                .setAudioSampleRate(convertCriteria.getAudioSampleRate())
-                .setAudioChannels(convertCriteria.getChannels())
-                .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
-                .setFormat(convertCriteria.getFormat())
-                .done();
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input
