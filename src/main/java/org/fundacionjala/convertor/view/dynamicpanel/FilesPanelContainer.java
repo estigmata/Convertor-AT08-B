@@ -28,10 +28,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -51,20 +49,20 @@ public class FilesPanelContainer extends JPanel {
     public FilesPanelContainer() {
         style = new Style();
         final int rows = 9999;
-        final Font font = new java.awt.Font( "Tahoma", 0, 11 );
-        final Color orangeColor = new java.awt.Color( 255, 51, 0 );
-        this.setBorder( BorderFactory.createTitledBorder( BorderFactory.
-                        createLineBorder( orangeColor ), "Files",
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
+                        createLineBorder(orangeColor), "Files",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
-                font, orangeColor ) );
+                font, orangeColor));
 
 
-        setLayout( new BorderLayout() );
-        this.setBackground( Color.white );
-        filesContainer = new JPanel( new GridLayout( rows, 1 ) );
-        filesContainer.setBackground( Color.WHITE );
-        add( new JScrollPane( filesContainer ) );
+        setLayout(new BorderLayout());
+        this.setBackground(Color.white);
+        filesContainer = new JPanel(new GridLayout(rows, 1));
+        filesContainer.setBackground(Color.WHITE);
+        add(new JScrollPane(filesContainer));
 
     }
 
@@ -78,16 +76,16 @@ public class FilesPanelContainer extends JPanel {
         gbConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         for (Asset file : files) {
-            Files itemFile = new Files( file );
-            itemFile.setLayout( new BoxLayout( itemFile, BoxLayout.Y_AXIS ) );
+            Files itemFile = new Files(file);
+            itemFile.setLayout(new BoxLayout(itemFile, BoxLayout.Y_AXIS));
             JLabel labelAux = new JLabel();
 
-            labelAux.setText( file.getFileName().concat( "." ).concat( file.getExtension() ) );
-            labelAux.setFont( style.getFont() );
+            labelAux.setText(file.getFileName().concat(".").concat(file.getExtension()));
+            labelAux.setFont(style.getFont());
 
-            itemFile.add( labelAux );
-            itemFile.setBorder( new MatteBorder( 1, 1, 1, 1, Color.white ) );
-            filesContainer.add( itemFile, gbConstraints, 0 );
+            itemFile.add(labelAux);
+            itemFile.setBorder(new MatteBorder(1, 1, 1, 1, Color.white));
+            filesContainer.add(itemFile, gbConstraints, 0);
         }
         validate();
         repaint();
