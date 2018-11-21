@@ -73,22 +73,35 @@ public class Information extends JPanel {
 
 
         path = new JTextField();
+        path.setEditable(false);
         path.setColumns(ten);
 
         size = new JTextField();
         size.setColumns(ten);
+        size.setEditable(false);
 
         extension = new JTextField();
         extension.setColumns(ten);
+        extension.setEditable(false);
 
         videoCodec = new JTextField();
         videoCodec.setColumns(ten);
+        videoCodec.setEditable(false);
 
         resolution = new JTextField();
+        resolution.setEditable(false);
+
         aspectRatio = new JTextField();
+        aspectRatio.setEditable(false);
+
         frameRate = new JTextField();
+        frameRate.setEditable(false);
+
         audioCodec = new JTextField();
+        audioCodec.setEditable(false);
+
         channels = new JTextField();
+        channels.setEditable(false);
 
         pathLabel = new JLabel("Path :");
         pathLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
