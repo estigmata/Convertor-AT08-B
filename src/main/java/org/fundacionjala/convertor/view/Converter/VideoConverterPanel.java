@@ -67,9 +67,10 @@ public class VideoConverterPanel extends JPanel {
         aspectRatio = new JComboBox<>(new String[]{"4:3", "16:9", "16:10"});
         resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
-        videoCodec = new JComboBox<>(new String[]{"libx264"});
-        audioCodec = new JComboBox<>(new String[]{"aac", "mp2"});
-        format = new JComboBox<>(new String[]{"avi", "mp4", "mpeg", "flv"});
+        videoCodec = new JComboBox<>(new String[]{"libx264", "flv", "mpeg2video", "mpeg4", "h261", "h263", "rawvideo",
+                "libvpx", "wmv2"});
+        audioCodec = new JComboBox<>(new String[]{"aac", "mp2", "wmav1", "wmav2", "flac"});
+        format = new JComboBox<>(new String[]{"mp4", "mpeg", "avi", "mov", "wmv", "flv", "vob", "mxf"});
         audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
         audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
         audioChannels = new JComboBox<>(new String[]{"1", "2"});

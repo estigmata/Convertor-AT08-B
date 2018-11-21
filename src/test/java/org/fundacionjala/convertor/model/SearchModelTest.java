@@ -296,8 +296,8 @@ public class SearchModelTest {
     @Test
     public void searchVideoByResolution() throws IOException {
         final int numberFiles = 3;
-        final int height = 1280;
-        final int with = 720;
+        final int with = 1280;
+        final int height = 720;
         AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
         videoCriteria.setInputPath(PATH);
         videoCriteria.setFileName("");
@@ -305,8 +305,8 @@ public class SearchModelTest {
         videoCriteria.setAspectRatio("");
         videoCriteria.setAudioCodec("");
         videoCriteria.setFrameRate("");
-        videoCriteria.setResolutionHeight(with);
-        videoCriteria.setResolutionWith(height);
+        videoCriteria.setResolutionHeight(height);
+        videoCriteria.setResolutionWith(with);
         videoCriteria.setVideoCodec("");
         basicCriteria = videoCriteria;
         fileList = searchModel.searchFiles(basicCriteria);

@@ -103,31 +103,31 @@ public class Information extends JPanel {
         channels = new JTextField();
         channels.setEditable(false);
 
-        pathLabel = new JLabel("Path :");
+        pathLabel = new JLabel("Path : ");
         pathLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        sizeLabel = new JLabel("Size :");
+        sizeLabel = new JLabel("Size : ");
         sizeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        extensionLabel = new JLabel("Extension :");
+        extensionLabel = new JLabel("Extension : ");
         extensionLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        videoCodecLabel = new JLabel("Video Codec :");
+        videoCodecLabel = new JLabel("Video Codec : ");
         videoCodecLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        resolutionLabel = new JLabel("Resolution :");
+        resolutionLabel = new JLabel("Resolution : ");
         resolutionLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        aspectRatioLabel = new JLabel("Aspect Ratio :");
+        aspectRatioLabel = new JLabel("Aspect Ratio : ");
         aspectRatioLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        frameRateLabel = new JLabel("Frame Rate :");
+        frameRateLabel = new JLabel("Frame Rate : ");
         frameRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        audioCodecLabel = new JLabel("Audio Codec :");
+        audioCodecLabel = new JLabel("Audio Codec : ");
         audioCodecLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
-        channelsLabel = new JLabel("Channels :");
+        channelsLabel = new JLabel("Channels : ");
         channelsLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
 

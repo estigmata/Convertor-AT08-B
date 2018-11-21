@@ -54,7 +54,7 @@ public class Util {
      * @return value of return.
      */
 
-    public int getWith(final String resolution) {
+    public int getWidth(final String resolution) {
         final int i = resolution.indexOf('*');
         return Integer.parseInt(resolution.substring(0, i));
     }

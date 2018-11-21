@@ -18,10 +18,13 @@ package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,7 +45,11 @@ public class BrowseChooser extends JPanel implements ActionListener {
      */
     public BrowseChooser() {
         log.setLogger(BrowseChooser.class.getName());
-        JButton browse = new JButton("Browse...");
+        JButton browse = new JButton();
+
+        browse.setHorizontalAlignment(SwingConstants.LEFT);
+        browse.setBackground(Color.WHITE);
+        browse.setIcon(new ImageIcon("Image\\browse.PNG"));
         browse.addActionListener(this);
         path = new JTextField();
         add(browse);
