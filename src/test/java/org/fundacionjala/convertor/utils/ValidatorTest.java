@@ -122,7 +122,7 @@ public class ValidatorTest {
      */
     @Test
     public void isValidPathTrue() {
-        String actualValue = "C:\\Users\\Admin\\Desktop\\AUDIOS_INGLES";
+        String actualValue = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder";
         assertTrue(validator.isPath(actualValue));
     }
 

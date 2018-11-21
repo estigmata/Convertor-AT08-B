@@ -18,8 +18,8 @@ package org.fundacionjala.convertor.utils;
 
 import org.apache.tika.Tika;
 
+import java.io.File;
 import java.nio.file.Path;
-import java.util.regex.Pattern;
 
 /**
  * Validator.
@@ -62,8 +62,8 @@ public class Validator {
      * @return Value of return of String Type.
      */
     public boolean isPath(final String path) {
-        String regularExpression = "(?:[a-zA-Z]:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+";
-        return Pattern.matches(regularExpression, path);
+        File file = new File(path);
+        return file.exists();
     }
 
     /**
