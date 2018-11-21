@@ -62,17 +62,20 @@ public class Controller {
 
     private CriteriaFactory criteriaFactory;
 
+    private static AbstractLogger log = AbstractLogger.getInstance();
+
     /**
      * Constructor.
      */
     public Controller() {
-        AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Controller.class.getName());
         try {
             this.searchModel = new SearchModel();
             this.converterModel = new ConverterModel();
+            log.info("Create media file model and converter model.");
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         viewer = new Viewer();
@@ -91,11 +94,14 @@ public class Controller {
             if (validator.isPath(viewer.getPath())) {
                 try {
                     findFile();
+                    log.info("Fin file success");
                 } catch (IOException e1) {
                     e1.printStackTrace();
+                    log.error(e1);
                 }
             } else {
                 new ErrorMessage("Isn't a valid path!!!");
+                log.info("Isn't a valid path!!! --> message showed.");
             }
         });
 
@@ -103,8 +109,10 @@ public class Controller {
             if (validator.isPath(viewer.getPath())) {
                 try {
                     convertFile();
+                    log.info("Convert File.");
                 } catch (IOException e1) {
                     e1.printStackTrace();
+                    log.error(e1);
                 }
             } else {
                 new ErrorMessage("Isn't a valid path!!!");
@@ -126,6 +134,7 @@ public class Controller {
             criteria.setFileName(viewer.getFileName());
             criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
             showFilesInTable(searchModel.searchFiles(criteria));
+            log.info("Show all files.");
         }
         if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
             AdvancedCriteriaAudio criteria = (AdvancedCriteriaAudio) criteriaFactory.createCriteria(AUDIO);
@@ -138,6 +147,7 @@ public class Controller {
                     .getChannel().getSelectedItem().toString();
             criteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
             showFilesInTable(searchModel.searchFiles(criteria));
+            log.info("Show audio files.");
         }
 
         if (viewer.getComboMultimedia().getSelectedItem().equals(VIDEO)) {
@@ -158,6 +168,7 @@ public class Controller {
             criteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
             showFilesInTable(searchModel.searchFiles(criteria));
+            log.info("Show video files.");
         }
     }
 
@@ -291,6 +302,7 @@ public class Controller {
                     .toString())
             );
             basicCriteria = convertAudioCriteria;
+            log.info("Get basic criteria to convert audio file.");
         }
         converterModel.convertData(basicCriteria);
     }

@@ -38,11 +38,12 @@ import java.awt.event.ActionListener;
 public class BrowseChooser extends JPanel implements ActionListener {
     private JTextField path;
 
+    private static AbstractLogger log = AbstractLogger.getInstance();
+
     /**
      * Constructor for the Browser, the panel have the button with their Action Listener.
      */
     public BrowseChooser() {
-        AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(BrowseChooser.class.getName());
         JButton browse = new JButton();
 

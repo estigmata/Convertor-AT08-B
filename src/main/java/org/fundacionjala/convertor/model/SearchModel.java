@@ -25,6 +25,7 @@ import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.model.objectfile.AssetFactory;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
+import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Util;
 import org.fundacionjala.convertor.utils.Validator;
 
@@ -50,6 +51,8 @@ public class SearchModel implements ISearch {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
+    private static AbstractLogger log = AbstractLogger.getInstance();
+
     private Validator validator;
 
     /**
@@ -60,6 +63,8 @@ public class SearchModel implements ISearch {
     public SearchModel() throws IOException {
         assetFactory = new AssetFactory();
         validator = new Validator();
+        log.setLogger(SearchModel.class.getName());
+        log.info("Media file model.");
     }
 
     /**
@@ -71,9 +76,11 @@ public class SearchModel implements ISearch {
      */
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
         if (criteria instanceof AdvancedCriteriaVideo) {
+            log.info("Advanced video criteria.");
             return searchVideo((AdvancedCriteriaVideo) criteria);
         }
         if (criteria instanceof AdvancedCriteriaAudio) {
+            log.info("Advanced audio criteria.");
             return searchAudio((AdvancedCriteriaAudio) criteria);
         }
         ArrayList<Asset> fileList = new ArrayList<>();
@@ -92,6 +99,7 @@ public class SearchModel implements ISearch {
 
                     fileList.add(fileZ);
                 });
+        log.info("Search Files list");
         return fileList;
     }
 
@@ -178,6 +186,7 @@ public class SearchModel implements ISearch {
 
                     list.add(fileZ);
                 });
+        log.info("Search video files list");
         return list;
     }
 
@@ -227,6 +236,7 @@ public class SearchModel implements ISearch {
 
                     list.add(fileZ);
                 });
+        log.info("Search audio files list");
         return list;
     }
 
@@ -237,6 +247,7 @@ public class SearchModel implements ISearch {
      * @return the video Stream.
      */
     private FFmpegStream getStreamVideo(final List<FFmpegStream> list) {
+        log.info("Get stream video");
         if (list.size() > 1) {
             return String.valueOf(list.get(0).codec_type).equals("VIDEO") ? list.get(0) : list.get(1);
         }
@@ -264,8 +275,10 @@ public class SearchModel implements ISearch {
         FFmpegProbeResult probeResult = null;
         try {
             probeResult = ffprobe.probe(x.toFile().getAbsolutePath());
+            log.info("Using ffprobe get stream");
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
         return probeResult != null ? probeResult.getStreams() : null;
     }
@@ -280,10 +293,12 @@ public class SearchModel implements ISearch {
     private boolean isMinorSize(final Path x, final long size) {
         try {
             if (Files.size(x) <= size) {
+                log.info("Compare file size.");
                 return true;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
         return false;
     }

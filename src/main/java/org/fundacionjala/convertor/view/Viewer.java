@@ -39,12 +39,13 @@ public final class Viewer extends JFrame {
     private DownPanel downPanel;
     private UpperPanel upperPanel;
 
+    private static AbstractLogger log = AbstractLogger.getInstance();
+
     /**
      * Constructor.
      */
     public Viewer() {
         super();
-        AbstractLogger log = AbstractLogger.getInstance();
         log.setLogger(Viewer.class.getName());
         log.info("Set Viewer");
         this.setIconImage(new javax.swing.ImageIcon("Image\\monkey2.PNG").getImage());

@@ -11,6 +11,7 @@ import net.bramp.ffmpeg.progress.ProgressListener;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
+import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.view.CompletedMessage;
 import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
@@ -28,6 +29,8 @@ public class ConverterModel implements IConvert {
     private static final String FFPROBE_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe";
     private static final int ONEHUNDRED = 100;
     private static final int BYTETOKB = 1024;
+
+    private static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
      * Constructor.
@@ -52,15 +55,18 @@ public class ConverterModel implements IConvert {
         FFmpegProbeResult in = null;
 
         try {
+            log.info("FFmpeg library initialize.");
             in = ffprobe.probe(criteria.getInputPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
         if (criteria instanceof ConvertCriteriaVideo) {
             convertVideo(criteria, in, executor);
+            log.info("Video file converted.");
         }
         if (criteria instanceof ConvertCriteriaAudio) {
             convertAudio(criteria, in, executor);
+            log.info("Audio file converted");
         }
     }
 
