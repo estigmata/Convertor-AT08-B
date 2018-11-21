@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * convert multimedia files.
  */
 
-public class ConverterModel {
+public class ConverterModel implements IConvert {
 
     private FFmpeg ffmpeg;
     private FFprobe ffprobe;
@@ -46,7 +46,7 @@ public class ConverterModel {
      *
      * @param criteria object.
      */
-    public void convertFile(final Criteria criteria) {
+    public void convertData(final Criteria criteria) {
         try {
             ffmpeg = new FFmpeg(FFMPEG_PATH);
         } catch (Exception e) {
@@ -169,6 +169,7 @@ public class ConverterModel {
             }
         });
         job.run();
+
         if (job.getState() == FFmpegJob.State.FINISHED) {
             new CompletedMessage("Conversion Completed");
         }

@@ -15,6 +15,7 @@
 package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
+import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
 
 import javax.swing.BoxLayout;
@@ -112,7 +113,7 @@ public final class Viewer extends JFrame {
      * @return the JObject.
      */
     public String getPath() {
-        return upperPanel.getSearchPanel().getBasicSearchPanel().getPath().getText();
+        return BasicSearchPanel.getPath().getText();
     }
 
     /**
