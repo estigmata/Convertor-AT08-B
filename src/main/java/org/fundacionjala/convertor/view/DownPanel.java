@@ -19,6 +19,7 @@ import org.fundacionjala.convertor.view.Converter.ConverterPanel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import java.awt.Dimension;
 
 /**
  * @author Abel Gustavo Mallcu Chiri.
@@ -31,7 +32,10 @@ public class DownPanel extends JPanel {
      *
      */
     public DownPanel() {
+
+
         resultTablePanel = new ResultTablePanel();
+
         converterPanel = new ConverterPanel();
         initComponents();
     }
@@ -40,8 +44,17 @@ public class DownPanel extends JPanel {
      *
      */
     private void initComponents() {
+
+
+        final int height = 320;
+        final int width1 = 450;
+        final int width2 = 250;
+
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        resultTablePanel.setPreferredSize(new Dimension(width1, height));
         this.add(resultTablePanel);
+        converterPanel.setPreferredSize(new Dimension(width2, height));
+
         this.add(converterPanel);
     }
 

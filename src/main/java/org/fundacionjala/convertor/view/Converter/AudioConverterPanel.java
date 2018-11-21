@@ -15,6 +15,8 @@
 package org.fundacionjala.convertor.view.Converter;
 
 
+import org.fundacionjala.convertor.utils.Style;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -44,11 +46,13 @@ public class AudioConverterPanel extends JPanel {
     private JLabel labelChannel;
     private JLabel labelAudioCodec;
     private JLabel labelFormatCode;
+    private Style style;
 
     /**
      * Constructor.
      */
     public AudioConverterPanel() {
+        style = new Style();
         audioCodecConverter = new JComboBox<>(new String[]{"aac", "wmav2", "mp3"});
         channelConverter = new JComboBox<>(new String[]{"1", "2", "3"});
         formatCodecConverter = new JComboBox<>(new String[]{"mp3", "wav ", "3gp", "flac", "m4a"});
@@ -60,6 +64,19 @@ public class AudioConverterPanel extends JPanel {
         labelFormatCode = new JLabel("Format :");
         labelAudioSampleRate = new JLabel("Audio Sample Rate :");
         labelBitRate = new JLabel("Audio Bit Rate :");
+
+
+        audioSampleRate.setFont(style.getFont());
+        labelAudioSampleRate.setFont(style.getFont());
+        audioBitRate.setFont(style.getFont());
+        labelBitRate.setFont(style.getFont());
+        channelConverter.setFont(style.getFont());
+        audioCodecConverter.setFont(style.getFont());
+        formatCodecConverter.setFont(style.getFont());
+        labelChannel.setFont(style.getFont());
+        labelAudioCodec.setFont(style.getFont());
+        labelFormatCode.setFont(style.getFont());
+
         initComponents();
     }
 
