@@ -16,7 +16,7 @@
 package org.fundacionjala.convertor;
 
 import com.sun.jna.NativeLibrary;
-import org.fundacionjala.convertor.controller.SearchController;
+import org.fundacionjala.convertor.controller.Controller;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.runtime.RuntimeUtil;
@@ -44,12 +44,12 @@ public final class Main {
    */
   public static void main(final String[] args) {
     log = AbstractLogger.getInstance();
-    log.setLogger(SearchController.class.getName());
+    log.setLogger(Controller.class.getName());
     log.info("Path VLC Library: " + NATIVE_LIBRARY_VLC_PATH);
     NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), NATIVE_LIBRARY_VLC_PATH);
     log.info("Library VLC loaded");
     new NativeDiscovery().discover();
-    SearchController controller = new SearchController();
+    Controller controller = new Controller();
     controller.actionSearch();
   }
 
