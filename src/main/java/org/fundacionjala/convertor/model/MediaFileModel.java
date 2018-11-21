@@ -26,6 +26,7 @@ import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.model.objectfile.AssetFactory;
 import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
+import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Util;
 
 import java.io.IOException;
@@ -49,6 +50,8 @@ public class MediaFileModel {
     private static final String AUDIO = "Audio";
     private static final String ALL = "All";
 
+    AbstractLogger log = AbstractLogger.getInstance();
+
     /**
      * Constructor for extract the files.
      *
@@ -56,6 +59,8 @@ public class MediaFileModel {
      */
     public MediaFileModel() throws IOException {
         assetFactory = new AssetFactory();
+        log.setLogger(MediaFileModel.class.getName());
+        log.info("Media file model.");
     }
 
     /**
@@ -67,9 +72,11 @@ public class MediaFileModel {
      */
     public ArrayList<Asset> searchFiles(final Criteria criteria) throws IOException {
         if (criteria instanceof AdvancedCriteriaVideo) {
+            log.info("Advanced video criteria.");
             return searchVideo((AdvancedCriteriaVideo) criteria);
         }
         if (criteria instanceof AdvancedCriteriaAudio) {
+            log.info("Advanced audio criteria.");
             return searchAudio((AdvancedCriteriaAudio) criteria);
         }
         ArrayList<Asset> fileList = new ArrayList<>();
@@ -88,6 +95,7 @@ public class MediaFileModel {
 
                     fileList.add(fileZ);
                 });
+        log.info("Search Files list");
         return fileList;
     }
 
@@ -174,6 +182,7 @@ public class MediaFileModel {
 
                     list.add(fileZ);
                 });
+        log.info("Search video files list");
         return list;
     }
 
@@ -223,6 +232,7 @@ public class MediaFileModel {
 
                     list.add(fileZ);
                 });
+        log.info("Search audio files list");
         return list;
     }
 
@@ -233,6 +243,7 @@ public class MediaFileModel {
      * @return the video Stream.
      */
     private FFmpegStream getStreamVideo(final List<FFmpegStream> list) {
+        log.info("Get stream video");
         if (list.size() > 1) {
             return String.valueOf(list.get(0).codec_type).equals("VIDEO") ? list.get(0) : list.get(1);
         }
@@ -246,6 +257,7 @@ public class MediaFileModel {
      * @return The audio Stream.
      */
     private FFmpegStream getStreamAudio(final List<FFmpegStream> list) {
+        log.info("Get steam audio.");
         if (list.size() > 1) {
             return String.valueOf(list.get(0).codec_type).equals("AUDIO") ? list.get(0) : list.get(1);
         }

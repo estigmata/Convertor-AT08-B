@@ -57,16 +57,6 @@ public final class AbstractLogger {
     }
 
     /**
-     * Test method. Removed it next time.
-     */
-    public void test() {
-        logger.trace("Entering application.");
-        logger.debug("Debug Message Logged !!!");
-        logger.info("Info Message Logged !!!");
-        logger.error("Error Message Logged !!!", new Exception());
-    }
-
-    /**
      * Method to append info.
      *
      * @param message input String message.
@@ -82,5 +72,24 @@ public final class AbstractLogger {
      */
     public void error(final Exception exception) {
         logger.error(exception.getMessage(), exception);
+    }
+
+    /**
+     * Method to append debug message.
+     *
+     * @param message type String.
+     */
+    public void debug(final String message) {
+        logger.debug(message);
+    }
+
+    /**
+     * Method to append trace with message and object.
+     *
+     * @param message type String.
+     * @param object type Object.
+     */
+    public void trace(final String message, final Object object) {
+        logger.trace(message, object);
     }
 }
