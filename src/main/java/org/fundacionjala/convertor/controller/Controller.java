@@ -69,7 +69,7 @@ public class Controller {
      */
     public Controller() {
         log.setLogger(Controller.class.getName());
-    try {
+        try {
             this.searchModel = new SearchModel();
             this.converterModel = new ConverterModel();
             log.info("Create media file model and converter model.");
@@ -106,13 +106,16 @@ public class Controller {
         });
 
         BasicConverterPanel.getConverterButton().addActionListener(e -> {
-
-            try {
-                convertFile();
-                log.info("Convert File.");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                log.error(e1);
+            if (validator.isPath(viewer.getPath())) {
+                try {
+                    convertFile();
+                    log.info("Convert File.");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    log.error(e1);
+                }
+            } else {
+                new ErrorMessage("Isn't a valid path!!!");
             }
         });
     }
@@ -254,7 +257,6 @@ public class Controller {
                     .toString()
             );
             basicCriteria = convertVideoCriteria;
-            log.info("Get basic criteria to converter video file.");
         }
         if (BasicConverterPanel
                 .getMultimediaBox().getSelectedItem().equals(AUDIO)) {

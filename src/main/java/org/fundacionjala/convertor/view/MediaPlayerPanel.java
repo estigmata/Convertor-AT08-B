@@ -67,10 +67,12 @@ public class MediaPlayerPanel extends JPanel {
     private void iniMediaPlayer() {
         this.setMinimumSize(new Dimension(MAX_VALUE, MAX_VALUE));
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BorderLayout());
+
         player.setSize(this.getSize());
         player.setVisible(true);
-        this.add(player);
+        this.add(player, BorderLayout.CENTER);
+
     }
 
     /**
@@ -141,7 +143,8 @@ public class MediaPlayerPanel extends JPanel {
         buttonsContainer.add(btnPlayPause);
         buttonsContainer.add(btnMute);
         buttonsContainer.add(sldVolume);
-        this.add(buttonsContainer, BorderLayout.CENTER);
+        this.add(buttonsContainer, BorderLayout.SOUTH);
+
     }
 
     /**
