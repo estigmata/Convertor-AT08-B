@@ -44,19 +44,13 @@ public class ConverterModel implements IConvert {
     /**
      * Method to convert multimedia files.
      *
-     * @param criteria object.
+     * @param criteria for convert.
+     * @throws IOException of FFmpeg search.
      */
-    public void convertData(final Criteria criteria) {
-        try {
-            ffmpeg = new FFmpeg(FFMPEG_PATH);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        try {
-            ffprobe = new FFprobe(FFPROBE_PATH);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    public void convertData(final Criteria criteria) throws IOException {
+        ffmpeg = new FFmpeg(FFMPEG_PATH);
+        ffprobe = new FFprobe(FFPROBE_PATH);
+
         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
         FFmpegProbeResult in = null;
 

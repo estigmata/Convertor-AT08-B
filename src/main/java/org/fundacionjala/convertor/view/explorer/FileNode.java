@@ -15,7 +15,6 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
-import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.File;
 import java.util.Vector;
@@ -103,8 +102,7 @@ public class FileNode {
 
         for (int i = 0; i < fileNodes.size(); i++) {
             FileNode nd = fileNodes.elementAt(i);
-            IconData idata = new IconData(Explorer.ICON_FOLDER,
-                    Explorer.ICON_EXPANDEDFOLDER, nd);
+            IconData idata = new IconData(nd);
             DefaultMutableTreeNode node = new
                     DefaultMutableTreeNode(idata);
             parent.add(node);
@@ -154,13 +152,6 @@ public class FileNode {
         if (!mFile.isDirectory()) {
             return null;
         }
-        try {
-            return mFile.listFiles();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,
-                    "Error reading directory " + mFile.getAbsolutePath(),
-                    "Warning", JOptionPane.WARNING_MESSAGE);
-            return null;
-        }
+        return mFile.listFiles();
     }
 }

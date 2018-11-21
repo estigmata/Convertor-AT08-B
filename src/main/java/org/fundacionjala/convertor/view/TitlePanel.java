@@ -17,7 +17,6 @@
 package org.fundacionjala.convertor.view;
 
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -35,7 +34,6 @@ import java.awt.GridLayout;
 public class TitlePanel extends JPanel {
     private JLabel title;
     private JLabel logo;
-    private JButton close;
 
     private JPanel container;
 

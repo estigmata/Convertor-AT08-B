@@ -39,7 +39,7 @@ public class ResultTablePanel extends JPanel {
         filesPanel = new FilesPanelContainer();
         informationPanel = new Information();
         AbstractLogger log = AbstractLogger.getInstance();
-        log.setLogger(TabPane.class.getName());
+        log.setLogger(ResultTablePanel.class.getName());
         log.info("Show Result panel.");
         initComponents();
     }

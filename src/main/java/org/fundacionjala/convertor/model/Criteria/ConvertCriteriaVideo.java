@@ -31,11 +31,6 @@ public class ConvertCriteriaVideo extends Criteria {
     private String outputFile;
     private int audioChannels;
 
-    @Override
-    public void setFileName(final String fileName) {
-        super.setFileName(fileName);
-    }
-
     /**
      * @return value return.
      */

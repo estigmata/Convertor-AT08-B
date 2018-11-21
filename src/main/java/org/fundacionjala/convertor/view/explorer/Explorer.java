@@ -17,10 +17,8 @@ package org.fundacionjala.convertor.view.explorer;
 
 import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeExpansionEvent;
@@ -41,18 +39,8 @@ import java.io.File;
  * Class in process.
  */
 public class Explorer extends JPanel {
-    private static final ImageIcon ICON_COMPUTER =
-            new ImageIcon("computer.gif");
-    private static final ImageIcon ICON_DISK =
-            new ImageIcon("disk.gif");
-    static final ImageIcon ICON_FOLDER =
-            new ImageIcon("folder.gif");
-    static final ImageIcon ICON_EXPANDEDFOLDER =
-            new ImageIcon("expandedfolder.gif");
-
     private JTree mTree;
     private DefaultTreeModel mModel;
-    private JTextField mDisplay;
 
     /**
      * Constructor of the explorer.
@@ -64,14 +52,13 @@ public class Explorer extends JPanel {
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         setSize(width, height);
 
-        DefaultMutableTreeNode top = new DefaultMutableTreeNode(
-                new IconData(ICON_COMPUTER, null, "Computer"));
 
+        DefaultMutableTreeNode top = new DefaultMutableTreeNode(
+                new IconData("Computer"));
         DefaultMutableTreeNode node;
         File[] roots = File.listRoots();
         for (File root : roots) {
-            node = new DefaultMutableTreeNode(new IconData(ICON_DISK,
-                    null, new FileNode(root)));
+            node = new DefaultMutableTreeNode(new IconData(new FileNode(root)));
             top.add(node);
             node.add(new DefaultMutableTreeNode(Boolean.TRUE));
         }

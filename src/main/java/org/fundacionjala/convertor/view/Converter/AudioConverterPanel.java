@@ -70,7 +70,6 @@ public class AudioConverterPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int three = 3;
-        final int four = 4;
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
         this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
