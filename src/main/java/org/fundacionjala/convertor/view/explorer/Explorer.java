@@ -15,8 +15,11 @@
 
 package org.fundacionjala.convertor.view.explorer;
 
+import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -41,31 +44,36 @@ import java.io.File;
 public class Explorer extends JPanel {
     private JTree mTree;
     private DefaultTreeModel mModel;
+    private Style style;
 
     /**
      * Constructor of the explorer.
      */
     public Explorer() {
+        style = new Style();
         final int width = 200;
         final int height = 300;
-
         final Color orangeColor = new java.awt.Color(255, 51, 0);
-        setSize(width, height);
 
+        setSize(width, height);
 
         DefaultMutableTreeNode top = new DefaultMutableTreeNode(
                 new IconData("Computer"));
+
         DefaultMutableTreeNode node;
+
         File[] roots = File.listRoots();
         for (File root : roots) {
             node = new DefaultMutableTreeNode(new IconData(new FileNode(root)));
+
             top.add(node);
+
             node.add(new DefaultMutableTreeNode(Boolean.TRUE));
         }
 
         mModel = new DefaultTreeModel(top);
         mTree = new JTree(mModel);
-
+        mTree.setFont(style.getFont());
         mTree.putClientProperty("JTree.lineStyle", "Angled");
 
         mTree.setCellRenderer(new DefaultTreeCellRenderer());
@@ -81,8 +89,14 @@ public class Explorer extends JPanel {
         mTree.setShowsRootHandles(true);
         mTree.setEditable(false);
 
+        DefaultTreeCellRenderer iconos = (DefaultTreeCellRenderer) mTree.getCellRenderer();
+        iconos.setLeafIcon(new ImageIcon("Image\\folder.PNG"));
+        iconos.setOpenIcon(new ImageIcon("Image\\pc.PNG"));
+        iconos.setClosedIcon(new ImageIcon("Image\\folder.PNG"));
+
+
         final int explorerWidth = 200;
-        final int explorerHeight = 322;
+        final int explorerHeight = 280;
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
         s.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
