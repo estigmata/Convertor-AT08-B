@@ -15,9 +15,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * Class Media File Model Test.
  */
-public class MediaFileModelTest {
+public class SearchModelTest {
 
-    private MediaFileModel mediaFileModel;
+    private SearchModel searchModel;
     private Criteria basicCriteria;
     private ArrayList<Asset> fileList;
     static final String PATH = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder";
@@ -28,7 +28,7 @@ public class MediaFileModelTest {
      */
     @Before
     public void setUp() throws Exception {
-        mediaFileModel = new MediaFileModel();
+        searchModel = new SearchModel();
     }
 
     /**
@@ -41,7 +41,7 @@ public class MediaFileModelTest {
         basicCriteria = new Criteria();
         basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("");
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -56,6 +56,13 @@ public class MediaFileModelTest {
         basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("grb_2");
         fileList = mediaFileModel.searchFiles(basicCriteria);
+        for (Asset file :fileList) {
+            System.out.println(file.getPath());
+            System.out.println(file.getFileName());
+            System.out.println(file.getExtension());
+            System.out.println(file.getFileSize());
+            System.out.println(" ");
+        }
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -111,7 +118,7 @@ public class MediaFileModelTest {
         audioCriteria.setFileExtention("");
         audioCriteria.setFileSize(0);
         basicCriteria = audioCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -131,7 +138,7 @@ public class MediaFileModelTest {
         audioCriteria.setFileExtention("");
         audioCriteria.setFileSize(0);
         basicCriteria = audioCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -151,7 +158,7 @@ public class MediaFileModelTest {
         audioCriteria.setFileExtention("");
         audioCriteria.setFileSize(0);
         basicCriteria = audioCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -173,7 +180,7 @@ public class MediaFileModelTest {
         videoCriteria.setResolutionWith(0);
         videoCriteria.setVideoCodec("");
         basicCriteria = videoCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -195,7 +202,10 @@ public class MediaFileModelTest {
         videoCriteria.setResolutionWith(0);
         videoCriteria.setVideoCodec("");
         basicCriteria = videoCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
+        for (Asset file: fileList) {
+            System.out.println(file.getExtension());
+        }
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -218,7 +228,7 @@ public class MediaFileModelTest {
         videoCriteria.setResolutionWith(0);
         videoCriteria.setVideoCodec("");
         basicCriteria = videoCriteria;
-        fileList = mediaFileModel.searchFiles(basicCriteria);
+        fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());
     }
 
