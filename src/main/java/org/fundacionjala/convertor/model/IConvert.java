@@ -17,6 +17,8 @@ package org.fundacionjala.convertor.model;
 
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 
+import java.io.IOException;
+
 /**
  * Interface for the converter.
  *
@@ -27,7 +29,8 @@ public interface IConvert {
     /**
      * This method will do the conversion of a data.
      *
-     * @param criteria for convert.
+     * @param criteria The data to obtain the information.
+     * @throws IOException the exception if exist any trouble.
      */
-    void convertData(Criteria criteria);
+    void convertData(Criteria criteria) throws IOException;
 }

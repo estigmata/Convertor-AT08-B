@@ -1,5 +1,5 @@
 /*
- * @ConvertButton.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @ISearch.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -13,28 +13,27 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.view.buttonsresultpanel;
+package org.fundacionjala.convertor.model;
 
+import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 
-import javax.swing.JButton;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Class for convert the file in the dynamic panel.
+ * Interface for the finder of files.
  *
  * @author Rodrigo Menacho
  * @version 1.0
  */
-public class ConvertButton extends JButton {
+public interface ISearch {
     /**
-     * Constructor for the button for the conversion.
+     * This Method search all the fileList of a directory.
      *
-     * @param file input of the list.
+     * @param criteria Its the input parameter who contains all the information for the search.
+     * @return The Array list.
+     * @throws IOException Exception.
      */
-    public ConvertButton(final Asset file) {
-        this.setText("[Convert]");
-        this.addActionListener(x -> {
-//            System.out.println("Convert this:"+file.getPath()+"\\"+file.getFileName()+"."+file.getExtension());
-        });
-    }
+    ArrayList<Asset> searchFiles(Criteria criteria) throws IOException;
 }

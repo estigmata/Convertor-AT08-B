@@ -25,9 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 public class ConverterModel implements IConvert {
 
-    private FFmpeg ffmpeg;
-    private FFprobe ffprobe;
-
     private static final String FFMPEG_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffmpeg.exe";
     private static final String FFPROBE_PATH = "src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe";
     private static final int ONEHUNDRED = 100;
@@ -47,32 +44,21 @@ public class ConverterModel implements IConvert {
     /**
      * Method to convert multimedia files.
      *
-     * @param criteria object.
+     * @param criteria for convert.
+     * @throws IOException of FFmpeg search.
      */
-    public void convertData(final Criteria criteria) {
-        try {
-            ffmpeg = new FFmpeg(FFMPEG_PATH);
-            log.info("FFmpeg library initialize.");
-        } catch (Exception e) {
-            System.out.println(e);
-            log.error(e);
-        }
-        try {
-            ffprobe = new FFprobe(FFPROBE_PATH);
-            log.info("FFprobe library initialize.");
-        } catch (Exception e) {
-            System.out.println(e);
-            log.error(e);
-        }
+    public void convertData(final Criteria criteria) throws IOException {
+        FFmpeg ffmpeg = new FFmpeg(FFMPEG_PATH);
+        FFprobe ffprobe = new FFprobe(FFPROBE_PATH);
+
         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
         FFmpegProbeResult in = null;
 
         try {
+            log.info("FFmpeg library initialize.");
             in = ffprobe.probe(criteria.getInputPath());
-            log.info("Set ffprobe criteria");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error(e);
         }
         if (criteria instanceof ConvertCriteriaVideo) {
             convertVideo(criteria, in, executor);
@@ -82,8 +68,6 @@ public class ConverterModel implements IConvert {
             convertAudio(criteria, in, executor);
             log.info("Audio file converted");
         }
-
-
     }
 
     /**
@@ -97,35 +81,22 @@ public class ConverterModel implements IConvert {
                               final FFmpegExecutor executor) {
         ConvertCriteriaVideo convertCriteria = (ConvertCriteriaVideo) criteria;
         FFmpegBuilder builder;
-        if (convertCriteria.getFormat().equals("mp3")) {
-            builder = new FFmpegBuilder()
-                    .setInput(in)
-                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
-                            + "." + ((ConvertCriteriaVideo) criteria).getFormat())
-                    .disableVideo()
-                    .setAudioSampleRate(convertCriteria.getAudioSampleRate())
-                    .setAudioChannels(convertCriteria.getAudioChannels())
-                    .setAudioBitRate(convertCriteria.getAudioBitRate())
-                    .setFormat(convertCriteria.getFormat())
-                    .done();
-        } else {
-            builder = new FFmpegBuilder()
-                    .setInput(in)
-                    .overrideOutputFiles(true)
-                    .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
-                            + "." + ((ConvertCriteriaVideo) criteria).getFormat())
-                    .setFormat(convertCriteria.getFormat())
-                    .disableSubtitle()
-                    .setAudioChannels(convertCriteria.getAudioChannels())
-                    .setAudioCodec(convertCriteria.getAudioCodec())
-                    .setAudioSampleRate(convertCriteria.getAudioSampleRate())
-                    .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
-                    .setVideoCodec(convertCriteria.getVideoCodec())
-                    .setVideoFrameRate(convertCriteria.getFrameRate(), 1)
-                    .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
-                    .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
-                    .done();
-        }
+        builder = new FFmpegBuilder()
+                .setInput(in)
+                .overrideOutputFiles(true)
+                .addOutput(convertCriteria.getOutputPath() + "\\" + convertCriteria.getFileName()
+                        + "." + ((ConvertCriteriaVideo) criteria).getFormat())
+                .setFormat(convertCriteria.getFormat())
+                .disableSubtitle()
+                .setAudioChannels(convertCriteria.getAudioChannels())
+                .setAudioCodec(convertCriteria.getAudioCodec())
+                .setAudioSampleRate(convertCriteria.getAudioSampleRate())
+                .setAudioBitRate(convertCriteria.getAudioBitRate() * BYTETOKB)
+                .setVideoCodec(convertCriteria.getVideoCodec())
+                .setVideoFrameRate(convertCriteria.getFrameRate(), 1)
+                .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
+                .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
+                .done();
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input

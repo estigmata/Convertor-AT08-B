@@ -1,5 +1,5 @@
 /*
- * @MediaFileModel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @SearchModel.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -18,7 +18,6 @@ package org.fundacionjala.convertor.model;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
-import org.apache.tika.Tika;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.AdvancedCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
@@ -28,6 +27,7 @@ import org.fundacionjala.convertor.model.objectfile.AudioFileAsset;
 import org.fundacionjala.convertor.model.objectfile.VideoFileAsset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Util;
+import org.fundacionjala.convertor.utils.Validator;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,10 +39,11 @@ import java.util.List;
 /**
  * This class is part of the model in which fileList are searched from a path.
  *
- * @author Abel Gustavo Mallcu Chiri
+ * @author Abel Gustavo Mallcu Chiri.
+ * @author Rodrigo Menacho.
  * @version 1.0
  */
-public class MediaFileModel {
+public class SearchModel implements ISearch {
     private FFprobe ffprobe = new FFprobe("src\\thirdparty\\ffmpeg\\bin\\ffprobe.exe");
     private AssetFactory assetFactory;
 
@@ -52,14 +53,17 @@ public class MediaFileModel {
 
     public static AbstractLogger log = AbstractLogger.getInstance();
 
+    private Validator validator;
+
     /**
      * Constructor for extract the files.
      *
      * @throws IOException because the Path.
      */
-    public MediaFileModel() throws IOException {
+    public SearchModel() throws IOException {
         assetFactory = new AssetFactory();
-        log.setLogger(MediaFileModel.class.getName());
+        validator = new Validator();
+        log.setLogger(SearchModel.class.getName());
         log.info("Media file model.");
     }
 
@@ -116,7 +120,7 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
 //                VIDEO ADVANCED SEARCH
-                .filter(this::isVideo)
+                .filter(x -> validator.isVideo(x))
 //                Frame Rate
                 .filter(x -> {
                     if (criteria.getFrameRate().isEmpty()) {
@@ -202,7 +206,7 @@ public class MediaFileModel {
                 .filter(x -> criteria.getFileSize() == 0
                         || isMinorSize(x, criteria.getFileSize()))
                 //                AUDIO ADVANCED SEARCH
-                .filter(this::isAudio)
+                .filter(x -> validator.isAudio(x))
 //        CHANNEL
                 .filter(x -> {
                     FFmpegStream stream = getStreamFFprobe(x).get(0);
@@ -257,7 +261,6 @@ public class MediaFileModel {
      * @return The audio Stream.
      */
     private FFmpegStream getStreamAudio(final List<FFmpegStream> list) {
-        log.info("Get steam audio.");
         if (list.size() > 1) {
             return String.valueOf(list.get(0).codec_type).equals("AUDIO") ? list.get(0) : list.get(1);
         }
@@ -298,37 +301,5 @@ public class MediaFileModel {
             log.error(e);
         }
         return false;
-    }
-
-    /**
-     * This method ask if the path is video file.
-     *
-     * @param x input path.
-     * @return if is video.
-     */
-    private boolean isVideo(final Path x) {
-        String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            log.info("Cannot get file type.");
-            return false;
-        }
-        log.info("File video type returned.");
-        return type.contains("video");
-    }
-
-    /**
-     * This method ask if the path is video file.
-     *
-     * @param x input path.
-     * @return if is video.
-     */
-    private boolean isAudio(final Path x) {
-        String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            log.info("Cannot get file type.");
-            return false;
-        }
-        log.info("File audio type returned.");
-        return type.contains("audio");
     }
 }

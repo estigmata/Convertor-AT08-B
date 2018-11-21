@@ -15,6 +15,8 @@
 package org.fundacionjala.convertor.view.finder;
 
 
+import org.fundacionjala.convertor.utils.Style;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,14 +44,16 @@ public class VideoSearchPanel extends JPanel {
     private JLabel labelResolution;
     private JLabel labelVideoCodec;
     private JLabel labelAudioCodec;
-
     private JPanel container;
+
+    private Style style;
 
 
     /**
      *
      */
     public VideoSearchPanel() {
+        style = new Style();
 
         frameRate = new JComboBox<>(new String[]{"", "0", "24", "25", "27", "29", "30", "60"});
         aspectRatio = new JComboBox<>(new String[]{"", "4:3", "16:9", "16:10"});
@@ -64,6 +68,18 @@ public class VideoSearchPanel extends JPanel {
         labelResolution = new JLabel("Resolution :");
         labelVideoCodec = new JLabel("Video Codec :");
         labelAudioCodec = new JLabel("Audio Codec :");
+
+
+        frameRate.setFont(style.getFont());
+        aspectRatio.setFont(style.getFont());
+        resolution.setFont(style.getFont());
+        videoCodec.setFont(style.getFont());
+        audioCodec.setFont(style.getFont());
+        labelFrameRate.setFont(style.getFont());
+        labelAspectRatio.setFont(style.getFont());
+        labelResolution.setFont(style.getFont());
+        labelVideoCodec.setFont(style.getFont());
+        labelAudioCodec.setFont(style.getFont());
 
         container = new JPanel(new GridBagLayout());
         this.setBackground(Color.WHITE);

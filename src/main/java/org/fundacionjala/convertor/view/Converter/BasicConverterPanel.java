@@ -14,6 +14,7 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
+import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.BrowseChooser;
 
 import javax.swing.JButton;
@@ -39,25 +40,31 @@ import java.awt.Insets;
 public class BasicConverterPanel extends JPanel {
 
     private JPanel container;
-    private JButton btnConverter;
+    private static JButton btnConverter;
     private static JTextField outputPath;
     private static JTextField outputFileName;
     private static JTextField currentPath;
     private BrowseChooser browseChooser;
-    protected JComboBox<String> multimediaBox;
+    private static JComboBox<String> multimediaBox;
     private JLabel labelOutPath;
     private JLabel labelOutputName;
     private JLabel labelCurrentPath;
     private JLabel labelMultimediaBox;
+    private Style style;
 
     /**
      * Constructor.
      */
     public BasicConverterPanel() {
+        style = new Style();
         final int ten = 10;
+
         outputPath = new JTextField("");
         outputPath.setColumns(ten);
         btnConverter = new JButton("Converter");
+        btnConverter.setBackground(Color.WHITE);
+        btnConverter.setIcon(new javax.swing.ImageIcon("Image\\converter.PNG"));
+
         outputFileName = new JTextField();
         outputFileName.setColumns(ten);
         currentPath = new JTextField();
@@ -72,6 +79,19 @@ public class BasicConverterPanel extends JPanel {
         labelCurrentPath = new JLabel("Current Path :");
         labelMultimediaBox = new JLabel("Multimedia :");
 
+
+        btnConverter.setFont(style.getFont());
+        outputPath.setFont(style.getFont());
+        outputFileName.setFont(style.getFont());
+        currentPath.setFont(style.getFont());
+        browseChooser.setFont(style.getFont());
+        multimediaBox.setFont(style.getFont());
+        labelOutPath.setFont(style.getFont());
+        labelOutputName.setFont(style.getFont());
+        labelCurrentPath.setFont(style.getFont());
+        labelMultimediaBox.setFont(style.getFont());
+
+
         container = new JPanel(new GridBagLayout());
         initComponents();
     }
@@ -85,7 +105,6 @@ public class BasicConverterPanel extends JPanel {
         final int two = 2;
         final int tree = 3;
         final int four = 4;
-        final int six = 6;
 
         this.setBackground(Color.WHITE);
         container.setBackground(Color.WHITE);
@@ -128,7 +147,7 @@ public class BasicConverterPanel extends JPanel {
         container.add(outputPath, bagConstraints);
         bagConstraints.gridx = two;
         bagConstraints.gridy = tree;
-        container.add(browseChooser, bagConstraints);
+         container.add(browseChooser, bagConstraints);
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
@@ -139,8 +158,8 @@ public class BasicConverterPanel extends JPanel {
         bagConstraints.gridy = four;
         container.add(multimediaBox, bagConstraints);
 
-        bagConstraints.gridx = one;
-        bagConstraints.gridy = six;
+        bagConstraints.gridx = two;
+        bagConstraints.gridy = four;
         container.add(btnConverter, bagConstraints);
         this.add(container);
     }
@@ -150,7 +169,7 @@ public class BasicConverterPanel extends JPanel {
      *
      * @return JButton.
      */
-    public JButton getConverterButton() {
+    public static JButton getConverterButton() {
         return btnConverter;
     }
 
@@ -195,7 +214,7 @@ public class BasicConverterPanel extends JPanel {
      *
      * @return the JComboBox.
      */
-    public JComboBox<String> getMultimediaBox() {
+    public static JComboBox<String> getMultimediaBox() {
         return multimediaBox;
     }
 

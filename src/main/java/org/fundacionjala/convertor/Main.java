@@ -16,7 +16,7 @@
 package org.fundacionjala.convertor;
 
 import com.sun.jna.NativeLibrary;
-import org.fundacionjala.convertor.controller.SearchController;
+import org.fundacionjala.convertor.controller.Controller;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.runtime.RuntimeUtil;
@@ -30,27 +30,25 @@ import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 public final class Main {
     private static final String NATIVE_LIBRARY_VLC_PATH = "src/thirdparty/vlc";
 
-    public static AbstractLogger log = AbstractLogger.getInstance();
+  /**
+   * Constructor not called.
+   */
+  private Main() {
+  }
 
-    /**
-     * Constructor not called.
-     */
-    private Main() {
-    }
-
-    /**
-     * Main method.
-     *
-     * @param args type array of String.
-     */
-    public static void main(final String[] args) {
-        log.setLogger(Main.class.getName());
-        log.info("Path VLC Library: " + NATIVE_LIBRARY_VLC_PATH);
-        NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), NATIVE_LIBRARY_VLC_PATH);
-        log.info("Library VLC loaded");
-        new NativeDiscovery().discover();
-        SearchController controller = new SearchController();
-        controller.actionSearch();
-    }
+  /**
+   * Main method.
+   *
+   * @param args type array of String.
+   */
+  public static void main(final String[] args) {
+    log.setLogger(Controller.class.getName());
+    log.info("Path VLC Library: " + NATIVE_LIBRARY_VLC_PATH);
+    NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), NATIVE_LIBRARY_VLC_PATH);
+    log.info("Library VLC loaded");
+    new NativeDiscovery().discover();
+    Controller controller = new Controller();
+    controller.actionSearch();
+  }
 
 }

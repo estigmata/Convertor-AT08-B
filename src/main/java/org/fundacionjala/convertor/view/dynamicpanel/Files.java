@@ -16,16 +16,19 @@
 package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.model.objectfile.Asset;
+import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.MediaPlayerPanel;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.nio.file.Paths;
 
 /**
  * This class its the personal panel for each file and uses Mouse Listener for update the information in the
@@ -40,6 +43,8 @@ public class Files extends JPanel implements MouseListener {
     private Border borderSelected = BorderFactory.createLineBorder(orangeColor);
     private Boolean isHighLighted;
     private Asset file;
+    private Validator validator;
+    private String absoutePath;
 
     /**
      * The constructor who start the panel.
@@ -47,11 +52,13 @@ public class Files extends JPanel implements MouseListener {
      * @param file input.
      */
     Files(final Asset file) {
+        validator = new Validator();
         addMouseListener(this);
         setFocusable(true);
         isHighLighted = false;
         this.file = file;
         this.setBackground(Color.white);
+        absoutePath = file.getPath() + "\\" + file.getFileName() + "." + file.getExtension();
 
     }
 
@@ -63,11 +70,25 @@ public class Files extends JPanel implements MouseListener {
             setBorder(borderSelected);
         }
         isHighLighted = !isHighLighted;
-        MediaPlayerPanel.setFilePath(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
+        MediaPlayerPanel.setFilePath(absoutePath);
         Information.setInformation(file);
         BasicConverterPanel.setOutputFileName(file.getFileName());
-        BasicConverterPanel.setPathSource(file.getPath() + "\\" + file.getFileName() + "." + file.getExtension());
+        BasicConverterPanel.setPathSource(absoutePath);
         BasicConverterPanel.setPathDestination(file.getPath());
+
+        if (validator.isVideo(Paths.get(absoutePath))) {
+            BasicConverterPanel.getConverterButton().setVisible(true);
+            String[] items = {"Video", "Audio"};
+            BasicConverterPanel.getMultimediaBox().setModel(new DefaultComboBoxModel<>(items));
+        }
+        if (validator.isAudio(Paths.get(absoutePath))) {
+            BasicConverterPanel.getConverterButton().setVisible(true);
+            String[] items = {"Audio"};
+            BasicConverterPanel.getMultimediaBox().setModel(new DefaultComboBoxModel<>(items));
+        }
+        if (!validator.isVideo(Paths.get(absoutePath)) && !validator.isAudio(Paths.get(absoutePath))) {
+            BasicConverterPanel.getConverterButton().setVisible(false);
+        }
     }
 
     @Override

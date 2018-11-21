@@ -35,8 +35,6 @@ import java.awt.Dimension;
  * @version 1.0
  */
 public final class Viewer extends JFrame {
-
-
     private TitlePanel titlePanel;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
@@ -50,7 +48,6 @@ public final class Viewer extends JFrame {
         log.setLogger(Viewer.class.getName());
         log.info("Set Viewer");
         this.setIconImage(new javax.swing.ImageIcon("Image\\monkey2.PNG").getImage());
-
     }
 
     /**
@@ -58,18 +55,15 @@ public final class Viewer extends JFrame {
      */
     public void configWindow() {
         final int widthAll = 800;
-        final int heightAll = 800;
-
-
+        final int heightAll = 620;
+        final int heightMin = 650;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setSize(new Dimension(widthAll, heightAll));
+        this.setMinimumSize(new Dimension(widthAll, heightMin));
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setBackground(Color.BLACK);
-
-
     }
 
     /**
@@ -77,15 +71,14 @@ public final class Viewer extends JFrame {
      */
     public void initComponents() {
         final int width = 800;
-        final int heigth1 = 50;
-        final int heigth2 = 300;
-        final int heigth3 = 200;
+        final int heigth1 = 25;
+        final int heigth2 = 250;
+        final int heigth3 = 320;
         Container principalPane = this.getContentPane();
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
         titlePanel = new TitlePanel();
         titlePanel.setSize(new Dimension(width, heigth1));
-
         principalPane.add(titlePanel);
 
         upperPanel = new UpperPanel();

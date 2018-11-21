@@ -14,13 +14,16 @@
  */
 package org.fundacionjala.convertor.view.Converter;
 
+import org.fundacionjala.convertor.utils.Style;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
+
 
 /**
  * Class FinderPanel.
@@ -30,16 +33,29 @@ import java.awt.Label;
  */
 public class ProgressBarPanel extends JPanel {
 
+
     private static JProgressBar status;
+    private static JLabel statusLabel;
     private static final int ONEHUNDRED = 100;
+    private Style style;
+
 
     /**
      * Constructor.
      */
     public ProgressBarPanel() {
+        style = new Style();
+
         status = new JProgressBar();
+        status.setFont(style.getFont());
         status.setMinimum(0);
+
         status.setMaximum(ONEHUNDRED);
+
+        statusLabel = new JLabel();
+        statusLabel.setText("Status");
+        statusLabel.setFont(style.getFont());
+
         initComponents();
     }
 
@@ -48,6 +64,7 @@ public class ProgressBarPanel extends JPanel {
      * init components
      */
     public void initComponents() {
+
         final int one = 1;
 
         final Font font = new java.awt.Font("Tahoma", 0, 11);
@@ -64,7 +81,7 @@ public class ProgressBarPanel extends JPanel {
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        this.add(new Label("Status"), bagConstraints);
+        this.add(statusLabel, bagConstraints);
 
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;

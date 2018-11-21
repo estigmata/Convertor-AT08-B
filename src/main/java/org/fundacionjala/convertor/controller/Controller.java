@@ -1,5 +1,5 @@
 /*
- * @SearchController.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
+ * @Controller.java Copyright (c) 2018 Fundacion Jala. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -23,10 +23,11 @@ import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.model.Criteria.CriteriaFactory;
-import org.fundacionjala.convertor.model.MediaFileModel;
+import org.fundacionjala.convertor.model.SearchModel;
 import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
 import org.fundacionjala.convertor.view.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
@@ -40,11 +41,11 @@ import java.util.ArrayList;
  *
  * @author Roger alvarez.
  */
-public class SearchController {
+public class Controller {
     /**
      * The model of this Convertor.
      */
-    private MediaFileModel mediaFileModel;
+    private SearchModel searchModel;
     private ConverterModel converterModel;
     /**
      * The view of this Convertor.
@@ -66,10 +67,10 @@ public class SearchController {
     /**
      * Constructor.
      */
-    public SearchController() {
-        log.setLogger(SearchController.class.getName());
-        try {
-            this.mediaFileModel = new MediaFileModel();
+    public Controller() {
+        log.setLogger(Controller.class.getName());
+    try {
+            this.searchModel = new SearchModel();
             this.converterModel = new ConverterModel();
             log.info("Create media file model and converter model.");
         } catch (IOException e) {
@@ -104,8 +105,7 @@ public class SearchController {
             }
         });
 
-        viewer.getDownPanel().getConverterPanel()
-                .getBasicConverterPanel().getConverterButton().addActionListener(e -> {
+        BasicConverterPanel.getConverterButton().addActionListener(e -> {
 
             try {
                 convertFile();
@@ -130,7 +130,7 @@ public class SearchController {
             criteria.setInputPath(viewer.getPath());
             criteria.setFileName(viewer.getFileName());
             criteria.setFileSize(viewer.getSizeField().isEmpty() ? 0 : Long.parseLong(viewer.getSizeField()));
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
             log.info("Show all files.");
         }
         if (viewer.getComboMultimedia().getSelectedItem().equals(AUDIO)) {
@@ -143,7 +143,7 @@ public class SearchController {
             String aux = viewer.getUpperPanel().getSearchPanel().getAudioSearchPanel()
                     .getChannel().getSelectedItem().toString();
             criteria.setChannels(aux.isEmpty() ? 0 : Integer.parseInt(aux));
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
             log.info("Show audio files.");
         }
 
@@ -164,7 +164,7 @@ public class SearchController {
             criteria.setResolutionHeight(resolution[0].isEmpty() ? 0 : Integer.parseInt(resolution[1]));
             criteria.setVideoCodec(viewer.getUpperPanel().getSearchPanel().getVideoSearchPanel()
                     .getVideoCodec().getSelectedItem().toString());
-            showFilesInTable(mediaFileModel.searchFiles(criteria));
+            showFilesInTable(searchModel.searchFiles(criteria));
             log.info("Show video files.");
         }
     }
@@ -188,7 +188,7 @@ public class SearchController {
 
     public void convertFile() throws IOException {
         Criteria basicCriteria = new Criteria();
-        if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
+        if (BasicConverterPanel
                 .getMultimediaBox().getSelectedItem().equals(VIDEO)) {
             ConvertCriteriaVideo convertVideoCriteria = new ConvertCriteriaVideo();
             convertVideoCriteria.setInputPath(viewer.getDownPanel().getConverterPanel()
@@ -256,7 +256,7 @@ public class SearchController {
             basicCriteria = convertVideoCriteria;
             log.info("Get basic criteria to converter video file.");
         }
-        if (viewer.getDownPanel().getConverterPanel().getBasicConverterPanel()
+        if (BasicConverterPanel
                 .getMultimediaBox().getSelectedItem().equals(AUDIO)) {
             ConvertCriteriaAudio convertAudioCriteria = new ConvertCriteriaAudio();
             convertAudioCriteria.setInputPath(viewer.getDownPanel().getConverterPanel()

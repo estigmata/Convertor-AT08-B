@@ -15,6 +15,8 @@
 package org.fundacionjala.convertor.view.finder;
 
 
+import org.fundacionjala.convertor.utils.Style;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,18 +38,25 @@ public class AudioSearchPanel extends JPanel {
     private JComboBox<String> audioCodec;
     private JLabel labelChannel;
     private JLabel labelAudioCodec;
-
     private JPanel container;
+    private Style style;
 
     /**
      * Constructor.
      */
     public AudioSearchPanel() {
+        style = new Style();
+
         audioCodec = new JComboBox<>(new String[]{"", "MP3", "WMAV2", "AAC", "PCM_S16LE"});
         channel = new JComboBox<>(new String[]{"", "1", "2", "3"});
-
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("Audio Codec :");
+
+
+        audioCodec.setFont(style.getFont());
+        channel.setFont(style.getFont());
+        labelChannel.setFont(style.getFont());
+        labelAudioCodec.setFont(style.getFont());
 
         container = new JPanel(new GridBagLayout());
         initComponents();
@@ -57,6 +66,8 @@ public class AudioSearchPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
+
+
         final int one = 1;
         final int two = 2;
         final int tree = 3;
