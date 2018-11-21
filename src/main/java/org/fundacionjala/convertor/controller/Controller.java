@@ -100,11 +100,14 @@ public class Controller {
         });
 
         BasicConverterPanel.getConverterButton().addActionListener(e -> {
-
-            try {
-                convertFile();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            if (validator.isPath(viewer.getPath())) {
+                try {
+                    convertFile();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            } else {
+                new ErrorMessage("Isn't a valid path!!!");
             }
         });
     }
