@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Class Media File Model Test.
+ * Unit tests to verify a search of files by different criteria.
  */
 public class SearchModelTest {
 
@@ -23,8 +24,8 @@ public class SearchModelTest {
     static final String PATH = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder";
 
     /**
-     * Unit Test.
-     * @throws Exception .
+     * Setup.
+     * @throws Exception exception..
      */
     @Before
     public void setUp() throws Exception {
@@ -56,13 +57,6 @@ public class SearchModelTest {
         basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("grb_2");
         fileList = searchModel.searchFiles(basicCriteria);
-        for (Asset file :fileList) {
-            System.out.println(file.getPath());
-            System.out.println(file.getFileName());
-            System.out.println(file.getExtension());
-            System.out.println(file.getFileSize());
-            System.out.println(" ");
-        }
         assertEquals(numberFiles, fileList.size());
     }
 
@@ -203,15 +197,12 @@ public class SearchModelTest {
         videoCriteria.setVideoCodec("");
         basicCriteria = videoCriteria;
         fileList = searchModel.searchFiles(basicCriteria);
-        for (Asset file: fileList) {
-            System.out.println(file.getExtension());
-        }
         assertEquals(numberFiles, fileList.size());
     }
 
     /**
      * Unit test to verify that the application finds 11 video files that have a size smaller than 1000000 bytes.
-     * @throws IOException .
+     * @throws IOException exception.
      */
     @Test
     public void searchVideoBySize() throws IOException {
@@ -227,6 +218,118 @@ public class SearchModelTest {
         videoCriteria.setResolutionHeight(0);
         videoCriteria.setResolutionWith(0);
         videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = searchModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 4 video files whose aspect ratio is 16:9.
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByAspectRatio() throws IOException {
+        final int numberFiles = 4;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("16:9");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = searchModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 6 files whose audio codec is "AAC".
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByAudioCodec() throws IOException {
+        final int numberFiles = 6;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("AAC");
+        videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = searchModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 5 video files that have a frame rate equal to 30.
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByFrameRate() throws IOException {
+        final int numberFiles = 5;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("30");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = searchModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 3 video files whose resolution is "1280 * 720".
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByResolution() throws IOException {
+        final int numberFiles = 3;
+        final int height = 1280;
+        final int with = 720;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(with);
+        videoCriteria.setResolutionWith(height);
+        videoCriteria.setVideoCodec("");
+        basicCriteria = videoCriteria;
+        fileList = searchModel.searchFiles(basicCriteria);
+        assertEquals(numberFiles, fileList.size());
+    }
+
+    /**
+     * Unit test to verify that the application finds 10 video files whose audio codec is "H264".
+     * @throws IOException exception.
+     */
+    @Test
+    public void searchVideoByVideoCodec() throws IOException {
+        final int numberFiles = 10;
+        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
+        videoCriteria.setInputPath(PATH);
+        videoCriteria.setFileName("");
+        videoCriteria.setFileSize(0);
+        videoCriteria.setAspectRatio("");
+        videoCriteria.setAudioCodec("");
+        videoCriteria.setFrameRate("");
+        videoCriteria.setResolutionHeight(0);
+        videoCriteria.setResolutionWith(0);
+        videoCriteria.setVideoCodec("H264");
         basicCriteria = videoCriteria;
         fileList = searchModel.searchFiles(basicCriteria);
         assertEquals(numberFiles, fileList.size());

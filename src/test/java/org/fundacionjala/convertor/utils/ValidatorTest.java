@@ -18,8 +18,12 @@ package org.fundacionjala.convertor.utils;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+
 /**
  * Unit Test for the Validator class.
  * @author Roger alvarez.
@@ -28,6 +32,7 @@ import static org.junit.Assert.assertFalse;
 public class ValidatorTest {
 
     private Validator validator;
+
     /**
      * SETUP.
      *
@@ -36,6 +41,7 @@ public class ValidatorTest {
     public void setUp() {
         validator = new Validator();
     }
+
     /**
      * Test1.
      * Method: isString().
@@ -47,6 +53,7 @@ public class ValidatorTest {
         String actualValue = "Hello 123o bye.";
         assertTrue(validator.isString(actualValue));
     }
+
     /**
      * Test2.
      * Method: isString().
@@ -58,6 +65,7 @@ public class ValidatorTest {
         final int actualValue = 123;
         assertFalse(validator.isString(actualValue));
     }
+
     /**
      * Test3.
      * Method: isString().
@@ -69,6 +77,7 @@ public class ValidatorTest {
         char actualValue = 'a';
         assertFalse(validator.isString(actualValue));
     }
+
     /**
      * Test4.
      * Method: isString().
@@ -80,6 +89,7 @@ public class ValidatorTest {
         String[] actualValue = {"asd", "123", "q123"};
         assertFalse(validator.isString(actualValue));
     }
+
     /**
      * Test5.
      * Method: isInt().
@@ -91,6 +101,7 @@ public class ValidatorTest {
         String actualValue = "123456789";
         assertTrue(validator.isInt(actualValue));
     }
+
     /**
      * Test6.
      * Method: isInt().
@@ -102,6 +113,7 @@ public class ValidatorTest {
         String actualValue = "a23456789";
         assertFalse(validator.isInt(actualValue));
     }
+
     /**
      * Test7.
      * Method: isPath().
@@ -113,6 +125,7 @@ public class ValidatorTest {
         String actualValue = "C:\\Users\\Admin\\Desktop\\AUDIOS_INGLES";
         assertTrue(validator.isPath(actualValue));
     }
+
     /**
      * Test8.
      * Method: isPath().
@@ -125,4 +138,87 @@ public class ValidatorTest {
         assertFalse(validator.isPath(actualValue));
     }
 
+    /**
+     * Test9.
+     * Method: isVideo().
+     * Unit tests to verify that an .avi file is a video file.
+     *
+     */
+    @Test
+    public void testIsVideoVideoFileAviTrue() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\grb_2.avi";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isVideo(path);
+        assertTrue(actualValue);
+    }
+
+    /**
+     * Test10.
+     * Method: isVideo().
+     * Unit tests to verify that an .txt file is not a video file.
+     *
+     */
+    @Test
+    public void testIsVideoTextFileFalse() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\Down Examples.txt";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isVideo(path);
+        assertFalse(actualValue);
+    }
+
+    /**
+     * Test11.
+     * Method: isVideo().
+     * Unit tests to verify that an .aac audio file is not a video file.
+     *
+     */
+    @Test
+    public void testIsVideoAudioFileAacFalse() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\out.aac";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isVideo(path);
+        assertFalse(actualValue);
+    }
+
+    /**
+     * Test12.
+     * Method: isVideo().
+     * Unit tests to verify that an .mp3 file is a audio file.
+     *
+     */
+    @Test
+    public void testIsAudioMp3FileTrue() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\out.mp3";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isAudio(path);
+        assertTrue(actualValue);
+    }
+
+    /**
+     * Test13.
+     * Method: isVideo().
+     * Unit tests to verify that an .mpeg file is a not audio file.
+     *
+     */
+    @Test
+    public void testIsAudioVideoFileMpegFalse() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\grb_2.mpeg";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isAudio(path);
+        assertFalse(actualValue);
+    }
+
+    /**
+     * Test14.
+     * Method: isVideo().
+     * Unit tests to verify that an .mpeg file is not a audio file.
+     *
+     */
+    @Test
+    public void testIsAudioTextFileFalse() {
+        String filePath = "src\\test\\java\\org\\fundacionjala\\convertor\\testFolder\\Down Examples.txt";
+        Path path = Paths.get(filePath);
+        boolean actualValue = validator.isAudio(path);
+        assertFalse(actualValue);
+    }
 }
