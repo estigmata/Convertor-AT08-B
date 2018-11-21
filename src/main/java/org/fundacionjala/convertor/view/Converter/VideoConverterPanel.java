@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.view.Converter;
 
 import org.fundacionjala.convertor.utils.Style;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,12 +64,12 @@ public class VideoConverterPanel extends JPanel {
     public VideoConverterPanel() {
         style = new Style();
         frameRate = new JComboBox<>(new String[]{"24", "25", "27", "29", "30", "60"});
-        aspectRatio = new JComboBox<>(new String[]{"4:3", "12:5", "12:7", "17:9", "13:10"});
+        aspectRatio = new JComboBox<>(new String[]{"4:3", "16:9", "16:10"});
         resolution = new JComboBox<>(new String[]{"640*480", "320*240", "600*350", "624*480",
                 "740*480", "1280*720", "1920*1080", "2048*1080", "3840*2160", "4096*2160"});
         videoCodec = new JComboBox<>(new String[]{"libx264"});
         audioCodec = new JComboBox<>(new String[]{"aac", "mp2"});
-        format = new JComboBox<>(new String[]{"avi", "mp4", "mpeg", "flv", "mp3"});
+        format = new JComboBox<>(new String[]{"avi", "mp4", "mpeg", "flv"});
         audioSampleRate = new JComboBox<>(new String[]{"22050", "44100", "48000"});
         audioBitRate = new JComboBox<>(new String[]{"32", "96", "128", "192", "256", "320"});
         audioChannels = new JComboBox<>(new String[]{"1", "2"});
@@ -103,7 +104,25 @@ public class VideoConverterPanel extends JPanel {
         labelBitRate.setFont(style.getFont());
         labelAudioChannels.setFont(style.getFont());
 
+        aspectRatio.addActionListener(x -> {
+            String ratio = (String) aspectRatio.getSelectedItem();
+            if (ratio.equals("4:3")) {
+                String[] resolutionItem = {"320*240", "640*480", "800*600", "960*720", "1024*768", "1280*960",
+                        "1400*1050", "1440*1080", "1600*1200", "1856*1392", "1920*1440", "2048*1536"};
+                resolution.setModel(new DefaultComboBoxModel<>(resolutionItem));
+            }
+            if (ratio.equals("16:9")) {
+                String[] resolutionItem = {"1024*576", "1152*648", "1280*720", "1366*768", "1600*900",
+                        "1920*1080", "2560*1440", "3840*2160"};
+                resolution.setModel(new DefaultComboBoxModel<>(resolutionItem));
+            }
 
+            if (ratio.equals("16:10")) {
+                String[] resolutionItem = {"1280*800", "1440*900", "1680*1050", "1920*1200", "2560*1600"};
+                resolution.setModel(new DefaultComboBoxModel<>(resolutionItem));
+            }
+
+        });
         initComponents();
     }
 

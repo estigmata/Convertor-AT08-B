@@ -16,7 +16,6 @@
 package org.fundacionjala.convertor.utils;
 
 
-
 import org.apache.tika.Tika;
 
 import java.nio.file.Path;
@@ -35,7 +34,7 @@ public class Validator {
      * @return Value of return of String Type.     *
      */
     public boolean isString(final Object obj) {
-        return obj.equals(obj.toString()) ? true : false;
+        return obj.equals(obj.toString());
     }
 
     /**
@@ -63,8 +62,8 @@ public class Validator {
      * @return Value of return of String Type.
      */
     public boolean isPath(final String path) {
-        String regularExpression = "(?:[a-zA-Z]\\:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+";
-        return Pattern.matches(regularExpression, path) ? true : false;
+        String regularExpression = "(?:[a-zA-Z]:)\\\\([\\w-]+\\\\)*\\w([\\w-.])+";
+        return Pattern.matches(regularExpression, path);
     }
 
     /**
@@ -75,9 +74,6 @@ public class Validator {
      */
     public boolean isVideo(final Path x) {
         String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            return false;
-        }
         return type.contains("video");
     }
 
@@ -89,9 +85,6 @@ public class Validator {
      */
     public boolean isAudio(final Path x) {
         String type = new Tika().detect(x.toFile().getAbsolutePath());
-        if (type == null) {
-            return false;
-        }
         return type.contains("audio");
     }
 }
