@@ -30,7 +30,7 @@ public class ConverterModel implements IConvert {
     private static final int ONEHUNDRED = 100;
     private static final int BYTETOKB = 1024;
 
-    public static AbstractLogger log = AbstractLogger.getInstance();
+    private static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
      * Constructor.

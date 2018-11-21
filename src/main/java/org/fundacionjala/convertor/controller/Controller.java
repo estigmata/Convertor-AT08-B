@@ -62,7 +62,7 @@ public class Controller {
 
     private CriteriaFactory criteriaFactory;
 
-    public static AbstractLogger log = AbstractLogger.getInstance();
+    private static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
      * Constructor.
