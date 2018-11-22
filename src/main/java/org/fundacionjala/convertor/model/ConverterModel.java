@@ -14,6 +14,7 @@ import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.view.messages.CompletedMessage;
 import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
+import org.fundacionjala.convertor.view.messages.ErrorMessage;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  * Class Converter Model.
  * convert multimedia files.
  */
+@SuppressWarnings("PMD")
 
 public class ConverterModel implements IConvert {
 
@@ -99,6 +101,7 @@ public class ConverterModel implements IConvert {
                 .setVideoResolution(convertCriteria.getResolutionWith(), convertCriteria.getResolutionHeight())
                 .setStrict(FFmpegBuilder.Strict.EXPERIMENTAL)
                 .done();
+        log.info("FFmpegbuilder set data.");
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input
@@ -111,9 +114,19 @@ public class ConverterModel implements IConvert {
                 ProgressBarPanel.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
-        job.run();
+        try {
+            job.run();
+            log.info("Run conversion job");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error(e);
+        }
+        if (job.getState() == FFmpegJob.State.FAILED) {
+            new ErrorMessage("Maybe exists incorrect parameters for the current video codec");
+        }
         if (job.getState() == FFmpegJob.State.FINISHED) {
             new CompletedMessage("Conversion Completed");
+            log.info("Conversion Completed");
         }
     }
 
@@ -146,7 +159,7 @@ public class ConverterModel implements IConvert {
                             + "." + convertCriteria.getFormat())
                     .done();
         }
-
+        log.info("FFmpegbuilder set data.");
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
 
             // Using the FFmpegProbeResult determine the duration of the input
@@ -160,10 +173,19 @@ public class ConverterModel implements IConvert {
                 ProgressBarPanel.setValue1((int) (percentage * ONEHUNDRED));
             }
         });
-        job.run();
-
+        try {
+            job.run();
+            log.info("Run conversion job");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error(e);
+        }
+        if (job.getState() == FFmpegJob.State.FAILED) {
+            new ErrorMessage("Maybe exists incorrect parameters for the current audio codec");
+        }
         if (job.getState() == FFmpegJob.State.FINISHED) {
             new CompletedMessage("Conversion Completed");
+            log.info("Conversion Completed");
         }
     }
 }
