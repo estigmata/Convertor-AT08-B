@@ -16,9 +16,11 @@ package org.fundacionjala.convertor.view.Converter;
 
 import org.fundacionjala.convertor.utils.Style;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -49,6 +51,7 @@ public class ProgressBarPanel extends JPanel {
         status = new JProgressBar();
         status.setFont(style.getFont());
         status.setMinimum(0);
+        status.setForeground(style.getOrange());
 
         status.setMaximum(ONEHUNDRED);
 
@@ -69,10 +72,10 @@ public class ProgressBarPanel extends JPanel {
 
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Basic Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
         this.setLayout(new GridBagLayout());
