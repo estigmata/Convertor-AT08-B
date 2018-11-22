@@ -35,10 +35,10 @@ import java.awt.Dimension;
  * @version 1.0
  */
 public final class Viewer extends JFrame {
+
     private TitlePanel titlePanel;
     private DownPanel downPanel;
     private UpperPanel upperPanel;
-
     private static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
@@ -58,6 +58,7 @@ public final class Viewer extends JFrame {
         final int widthAll = 800;
         final int heightAll = 620;
         final int heightMin = 650;
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(widthAll, heightAll));
         this.setMinimumSize(new Dimension(widthAll, heightMin));
@@ -75,7 +76,9 @@ public final class Viewer extends JFrame {
         final int heigth1 = 25;
         final int heigth2 = 250;
         final int heigth3 = 320;
+
         Container principalPane = this.getContentPane();
+
         principalPane.setLayout(new BoxLayout(principalPane, BoxLayout.Y_AXIS));
 
         titlePanel = new TitlePanel();
@@ -147,69 +150,6 @@ public final class Viewer extends JFrame {
     }
 
     /**
-     * Getter of the ComboChannel Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboChannel() {
-        return upperPanel.getSearchPanel().getAudioSearchPanel().getChannel();
-    }
-
-    /**
-     * Getter of the ComboAudioCodec Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboAudioCodec() {
-        return upperPanel.getSearchPanel().getAudioSearchPanel().getAudioCodec();
-    }
-
-    /**
-     * Getter of the ComboFrameRate Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboFrameRate() {
-        return upperPanel.getSearchPanel().getVideoSearchPanel().getFrameRate();
-    }
-
-    /**
-     * Getter of the ComboAspectRatio Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboAspectRatio() {
-        return upperPanel.getSearchPanel().getVideoSearchPanel().getAspectRatio();
-    }
-
-    /**
-     * Getter of the ComboResolution Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboResolution() {
-        return upperPanel.getSearchPanel().getVideoSearchPanel().getResolution();
-    }
-
-    /**
-     * Getter of the ComboVideoCodec Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboVideoCodec() {
-        return upperPanel.getSearchPanel().getVideoSearchPanel().getVideoCodec();
-    }
-
-    /**
-     * Getter of the ComboAudioCodecVideo Combo Box.
-     *
-     * @return JComboBox
-     */
-    public JComboBox getComboAudioCodecVideo() {
-        return upperPanel.getSearchPanel().getVideoSearchPanel().getAudioCodec();
-    }
-
-    /**
      * Getter of the upper panel.
      *
      * @return the Upper panel object
@@ -219,10 +159,4 @@ public final class Viewer extends JFrame {
     }
 
 
-    /**
-     * @return the titlepanel object.
-     */
-    public TitlePanel getTitlePanel() {
-        return titlePanel;
-    }
 }

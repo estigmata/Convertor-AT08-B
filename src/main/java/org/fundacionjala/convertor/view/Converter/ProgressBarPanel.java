@@ -35,7 +35,6 @@ import java.awt.GridBagLayout;
  */
 public class ProgressBarPanel extends JPanel {
 
-
     private static JProgressBar status;
     private static JLabel statusLabel;
     private static final int ONEHUNDRED = 100;
@@ -51,7 +50,9 @@ public class ProgressBarPanel extends JPanel {
         status = new JProgressBar();
         status.setFont(style.getFont());
         status.setMinimum(0);
+
         status.setForeground(style.getOrange());
+
 
         status.setMaximum(ONEHUNDRED);
 
@@ -81,6 +82,7 @@ public class ProgressBarPanel extends JPanel {
         this.setLayout(new GridBagLayout());
 
         GridBagConstraints bagConstraints = new GridBagConstraints();
+
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
@@ -89,7 +91,6 @@ public class ProgressBarPanel extends JPanel {
         bagConstraints.gridx = one;
         bagConstraints.gridy = 0;
         status.setValue(0);
-
         this.add(status, bagConstraints);
     }
 

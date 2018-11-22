@@ -83,7 +83,9 @@ public class MediaPlayerPanel extends JPanel {
         JPanel buttonsContainer = new JPanel();
         JButton btnStart = new JButton();
         JButton btnPlayPause = new JButton();
+
         JToggleButton btnMute = new JToggleButton();
+
         btnStart.setBackground(Color.WHITE);
         btnPlayPause.setBackground(Color.WHITE);
         btnMute.setBackground(Color.WHITE);
@@ -109,8 +111,6 @@ public class MediaPlayerPanel extends JPanel {
         btnPlayPause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                // btnPlayPause.setText(player.getMediaPlayer().isPlaying() ? "[Play]" : "[Pause]");
-
                 if (player.getMediaPlayer().isPlaying()) {
                     btnPlayPause.setIcon(new javax.swing.ImageIcon("Image\\play.PNG"));
                 } else {
@@ -123,9 +123,7 @@ public class MediaPlayerPanel extends JPanel {
             @Override
             public void actionPerformed(final ActionEvent actionEvent) {
                 AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
-
                 player.getMediaPlayer().mute(abstractButton.getModel().isSelected());
-
                 if (player.getMediaPlayer().isMute()) {
                     btnMute.setIcon(new javax.swing.ImageIcon("Image\\audio.PNG"));
                 } else {
@@ -137,7 +135,6 @@ public class MediaPlayerPanel extends JPanel {
         sldVolume.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(final ChangeEvent e) {
-
                 Object source = e.getSource();
                 player.getMediaPlayer().setVolume(((JSlider) source).getValue());
             }
@@ -148,6 +145,7 @@ public class MediaPlayerPanel extends JPanel {
         buttonsContainer.add(btnPlayPause);
         buttonsContainer.add(btnMute);
         buttonsContainer.add(sldVolume);
+
         this.add(buttonsContainer, BorderLayout.SOUTH);
 
     }
@@ -155,7 +153,7 @@ public class MediaPlayerPanel extends JPanel {
     /**
      * Setter for reproduce the video.
      *
-     * @param filePath input File
+     * @param filePath input File.
      */
     public static void setFilePath(final String filePath) {
         MediaPlayerPanel.filePath = filePath;

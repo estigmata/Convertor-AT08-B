@@ -37,9 +37,11 @@ import java.util.ArrayList;
  * Class Files Panel in order to show files detail list.
  *
  * @author Nestor Otondo [nestor.otondo@fundacion-jala.org]
+ * @author Abel Gustavo Mallcu Chiri.
  * @version 1.0
  */
 public class FilesPanelContainer extends JPanel {
+
     private JPanel filesContainer;
     private Style style;
 
@@ -49,19 +51,21 @@ public class FilesPanelContainer extends JPanel {
     public FilesPanelContainer() {
         style = new Style();
         final int rows = 9999;
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        final Font font = new Font("Tahoma", 0, 11);
+        final Color orangeColor = new Color(255, 51, 0);
+
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Files",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
-
         setLayout(new BorderLayout());
+
         this.setBackground(Color.white);
         filesContainer = new JPanel(new GridLayout(rows, 1));
         filesContainer.setBackground(Color.WHITE);
+
         add(new JScrollPane(filesContainer));
 
     }

@@ -24,6 +24,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
@@ -61,8 +62,8 @@ public class Information extends JPanel {
     public Information() {
         final int ten = 10;
         style = new Style();
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
+        final Font font = new Font("Tahoma", 0, 11);
+        final Color orangeColor = new Color(255, 51, 0);
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Information",
                 TitledBorder.DEFAULT_JUSTIFICATION,
@@ -70,7 +71,6 @@ public class Information extends JPanel {
                 font, orangeColor));
         this.setVisible(true);
         this.setBackground(Color.WHITE);
-
 
         path = new JTextField();
         path.setEditable(false);
@@ -104,32 +104,31 @@ public class Information extends JPanel {
         channels.setEditable(false);
 
         pathLabel = new JLabel("Path : ");
-        pathLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        pathLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         sizeLabel = new JLabel("Size : ");
-        sizeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        sizeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         extensionLabel = new JLabel("Extension : ");
-        extensionLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        extensionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         videoCodecLabel = new JLabel("Video Codec : ");
-        videoCodecLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        videoCodecLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         resolutionLabel = new JLabel("Resolution : ");
-        resolutionLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        resolutionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         aspectRatioLabel = new JLabel("Aspect Ratio : ");
-        aspectRatioLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        aspectRatioLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         frameRateLabel = new JLabel("Frame Rate : ");
-        frameRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        frameRateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         audioCodecLabel = new JLabel("Audio Codec : ");
-        audioCodecLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        audioCodecLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         channelsLabel = new JLabel("Channels : ");
-        channelsLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
+        channelsLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         path.setFont(style.getFont());
         size.setFont(style.getFont());
@@ -161,9 +160,7 @@ public class Information extends JPanel {
         final int rows = 9;
         final int cols = 2;
         setLayout(new GridLayout(rows, cols));
-
         add(pathLabel);
-
         add(path);
 
         add(sizeLabel);

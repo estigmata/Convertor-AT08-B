@@ -49,15 +49,15 @@ public class TitlePanel extends JPanel {
         container = new JPanel();
         container.setSize(new Dimension(width, heigth));
         container.setBackground(Color.white);
-
         logo = new JLabel();
         logo.setIcon(new javax.swing.ImageIcon("Image\\mono_logo.PNG"));
+
         initComponents();
 
     }
 
     /**
-     * Initialization of the .
+     * Initialization and add of the components.
      */
     private void initComponents() {
         this.add(logo);

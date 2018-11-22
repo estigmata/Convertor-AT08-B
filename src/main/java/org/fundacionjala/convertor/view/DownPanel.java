@@ -26,18 +26,18 @@ import java.awt.Dimension;
  * @author Abel Gustavo Mallcu Chiri.
  */
 public class DownPanel extends JPanel {
+
     private ResultTablePanel resultTablePanel;
     private ConverterPanel converterPanel;
 
     /**
-     *
+     * Constructor.
      */
     public DownPanel() {
 
-
         resultTablePanel = new ResultTablePanel();
-
         converterPanel = new ConverterPanel();
+
         initComponents();
     }
 
@@ -52,24 +52,25 @@ public class DownPanel extends JPanel {
         final int width2 = 250;
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
         resultTablePanel.setPreferredSize(new Dimension(width1, height));
         this.add(resultTablePanel);
-        converterPanel.setPreferredSize(new Dimension(width2, height));
 
+        converterPanel.setPreferredSize(new Dimension(width2, height));
         this.add(converterPanel);
     }
 
     /**
      * Method to obtain result table panel.
      *
-     * @return the panel.
+     * @return the Result Table panel.
      */
     public ResultTablePanel getResultTablePanel() {
         return resultTablePanel;
     }
 
     /**
-     * @return .
+     * @return the Result Convert panel.
      */
 
     public ConverterPanel getConverterPanel() {

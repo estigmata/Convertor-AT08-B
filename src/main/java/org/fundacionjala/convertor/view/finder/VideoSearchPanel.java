@@ -17,9 +17,12 @@ package org.fundacionjala.convertor.view.finder;
 
 import org.fundacionjala.convertor.utils.Style;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -45,7 +48,6 @@ public class VideoSearchPanel extends JPanel {
     private JLabel labelVideoCodec;
     private JLabel labelAudioCodec;
     private JPanel container;
-
     private Style style;
 
 
@@ -82,6 +84,7 @@ public class VideoSearchPanel extends JPanel {
         labelAudioCodec.setFont(style.getFont());
 
         container = new JPanel(new GridBagLayout());
+
         this.setBackground(Color.WHITE);
 
         initComponents();
@@ -98,11 +101,11 @@ public class VideoSearchPanel extends JPanel {
 
         this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        final Color orangeColor = new Color(255, 51, 0);
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Video Advanced Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
         container.setBackground(Color.WHITE);
@@ -113,7 +116,7 @@ public class VideoSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        labelFrameRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFrameRate.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelFrameRate, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -122,7 +125,7 @@ public class VideoSearchPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
-        labelAspectRatio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAspectRatio.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelAspectRatio, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -131,7 +134,7 @@ public class VideoSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        labelResolution.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelResolution.setHorizontalAlignment(SwingConstants.RIGHT);
 
         container.add(labelResolution, bagConstraints);
         bagConstraints.gridx = one;
@@ -140,7 +143,7 @@ public class VideoSearchPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = one;
-        labelVideoCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelVideoCodec.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelVideoCodec, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -149,7 +152,7 @@ public class VideoSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAudioCodec.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = 1;
@@ -159,7 +162,7 @@ public class VideoSearchPanel extends JPanel {
     }
 
     /**
-     * @return .
+     * @return value of the FrameRate JComboBox.
      */
     public JComboBox<String> getFrameRate() {
         return frameRate;
@@ -167,7 +170,7 @@ public class VideoSearchPanel extends JPanel {
 
 
     /**
-     * @return .
+     * @return value of the AspectRatio JComboBox.
      */
     public JComboBox<String> getAspectRatio() {
         return aspectRatio;
@@ -175,7 +178,7 @@ public class VideoSearchPanel extends JPanel {
 
 
     /**
-     * @return .
+     * @return value of the Resolution JComboBox.
      */
     public JComboBox<String> getResolution() {
         return resolution;
@@ -183,7 +186,7 @@ public class VideoSearchPanel extends JPanel {
 
 
     /**
-     * @return .
+     * @return value of the VideoCodec JComboBox.
      */
     public JComboBox<String> getVideoCodec() {
         return videoCodec;
@@ -191,14 +194,14 @@ public class VideoSearchPanel extends JPanel {
 
 
     /**
-     * @return .
+     * @return value of the AudioCodec JComboBox.
      */
     public JComboBox<String> getAudioCodec() {
         return audioCodec;
     }
 
     /**
-     * @param audioCodec .
+     * @param audioCodec add of the FrameRate JComboBox.
      */
     public void setAudioCodec(final JComboBox<String> audioCodec) {
         this.audioCodec = audioCodec;

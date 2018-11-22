@@ -13,6 +13,7 @@ import java.awt.Dimension;
  * Class of the upper panel who contais 3 panels.
  */
 public class UpperPanel extends JPanel {
+
     private FinderPanel searchPanel;
     private MediaPlayerPanel mediaPlayer;
 
