@@ -39,6 +39,8 @@ public class ConverterModel implements IConvert {
      */
 
     public ConverterModel() throws IOException {
+        log.setLogger(ConverterModel.class.getName());
+        log.info("Converter model.");
     }
 
     /**
