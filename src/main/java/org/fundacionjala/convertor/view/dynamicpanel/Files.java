@@ -63,11 +63,7 @@ public class Files extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(final MouseEvent e) {
-        if (isHighLighted) {
-            setBorder(borderDefault);
-        } else {
-            setBorder(borderSelected);
-        }
+
         isHighLighted = !isHighLighted;
 
         MediaPlayerPanel.setFilePath(absoutePath);
@@ -103,10 +99,13 @@ public class Files extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(final MouseEvent e) {
-
+        setBorder(borderSelected);
     }
 
     @Override
     public void mouseExited(final MouseEvent e) {
+        setBorder(borderDefault);
     }
+
+
 }

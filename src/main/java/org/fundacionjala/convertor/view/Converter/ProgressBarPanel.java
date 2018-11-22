@@ -50,6 +50,10 @@ public class ProgressBarPanel extends JPanel {
         status = new JProgressBar();
         status.setFont(style.getFont());
         status.setMinimum(0);
+
+        status.setForeground(style.getOrange());
+
+
         status.setMaximum(ONEHUNDRED);
 
         statusLabel = new JLabel();

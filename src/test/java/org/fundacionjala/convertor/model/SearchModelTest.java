@@ -33,12 +33,12 @@ public class SearchModelTest {
     }
 
     /**
-     * Unit test to show that the application finds 40 files of different types in the entered path.
+     * Unit test to show that the application finds 41 files of different types in the entered path.
      * @throws IOException exception.
      */
     @Test
     public void searchFilesByPath() throws IOException {
-        final int numberFiles = 40;
+        final int numberFiles = 41;
         basicCriteria = new Criteria();
         basicCriteria.setInputPath(PATH);
         basicCriteria.setFileName("");
@@ -66,7 +66,7 @@ public class SearchModelTest {
      */
     @Test
     public void searchFilesBySize() throws IOException {
-        final int numberFiles = 29;
+        final int numberFiles = 30;
         final int fileSize = 2000000;
         basicCriteria = new Criteria();
         basicCriteria.setInputPath(PATH);
@@ -213,28 +213,6 @@ public class SearchModelTest {
         videoCriteria.setFileName("");
         videoCriteria.setFileSize(size);
         videoCriteria.setAspectRatio("");
-        videoCriteria.setAudioCodec("");
-        videoCriteria.setFrameRate("");
-        videoCriteria.setResolutionHeight(0);
-        videoCriteria.setResolutionWith(0);
-        videoCriteria.setVideoCodec("");
-        basicCriteria = videoCriteria;
-        fileList = searchModel.searchFiles(basicCriteria);
-        assertEquals(numberFiles, fileList.size());
-    }
-
-    /**
-     * Unit test to verify that the application finds 4 video files whose aspect ratio is 16:9.
-     * @throws IOException exception.
-     */
-    @Test
-    public void searchVideoByAspectRatio() throws IOException {
-        final int numberFiles = 4;
-        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
-        videoCriteria.setInputPath(PATH);
-        videoCriteria.setFileName("");
-        videoCriteria.setFileSize(0);
-        videoCriteria.setAspectRatio("16:9");
         videoCriteria.setAudioCodec("");
         videoCriteria.setFrameRate("");
         videoCriteria.setResolutionHeight(0);
