@@ -224,28 +224,6 @@ public class SearchModelTest {
     }
 
     /**
-     * Unit test to verify that the application finds 4 video files whose aspect ratio is 16:9.
-     * @throws IOException exception.
-     */
-    @Test
-    public void searchVideoByAspectRatio() throws IOException {
-        final int numberFiles = 4;
-        AdvancedCriteriaVideo videoCriteria = new AdvancedCriteriaVideo();
-        videoCriteria.setInputPath(PATH);
-        videoCriteria.setFileName("");
-        videoCriteria.setFileSize(0);
-        videoCriteria.setAspectRatio("16:9");
-        videoCriteria.setAudioCodec("");
-        videoCriteria.setFrameRate("");
-        videoCriteria.setResolutionHeight(0);
-        videoCriteria.setResolutionWith(0);
-        videoCriteria.setVideoCodec("");
-        basicCriteria = videoCriteria;
-        fileList = searchModel.searchFiles(basicCriteria);
-        assertEquals(numberFiles, fileList.size());
-    }
-
-    /**
      * Unit test to verify that the application finds 6 files whose audio codec is "AAC".
      * @throws IOException exception.
      */

@@ -130,18 +130,6 @@ public class SearchModel implements ISearch {
                     assert stream != null;
                     return stream.avg_frame_rate.toString().split("/")[0].equals(criteria.getFrameRate());
                 })
-//                Aspect Ratio
-                .filter(x -> {
-                    if (criteria.getAspectRatio().isEmpty()) {
-                        return true;
-                    }
-                    FFmpegStream stream = getStreamVideo(getStreamFFprobe(x));
-                    assert stream != null;
-                    if (stream.display_aspect_ratio == null) {
-                        return false;
-                    }
-                    return stream.display_aspect_ratio.equals(criteria.getAspectRatio());
-                })
 ////                WxH
                 .filter(x -> {
                     if (criteria.getResolutionHeight() == 0 || criteria.getResolutionWith() == 0) {
