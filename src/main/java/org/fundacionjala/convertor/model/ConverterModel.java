@@ -117,7 +117,7 @@ public class ConverterModel implements IConvert {
             log.info("Run conversion job");
         } catch (Exception e) {
             e.printStackTrace();
-            log.info("Maybe exists incorrect parameters for the current video codec");
+            log.error(e);
         }
         if (job.getState() == FFmpegJob.State.FAILED) {
             new ErrorMessage("Maybe exists incorrect parameters for the current video codec");
@@ -176,7 +176,7 @@ public class ConverterModel implements IConvert {
             log.info("Run conversion job");
         } catch (Exception e) {
             e.printStackTrace();
-            log.info("Maybe exists incorrect parameters for the current audio codec");
+            log.error(e);
         }
         if (job.getState() == FFmpegJob.State.FAILED) {
             new ErrorMessage("Maybe exists incorrect parameters for the current audio codec");
