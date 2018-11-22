@@ -28,7 +28,7 @@ import org.fundacionjala.convertor.model.objectfile.Asset;
 import org.fundacionjala.convertor.utils.AbstractLogger;
 import org.fundacionjala.convertor.utils.Validator;
 import org.fundacionjala.convertor.view.Converter.BasicConverterPanel;
-import org.fundacionjala.convertor.view.ErrorMessage;
+import org.fundacionjala.convertor.view.messages.ErrorMessage;
 import org.fundacionjala.convertor.view.Viewer;
 
 

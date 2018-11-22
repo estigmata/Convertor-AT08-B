@@ -17,6 +17,7 @@ package org.fundacionjala.convertor.view;
 
 
 import org.fundacionjala.convertor.utils.Validator;
+import org.fundacionjala.convertor.view.messages.ErrorMessage;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 
 import javax.swing.AbstractButton;

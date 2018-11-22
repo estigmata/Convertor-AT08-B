@@ -13,7 +13,7 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.view;
+package org.fundacionjala.convertor.view.messages;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
 

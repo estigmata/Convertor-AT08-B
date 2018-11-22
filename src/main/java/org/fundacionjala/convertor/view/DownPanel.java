@@ -16,6 +16,7 @@
 package org.fundacionjala.convertor.view;
 
 import org.fundacionjala.convertor.view.Converter.ConverterPanel;
+import org.fundacionjala.convertor.view.dynamicpanel.ResultTablePanel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;

@@ -13,11 +13,9 @@
  * information or have any questions.
  */
 
-package org.fundacionjala.convertor.view;
+package org.fundacionjala.convertor.view.dynamicpanel;
 
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.view.dynamicpanel.FilesPanelContainer;
-import org.fundacionjala.convertor.view.dynamicpanel.Information;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -35,7 +33,7 @@ public class ResultTablePanel extends JPanel {
     /**
      * Constructor.
      */
-    ResultTablePanel() {
+    public ResultTablePanel() {
         filesPanel = new FilesPanelContainer();
         informationPanel = new Information();
         AbstractLogger log = AbstractLogger.getInstance();

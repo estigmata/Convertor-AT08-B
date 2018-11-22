@@ -12,7 +12,7 @@ import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaAudio;
 import org.fundacionjala.convertor.model.Criteria.ConvertCriteriaVideo;
 import org.fundacionjala.convertor.model.Criteria.Criteria;
 import org.fundacionjala.convertor.utils.AbstractLogger;
-import org.fundacionjala.convertor.view.CompletedMessage;
+import org.fundacionjala.convertor.view.messages.CompletedMessage;
 import org.fundacionjala.convertor.view.Converter.ProgressBarPanel;
 
 import java.io.IOException;
