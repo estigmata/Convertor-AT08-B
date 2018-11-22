@@ -17,9 +17,13 @@ package org.fundacionjala.convertor.view.Converter;
 
 import org.fundacionjala.convertor.utils.Style;
 
+
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -87,13 +91,15 @@ public class AudioConverterPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int three = 3;
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        final Font font = new Font("Tahoma", 0, 11);
+        final Color orangeColor = new Color(255, 51, 0);
+
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Audio Converter",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
+
         this.setLayout(new GridBagLayout());
 
         GridBagConstraints bagConstraints = new GridBagConstraints();
@@ -101,7 +107,7 @@ public class AudioConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAudioCodec.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -110,7 +116,7 @@ public class AudioConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelChannel.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(labelChannel, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -119,7 +125,7 @@ public class AudioConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
-        labelFormatCode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFormatCode.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(labelFormatCode, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -128,7 +134,7 @@ public class AudioConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 1;
-        labelAudioSampleRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAudioSampleRate.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(labelAudioSampleRate, bagConstraints);
 
         bagConstraints.gridx = three;
@@ -137,7 +143,7 @@ public class AudioConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        labelBitRate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelBitRate.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(labelBitRate, bagConstraints);
 
         bagConstraints.gridx = 1;

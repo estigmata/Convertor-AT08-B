@@ -17,11 +17,14 @@ package org.fundacionjala.convertor.view.Converter;
 import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.BrowseChooser;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -44,8 +47,8 @@ public class BasicConverterPanel extends JPanel {
     private static JTextField outputPath;
     private static JTextField outputFileName;
     private static JTextField currentPath;
-    private BrowseChooser browseChooser;
     private static JComboBox<String> multimediaBox;
+    private BrowseChooser browseChooser;
     private JLabel labelOutPath;
     private JLabel labelOutputName;
     private JLabel labelCurrentPath;
@@ -56,20 +59,24 @@ public class BasicConverterPanel extends JPanel {
      * Constructor.
      */
     public BasicConverterPanel() {
-        style = new Style();
+
         final int ten = 10;
+
+        style = new Style();
 
         outputPath = new JTextField("");
         outputPath.setColumns(ten);
+
         btnConverter = new JButton("Converter");
         btnConverter.setBackground(Color.WHITE);
         btnConverter.setIcon(new javax.swing.ImageIcon("Image\\converter.PNG"));
 
         outputFileName = new JTextField();
         outputFileName.setColumns(ten);
+
         currentPath = new JTextField();
         currentPath.setColumns(ten);
-        this.setVisible(true);
+
         browseChooser = new BrowseChooser();
         browseChooser.setPath(outputPath);
         browseChooser.setBackground(Color.WHITE);
@@ -88,6 +95,7 @@ public class BasicConverterPanel extends JPanel {
         currentPath.setFont(style.getFont());
         browseChooser.setFont(style.getFont());
         multimediaBox.setFont(style.getFont());
+
         labelOutPath.setFont(style.getFont());
         labelOutputName.setFont(style.getFont());
         labelCurrentPath.setFont(style.getFont());
@@ -95,6 +103,7 @@ public class BasicConverterPanel extends JPanel {
 
 
         container = new JPanel(new GridBagLayout());
+        this.setVisible(true);
         initComponents();
     }
 
@@ -110,21 +119,22 @@ public class BasicConverterPanel extends JPanel {
 
         this.setBackground(Color.WHITE);
         container.setBackground(Color.WHITE);
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        final Font font = new Font("Tahoma", 0, 11);
+        final Color orangeColor = new Color(255, 51, 0);
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Basic Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
         GridBagConstraints bagConstraints = new GridBagConstraints();
+
         bagConstraints.insets = new Insets(0, 0, 0, 0);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        labelOutputName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOutputName.setHorizontalAlignment(SwingConstants.RIGHT);
 
         container.add(labelOutputName, bagConstraints);
         bagConstraints.gridx = one;
@@ -133,7 +143,7 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        labelCurrentPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelCurrentPath.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelCurrentPath, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -142,7 +152,7 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = tree;
-        labelOutPath.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOutPath.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelOutPath, bagConstraints);
         bagConstraints.gridx = one;
         bagConstraints.gridy = tree;
@@ -154,7 +164,7 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = four;
-        labelMultimediaBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelMultimediaBox.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelMultimediaBox, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -163,7 +173,9 @@ public class BasicConverterPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = four;
+
         container.add(btnConverter, bagConstraints);
+
         this.add(container);
     }
 

@@ -17,11 +17,13 @@ package org.fundacionjala.convertor.view.finder;
 import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.BrowseChooser;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
@@ -75,7 +77,6 @@ public class BasicSearchPanel extends JPanel {
         size.setFont(style.getFont());
 
         browseChooser = new BrowseChooser();
-
         browseChooser.setBackground(Color.WHITE);
         browseChooser.setPath(path);
         browseChooser.setFont(style.getFont());
@@ -106,11 +107,11 @@ public class BasicSearchPanel extends JPanel {
         final int one = 1;
         final int two = 2;
         final int tree = 3;
-
-        this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Basic Search",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
@@ -142,7 +143,7 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = one;
-        labelName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelName.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelName, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -153,7 +154,7 @@ public class BasicSearchPanel extends JPanel {
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = two;
-        labelSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelSize.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelSize, bagConstraints);
 
         bagConstraints.gridx = 1;

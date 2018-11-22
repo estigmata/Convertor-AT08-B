@@ -19,6 +19,7 @@ import org.fundacionjala.convertor.utils.Style;
 import org.fundacionjala.convertor.view.finder.BasicSearchPanel;
 
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -56,18 +57,14 @@ public class Explorer extends JPanel {
         final Color orangeColor = new java.awt.Color(255, 51, 0);
 
         setSize(width, height);
-
         DefaultMutableTreeNode top = new DefaultMutableTreeNode(
                 new IconData("Computer"));
-
         DefaultMutableTreeNode node;
 
         File[] roots = File.listRoots();
         for (File root : roots) {
             node = new DefaultMutableTreeNode(new IconData(new FileNode(root)));
-
             top.add(node);
-
             node.add(new DefaultMutableTreeNode(Boolean.TRUE));
         }
 
@@ -75,15 +72,11 @@ public class Explorer extends JPanel {
         mTree = new JTree(mModel);
         mTree.setFont(style.getFont());
         mTree.putClientProperty("JTree.lineStyle", "Angled");
-
         mTree.setCellRenderer(new DefaultTreeCellRenderer());
-
         mTree.addTreeExpansionListener(new
                 DirExpansionListener());
-
         mTree.addTreeSelectionListener(new
                 DirSelectionListener());
-
         mTree.getSelectionModel().setSelectionMode(
                 TreeSelectionModel.SINGLE_TREE_SELECTION);
         mTree.setShowsRootHandles(true);
@@ -94,12 +87,12 @@ public class Explorer extends JPanel {
         iconos.setOpenIcon(new ImageIcon("Image\\pc.PNG"));
         iconos.setClosedIcon(new ImageIcon("Image\\folder.PNG"));
 
-
         final int explorerWidth = 200;
         final int explorerHeight = 280;
+
         JScrollPane s = new JScrollPane(mTree);
         s.setPreferredSize(new Dimension(explorerWidth, explorerHeight));
-        s.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        s.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                 createLineBorder(orangeColor)));
         add(s, BorderLayout.CENTER);
 

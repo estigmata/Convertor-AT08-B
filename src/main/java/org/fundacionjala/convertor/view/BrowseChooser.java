@@ -36,8 +36,8 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class BrowseChooser extends JPanel implements ActionListener {
-    private JTextField path;
 
+    private JTextField path;
     private static AbstractLogger log = AbstractLogger.getInstance();
 
     /**
@@ -45,14 +45,18 @@ public class BrowseChooser extends JPanel implements ActionListener {
      */
     public BrowseChooser() {
         log.setLogger(BrowseChooser.class.getName());
+
         JButton browse = new JButton();
 
         browse.setHorizontalAlignment(SwingConstants.LEFT);
         browse.setBackground(Color.WHITE);
         browse.setIcon(new ImageIcon("Image\\browse.PNG"));
         browse.addActionListener(this);
+
         path = new JTextField();
+
         add(browse);
+
         log.info("Set Browser Choose.");
     }
 

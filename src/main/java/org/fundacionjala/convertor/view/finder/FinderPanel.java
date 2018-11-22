@@ -14,9 +14,11 @@
  */
 package org.fundacionjala.convertor.view.finder;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -55,11 +57,12 @@ public class FinderPanel extends JPanel {
         this.add(videoSearchPanel);
 
         final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        final Color orangeColor = new Color(255, 51, 0);
+
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
         basicSearchPanel.getMultimediaBox().addActionListener(new ActionListener() {
@@ -114,45 +117,26 @@ public class FinderPanel extends JPanel {
     }
 
     /**
-     * @return .
+     * @return value of BasicSearchPanel  .
      */
     public BasicSearchPanel getBasicSearchPanel() {
         return basicSearchPanel;
     }
 
-    /**
-     * @param basicSearchPanel .
-     */
-    public void setBasicSearchPanel(final BasicSearchPanel basicSearchPanel) {
-        this.basicSearchPanel = basicSearchPanel;
-    }
 
     /**
-     * @return .
+     * @return value of AudioSearchPanel.
      */
     public AudioSearchPanel getAudioSearchPanel() {
         return audioSearchPanel;
     }
 
-    /**
-     * @param audioSearchPanel .
-     */
-    public void setAudioSearchPanel(final AudioSearchPanel audioSearchPanel) {
-        this.audioSearchPanel = audioSearchPanel;
-    }
 
     /**
-     * @return .
+     * @return value of VideoSearchPanel.
      */
     public VideoSearchPanel getVideoSearchPanel() {
         return videoSearchPanel;
-    }
-
-    /**
-     * @param videoSearchPanel .
-     */
-    public void setVideoSearchPanel(final VideoSearchPanel videoSearchPanel) {
-        this.videoSearchPanel = videoSearchPanel;
     }
 
 

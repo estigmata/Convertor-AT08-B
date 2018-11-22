@@ -17,9 +17,12 @@ package org.fundacionjala.convertor.view.finder;
 
 import org.fundacionjala.convertor.utils.Style;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -52,7 +55,6 @@ public class AudioSearchPanel extends JPanel {
         labelChannel = new JLabel("Channel :");
         labelAudioCodec = new JLabel("Audio Codec :");
 
-
         audioCodec.setFont(style.getFont());
         channel.setFont(style.getFont());
         labelChannel.setFont(style.getFont());
@@ -66,28 +68,28 @@ public class AudioSearchPanel extends JPanel {
      * Initialization of Components.
      */
     public void initComponents() {
-
-
         final int one = 1;
         final int two = 2;
         final int tree = 3;
-        this.setBackground(Color.WHITE);
         final Font font = new java.awt.Font("Tahoma", 0, 11);
         final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Audio Advanced Search",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font,
                 orangeColor));
+
         container.setBackground(Color.WHITE);
+
         GridBagConstraints bagConstraints = new GridBagConstraints();
         bagConstraints.insets = new Insets(1, 1, 1, 1);
         bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        labelAudioCodec.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAudioCodec.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelAudioCodec, bagConstraints);
 
         bagConstraints.gridx = one;
@@ -96,12 +98,11 @@ public class AudioSearchPanel extends JPanel {
 
         bagConstraints.gridx = two;
         bagConstraints.gridy = 0;
-        labelChannel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
+        labelChannel.setHorizontalAlignment(SwingConstants.RIGHT);
         container.add(labelChannel, bagConstraints);
+
         bagConstraints.gridx = tree;
         bagConstraints.gridy = 0;
-
         container.add(channel, bagConstraints);
 
 
@@ -110,21 +111,15 @@ public class AudioSearchPanel extends JPanel {
     }
 
     /**
-     * @return channel value.
+     * @return value of the channel JComboBox .
      */
     public JComboBox<String> getChannel() {
         return channel;
     }
 
-    /**
-     * @param channel .
-     */
-    public void setChannel(final JComboBox<String> channel) {
-        this.channel = channel;
-    }
 
     /**
-     * @return .
+     * @return value of the Audio Codec JComboBox.
      */
     public JComboBox<String> getAudioCodec() {
         return audioCodec;

@@ -15,8 +15,10 @@
 package org.fundacionjala.convertor.view.Converter;
 
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -30,6 +32,7 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class ConverterPanel extends JPanel {
+
     private BasicConverterPanel basicConverterPanel;
     private AudioConverterPanel audioConverterPanel;
     private VideoConverterPanel videoConverterPanel;
@@ -39,6 +42,8 @@ public class ConverterPanel extends JPanel {
      * Constructor.
      */
     public ConverterPanel() {
+        final Font font = new java.awt.Font("Tahoma", 0, 11);
+        final Color orangeColor = new java.awt.Color(255, 51, 0);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -53,19 +58,18 @@ public class ConverterPanel extends JPanel {
 
         videoConverterPanel = new VideoConverterPanel();
         videoConverterPanel.setBackground(Color.WHITE);
-
         this.add(videoConverterPanel);
 
         progressBarPanel = new ProgressBarPanel();
         progressBarPanel.setVisible(true);
         progressBarPanel.setBackground(Color.WHITE);
         this.add(progressBarPanel);
-        final Font font = new java.awt.Font("Tahoma", 0, 11);
-        final Color orangeColor = new java.awt.Color(255, 51, 0);
-        this.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.
+
+
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.
                         createLineBorder(orangeColor), "Converter ",
-                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
                 font, orangeColor));
 
         this.setBackground(Color.WHITE);
@@ -97,30 +101,25 @@ public class ConverterPanel extends JPanel {
     }
 
     /**
-     * @return .
+     * @return basic converter panel.
      */
     public BasicConverterPanel getBasicConverterPanel() {
         return basicConverterPanel;
     }
 
     /**
-     * @return .
+     * @return Audio Converter Panel .
      */
     public AudioConverterPanel getAudioConverterPanel() {
         return audioConverterPanel;
     }
 
     /**
-     * @return .
+     * @return Video Converter Panel.
      */
     public VideoConverterPanel getVideoConverterPanel() {
         return videoConverterPanel;
     }
 
-    /**
-     * @return .
-     */
-    public ProgressBarPanel getProgressBarPanel() {
-        return progressBarPanel;
-    }
+
 }

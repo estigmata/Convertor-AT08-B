@@ -56,10 +56,9 @@ public class Files extends JPanel implements MouseListener {
         addMouseListener(this);
         setFocusable(true);
         isHighLighted = false;
+        absoutePath = file.getPath() + "\\" + file.getFileName() + "." + file.getExtension();
         this.file = file;
         this.setBackground(Color.white);
-        absoutePath = file.getPath() + "\\" + file.getFileName() + "." + file.getExtension();
-
     }
 
     @Override
@@ -70,8 +69,10 @@ public class Files extends JPanel implements MouseListener {
             setBorder(borderSelected);
         }
         isHighLighted = !isHighLighted;
+
         MediaPlayerPanel.setFilePath(absoutePath);
         Information.setInformation(file);
+
         BasicConverterPanel.setOutputFileName(file.getFileName());
         BasicConverterPanel.setPathSource(absoutePath);
         BasicConverterPanel.setPathDestination(file.getPath());
