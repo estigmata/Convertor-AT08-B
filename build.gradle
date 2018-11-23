@@ -1,0 +1,69 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'jacoco'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.apache.logging.log4j:log4j-api:2.11.1'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.1'
+    compile 'net.bramp.ffmpeg:ffmpeg:0.6.2'
+    compile "org.slf4j:slf4j-api:1.6.1"
+    compile "org.slf4j:slf4j-simple:1.6.1"
+    compile 'uk.co.caprica:vlcj:3.0.1'
+    compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.19.1'
+}
+
+// Checkstyle configuration
+checkstyle {
+    toolVersion = '8.8'
+}
+
+// FindBugs configuration
+findbugs {
+    toolVersion = '3.0.1'
+    excludeFilter = file("config/findbugs/filter.xml")
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+// PMD configuration
+pmd {
+    ruleSets = ["java-basic", "java-braces", "java-unnecessary", "java-unusedcode", "java-strictexception"]
+    toolVersion = '6.0.0'
+}
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+test {
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}

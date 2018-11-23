@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <File name="file" fileName="converter.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [Thread: %t] %level [%c][%M] - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="trace" includeLocation="true">
+            <AppenderRef ref="file" level="DEBUG"/>
+        </Root>
+    </Loggers>
+</Configuration>
